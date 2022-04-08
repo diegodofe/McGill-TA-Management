@@ -1,8 +1,12 @@
 import React from "react";
 
+// Bootstap
 import Container from "react-bootstrap/Container";
+
+// Components
 import ButtonsShowcase from "./components/Buttons";
 import ToastsShowcase from "./components/Toasts";
+import QueryExample from "./components/QueryExample";
 
 function App() {
   return (
@@ -14,6 +18,7 @@ function App() {
       <ButtonsShowcase />
       <h2>Toasts</h2>
       <ToastsShowcase />
+      <QueryExample />
     </Container>
   );
 }
