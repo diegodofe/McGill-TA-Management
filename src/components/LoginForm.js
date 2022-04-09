@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import logo from "../images/mcgill_logo.jpg"; 
 
+// Login function and error value passed from App.js
 function LoginForm({ Login, error }) {
   const [details, setDetails] = useState({ email: "", password: "" });
 
+  // on submit pass email and password values entered by user
   const submitHandler = (e) => {
     e.preventDefault();
     Login(details);
   };
 
+  // displays error if not null (Note: if error != null then error has occured)
+  // returns form with username and password input feilds
   return (
     <form onSubmit={submitHandler}>
       <div className="form-inner">
