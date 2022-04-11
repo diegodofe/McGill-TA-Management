@@ -9,9 +9,9 @@ interface Props {
 
 // Login function and error value passed from App.js
 function LoginForm({ Login, error }: Props) {
-  const [details, setDetails] = useState({ email: "", password: "" });
+  const [details, setDetails] = useState({ username: "", password: "" });
 
-  // on submit pass email and password values entered by user
+  // on submit pass username and password values entered by user
   function submitHandler(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
     Login(details);
@@ -28,7 +28,7 @@ function LoginForm({ Login, error }: Props) {
         {error !== "" ? <div className="error"> * {error} </div> : ""}
 
         <div className="form-group">
-          <input type="email" name="email" placeholder="Username" id="email" onChange={(e) => setDetails({ ...details, email: e.target.value })} value={details.email} />
+          <input type="text" name="username" placeholder="Username" id="username" onChange={(e) => setDetails({ ...details, username: e.target.value })} value={details.username} />
         </div>
 
         <div className="form-group">
