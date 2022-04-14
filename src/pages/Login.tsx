@@ -27,6 +27,10 @@ function Login() {
   // function called when attempting login
   function Login(details: User): void {
 
+    // ALEX: login function
+    // authentication
+    // navigate 
+
     // username, password
 
     // fetch call to api ( )
