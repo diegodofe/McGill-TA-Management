@@ -1,0 +1,25 @@
+.topbar {
+    width: 100%;
+    height: 50px;
+    background-color: white;
+    position: sticky;
+    top: 0;
+    z-index:999;
+}
+
+.topbarWrapper {
+    height: 100%;
+    padding: 0px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logout {
+    height: 20px;
+}
+
+.rocket {
+    padding-top: 10px;
+    height: 60px;
+}
