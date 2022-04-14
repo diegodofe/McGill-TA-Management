@@ -1,13 +1,13 @@
 .sidebar-page {
-    width: 20%;
-    height: 100vh;
-    float: left;
-    background-color: #151D3B;
-  }  
-  
-  .main-page {
-    width: 80%;
-    height: 100vh;
-    float: left;
-  }
-  
+  width: 20%;
+  height: 100vh;
+  float: left;
+  background-color: #151d3b;
+}
+
+.main-page {
+  width: 80%;
+  height: 100vh;
+  float: left;
+}
+

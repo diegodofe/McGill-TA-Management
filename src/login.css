@@ -1,27 +1,7 @@
-/* .container {
-  display: flex;
-} */
-
-/* .float-container {
-  display: flex;
-} */
-
-/* .sidebar-page {
-  width: 20%;
-  height: 100vh;
-  float: left;
-  background-color: #151D3B;
-}  
-
-.main-page {
-  width: 80%;
-  height: 100vh;
-  float: left;
-} */
 
 /* html,
 body {
-  background-image: url("../src/assets/images/landingBackground.jpg");
+  background-image: url("./assets/images/landingBackground.jpg");
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
@@ -29,9 +9,9 @@ body {
   width: 100%;
   margin: 0;
   padding: 0;
-}
+} */
 
-#root {
+.form-inner {
   height: 100%;
   width: 30%;
   min-width: 400px;
@@ -138,4 +118,4 @@ form .form-inner input[type="submit"],
   font-size: 28px;
   font-weight: 500;
   margin-bottom: 30px;
-} */
+}

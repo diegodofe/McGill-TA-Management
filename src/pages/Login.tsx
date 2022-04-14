@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/images/mcgill_logo.jpg";
-import "../App.css";
+import "../login.css";
 import { UserContext } from "../App";
 
 function Login() {
@@ -44,7 +44,6 @@ function Login() {
 
   return (
     <div className="welcome">
-      <h2>Welcome</h2>
       <form onSubmit={submitHandler}>
         <div className="form-inner">
           <img className="logo" src={logo} alt="mcgill-logo" />
