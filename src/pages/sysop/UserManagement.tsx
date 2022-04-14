@@ -2,15 +2,8 @@ import React, { useContext, useState } from "react";
 import { UserContext } from "../../App";
 import Topbar from "../../components/topbar/Topbar";
 import Sidebar from "../../components/sidebar/Sidebar";
-import "./dashboard.css";
-
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
+import "./usermanagement.css";
+import "./table.css";
 
 const Dashboard = () => {
   function createData(
@@ -55,35 +48,44 @@ const Dashboard = () => {
       <div className="main-page">
         <Topbar title={title} />
         <div className="table">
-          <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
-              <TableHead>
-                <TableRow>
-                  <TableCell>Dessert (100g serving)</TableCell>
-                  <TableCell align="right">Calories</TableCell>
-                  <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                  <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                  <TableCell align="right">Protein&nbsp;(g)</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {rows.map((row) => (
-                  <TableRow
-                    key={row.name}
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  >
-                    <TableCell component="th" scope="row">
-                      {row.name}
-                    </TableCell>
-                    <TableCell align="right">{row.calories}</TableCell>
-                    <TableCell align="right">{row.fat}</TableCell>
-                    <TableCell align="right">{row.carbs}</TableCell>
-                    <TableCell align="right">{row.protein}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
+          <div className="limiter">
+            <div className="container-table100">
+              <div className="wrap-table100">
+                <div className="table100 ver1 m-b-110">
+                  <div className="table100-head">
+                    <table>
+                      <thead>
+                        <tr className="row100 head">
+                          <th className="cell100 column1">Class name</th>
+                          <th className="cell100 column2">Type</th>
+                          <th className="cell100 column3">Hours</th>
+                          <th className="cell100 column4">Trainer</th>
+                          <th className="cell100 column5">Spots</th>
+                        </tr>
+                      </thead>
+                    </table>
+                  </div>
+                  <div className="table100-body js-pscroll">
+                    <table>
+                      <tbody>
+                        {rows.map((row) => (
+                          <tr className="row100 body">
+                            <td className="cell100 column1">{row.name}</td>
+                            <td className="cell100 column2">{row.calories}</td>
+                            <td className="cell100 column3">
+                            {row.fat}
+                            </td>
+                            <td className="cell100 column4">{row.carbs}</td>
+                            <td className="cell100 column5">{row.protein}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
