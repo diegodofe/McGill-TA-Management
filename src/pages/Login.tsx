@@ -33,16 +33,19 @@ function Login() {
 
     try {
       // Make login API call
-      const res = await fetch("https://winter2022-comp307-group8.cs.mcgill.ca/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: tempEmail,
-          password: tempPassword,
-        }),
-      })
+      const res = await fetch(
+        "https://winter2022-comp307-group8.cs.mcgill.ca/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: tempEmail,
+            password: tempPassword,
+          }),
+        }
+      );
 
       // If login was successful, set user and redirect to home page
       if (res.status === 200) {
@@ -62,20 +65,15 @@ function Login() {
         navigate("/dashboard");
         return;
       } else {
-        // Throw error message
-        console.error('Unable to login');
-        /**
-         * @TODO Maddi: put in fancy error handling to say that the user needs to provide email and password
-         */
-
-        alert("Unable to login");
+        // error when user does not enter username and/or password
+        console.error("Please provide your username and password.");
+        setError("Please provide your username and password.");
       }
-
     } catch (error) {
       console.error(error);
       alert("Unable to login caught error");
     }
-  }
+  };
 
   return (
     <div className="welcome">
@@ -88,11 +86,23 @@ function Login() {
           {error !== "" ? <div className="error"> * {error} </div> : ""}
 
           <div className="form-group">
-            <input type="text" name="email" placeholder="email" id="email" onChange={(e) => setTempEmail(e.target.value)} />
+            <input
+              type="text"
+              name="email"
+              placeholder="email"
+              id="email"
+              onChange={(e) => setTempEmail(e.target.value)}
+            />
           </div>
 
           <div className="form-group">
-            <input type="password" name="password" placeholder="Password" id="password" onChange={(e) => setTempPassword(e.target.value)} />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              id="password"
+              onChange={(e) => setTempPassword(e.target.value)}
+            />
           </div>
 
           <div className="sign-in-button">
@@ -100,7 +110,8 @@ function Login() {
           </div>
 
           <p className="bottom">
-            <span className="links">Forget password</span> or <span className="links">Register</span>
+            <span className="links">Forget password</span> or{" "}
+            <span className="links">Register</span>
           </p>
         </div>
       </form>
