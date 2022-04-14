@@ -1,15 +1,19 @@
 import { useContext } from "react";
 import { UserContext } from "../App";
 import UserManagement from "../components/tabs/sysop/UserManagement";
+import Topbar from "../components/topbar/Topbar";
 
 function Dashboard() {
   const { user } = useContext(UserContext);
 
   return (
     <div>
-      <h1>Dashboard</h1>
-      <p>Welcome {user.getEmail()}</p>
-      <UserManagement />
+      <div className="nav-bar">
+        <Topbar title={`Welcome ${user.getEmail()}`} />
+      </div>
+      <div className="main-page">
+        <UserManagement />
+      </div>
     </div>
   );
 }
