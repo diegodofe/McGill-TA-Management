@@ -10,14 +10,14 @@ export const initialState: UserType = {
     userType: ''
 }
 
-export const userReducer = (state = initialState, action: any) => {
-    switch (action.type) {
-        case "SET_USER":
-            return {
-                ...state,
-                ...action.payload
-            };
-        default:
-            return state;
-    }
-}
+// export const userReducer = (state = initialState, action: any) => {
+//     switch (action.type) {
+//         case "SET_USER":
+//             return {
+//                 ...state,
+//                 ...action.payload
+//             };
+//         default:
+//             return state;
+//     }
+// }
