@@ -1,33 +1,24 @@
-import React, { useState } from "react";
-import "./App.css";
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Dashboard from "./pages/Dashboard";
 
+<<<<<<< HEAD
 // Components
 import LoginForm from "./components/LoginForm";
 import Topbar from "./components/topbar/Topbar";
 import Sidebar from "./components/sidebar/Sidebar";
+=======
+import Login from "./pages/Login";
+import { initialState } from "./reducers/userReducer";
+import { UserType } from "./types/userType";
+>>>>>>> main
 
-function App() {
-  // Define user interface
-  interface User {
-    username: string;
-    password: string;
-  }
+interface UserProviderProps {
+  user: UserType;
+  setUser: any;
+}
 
-  // Instatiate a hard coded admin user
-  let adminUser: User = {
-    username: "admintest",
-    password: "admin",
-  };
-
-  // passing initial state of username=null and error=null to useState function
-  // returns variable with current state value and setter function
-  const [username, setUsername] = useState("");
-  const [error, setError] = useState("");
-
-  // function called when attempting login
-  function Login(details: User): void {
-    console.log(details);
-
+<<<<<<< HEAD
     if (
       details.username === adminUser.username &&
       details.password === adminUser.password
@@ -39,16 +30,15 @@ function App() {
       setError("Invalid username or password.");
     }
   }
+=======
+export const UserContext = React.createContext<UserProviderProps | null>(null);
+>>>>>>> main
 
-  function Logout(): void {
-    setUsername(""); // set username=null
-    setError(""); // set username=null
-  }
+const App = () => {
+  const [user, setUser] = React.useState<UserType>(initialState);
 
-  // if username != null, display welcome screen
-  // else display LoginForm (passing Login function and error)
-  // note that username only not null when username and password entered match the "database" (adminUser currently)
   return (
+<<<<<<< HEAD
     <div className="App">
       {username !== "" ? (
         // <div className="welcome">
@@ -67,7 +57,16 @@ function App() {
         <LoginForm Login={Login} error={error} />
       )}
     </div>
+=======
+    <UserContext.Provider value={{ user, setUser }}>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Routes>
+      </Router>
+    </UserContext.Provider>
+>>>>>>> main
   );
-}
-
+};
 export default App;
