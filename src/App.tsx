@@ -8,13 +8,12 @@ import { UserType } from "./types/userType";
 
 interface UserProviderProps {
   user: UserType;
-  setUser: any
+  setUser: any;
 }
 
 export const UserContext = React.createContext<UserProviderProps | null>(null);
 
 const App = () => {
-
   const [user, setUser] = React.useState<UserType>(initialState);
 
   return (
@@ -27,5 +26,5 @@ const App = () => {
       </Router>
     </UserContext.Provider>
   );
-}
+};
 export default App;
