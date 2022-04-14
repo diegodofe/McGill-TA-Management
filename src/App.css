@@ -1,10 +1,24 @@
-.container {
+/* .container {
   display: flex;
 }
 
+.float-container {
+  border: 3px solid #fff;
+} */
 
+.sidebar-page {
+  width: 20%;
+  float: left;
+  /* temp border to see what im doing */
+  border: 2px solid red;
+}  
 
-
+.main-page {
+  width: 80%;
+  float: left;
+    /* temp border to see what im doing */
+  border: 2px solid red;
+}
 
 /* html,
 body {

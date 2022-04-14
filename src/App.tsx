@@ -55,10 +55,12 @@ function App() {
         //   <h2>Welcome</h2>
         //   <button onClick={Logout}>Logout</button>
         // </div>
-        <div>
-          <Topbar />
-          <div className="container">
+        <div className="float-container">
+          <div className="sidebar-page">
             <Sidebar />
+          </div>
+          <div className="main-page">
+            <Topbar />
           </div>
         </div>
       ) : (
