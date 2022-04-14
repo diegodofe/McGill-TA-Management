@@ -65,13 +65,11 @@ function Login() {
         navigate("/dashboard");
         return;
       } else {
-        // error when user does not enter username and/or password
-        console.error("Please provide your username and password.");
-        setError("Please provide your username and password.");
+        // error unable to login, invalid username or password
+        setError("Invalid username or password.");
       }
     } catch (error) {
       console.error(error);
-      alert("Unable to login caught error");
     }
   };
 
