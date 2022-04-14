@@ -29,7 +29,7 @@ const Dashboard = () => {
       <button
         style={{ backgroundColor: "blue" }}
         onClick={() => {
-          navigate("/")
+          navigate("/");
         }}
       >
         home

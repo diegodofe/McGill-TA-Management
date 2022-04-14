@@ -3,15 +3,15 @@ import { useNavigate } from "react-router-dom";
 import logo from "../assets/images/mcgill_logo.jpg";
 import "../App.css";
 import { UserContext } from "../App";
-import { User } from "../classes/userType";
+import User from "../classes/User";
 
 function Login() {
   // Load global state
   const state = useContext(UserContext);
 
   // just for example input
-  const [tempEmail, setTempEmail] = useState("");
-  const [tempPassword, setTempPassword] = useState("");
+  const [tempEmail, setTempEmail] = useState<string>("");
+  const [tempPassword, setTempPassword] = useState<string>("");
   let navigate = useNavigate();
 
   const { user, setUser } = state;

@@ -3,11 +3,11 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 
 import Login from "./pages/Login";
-import { User } from "./classes/userType";
+import User from "./classes/User";
 
 interface UserProviderProps {
   user: User;
-  setUser: any;
+  setUser: Function;
 }
 
 export const UserContext = React.createContext<UserProviderProps>({ user: new User({}), setUser: () => {} });

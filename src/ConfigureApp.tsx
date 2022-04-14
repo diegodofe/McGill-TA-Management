@@ -1,6 +1,6 @@
 import React from "react";
 import App from "./components/QueryExample";
-import { User } from "./classes/userType";
+import User from "./classes/User";
 
 interface UserProviderProps {
   user: User;
