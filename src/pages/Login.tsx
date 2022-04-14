@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import logo from "../assets/images/mcgill_logo.jpg";
 import "../App.css";
 import { UserContext } from "../App";
+import { User } from "../classes/User";
+import { UserClass } from "../types/userType";
 
 function Login() {
   // Load global state
@@ -13,33 +15,66 @@ function Login() {
   const [tempPassword, setTempPassword] = useState("");
   let navigate = useNavigate();
 
-  if (state == null || state.user == null) {
-    return null;
-  }
-
   const { user, setUser } = state;
 
   // on submit pass email and password values entered by user
-  function submitHandler(e: React.FormEvent<HTMLFormElement>) {
+  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    /**
-     * @TODO check the login details, if everything is good, set the new user state, then navigate to dashboard
-     *    * ALEX: login function
-     * authentication
-     * navigate
-     * email, password
-     * fetch call to api (
-     * const res = await fetch(`https://winter2022-comp307-group8.cs.mcgill.ca/login`, {
-     * email and passwor
-     * post method
-     * }
-     * if response is successful: status 20
-     * if response is not successful: status 400
-     * setuse
-     */
-    setUser({ ...user, email: tempEmail, password: tempPassword });
-    navigate("/dashboard");
+    // if either email or password is empty show error message
+    if (!tempEmail || !tempPassword) {
+      /**
+       * @TODO Maddi: put in fancy error handling to say that the user needs to provide email and password
+       */
+      // Get rid of this alert when done
+      alert("Please enter email and password");
+      return;
+    }
+
+    try {
+      // Make login API call
+      const res = await fetch("https://winter2022-comp307-group8.cs.mcgill.ca/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: tempEmail,
+          password: tempPassword,
+        }),
+      })
+
+      // If login was successful, set user and redirect to home page
+      if (res.status === 200) {
+        const resJson = await res.json();
+
+        // @TODO set user in global state
+        console.log(resJson);
+
+        var user = new UserClass(res.json);
+
+        // set user state
+        setUser(user);
+
+        console.log("User");
+        console.log(user);
+
+        navigate("/dashboard");
+        return;
+      } else {
+        // Throw error message
+        console.error('Unable to login');
+        /**
+         * @TODO Maddi: put in fancy error handling to say that the user needs to provide email and password
+         */
+
+        alert("Unable to login");
+      }
+
+    } catch (error) {
+      console.error(error);
+      alert("Unable to login caught error");
+    }
   }
 
   return (
