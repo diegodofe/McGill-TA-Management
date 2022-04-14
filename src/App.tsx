@@ -37,6 +37,7 @@ function App() {
 
   function Logout(): void {
     setUsername(""); // set username=null
+    setError(""); // set username=null
   }
 
   // if username != null, display welcome screen

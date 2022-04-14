@@ -7,7 +7,7 @@ interface Props {
   error: string;
 }
 
-// Login function and error value passed from App.js
+// Login function and error value passed from App.tsx
 function LoginForm({ Login, error }: Props) {
   const [details, setDetails] = useState({ username: "", password: "" });
 
