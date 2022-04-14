@@ -1,3 +1,26 @@
 .sidebar {
     flex: 1;
+    color: white;
+    position: sticky;
+    top: 0;
+}
+
+.logo {
+    width: 70%;
+}
+  
+.sidebarList {
+    list-style: none;
+    padding: 0px;
+}
+
+.sidebarListItem {
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.sidebarList.active, .sidebarList:hover {
+    background-color: #CBD4DB;
 }

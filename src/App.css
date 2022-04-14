@@ -1,23 +1,22 @@
 /* .container {
   display: flex;
-}
+} */
 
-.float-container {
-  border: 3px solid #fff;
+/* .float-container {
+  display: flex;
 } */
 
 .sidebar-page {
   width: 20%;
+  height: 100vh;
   float: left;
-  /* temp border to see what im doing */
-  border: 2px solid red;
+  background-color: #151D3B;
 }  
 
 .main-page {
   width: 80%;
+  height: 100vh;
   float: left;
-    /* temp border to see what im doing */
-  border: 2px solid red;
 }
 
 /* html,
