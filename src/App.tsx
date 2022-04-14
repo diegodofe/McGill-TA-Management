@@ -11,6 +11,8 @@ import Sidebar from "./components/sidebar/Sidebar";
 import Login from "./pages/Login";
 import { initialState } from "./reducers/userReducer";
 import { UserType } from "./types/userType";
+import Topbar from "./components/topbar/Topbar";
+import Sidebar from "./components/sidebar/Sidebar";
 >>>>>>> main
 
 interface UserProviderProps {
