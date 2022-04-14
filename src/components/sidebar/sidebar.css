@@ -21,6 +21,6 @@
     align-items: center;
 }
 
-.sidebarList.active, .sidebarList:hover {
+.sidebarListItem.active, .sidebarListItem:hover {
     background-color: #CBD4DB;
 }

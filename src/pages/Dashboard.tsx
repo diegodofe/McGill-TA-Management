@@ -1,5 +1,8 @@
 import React, { useContext, useState } from "react";
 import { UserContext } from "../App";
+import Topbar from "../components/topbar/Topbar";
+import Sidebar from "../components/sidebar/Sidebar";
+import "./dashboard.css";
 
 const Dashboard = () => {
   // Load global state
@@ -17,27 +20,13 @@ const Dashboard = () => {
   const { user, setUser } = state;
 
   return (
-    <div>
-      <h1>Dashboard</h1>
-      <p>Welcome {user.email}</p>
-      {/* Input to change tempUsername */}
-      <input
-        // create a 1px black border
-        style={{ border: "1px solid black" }}
-        type="text"
-        onChange={(e) => setTempUsername(e.target.value)}
-      />
-
-      {/* red Button to change username */}
-      {/* EXAMPLE: how to change the email of the user */}
-      <button
-        style={{ backgroundColor: "red" }}
-        onClick={() => {
-          setUser({ ...user, email: tempUsername });
-        }}
-      >
-        Change username button
-      </button>
+    <div className="float-container">
+      <div className="sidebar-page">
+        <Sidebar />
+      </div>
+      <div className="main-page">
+        <Topbar />
+      </div>
     </div>
   );
 };
