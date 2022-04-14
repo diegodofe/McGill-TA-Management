@@ -1,15 +1,19 @@
 import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { UserContext } from "../App";
 
 const Dashboard = () => {
   // Load global state
-  let navigate = useNavigate();
+  const state = useContext(UserContext);
 
   // just for example input
   const [tempUsername, setTempUsername] = useState("");
 
-  const state = useContext(UserContext);
+  if (state == null || state.user == null) {
+    return <div>Loading...</div>;
+    // navigate back to login page because no user has been set
+    // @TODO: Use router to navigate back to login page
+  }
+
   const { user, setUser } = state;
 
   return (
@@ -26,14 +30,6 @@ const Dashboard = () => {
 
       {/* red Button to change username */}
       {/* EXAMPLE: how to change the email of the user */}
-      <button
-        style={{ backgroundColor: "blue" }}
-        onClick={() => {
-          navigate("/")
-        }}
-      >
-        home
-      </button>
       <button
         style={{ backgroundColor: "red" }}
         onClick={() => {
