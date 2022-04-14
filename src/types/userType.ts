@@ -6,5 +6,5 @@ export interface UserType {
     email: string,
     password: string,
     userType: string,
-
+    token?: string,
 }
