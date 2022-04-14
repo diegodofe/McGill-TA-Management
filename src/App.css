@@ -1,4 +1,12 @@
-html,
+.container {
+  display: flex;
+}
+
+
+
+
+
+/* html,
 body {
   background-image: url("../src/assets/images/landingBackground.jpg");
   background-attachment: fixed;
@@ -117,4 +125,4 @@ form .form-inner input[type="submit"],
   font-size: 28px;
   font-weight: 500;
   margin-bottom: 30px;
-}
+} */

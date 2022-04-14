@@ -3,6 +3,8 @@ import "./App.css";
 
 // Components
 import LoginForm from "./components/LoginForm";
+import Topbar from "./components/topbar/Topbar";
+import Sidebar from "./components/sidebar/Sidebar";
 
 function App() {
   // Define user interface
@@ -26,7 +28,10 @@ function App() {
   function Login(details: User): void {
     console.log(details);
 
-    if (details.username === adminUser.username && details.password === adminUser.password) {
+    if (
+      details.username === adminUser.username &&
+      details.password === adminUser.password
+    ) {
       console.log("Logged in");
       setUsername(details.username);
     } else if (details.username !== "" || details.password !== "") {
@@ -46,9 +51,15 @@ function App() {
   return (
     <div className="App">
       {username !== "" ? (
-        <div className="welcome">
-          <h2>Welcome</h2>
-          <button onClick={Logout}>Logout</button>
+        // <div className="welcome">
+        //   <h2>Welcome</h2>
+        //   <button onClick={Logout}>Logout</button>
+        // </div>
+        <div>
+          <Topbar />
+          <div className="container">
+            <Sidebar />
+          </div>
         </div>
       ) : (
         <LoginForm Login={Login} error={error} />
