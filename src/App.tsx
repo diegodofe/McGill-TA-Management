@@ -11,7 +11,7 @@ interface UserProviderProps {
   setUser: any;
 }
 
-export const UserContext = React.createContext<UserProviderProps | null>(null);
+export const UserContext = React.createContext<UserProviderProps>({ user: initialState, setUser: () => { } });
 
 const App = () => {
   const [user, setUser] = React.useState<UserType>(initialState);
