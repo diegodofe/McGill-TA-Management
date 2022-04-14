@@ -16,17 +16,17 @@ function Login() {
 
   const { user, setUser } = state;
 
+  const [error, setError] = useState("");
+
   // on submit pass email and password values entered by user
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     // if either email or password is empty show error message
     if (!tempEmail || !tempPassword) {
-      /**
-       * @TODO Maddi: put in fancy error handling to say that the user needs to provide email and password
-       */
-      // Get rid of this alert when done
-      alert("Please enter email and password");
+      // error when user does not enter username and/or password
+      console.error("Please provide your username and password.");
+      setError("Please provide your username and password.");
       return;
     }
 
@@ -61,17 +61,11 @@ function Login() {
         navigate("/dashboard");
         return;
       } else {
-        // Throw error message
-        console.error("Unable to login");
-        /**
-         * @TODO Maddi: put in fancy error handling to say that the user needs to provide email and password
-         */
-
-        alert("Unable to login");
+        // error unable to login, invalid username or password
+        setError("Invalid username or password.");
       }
     } catch (error) {
       console.error(error);
-      alert("Unable to login caught error");
     }
   };
 
@@ -83,6 +77,7 @@ function Login() {
           <img className="logo" src={logo} alt="mcgill-logo" />
 
           <p className="top">Sign in with your email and password.</p>
+          {error !== "" ? <div className="error"> * {error} </div> : ""}
 
           <div className="form-group">
             <input type="text" name="email" placeholder="email" id="email" onChange={(e) => setTempEmail(e.target.value)} />
