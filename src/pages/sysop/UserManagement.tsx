@@ -8,20 +8,22 @@ import "./table.css";
 const Dashboard = () => {
   function createData(
     name: string,
-    calories: number,
-    fat: number,
-    carbs: number,
-    protein: number
+    userType: string,
+    email: string,
+    mcgillId: string,
+    username: string,
+    courses: string,
   ) {
-    return { name, calories, fat, carbs, protein };
+    return { name, userType, email, mcgillId, username, courses};
   }
 
   const rows = [
-    createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-    createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-    createData("Eclair", 262, 16.0, 24, 6.0),
-    createData("Cupcake", 305, 3.7, 67, 4.3),
-    createData("Gingerbread", 356, 16.0, 49, 3.9),
+    createData("Jennifer Smith", "Student", "Jennifer.Smith@mail.mcgill.ca", "260889435", "jennsmith", "COMP 202, COMP 330, ..."),
+    createData("Andrew Linn", "Student", "Andrew.Linn@mail.mcgill.ca", "260543210", "alinn", "POLI 213, PSYC 100, ..."),
+    createData("Thomas Key", "Professor", "Thomas.Key@mail.mcgill.ca", "302887541", "thomaskey2", "MATH 133, MATH 323, ..."),
+    createData("Ruben Thomas", "Professor", "Ruben.Thomas@mail.mcgill.ca", "302765432", "rthomas", "POLI 213, POLI 103, ..."),
+    createData("Wendy Allen", "Professor", "Wendy.Allen@mail.mcgill.ca", "302654321", "wendyallen", "COMP 421, COMP 360, ..."),
+    createData("Jared Kim", "Student", "Jared.Kim@mail.mcgill.ca", "260954126", "jaredkim", "ATOC 185, ATOC 183, ..."),
   ];
 
   // Load global state
@@ -55,12 +57,13 @@ const Dashboard = () => {
                   <div className="table100-head">
                     <table>
                       <thead>
-                        <tr className="row100 head">
-                          <th className="cell100 column1">Class name</th>
-                          <th className="cell100 column2">Type</th>
-                          <th className="cell100 column3">Hours</th>
-                          <th className="cell100 column4">Trainer</th>
-                          <th className="cell100 column5">Spots</th>
+                        <tr>
+                          <th className="column1">Name</th>
+                          <th className="column2">User Type</th>
+                          <th className="column3">Email</th>
+                          <th className="column2">McGill ID</th>
+                          <th className="column2">Username</th>
+                          <th className="column2">Courses</th>
                         </tr>
                       </thead>
                     </table>
@@ -69,14 +72,15 @@ const Dashboard = () => {
                     <table>
                       <tbody>
                         {rows.map((row) => (
-                          <tr className="row100 body">
-                            <td className="cell100 column1">{row.name}</td>
-                            <td className="cell100 column2">{row.calories}</td>
-                            <td className="cell100 column3">
-                            {row.fat}
+                          <tr className="body">
+                            <td className="column1">{row.name}</td>
+                            <td className="column2">{row.userType}</td>
+                            <td className="column3">
+                            {row.email}
                             </td>
-                            <td className="cell100 column4">{row.carbs}</td>
-                            <td className="cell100 column5">{row.protein}</td>
+                            <td className="column2">{row.mcgillId}</td>
+                            <td className="column2">{row.username}</td>
+                            <td className="column2">{row.courses}</td>
                           </tr>
                         ))}
                       </tbody>
