@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/images/mcgill_logo.jpg";
 import "../App.css";
 import { UserContext } from "../App";
@@ -7,67 +7,77 @@ import User from "../classes/User";
 
 function Login() {
   // Load global state
-  const state = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
 
-  // just for example input
+  // All hooks
   const [tempEmail, setTempEmail] = useState<string>("");
   const [tempPassword, setTempPassword] = useState<string>("");
-  let navigate = useNavigate();
-
-  const { user, setUser } = state;
-
+  const navigate = useNavigate();
   const [error, setError] = useState("");
 
-  // on submit pass email and password values entered by user
-  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+  // // on submit pass email and password values entered by user
+  // const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+
+  //   // if either email or password is empty show error message
+  //   if (!tempEmail || !tempPassword) {
+  //     // error when user does not enter username and/or password
+  //     console.error("Please provide your username and password.");
+  //     setError("Please provide your username and password.");
+  //     return;
+  //   }
+
+  //   try {
+  //     // Make login API call
+  //     const res = await fetch("https://winter2022-comp307-group8.cs.mcgill.ca/login", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         email: tempEmail,
+  //         password: tempPassword,
+  //       }),
+  //     });
+
+  //     // If login was successful, set user and redirect to home page
+  //     if (res.status === 200) {
+  //       const resJson = await res.json();
+
+  //       // @TODO set user in global state
+  //       console.log(resJson);
+
+  //       var user = new User(res.json);
+
+  //       // set user state
+  //       setUser(user);
+
+  //       console.log("User");
+  //       console.log(user);
+
+  //       navigate("/dashboard");
+  //       return;
+  //     } else {
+  //       // error unable to login, invalid username or password
+  //       setError("Invalid username or password.");
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
+  function submitHandler(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
 
-    // if either email or password is empty show error message
-    if (!tempEmail || !tempPassword) {
-      // error when user does not enter username and/or password
-      console.error("Please provide your username and password.");
-      setError("Please provide your username and password.");
-      return;
-    }
+    // Update user
+    const temp: User = user;
+    temp.setEmail(tempEmail);
 
-    try {
-      // Make login API call
-      const res = await fetch("https://winter2022-comp307-group8.cs.mcgill.ca/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: tempEmail,
-          password: tempPassword,
-        }),
-      });
+    // set user state
+    setUser(temp);
 
-      // If login was successful, set user and redirect to home page
-      if (res.status === 200) {
-        const resJson = await res.json();
-
-        // @TODO set user in global state
-        console.log(resJson);
-
-        var user = new User(res.json);
-
-        // set user state
-        setUser(user);
-
-        console.log("User");
-        console.log(user);
-
-        navigate("/dashboard");
-        return;
-      } else {
-        // error unable to login, invalid username or password
-        setError("Invalid username or password.");
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
+    navigate("/dashboard");
+  }
 
   return (
     <div className="welcome">
@@ -92,7 +102,10 @@ function Login() {
           </div>
 
           <p className="bottom">
-            <span className="links">Forget password</span> or <span className="links">Register</span>
+            <span className="links">Forget password</span> or
+            <Link className="links" to="/register">
+              Register
+            </Link>
           </p>
         </div>
       </form>

@@ -4,6 +4,7 @@ import Dashboard from "./pages/Dashboard";
 
 import Login from "./pages/Login";
 import User from "./classes/User";
+import Register from "./pages/Register";
 
 interface UserProviderProps {
   user: User;
@@ -20,7 +21,9 @@ const App = () => {
       <Router>
         <Routes>
           <Route path="/" element={<Login />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </Router>
     </UserContext.Provider>

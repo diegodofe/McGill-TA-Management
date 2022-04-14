@@ -1,9 +1,9 @@
 export default class User {
-  public uuid: string;
-  public studentID: string;
-  public firstName: string;
-  public lastName: string;
-  public email: string;
+  private uuid: string;
+  private studentID: string;
+  private firstName: string;
+  private lastName: string;
+  private email: string;
 
   public constructor(obj: any) {
     this.uuid = obj.uuid || "";
@@ -13,27 +13,27 @@ export default class User {
     this.email = obj.email || "";
   }
 
-  // public getFirstName(): string {
-  //   return this.firstName;
-  // }
+  public getFirstName(): string {
+    return this.firstName;
+  }
 
-  // public getLastName(): string {
-  //   return this.lastName;
-  // }
+  public getLastName(): string {
+    return this.lastName;
+  }
 
-  // public getEmail(): string {
-  //   return this.email;
-  // }
+  public getEmail(): string {
+    return this.email;
+  }
 
-  // public setFirstName(firstName: string): void {
-  //   this.firstName = firstName;
-  // }
+  public setFirstName(firstName: string): void {
+    this.firstName = firstName;
+  }
 
-  // public setLastName(lastName: string): void {
-  //   this.lastName = lastName;
-  // }
+  public setLastName(lastName: string): void {
+    this.lastName = lastName;
+  }
 
-  // public setEmail(email: string): void {
-  //   this.email = email;
-  // }
+  public setEmail(email: string): void {
+    this.email = email;
+  }
 }
