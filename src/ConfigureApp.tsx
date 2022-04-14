@@ -1,5 +1,5 @@
 import React from "react";
-import App from "./components/QueryExample";
+import App from "./App";
 import User from "./classes/User";
 
 interface UserProviderProps {
