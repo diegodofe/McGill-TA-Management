@@ -1,20 +1,19 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 
 import Login from "./pages/Login";
-import { initialState } from "./reducers/userReducer";
-import { UserType } from "./types/userType";
+import { User } from "./classes/userType";
 
 interface UserProviderProps {
-  user: UserType;
+  user: User;
   setUser: any;
 }
 
-export const UserContext = React.createContext<UserProviderProps>({ user: initialState, setUser: () => { } });
+export const UserContext = React.createContext<UserProviderProps>({ user: new User({}), setUser: () => {} });
 
 const App = () => {
-  const [user, setUser] = React.useState<UserType>(initialState);
+  const [user, setUser] = React.useState<User>(new User({}));
 
   return (
     <UserContext.Provider value={{ user, setUser }}>

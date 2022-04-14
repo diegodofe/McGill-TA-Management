@@ -1,26 +1,21 @@
 import React from "react";
 import App from "./components/QueryExample";
-import { initialState } from "./reducers/userReducer";
-import { UserType } from "./types/userType";
-
+import { User } from "./classes/userType";
 
 interface UserProviderProps {
-    user: UserType;
-    setUser: React.Dispatch<React.SetStateAction<UserType>>
+  user: User;
+  setUser: React.Dispatch<React.SetStateAction<User>>;
 }
 
 const ConfigureApp = () => {
+  const [user, setUser] = React.useState<User>(new User({}));
+  const UserContext = React.createContext<UserProviderProps>({ setUser, user: new User({}) });
 
-    const [user, setUser] = React.useState<UserType>(initialState);
-    const UserContext = React.createContext<UserProviderProps>({ setUser, user });
-
-    // const {user, setUser} = useContext(UserContext);
-
-    return (
-        <UserContext.Provider value={{ user, setUser }}>
-            <App />
-        </UserContext.Provider>
-    );
-}
+  return (
+    <UserContext.Provider value={{ user, setUser }}>
+      <App />
+    </UserContext.Provider>
+  );
+};
 
 export default ConfigureApp;

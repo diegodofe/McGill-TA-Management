@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom";
 import logo from "../assets/images/mcgill_logo.jpg";
 import "../App.css";
 import { UserContext } from "../App";
-import { User } from "../classes/User";
-import { UserClass } from "../types/userType";
+import { User } from "../classes/userType";
 
 function Login() {
   // Load global state
@@ -42,7 +41,7 @@ function Login() {
           email: tempEmail,
           password: tempPassword,
         }),
-      })
+      });
 
       // If login was successful, set user and redirect to home page
       if (res.status === 200) {
@@ -51,7 +50,7 @@ function Login() {
         // @TODO set user in global state
         console.log(resJson);
 
-        var user = new UserClass(res.json);
+        var user = new User(res.json);
 
         // set user state
         setUser(user);
@@ -63,19 +62,18 @@ function Login() {
         return;
       } else {
         // Throw error message
-        console.error('Unable to login');
+        console.error("Unable to login");
         /**
          * @TODO Maddi: put in fancy error handling to say that the user needs to provide email and password
          */
 
         alert("Unable to login");
       }
-
     } catch (error) {
       console.error(error);
       alert("Unable to login caught error");
     }
-  }
+  };
 
   return (
     <div className="welcome">
