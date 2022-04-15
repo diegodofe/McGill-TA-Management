@@ -58,15 +58,6 @@ function Login() {
     }
   };
 
-  // function submitHandler(e: React.FormEvent<HTMLFormElement>): void {
-  //   e.preventDefault();
-
-  //   // set user state
-  //   setUser({ ...user, email: tempEmail });
-
-  //   navigate("/dashboard");
-  // }
-
   return (
     <div className="welcome">
       <form onSubmit={submitHandler}>

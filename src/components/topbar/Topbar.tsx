@@ -1,12 +1,32 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { UserContext } from "../../App";
+import { UserTypes } from "../../enums/UserTypes";
 import ProfessorCourses from "../tabs/professor/ProfessorCourses";
 import StudentCourses from "../tabs/student/StudentCourses";
 import UserManagement from "../tabs/sysop/UserManagement";
 import Wishlist from "../tabs/ta/Wishlist";
 
 export default function Navigation() {
-  const [page, setPage] = useState(1);
+  const { user, setUser } = useContext(UserContext);
+  const userProfiles: Array<UserTypes> = [UserTypes.Student, UserTypes.Sysop];
+
+  const [currentProfile, setCurrentProfile] = useState<UserTypes>(userProfiles[0]);
+
+  const tabsPerProfile = new Map<UserTypes, Array<JSX.Element>>([
+    [UserTypes.Student, [<StudentCourses />, <Wishlist />]],
+    [UserTypes.Sysop, [<ProfessorCourses />]],
+  ]);
+
+  const [currentTabs, setCurrentTabs] = useState<Array<JSX.Element>>(tabsPerProfile.get(currentProfile)!);
+  const [currentPage, setCurrentPage] = useState<JSX.Element>(currentTabs[0]);
+
+  function handleNavClick(profile: UserTypes): void {
+    setCurrentProfile(profile);
+    setCurrentTabs(tabsPerProfile.get(profile)!);
+    setCurrentPage(tabsPerProfile.get(profile)![0]);
+  }
+
   return (
     <div>
       <Navbar expand="lg">
@@ -15,10 +35,17 @@ export default function Navigation() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <NavDropdown title="User Type" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Admin</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">Student</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">TA</NavDropdown.Item>
+              <NavDropdown title={currentProfile} id="basic-nav-dropdown">
+                {userProfiles.map((profile) => (
+                  <NavDropdown.Item
+                    key={profile.toString()}
+                    onClick={() => {
+                      handleNavClick(profile);
+                    }}
+                  >
+                    {profile}
+                  </NavDropdown.Item>
+                ))}
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>
@@ -26,52 +53,24 @@ export default function Navigation() {
       </Navbar>
 
       <Container>
-        <Nav variant="tabs">
-          <Nav.Item>
-            <Nav.Link
-              onClick={() => {
-                setPage(1);
-              }}
-            >
-              Wishlist
-            </Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link
-              onClick={() => {
-                setPage(2);
-              }}
-            >
-              Courses
-            </Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link
-              onClick={() => {
-                setPage(3);
-              }}
-            >
-              Courses
-            </Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link
-              onClick={() => {
-                setPage(4);
-              }}
-            >
-              Manage
-            </Nav.Link>
-          </Nav.Item>
+        <Nav variant="tabs" defaultActiveKey={0}>
+          {currentTabs?.map((tab, i) => (
+            <Nav.Item>
+              <Nav.Link
+                key={i}
+                eventKey={i}
+                onClick={() => {
+                  setCurrentPage(tab);
+                }}
+              >
+                {`${currentProfile} Tab ${i}`}
+              </Nav.Link>
+            </Nav.Item>
+          ))}
         </Nav>
       </Container>
 
-      <Container>
-        {page === 1 && <Wishlist />}
-        {page === 2 && <StudentCourses />}
-        {page === 3 && <ProfessorCourses />}
-        {page === 4 && <UserManagement />}
-      </Container>
+      <Container>{currentPage}</Container>
     </div>
   );
 }

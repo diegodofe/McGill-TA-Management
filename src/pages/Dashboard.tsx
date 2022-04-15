@@ -7,7 +7,6 @@ function Dashboard() {
 
   return (
     <div>
-      <h1>{user.email}</h1>
       <Navigation />
     </div>
   );

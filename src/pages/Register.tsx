@@ -21,7 +21,7 @@ function Register() {
     e.preventDefault();
 
     /**
-     * @TODO send new user information to server, and create user global state
+     * @TODO if valid, send new user information to server, and create user global state
      */
     setUser({ ...user, email: tempEmail, firstName: tempFirstName, lastName: tempLastName });
 
