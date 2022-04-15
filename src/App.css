@@ -1,3 +1,16 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.form-inner {
+  height: 100%;
+  width: 30%;
+  min-width: 400px;
+  background-color: white;
+  float: right;
+}
+
 .logo {
   height: 68px;
 }

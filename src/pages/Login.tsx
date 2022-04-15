@@ -1,22 +1,18 @@
 import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/images/mcgill_logo.jpg";
-import "./login.css";
+import "./Login.css";
 import { UserContext } from "../App";
-import { User } from "../classes/User";
-import { UserClass } from "../types/userType";
+import User from "../classes/User";
 
 function Login() {
   // Load global state
-  const state = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
 
-  // just for example input
-  const [tempEmail, setTempEmail] = useState("");
-  const [tempPassword, setTempPassword] = useState("");
-  let navigate = useNavigate();
-
-  const { user, setUser } = state;
-
+  // All hooks
+  const [tempEmail, setTempEmail] = useState<string>("");
+  const [tempPassword, setTempPassword] = useState<string>("");
+  const navigate = useNavigate();
   const [error, setError] = useState("");
 
   // on submit pass email and password values entered by user
@@ -33,19 +29,16 @@ function Login() {
 
     try {
       // Make login API call
-      const res = await fetch(
-        "https://winter2022-comp307-group8.cs.mcgill.ca/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: tempEmail,
-            password: tempPassword,
-          }),
-        }
-      );
+      const res = await fetch("https://winter2022-comp307-group8.cs.mcgill.ca/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: tempEmail,
+          password: tempPassword,
+        }),
+      });
 
       // If login was successful, set user and redirect to home page
       if (res.status === 200) {
@@ -54,7 +47,7 @@ function Login() {
         // @TODO set user in global state
         console.log(resJson);
 
-        var user = new UserClass(res.json);
+        var user = new User(res.json);
 
         // set user state
         setUser(user);
@@ -83,23 +76,11 @@ function Login() {
           {error !== "" ? <div className="error"> * {error} </div> : ""}
 
           <div className="form-group">
-            <input
-              type="text"
-              name="email"
-              placeholder="email"
-              id="email"
-              onChange={(e) => setTempEmail(e.target.value)}
-            />
+            <input type="text" name="email" placeholder="email" id="email" onChange={(e) => setTempEmail(e.target.value)} />
           </div>
 
           <div className="form-group">
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              id="password"
-              onChange={(e) => setTempPassword(e.target.value)}
-            />
+            <input type="password" name="password" placeholder="Password" id="password" onChange={(e) => setTempPassword(e.target.value)} />
           </div>
 
           <div className="sign-in-button">
@@ -107,8 +88,10 @@ function Login() {
           </div>
 
           <p className="bottom">
-            <span className="links">Forget password</span> or{" "}
-            <span className="links">Register</span>
+            <span className="links">Forget password</span> or
+            <Link className="links" to="/register">
+              Register
+            </Link>
           </p>
         </div>
       </form>

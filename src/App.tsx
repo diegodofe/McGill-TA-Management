@@ -1,30 +1,29 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
-import UserManagement from "./pages/sysop/UserManagement";
 
 import Login from "./pages/Login";
-import { initialState } from "./reducers/userReducer";
-import { UserType } from "./types/userType";
+import User from "./classes/User";
+import Register from "./pages/Register";
 
 interface UserProviderProps {
-  user: UserType;
-  setUser: any;
+  user: User;
+  setUser: Function;
 }
 
-export const UserContext = React.createContext<UserProviderProps>({ user: initialState, setUser: () => { } });
+export const UserContext = React.createContext<UserProviderProps>({ user: new User({}), setUser: () => {} });
 
 const App = () => {
-  const [user, setUser] = React.useState<UserType>(initialState);
+  const [user, setUser] = React.useState<User>(new User({}));
 
   return (
-    
     <UserContext.Provider value={{ user, setUser }}>
       <Router>
         <Routes>
           <Route path="/" element={<Login />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/usermanagement" element={<UserManagement />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </Router>
     </UserContext.Provider>

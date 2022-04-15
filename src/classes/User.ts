@@ -1,15 +1,20 @@
-export abstract class User {
-  private uuid: string = "";
-  private studentID: string = "";
-  private firstName: string = "";
-  private lastName: string = "";
-  private email: string = "";
-  private password: string = "";
-  private userType: string = "";
+import { UserTypes } from "../enums/UserTypes";
 
-  constructor(firstName: string, lastName: string) {
-    this.firstName = firstName;
-    this.lastName = lastName;
+export default class User {
+  private uuid: string;
+  private studentID: string;
+  private firstName: string;
+  private lastName: string;
+  private email: string;
+  private allTypes: Array<UserTypes>;
+
+  public constructor(obj: any) {
+    this.uuid = obj.uuid || "";
+    this.studentID = obj.studentID || "";
+    this.firstName = obj.firstName || "";
+    this.lastName = obj.lastName || "";
+    this.email = obj.email || "";
+    this.allTypes = [];
   }
 
   public getFirstName(): string {
@@ -19,12 +24,24 @@ export abstract class User {
   public getLastName(): string {
     return this.lastName;
   }
-}
 
-export class Admin extends User {
-  private age: number;
-  constructor(firstName: string, lastName: string, age: number) {
-    super(firstName, lastName);
-    this.age = age;
+  public getEmail(): string {
+    return this.email;
+  }
+
+  public setFirstName(firstName: string): void {
+    this.firstName = firstName;
+  }
+
+  public setLastName(lastName: string): void {
+    this.lastName = lastName;
+  }
+
+  public setEmail(email: string): void {
+    this.email = email;
+  }
+
+  public getAllTypes(): Array<UserTypes> {
+    return this.allTypes;
   }
 }
