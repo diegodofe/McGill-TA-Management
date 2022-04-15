@@ -1,9 +1,12 @@
+import { UserTypes } from "../enums/UserTypes";
+
 export default class User {
   private uuid: string;
   private studentID: string;
   private firstName: string;
   private lastName: string;
   private email: string;
+  private allTypes: Array<UserTypes>;
 
   public constructor(obj: any) {
     this.uuid = obj.uuid || "";
@@ -11,6 +14,7 @@ export default class User {
     this.firstName = obj.firstName || "";
     this.lastName = obj.lastName || "";
     this.email = obj.email || "";
+    this.allTypes = [];
   }
 
   public getFirstName(): string {
@@ -35,5 +39,9 @@ export default class User {
 
   public setEmail(email: string): void {
     this.email = email;
+  }
+
+  public getAllTypes(): Array<UserTypes> {
+    return this.allTypes;
   }
 }

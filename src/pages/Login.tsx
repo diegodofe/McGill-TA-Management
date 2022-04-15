@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/images/mcgill_logo.jpg";
-import "./login.css";
+import "./Login.css";
 import { UserContext } from "../App";
 import User from "../classes/User";
 
