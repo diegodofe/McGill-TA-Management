@@ -1,11 +1,11 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/images/mcgill_logo.jpg";
-import "./Login.css";
+// import "./Login.css";
 import { UserContext } from "../App";
 import User from "../classes/User";
 
-function Login() {
+const Login: React.FC = () => {
   // Load global state
   const { user, setUser } = useContext(UserContext);
 
@@ -16,7 +16,7 @@ function Login() {
   const [error, setError] = useState("");
 
   // on submit pass email and password values entered by user
-  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+  const submitHandler = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
 
     // if either email or password is empty show error message

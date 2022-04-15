@@ -14,22 +14,57 @@ function Register() {
   const [tempFirstName, setTempFirstName] = useState<string>("");
   const [tempLastName, setTempLastName] = useState<string>("");
   const [tempPassword, setTempPassword] = useState<string>("");
+  const [tempStudentID, setTempStudentID] = useState<string>("");
   const navigate = useNavigate();
   const [error, setError] = useState("");
 
-  function submitHandler(e: React.FormEvent<HTMLFormElement>): void {
+  const submitHandler = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
 
-    /**
-     * @TODO send new user information to create user global state
-     */
-    const temp: User = new User({});
-    temp.setEmail(tempEmail);
-    temp.setFirstName(tempFirstName);
-    temp.setLastName(tempLastName);
-    setUser(temp);
+    // if either email or password is empty show error message
+    if (!tempEmail || !tempPassword || !tempFirstName || !tempLastName || !tempStudentID) {
+      // error when user does not enter username and/or password
+      alert("Please fill out all fields");
+      return;
+    }
 
-    navigate("/dashboard");
+    try {
+      // Make register API call
+      const res = await fetch("https://winter2022-comp307-group8.cs.mcgill.ca/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: tempEmail,
+          password: tempPassword,
+          firstName: tempFirstName,
+          lastName: tempLastName,
+          studentID: tempStudentID,
+        }),
+      })
+
+      console.log(res)
+
+      // If register was successful, set user and redirect to home page
+      if (res.status === 200) {
+        const resJson = await res.json();
+
+        const newUser = new User(resJson);
+
+        console.log(resJson)
+
+        // set user state
+        setUser(newUser);
+        navigate("/dashboard");
+      }
+      else {
+        alert("Error registering user");
+      }
+    } catch (e) {
+      console.error(e);
+      alert("Error registering user");
+    }
   }
 
   return (
@@ -48,6 +83,10 @@ function Register() {
 
           <div className="form-group">
             <input type="text" name="lastname" placeholder="lastname" id="lastname" onChange={(e) => setTempLastName(e.target.value)} />
+          </div>
+
+          <div className="form-group">
+            <input type="text" name="email" placeholder="student ID" id="student ID" onChange={(e) => setTempStudentID(e.target.value)} />
           </div>
 
           <div className="form-group">

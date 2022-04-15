@@ -44,4 +44,11 @@ export default class User {
   public getAllTypes(): Array<UserTypes> {
     return this.allTypes;
   }
+
+
+  public static objToUser(obj: any): User {
+    const newUser = new User(obj);
+    return newUser;
+  }
+
 }
