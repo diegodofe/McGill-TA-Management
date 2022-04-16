@@ -3,9 +3,9 @@ import { Button, Collapse, Form, Row, Col } from "react-bootstrap";
 import React from "react";
 import AddIcon from "@mui/icons-material/Add";
 import { Modal } from "react-bootstrap";
+import "../../../style/userTable.css";
 
 function AddProfForm({ fetchProfData }) {
-  const [open, setOpen] = useState(false);
   const [show, setShow] = useState(false);
   const [tempEmail, setTempEmail] = useState<string>("");
   const [tempFirstname, setTempFirstname] = useState<string>("");
@@ -83,6 +83,8 @@ function AddProfForm({ fetchProfData }) {
                   onChange={(e) => setTempEmail(e.target.value)}
                 />
               </Col>
+            </Row>
+            <Row>
               <Col>
                 <Form.Select
                   required
@@ -92,6 +94,8 @@ function AddProfForm({ fetchProfData }) {
                   <option value="Science">Science</option>
                 </Form.Select>
               </Col>
+            </Row>
+            <Row>
               <Col>
                 <Form.Select
                   required
@@ -110,58 +114,6 @@ function AddProfForm({ fetchProfData }) {
           </Form>
         </Modal.Body>
       </Modal>
-
-      {/* <button
-        className="mb-4 mt-2"
-        onClick={() => setOpen(!open)}
-        aria-controls="example-collapse-text"
-        aria-expanded={open}
-      >
-        <AddIcon />
-      </button>
-      <Collapse in={open}>
-        <Form onSubmit={handleSubmit}>
-          <Row>
-            <Col>
-              <Form.Control
-                required
-                placeholder="Email"
-                value={tempEmail}
-                onChange={(e) => setTempEmail(e.target.value)}
-              />
-            </Col>
-            <Col>
-              <Form.Control required placeholder="First name" onChange={(e) => setTempFirstname(e.target.value)} />
-            </Col>
-            <Col>
-              <Form.Control required placeholder="Last name" onChange={(e) => setTempLastname(e.target.value)} />
-            </Col> 
-            <Col>
-              <Form.Select
-                required
-                onChange={(e) => setTempFaculy(e.target.value)}
-              >
-                <option>Select a Faculty...</option>
-                <option value="Science">Science</option>
-              </Form.Select>
-            </Col>
-            <Col>
-              <Form.Select
-                required
-                onChange={(e) => setTempDep(e.target.value)}
-              >
-                <option>Select a Department...</option>
-                <option value="Computer Science">Computer Science</option>
-                <option value="Mathematics">Mathematics</option>
-                <option value="Physics">Physics</option>
-              </Form.Select>
-            </Col>
-          </Row>
-          <Button className="mt-3" variant="light" type="submit">
-            Add
-          </Button>
-        </Form>
-      </Collapse> */}
     </div>
   );
 }

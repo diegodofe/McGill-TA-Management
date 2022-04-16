@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import RemoveIcon from "@material-ui/icons/Remove";
 import { Modal } from "react-bootstrap";
+import "../../../style/userTable.css";
 
 const ProfRow = ({ row, fetchProfData }) => {
   const [show, setShow] = useState(false);
