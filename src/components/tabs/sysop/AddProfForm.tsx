@@ -9,12 +9,16 @@ function AddProfForm({ fetchProfData }) {
   const [tempLastname, setTempLastname] = useState<string>("");
   const [tempFaculty, setTempFaculy] = useState<string>("Science");
   const [tempDep, setTempDep] = useState<string>("Computer Science");
+  const [tempCourses, setTempCourses] = useState<Array<string>>([]);
+
+  const allCourseAtMcGill: Array<string> = ["COMP202", "COMP206", "COMP330", "COMP421", "COMP589"];
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(tempEmail);
     console.log(tempFaculty);
     console.log(tempDep);
+    console.log(tempCourses);
 
     // make api to create prof
 
@@ -45,7 +49,7 @@ function AddProfForm({ fetchProfData }) {
     } catch (err) {
       console.log(err);
     }
-  }
+  };
 
   return (
     <div>
