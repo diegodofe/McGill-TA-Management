@@ -1,9 +1,9 @@
 import React, { useState } from "react";
+import RemoveIcon from "@material-ui/icons/Remove";
 import { Button, Modal } from "react-bootstrap";
 
 const ProfRow = ({ row, fetchProfData }) => {
   const [show, setShow] = useState(false);
-
   const handleDeleteProf = () => {
     console.log("Delete professor");
     try {
@@ -24,6 +24,11 @@ const ProfRow = ({ row, fetchProfData }) => {
 
   return (
     <tr className="body">
+      <td className="column0">
+        <button className="btn btn-secondary" onClick={handleDeleteProf}>
+          <RemoveIcon />
+        </button>
+      </td>
       <td className="column1">{row.email}</td>
       <td className="column2">{row.firstName}</td>
       <td className="column3">{row.lastName}</td>
@@ -42,11 +47,6 @@ const ProfRow = ({ row, fetchProfData }) => {
             <Modal.Body></Modal.Body>
           </Modal>
         </>
-      </td>
-      <td className="column7">
-        <button className="btn btn-danger" onClick={handleDeleteProf}>
-          Delete
-        </button>
       </td>
     </tr>
   );

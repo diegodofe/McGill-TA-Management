@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
-import AddStudentForm from "./AddStudentForm";
 import StudentRow from "./StudentRow";
+import "../../../style/userTable.css";
 
 export interface Student {
   email: string;
@@ -45,26 +45,25 @@ const ManageStudents = () => {
   return (
     <div>
       <Container>
-        <table>
-          <thead>
-            <tr>
-              <th className="column1">Email</th>
-              <th className="column2">First name</th>
-              <th className="column3">Last name</th>
-              <th className="column4">Student ID</th>
-              <th className="column4">Courses</th>
-            </tr>
-          </thead>
-          <tbody>
-            {/* Rows are mapped to a hardcoded Array<Student> above! */}
-            {hardcoded.map((row: Student, i) => (
-              <StudentRow key={i} row={row} fetchStudentData={fetchStudentData} />
-            ))}
-          </tbody>
-        </table>
+        <div id="profTable">
+          <table>
+            <thead>
+              <tr>
+                <th className="column0"></th>
+                <th className="column1">Email</th>
+                <th className="column2">First name</th>
+                <th className="column3">Last name</th>
+                <th className="column4">Student ID</th>
+              </tr>
+            </thead>
+            <tbody>
+              {hardcoded.map((row, i) => (
+                <StudentRow key={i} row={row} fetchStudentData={fetchStudentData} />
+              ))}
+            </tbody>
+          </table>
+        </div>
       </Container>
-      {/* Not sure if this is nessecary because students automatically register */}
-      {/* <AddStudentForm /> */}
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import { Container } from "react-bootstrap";
 import AddProfForm from "./AddProfForm";
 import ProfRow from "./ProfRow";
+import "../../../style/userTable.css";
 
 interface Professor {
   email: string;
@@ -11,6 +11,8 @@ interface Professor {
   department: string;
   courses: Array<string>;
 }
+
+interface Course {}
 
 const ManageProfessors = () => {
   const [profs, setProfs] = React.useState([]);
@@ -46,26 +48,26 @@ const ManageProfessors = () => {
 
   return (
     <div>
-      <Container>
+      <div id="profTable">
         <table>
           <thead>
             <tr>
+              <th className="column0"></th>
               <th className="column1">Email</th>
               <th className="column2">First name</th>
               <th className="column3">Last name</th>
               <th className="column4">Faculty</th>
               <th className="column5">Department</th>
+              <th className="column5">Courses</th>
             </tr>
           </thead>
           <tbody>
-            {/* Rows are mapped to a hardcoded Array<Professor> above! */}
             {hardcoded.map((row, i) => (
               <ProfRow key={i} row={row} fetchProfData={fetchProfData} />
             ))}
           </tbody>
         </table>
-      </Container>
-
+      </div>
       <AddProfForm fetchProfData={fetchProfData} />
     </div>
   );

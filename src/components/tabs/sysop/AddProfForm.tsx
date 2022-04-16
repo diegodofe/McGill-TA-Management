@@ -11,8 +11,6 @@ function AddProfForm({ fetchProfData }) {
   const [tempDep, setTempDep] = useState<string>("Computer Science");
   const [tempCourses, setTempCourses] = useState<Array<string>>([]);
 
-  const allCourseAtMcGill: Array<string> = ["COMP202", "COMP206", "COMP330", "COMP421", "COMP589"];
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(tempEmail);

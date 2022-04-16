@@ -1,6 +1,5 @@
 import React from "react";
-import { Dropdown, DropdownButton } from "react-bootstrap";
-import { Student } from "./ManageStudent";
+import RemoveIcon from "@material-ui/icons/Remove";
 
 const StudentRow = ({ row, fetchStudentData }) => {
   const handleDeleteStudent = () => {
@@ -23,24 +22,15 @@ const StudentRow = ({ row, fetchStudentData }) => {
   };
   return (
     <tr className="body">
+      <td className="column0">
+        <button className="btn btn-secondary" onClick={handleDeleteStudent}>
+          <RemoveIcon />
+        </button>
+      </td>
       <td className="column1">{row.email}</td>
       <td className="column2">{row.firstName}</td>
       <td className="column3">{row.lastName}</td>
-      <td className="column4">{row.studentID}</td>
-      <td className="column5">
-        {
-          <DropdownButton variant="light" id="dropdown-basic-button" title="View Courses">
-            {row.courses.map((course: String, i: number) => (
-              <Dropdown.Item key={i}>{course}</Dropdown.Item>
-            ))}
-          </DropdownButton>
-        }
-      </td>
-      <td className="column6">
-        <button className="btn btn-secondary" onClick={handleDeleteStudent}>
-          Delete
-        </button>
-      </td>
+      <td className="column3">{row.studentID}</td>
     </tr>
   );
 };
