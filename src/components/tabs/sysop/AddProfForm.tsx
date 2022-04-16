@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button, Collapse, Form, Row, Col } from "react-bootstrap";
 import React from "react";
 
-function AddProfForm() {
+function AddProfForm({ fetchProfData }) {
   const [open, setOpen] = useState(false);
   const [tempEmail, setTempEmail] = useState<string>("");
   const [tempFirstname, setTempFirstname] = useState<string>("");
@@ -13,27 +13,37 @@ function AddProfForm() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(tempEmail);
-    console.log(tempFirstname);
-    console.log(tempLastname);
     console.log(tempFaculty);
     console.log(tempDep);
 
     // make api to create prof
 
-    // try {
-    //   const res = await fetch("https://winter2022-comp307-group8.cs.mcgill.ca/prof/add", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({
-    //       email: tempEmail,
-    //       faculty: tempFaculty,
-    //       department: tempDep,
-    //       firstName: tempFirstname,
-    //       lastName: tempLastname,
-    //     }),
-    //   ));
+    try {
+      const res = await fetch("https://winter2022-comp307-group8.cs.mcgill.ca/prof/add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: tempEmail,
+          firstname: tempFirstname,
+          lastname: tempLastname,
+          faculty: tempFaculty,
+          department: tempDep,
+        }),
+      });
+      if (res.status === 200) {
+        console.log("success");
+        const data = await res.json();
+        setTimeout(() => {
+          fetchProfData();
+        }, 500);
+      } else {
+        alert("error adding prof");
+      }
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return (
@@ -47,12 +57,12 @@ function AddProfForm() {
             <Col>
               <Form.Control required placeholder="Email" onChange={(e) => setTempEmail(e.target.value)} />
             </Col>
-            <Col>
+            {/* <Col>
               <Form.Control required placeholder="First name" onChange={(e) => setTempFirstname(e.target.value)} />
             </Col>
             <Col>
               <Form.Control required placeholder="Last name" onChange={(e) => setTempLastname(e.target.value)} />
-            </Col>
+            </Col> */}
             <Col>
               <Form.Select required onChange={(e) => setTempFaculy(e.target.value)}>
                 <option>Select a Faculty...</option>

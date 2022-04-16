@@ -17,12 +17,17 @@ const ManageProfessors = () => {
     return { email, firstName, lastName, faculty, department };
   }
 
-  const [rows, setData] = React.useState([]);
+  const [profs, setProfs] = React.useState([]);
 
   const fetchProfData = async () => {
-    const res = await fetch("https://winter2022-comp307-group8.cs.mcgill.ca/prof/all");
-    const json = await res.json();
-    setData(json.profs);
+    try {
+      console.log("fetching prof data");
+      const res = await fetch("https://winter2022-comp307-group8.cs.mcgill.ca/prof/all");
+      const json = await res.json();
+      setProfs(json.profs);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
 
@@ -54,14 +59,14 @@ const ManageProfessors = () => {
             </tr>
           </thead>
           <tbody>
-            {rows.map((row, i) => (
+            {profs.map((row, i) => (
               <ProfRow key={i} row={row} fetchProfData={fetchProfData} />
             ))}
           </tbody>
         </table>
       </Container>
 
-      <AddProfForm />
+      <AddProfForm fetchProfData={fetchProfData} />
     </div>
   );
 };

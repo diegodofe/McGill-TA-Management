@@ -14,8 +14,9 @@ const ProfRow = ({ row, fetchProfData }) => {
                 }
             })
 
-            // refresh page
-            fetchProfData();
+            setTimeout(() => {
+                fetchProfData();
+            }, 500);
 
             console.log("Delete professor");
         } catch (e) {
