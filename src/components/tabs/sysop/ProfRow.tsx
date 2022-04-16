@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import RemoveIcon from "@material-ui/icons/Remove";
-import { Modal } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
+import { Course } from "./ManageProfessors";
+import AssignCourseForm from "./AssignCourseFrom";
 import "../../../style/userTable.css";
 
 const ProfRow = ({ row, fetchProfData }) => {
@@ -40,7 +42,7 @@ const ProfRow = ({ row, fetchProfData }) => {
       <td className="column4">{row.faculty}</td>
       <td className="column5">{row.department}</td>
       <td className="column6">
-        <button
+      {/* <button
           className="courses"
           onClick={() => setShow(true)}
         >
@@ -57,7 +59,32 @@ const ProfRow = ({ row, fetchProfData }) => {
             <Modal.Title id="example-custom-modal-styling-title">{`${row.firstName} ${row.lastName}'s Courses`}</Modal.Title>
           </Modal.Header>
           <Modal.Body></Modal.Body>
-        </Modal>
+        </Modal> */}
+        {/**Create VIEW COURSES modal button */}
+        <>
+        <button
+          className="courses"
+          onClick={() => setShow(true)}
+        >
+          View Courses
+        </button>
+
+          <Modal show={show} onHide={() => setShow(false)} dialogClassName="modal-lg" aria-labelledby="example-custom-modal-styling-title">
+            <Modal.Header closeButton>
+              <Modal.Title id="example-custom-modal-styling-title">{`${row.firstName} ${row.lastName}'s Courses`}</Modal.Title>
+            </Modal.Header>
+
+            {/** Display each course name of this current prof */}
+            <Modal.Body>
+              {row.courses.map((course: Course, i: number) => (
+                <h2>{course.name}</h2>
+              ))}
+
+              {/** Create form to assign another course */}
+              <AssignCourseForm />
+            </Modal.Body>
+          </Modal>
+        </>
       </td>
     </tr>
   );

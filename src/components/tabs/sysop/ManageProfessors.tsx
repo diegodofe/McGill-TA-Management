@@ -3,16 +3,19 @@ import AddProfForm from "./AddProfForm";
 import ProfRow from "./ProfRow";
 import "../../../style/userTable.css";
 
-interface Professor {
+export interface Professor {
   email: string;
   firstName: string;
   lastName: string;
   faculty: string;
   department: string;
-  courses: Array<string>;
+  courses: Array<Course>;
 }
 
-interface Course {}
+export interface Course {
+  name: string;
+  numStudents: number;
+}
 
 const ManageProfessors = () => {
   const [profs, setProfs] = React.useState([]);
@@ -33,17 +36,34 @@ const ManageProfessors = () => {
     fetchProfData();
   }, []);
 
-  function createProfessor(email: string, firstName: string, lastName: string, faculty: string, department: string, courses: Array<string>): Professor {
+  function createProfessor(email: string, firstName: string, lastName: string, faculty: string, department: string, courses: Array<Course>): Professor {
     return { email, firstName, lastName, faculty, department, courses };
   }
 
   const hardcoded: Array<Professor> = [
-    createProfessor("Jennifer.Smith@mail.mcgill.ca", "Jennefer", "Smith", "Science", "Computer Science", ["COMP202", "COMP206", "COMP330"]),
-    createProfessor("Andrew.Linn@mail.mcgill.ca", "Andrew", "Linn", "Science", "Computer Science", ["COMP202", "COMP206", "COMP330"]),
-    createProfessor("Thomas.Key@mail.mcgill.ca", "Thomas", "Key", "Science", "Computer Science", ["COMP202", "COMP206", "COMP330"]),
-    createProfessor("Ruben.Thomas@mail.mcgill.ca", "Ruben", "Thomas", "Science", "Computer Science", ["COMP202", "COMP206", "COMP330"]),
-    createProfessor("Wendy.Allen@mail.mcgill.ca", "Wendy", "Allen", "Science", "Computer Science", ["COMP202", "COMP206", "COMP330"]),
-    createProfessor("Jared.Kim@mail.mcgill.ca", "Jared", "Kim", "Science", "Computer Science", ["COMP202", "COMP206", "COMP330"]),
+    createProfessor("Jennifer.Smith@mail.mcgill.ca", "Jennefer", "Smith", "Science", "Computer Science", [
+      { name: "COMP202", numStudents: 200 },
+      { name: "COMP206", numStudents: 154 },
+      { name: "COMP330", numStudents: 95 },
+    ]),
+    createProfessor("Andrew.Linn@mail.mcgill.ca", "Andrew", "Linn", "Science", "Computer Science", [
+      { name: "COMP206", numStudents: 154 },
+      { name: "COMP330", numStudents: 95 },
+    ]),
+    createProfessor("Thomas.Key@mail.mcgill.ca", "Thomas", "Key", "Science", "Computer Science", [
+      { name: "COMP202", numStudents: 200 },
+      { name: "COMP206", numStudents: 154 },
+    ]),
+    createProfessor("Ruben.Thomas@mail.mcgill.ca", "Ruben", "Thomas", "Science", "Computer Science", [
+      { name: "COMP202", numStudents: 200 },
+      { name: "COMP206", numStudents: 154 },
+      { name: "COMP330", numStudents: 95 },
+    ]),
+    createProfessor("Wendy.Allen@mail.mcgill.ca", "Wendy", "Allen", "Science", "Computer Science", [
+      { name: "COMP202", numStudents: 200 },
+      { name: "COMP330", numStudents: 95 },
+    ]),
+    createProfessor("Jared.Kim@mail.mcgill.ca", "Jared", "Kim", "Science", "Computer Science", [{ name: "COMP330", numStudents: 95 }]),
   ];
 
   return (
@@ -62,6 +82,7 @@ const ManageProfessors = () => {
             </tr>
           </thead>
           <tbody>
+            {/**Set to hardcoded list of profs for testing purposes */}
             {hardcoded.map((row, i) => (
               <ProfRow key={i} row={row} fetchProfData={fetchProfData} />
             ))}
