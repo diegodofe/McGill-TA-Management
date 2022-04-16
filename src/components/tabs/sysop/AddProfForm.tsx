@@ -2,9 +2,11 @@ import { useState } from "react";
 import { Button, Collapse, Form, Row, Col } from "react-bootstrap";
 import React from "react";
 import AddIcon from "@mui/icons-material/Add";
+import { Modal } from "react-bootstrap";
 
 function AddProfForm({ fetchProfData }) {
   const [open, setOpen] = useState(false);
+  const [show, setShow] = useState(false);
   const [tempEmail, setTempEmail] = useState<string>("");
   const [tempFirstname, setTempFirstname] = useState<string>("");
   const [tempLastname, setTempLastname] = useState<string>("");
@@ -55,7 +57,61 @@ function AddProfForm({ fetchProfData }) {
 
   return (
     <div>
-      <button
+      <button className="mb-4 mt-2" onClick={() => setShow(true)}>
+        <AddIcon />
+      </button>
+
+      <Modal
+        show={show}
+        onHide={() => setShow(false)}
+        dialogClassName="modal-lg"
+        aria-labelledby="example-custom-modal-styling-title"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="example-custom-modal-styling-title">
+            Add a Professor
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form onSubmit={handleSubmit}>
+            <Row>
+              <Col>
+                <Form.Control
+                  required
+                  placeholder="Email"
+                  value={tempEmail}
+                  onChange={(e) => setTempEmail(e.target.value)}
+                />
+              </Col>
+              <Col>
+                <Form.Select
+                  required
+                  onChange={(e) => setTempFaculy(e.target.value)}
+                >
+                  <option>Select a Faculty...</option>
+                  <option value="Science">Science</option>
+                </Form.Select>
+              </Col>
+              <Col>
+                <Form.Select
+                  required
+                  onChange={(e) => setTempDep(e.target.value)}
+                >
+                  <option>Select a Department...</option>
+                  <option value="Computer Science">Computer Science</option>
+                  <option value="Mathematics">Mathematics</option>
+                  <option value="Physics">Physics</option>
+                </Form.Select>
+              </Col>
+            </Row>
+            <Button className="mt-3" variant="light" type="submit">
+              Add
+            </Button>
+          </Form>
+        </Modal.Body>
+      </Modal>
+
+      {/* <button
         className="mb-4 mt-2"
         onClick={() => setOpen(!open)}
         aria-controls="example-collapse-text"
@@ -74,12 +130,12 @@ function AddProfForm({ fetchProfData }) {
                 onChange={(e) => setTempEmail(e.target.value)}
               />
             </Col>
-            {/* <Col>
+            <Col>
               <Form.Control required placeholder="First name" onChange={(e) => setTempFirstname(e.target.value)} />
             </Col>
             <Col>
               <Form.Control required placeholder="Last name" onChange={(e) => setTempLastname(e.target.value)} />
-            </Col> */}
+            </Col> 
             <Col>
               <Form.Select
                 required
@@ -105,7 +161,7 @@ function AddProfForm({ fetchProfData }) {
             Add
           </Button>
         </Form>
-      </Collapse>
+      </Collapse> */}
     </div>
   );
 }
