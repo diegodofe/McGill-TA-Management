@@ -1,6 +1,6 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import ProfessorForm from "./ProfessorForm";
+import AddProfForm from "./AddProfForm";
 
 interface Professor {
   email: string;
@@ -38,8 +38,8 @@ const ManageProfessors = () => {
             </tr>
           </thead>
           <tbody>
-            {rows.map((row) => (
-              <tr className="body">
+            {rows.map((row, i) => (
+              <tr key={i} className="body">
                 <td className="column1">{row.email}</td>
                 <td className="column2">{row.firstName}</td>
                 <td className="column3">{row.lastName}</td>
@@ -51,7 +51,7 @@ const ManageProfessors = () => {
         </table>
       </Container>
 
-      <ProfessorForm />
+      <AddProfForm />
     </div>
   );
 };
