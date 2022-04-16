@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button, Collapse, Form, Row, Col } from "react-bootstrap";
 import React from "react";
+import AddIcon from "@mui/icons-material/Add";
 
 function AddProfForm({ fetchProfData }) {
   const [open, setOpen] = useState(false);
@@ -21,19 +22,22 @@ function AddProfForm({ fetchProfData }) {
     // make api to create prof
 
     try {
-      const res = await fetch("https://winter2022-comp307-group8.cs.mcgill.ca/prof/add", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: tempEmail,
-          firstname: tempFirstname,
-          lastname: tempLastname,
-          faculty: tempFaculty,
-          department: tempDep,
-        }),
-      });
+      const res = await fetch(
+        "https://winter2022-comp307-group8.cs.mcgill.ca/prof/add",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: tempEmail,
+            firstname: tempFirstname,
+            lastname: tempLastname,
+            faculty: tempFaculty,
+            department: tempDep,
+          }),
+        }
+      );
       setTempEmail("");
       if (res.status === 200) {
         console.log("success");
@@ -51,14 +55,24 @@ function AddProfForm({ fetchProfData }) {
 
   return (
     <div>
-      <button className="mb-4 mt-2" onClick={() => setOpen(!open)} aria-controls="example-collapse-text" aria-expanded={open}>
-        New Professor...
+      <button
+        className="mb-4 mt-2"
+        onClick={() => setOpen(!open)}
+        aria-controls="example-collapse-text"
+        aria-expanded={open}
+      >
+        <AddIcon />
       </button>
       <Collapse in={open}>
         <Form onSubmit={handleSubmit}>
           <Row>
             <Col>
-              <Form.Control required placeholder="Email" value={tempEmail} onChange={(e) => setTempEmail(e.target.value)} />
+              <Form.Control
+                required
+                placeholder="Email"
+                value={tempEmail}
+                onChange={(e) => setTempEmail(e.target.value)}
+              />
             </Col>
             {/* <Col>
               <Form.Control required placeholder="First name" onChange={(e) => setTempFirstname(e.target.value)} />
@@ -67,13 +81,19 @@ function AddProfForm({ fetchProfData }) {
               <Form.Control required placeholder="Last name" onChange={(e) => setTempLastname(e.target.value)} />
             </Col> */}
             <Col>
-              <Form.Select required onChange={(e) => setTempFaculy(e.target.value)}>
+              <Form.Select
+                required
+                onChange={(e) => setTempFaculy(e.target.value)}
+              >
                 <option>Select a Faculty...</option>
                 <option value="Science">Science</option>
               </Form.Select>
             </Col>
             <Col>
-              <Form.Select required onChange={(e) => setTempDep(e.target.value)}>
+              <Form.Select
+                required
+                onChange={(e) => setTempDep(e.target.value)}
+              >
                 <option>Select a Department...</option>
                 <option value="Computer Science">Computer Science</option>
                 <option value="Mathematics">Mathematics</option>
