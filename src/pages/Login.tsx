@@ -1,9 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/images/mcgill_logo.jpg";
-// import "./Login.css";
 import { UserContext } from "../App";
-import User from "../classes/User";
 
 const Login: React.FC = () => {
   // Load global state
@@ -44,16 +42,10 @@ const Login: React.FC = () => {
       if (res.status === 200) {
         const resJson = await res.json();
 
-        // @TODO set user in global state
         console.log(resJson);
 
-        var user = new User(res.json);
-
         // set user state
-        setUser(user);
-
-        console.log("User");
-        console.log(user);
+        setUser(resJson);
 
         navigate("/dashboard");
         return;
@@ -88,7 +80,7 @@ const Login: React.FC = () => {
           </div>
 
           <p className="bottom">
-            <span className="links">Forget password</span> or
+            <span className="links">Forget password</span> or{" "}
             <Link className="links" to="/register">
               Register
             </Link>

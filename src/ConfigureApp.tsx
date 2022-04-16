@@ -1,6 +1,6 @@
 import React from "react";
 import App from "./App";
-import User from "./classes/User";
+import { emptyUser, User } from "./classes/User";
 
 interface UserProviderProps {
   user: User;
@@ -8,8 +8,9 @@ interface UserProviderProps {
 }
 
 const ConfigureApp = () => {
-  const [user, setUser] = React.useState<User>(new User({}));
-  const UserContext = React.createContext<UserProviderProps>({ setUser, user: new User({}) });
+  const [user, setUser] = React.useState<User>(emptyUser);
+
+  const UserContext = React.createContext<UserProviderProps>({ setUser, user: emptyUser });
 
   return (
     <UserContext.Provider value={{ user, setUser }}>

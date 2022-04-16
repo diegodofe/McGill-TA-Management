@@ -3,11 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/images/mcgill_logo.jpg";
 import "../App.css";
 import { UserContext } from "../App";
-import User from "../classes/User";
+import { emptyUser } from "../classes/User";
 
 function Register() {
   // Load global state
-  const { setUser } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
 
   // All hooks
   const [tempEmail, setTempEmail] = useState<string>("");
@@ -21,12 +21,9 @@ function Register() {
   const submitHandler = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
 
-    // if either email or password is empty show error message
-    if (!tempEmail || !tempPassword || !tempFirstName || !tempLastName || !tempStudentID) {
-      // error when user does not enter username and/or password
-      alert("Please fill out all fields");
-      return;
-    }
+    /**
+     * @TODO if valid, send new user information to server, and create user global state
+     */
 
     try {
       // Make register API call
@@ -50,7 +47,13 @@ function Register() {
       if (res.status === 200) {
         const resJson = await res.json();
 
-        const newUser = new User(resJson);
+        setUser({
+          ...user,
+          email: tempEmail,
+          firstName: tempFirstName,
+          lastName: tempLastName
+        });
+
 
         console.log(resJson)
 
