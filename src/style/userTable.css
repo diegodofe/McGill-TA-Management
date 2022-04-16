@@ -34,5 +34,10 @@
   border: none;
 }
 th, td {
-  padding: 15px;
+  padding-left: 15px;
+  padding-left: 15px;
+}
+
+.btn {
+  background-color: black;
 }

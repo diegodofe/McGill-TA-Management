@@ -82,7 +82,7 @@ const ManageProfessors = () => {
               <th className="column3">Last name</th>
               <th className="column4">Faculty</th>
               <th className="column5">Department</th>
-              <th className="column5"></th>
+              <th className="column6"></th>
             </tr>
           </thead>
           <tbody>
