@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Container, Nav, Navbar, NavDropdown, Tab, Tabs } from "react-bootstrap";
 import { UserContext } from "../App";
 import RateTA from "../components/tabs/student/RateTA";
+import ManageCourses from "../components/tabs/sysop/manageCourses";
 import ManageProfessors from "../components/tabs/sysop/ManageProfessors";
 import ManageStudents from "../components/tabs/sysop/ManageStudent";
 import { UserTypes } from "../enums/UserTypes";
@@ -9,13 +10,15 @@ import { UserTypes } from "../enums/UserTypes";
 export function Dashboard() {
   const tabsPerProfile = new Map<UserTypes, Array<string>>([
     [UserTypes.Student, ["Rate a TA"]],
-    [UserTypes.Sysop, ["Manage Professors", "Manage Students"]],
+    [UserTypes.Sysop, ["Manage Professors", "Manage Students", "Manage Courses"]],
   ]);
 
   const tabNamesToJSX = new Map<string, JSX.Element>([
     ["Rate a TA", <RateTA />],
     ["Manage Professors", <ManageProfessors />],
     ["Manage Students", <ManageStudents />],
+    ["Manage Courses", <ManageCourses />],
+
   ]);
 
   /**
