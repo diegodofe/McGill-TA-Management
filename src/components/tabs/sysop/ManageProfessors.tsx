@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { Container } from "react-bootstrap";
 import AddProfForm from "./AddProfForm";
 import ProfRow from "./ProfRow";
 import "../../../style/userTable.css";
@@ -10,27 +9,18 @@ interface Professor {
   lastName: string;
   faculty: string;
   department: string;
+  courses: Array<string>;
 }
 
-const ManageProfessors = () => {
-  function createData(
-    email: string,
-    firstName: string,
-    lastName: string,
-    faculty: string,
-    department: string
-  ): Professor {
-    return { email, firstName, lastName, faculty, department };
-  }
+interface Course {}
 
+const ManageProfessors = () => {
   const [profs, setProfs] = React.useState([]);
 
   const fetchProfData = async () => {
     try {
       console.log("fetching prof data");
-      const res = await fetch(
-        "https://winter2022-comp307-group8.cs.mcgill.ca/prof/all"
-      );
+      const res = await fetch("https://winter2022-comp307-group8.cs.mcgill.ca/prof/all");
       const json = await res.json();
       setProfs(json.profs);
     } catch (err) {
@@ -43,36 +33,21 @@ const ManageProfessors = () => {
     fetchProfData();
   }, []);
 
-  // const rows = [
-  //   createData("Jennifer.Smith@mail.mcgill.ca", "Jennefer", "Smith", "Science", "Computer Science"),
-  //   createData("Andrew.Linn@mail.mcgill.ca", "Andrew", "Linn", "Science", "Computer Science"),
-  //   createData("Thomas.Key@mail.mcgill.ca", "Thomas", "Key", "Science", "Computer Science"),
-  //   createData("Ruben.Thomas@mail.mcgill.ca", "Ruben", "Thomas", "Science", "Computer Science"),
-  //   createData("Wendy.Allen@mail.mcgill.ca", "Wendy", "Allen", "Science", "Computer Science"),
-  //   createData("Jared.Kim@mail.mcgill.ca", "Jared", "Kim", "Science", "Computer Science"),
-  // ];
+  function createProfessor(email: string, firstName: string, lastName: string, faculty: string, department: string, courses: Array<string>): Professor {
+    return { email, firstName, lastName, faculty, department, courses };
+  }
+
+  const hardcoded: Array<Professor> = [
+    createProfessor("Jennifer.Smith@mail.mcgill.ca", "Jennefer", "Smith", "Science", "Computer Science", ["COMP202", "COMP206", "COMP330"]),
+    createProfessor("Andrew.Linn@mail.mcgill.ca", "Andrew", "Linn", "Science", "Computer Science", ["COMP202", "COMP206", "COMP330"]),
+    createProfessor("Thomas.Key@mail.mcgill.ca", "Thomas", "Key", "Science", "Computer Science", ["COMP202", "COMP206", "COMP330"]),
+    createProfessor("Ruben.Thomas@mail.mcgill.ca", "Ruben", "Thomas", "Science", "Computer Science", ["COMP202", "COMP206", "COMP330"]),
+    createProfessor("Wendy.Allen@mail.mcgill.ca", "Wendy", "Allen", "Science", "Computer Science", ["COMP202", "COMP206", "COMP330"]),
+    createProfessor("Jared.Kim@mail.mcgill.ca", "Jared", "Kim", "Science", "Computer Science", ["COMP202", "COMP206", "COMP330"]),
+  ];
 
   return (
     <div>
-      {/* <Container>
-        <table>
-          <thead>
-            <tr>
-              <th className="column1">Email</th>
-              <th className="column2">First name</th>
-              <th className="column3">Last name</th>
-              <th className="column4">Faculty</th>
-              <th className="column5">Department</th>
-            </tr>
-          </thead>
-          <tbody>
-            {profs.map((row, i) => (
-              <ProfRow key={i} row={row} fetchProfData={fetchProfData} />
-            ))}
-          </tbody>
-        </table>
-      </Container> */}
-
       <div id="profTable">
         <table>
           <thead>
@@ -83,10 +58,11 @@ const ManageProfessors = () => {
               <th className="column3">Last name</th>
               <th className="column4">Faculty</th>
               <th className="column5">Department</th>
+              <th className="column5">Courses</th>
             </tr>
           </thead>
           <tbody>
-            {profs.map((row, i) => (
+            {hardcoded.map((row, i) => (
               <ProfRow key={i} row={row} fetchProfData={fetchProfData} />
             ))}
           </tbody>
