@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Container } from "react-bootstrap";
 import AddProfForm from "./AddProfForm";
 import ProfRow from "./ProfRow";
-import "../../../style/manageProfTable.css";
+import "../../../style/userTable.css";
 
 interface Professor {
   email: string;
@@ -75,22 +75,20 @@ const ManageProfessors = () => {
 
       <div id="profTable">
         <table>
+          <thead>
+            <tr>
+              <th className="column1">Email</th>
+              <th className="column2">First name</th>
+              <th className="column3">Last name</th>
+              <th className="column4">Faculty</th>
+              <th className="column5">Department</th>
+              <th className="column5"></th>
+            </tr>
+          </thead>
           <tbody>
-            <tr>
-              <th>Table Header first column</th>
-              <th>Table Header second column</th>
-              <th>Table Header third column</th>
-            </tr>
-            <tr>
-              <td>data goes here</td>
-              <td>data goes here</td>
-              <td>data goes here</td>
-            </tr>
-            <tr>
-              <td>more data here</td>
-              <td>more data here</td>
-              <td>more data here</td>
-            </tr>
+            {profs.map((row, i) => (
+              <ProfRow key={i} row={row} fetchProfData={fetchProfData} />
+            ))}
           </tbody>
         </table>
       </div>

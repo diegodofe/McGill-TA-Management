@@ -26,7 +26,7 @@ const StudentRow = ({ row, fetchStudentData }) => {
             <td className="column2">{row.firstName}</td>
             <td className="column3">{row.lastName}</td>
             <td className="column3">{row.studentID}</td>
-            <td className="column5">
+            <td className="column6">
                 <button className="btn btn-secondary"
                     onClick={handleDeleteStudent}>
                     Delete</button>

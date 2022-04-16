@@ -32,7 +32,7 @@ const ProfRow = ({ row, fetchProfData }) => {
             <td className="column3">{row.lastName}</td>
             <td className="column4">{row.faculty}</td>
             <td className="column5">{row.department}</td>
-            <td className="column5">
+            <td className="column6">
                 <button className="btn btn-secondary"
                     onClick={handleDeleteProf}>
                     Delete</button>

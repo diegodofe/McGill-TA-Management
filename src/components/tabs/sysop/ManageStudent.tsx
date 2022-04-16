@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import AddStudentForm from "./AddStudentForm";
 import StudentRow from "./StudentRow";
+import "../../../style/userTable.css";
 
 interface Student {
   email: string;
@@ -12,19 +13,20 @@ interface Student {
 }
 
 const ManageStudents = () => {
-
   const [students, setStudents] = useState([]);
 
   const fetchStudentData = async () => {
     try {
-      const res = await fetch("https://winter2022-comp307-group8.cs.mcgill.ca/getallstudents");
+      const res = await fetch(
+        "https://winter2022-comp307-group8.cs.mcgill.ca/getallstudents"
+      );
       const data = await res.json();
       setStudents(data.users);
       console.log("Deleted student");
     } catch (err) {
       console.error(err);
     }
-  }
+  };
 
   useEffect(() => {
     fetchStudentData();
@@ -46,7 +48,7 @@ const ManageStudents = () => {
   return (
     <div>
       <Container>
-        <table>
+        {/* <table>
           <thead>
             <tr>
               <th className="column1">Email</th>
@@ -60,7 +62,30 @@ const ManageStudents = () => {
               <StudentRow key={i} row={row} fetchStudentData={fetchStudentData} />
             ))}
           </tbody>
-        </table>
+        </table> */}
+
+        <div id="profTable">
+          <table>
+            <thead>
+              <tr>
+                <th className="column1">Email</th>
+                <th className="column2">First name</th>
+                <th className="column3">Last name</th>
+                <th className="column4">Student ID</th>
+                <th className="column6"></th>
+              </tr>
+            </thead>
+            <tbody>
+              {students.map((row, i) => (
+                <StudentRow
+                  key={i}
+                  row={row}
+                  fetchStudentData={fetchStudentData}
+                />
+              ))}
+            </tbody>
+          </table>
+        </div>
       </Container>
       {/* Not sure if this is nessecary because students automatically register */}
       {/* <AddStudentForm /> */}

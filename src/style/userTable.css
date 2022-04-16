@@ -22,3 +22,17 @@
 #profTable td:last-child {
   border-right: none;
 }
+
+#profTable th:nth-last-child(2) {
+  border-right: none;
+}
+#profTable td:nth-last-child(2) {
+  border-right: none;
+}
+
+#profTable .column6 {
+  border: none;
+}
+th, td {
+  padding: 15px;
+}
