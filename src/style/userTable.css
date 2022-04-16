@@ -49,3 +49,23 @@ td {
   outline: none;
   color: red;
 }
+
+.mb-4.mt-2{
+  padding-left: 27px;
+  color: green;
+}
+
+.courses {
+  font-weight: 200;
+  border: 1px solid #e9ecee;
+}
+
+/* padding for sysop add professor form */
+.modal-content .row {
+  padding: 10px;
+}
+
+/* padding for sysop add course form */
+.modal-body .form-group {
+  padding: 10px;
+}
