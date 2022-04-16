@@ -15,18 +15,17 @@ const ManageTAs = () => {
     }
     return (
         <div>
+            Testing
             <table>
                 <thead>
                     <tr>
-                        <th className="column2">First name</th>
-                        <th className="column3">Last name</th>
-                        <th className="column1">Email</th>
+                        <th>First name</th>
+                        <th>Last name</th>
+                        <th>Email</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr className="body">
 
-                    </tr>
                 </tbody>
             </table>
         </div>
