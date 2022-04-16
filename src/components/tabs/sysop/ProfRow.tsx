@@ -67,7 +67,7 @@ const ProfRow = ({ row, fetchProfData }) => {
           className="courses"
           onClick={() => setShow(true)}
         >
-          <OpenInFullIcon />
+          <OpenInFullIcon fontSize="small"/> {" "}
           View Courses
         </button>
 
