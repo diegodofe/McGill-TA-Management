@@ -13,6 +13,7 @@ import ManageProfessors from "../components/tabs/sysop/ManageProfessors";
 import ManageStudents from "../components/tabs/sysop/ManageStudent";
 import { UserTypes } from "../enums/UserTypes";
 import logo from "../assets/images/mcgill_logo.jpg";
+import "../style/topbar.css";
 
 export function Dashboard() {
   const tabsPerProfile = new Map<UserTypes, Array<string>>([
