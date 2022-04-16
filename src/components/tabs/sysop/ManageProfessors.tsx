@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container } from "react-bootstrap";
 import AddProfForm from "./AddProfForm";
+import ProfRow from "./ProfRow";
 
 interface Professor {
   email: string;
@@ -11,18 +12,38 @@ interface Professor {
 }
 
 const ManageProfessors = () => {
+
   function createData(email: string, firstName: string, lastName: string, faculty: string, department: string): Professor {
     return { email, firstName, lastName, faculty, department };
   }
 
-  const rows = [
-    createData("Jennifer.Smith@mail.mcgill.ca", "Jennefer", "Smith", "Science", "Computer Science"),
-    createData("Andrew.Linn@mail.mcgill.ca", "Andrew", "Linn", "Science", "Computer Science"),
-    createData("Thomas.Key@mail.mcgill.ca", "Thomas", "Key", "Science", "Computer Science"),
-    createData("Ruben.Thomas@mail.mcgill.ca", "Ruben", "Thomas", "Science", "Computer Science"),
-    createData("Wendy.Allen@mail.mcgill.ca", "Wendy", "Allen", "Science", "Computer Science"),
-    createData("Jared.Kim@mail.mcgill.ca", "Jared", "Kim", "Science", "Computer Science"),
-  ];
+  const [profs, setProfs] = React.useState([]);
+
+  const fetchProfData = async () => {
+    try {
+      console.log("fetching prof data");
+      const res = await fetch("https://winter2022-comp307-group8.cs.mcgill.ca/prof/all");
+      const json = await res.json();
+      setProfs(json.profs);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+
+  useEffect(() => {
+    // Load data
+    fetchProfData();
+  }, [])
+
+  // const rows = [
+  //   createData("Jennifer.Smith@mail.mcgill.ca", "Jennefer", "Smith", "Science", "Computer Science"),
+  //   createData("Andrew.Linn@mail.mcgill.ca", "Andrew", "Linn", "Science", "Computer Science"),
+  //   createData("Thomas.Key@mail.mcgill.ca", "Thomas", "Key", "Science", "Computer Science"),
+  //   createData("Ruben.Thomas@mail.mcgill.ca", "Ruben", "Thomas", "Science", "Computer Science"),
+  //   createData("Wendy.Allen@mail.mcgill.ca", "Wendy", "Allen", "Science", "Computer Science"),
+  //   createData("Jared.Kim@mail.mcgill.ca", "Jared", "Kim", "Science", "Computer Science"),
+  // ];
 
   return (
     <div>
@@ -38,20 +59,14 @@ const ManageProfessors = () => {
             </tr>
           </thead>
           <tbody>
-            {rows.map((row, i) => (
-              <tr key={i} className="body">
-                <td className="column1">{row.email}</td>
-                <td className="column2">{row.firstName}</td>
-                <td className="column3">{row.lastName}</td>
-                <td className="column4">{row.faculty}</td>
-                <td className="column5">{row.department}</td>
-              </tr>
+            {profs.map((row, i) => (
+              <ProfRow key={i} row={row} fetchProfData={fetchProfData} />
             ))}
           </tbody>
         </table>
       </Container>
 
-      <AddProfForm />
+      <AddProfForm fetchProfData={fetchProfData} />
     </div>
   );
 };
