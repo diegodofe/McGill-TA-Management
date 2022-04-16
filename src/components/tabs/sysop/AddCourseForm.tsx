@@ -1,7 +1,10 @@
 import React from "react";
+import { Button, Collapse, Form, Row, Col } from "react-bootstrap";
+import AddIcon from "@mui/icons-material/Add";
 
 // Form that adds a course with fields: courseCode, courseNumber, courseName, term, year
 const AddCourseForm = ({ fetchCourseData }) => {
+    const [open, setOpen] = React.useState(false);
     const [courseCode, setCourseCode] = React.useState("");
     const [courseNumber, setCourseNumber] = React.useState("");
     const [courseName, setCourseName] = React.useState("");
@@ -45,6 +48,15 @@ const AddCourseForm = ({ fetchCourseData }) => {
 
     return (
         <div>
+            <button
+        className="mb-4 mt-2"
+        onClick={() => setOpen(!open)}
+        aria-controls="example-collapse-text"
+        aria-expanded={open}
+      >
+        <AddIcon />
+      </button>
+      <Collapse in={open}>
             <form onSubmit={handleAddCourse}>
                 <div className="form-group">
                     <label htmlFor="courseCode">Course Code</label>
@@ -72,6 +84,7 @@ const AddCourseForm = ({ fetchCourseData }) => {
                 </div>
                 <button type="submit" className="btn btn-primary">Add Course</button>
             </form>
+            </Collapse>
         </div>
     )
 }
