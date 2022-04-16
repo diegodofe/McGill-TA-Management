@@ -3,16 +3,15 @@ import { Container } from "react-bootstrap";
 import AddStudentForm from "./AddStudentForm";
 import StudentRow from "./StudentRow";
 
-interface Student {
+export interface Student {
   email: string;
   firstName: string;
   lastName: string;
-  faculty: string;
-  department: string;
+  studentID: string;
+  courses: Array<string>;
 }
 
 const ManageStudents = () => {
-
   const [students, setStudents] = useState([]);
 
   const fetchStudentData = async () => {
@@ -24,24 +23,24 @@ const ManageStudents = () => {
     } catch (err) {
       console.error(err);
     }
-  }
+  };
 
   useEffect(() => {
     fetchStudentData();
   }, []);
 
-  // function createData(email: string, firstName: string, lastName: string, faculty: string, department: string): Student {
-  //   return { email, firstName, lastName, faculty, department };
-  // }
+  function createData(email: string, firstName: string, lastName: string, studentID: string, courses: Array<string>): Student {
+    return { email, firstName, lastName, studentID, courses };
+  }
 
-  // const rows = [
-  //   createData("Jennifer.Smith@mail.mcgill.ca", "Jennefer", "Smith", "Science", "Computer Science"),
-  //   createData("Andrew.Linn@mail.mcgill.ca", "Andrew", "Linn", "Science", "Computer Science"),
-  //   createData("Thomas.Key@mail.mcgill.ca", "Thomas", "Key", "Science", "Computer Science"),
-  //   createData("Ruben.Thomas@mail.mcgill.ca", "Ruben", "Thomas", "Science", "Computer Science"),
-  //   createData("Wendy.Allen@mail.mcgill.ca", "Wendy", "Allen", "Science", "Computer Science"),
-  //   createData("Jared.Kim@mail.mcgill.ca", "Jared", "Kim", "Science", "Computer Science"),
-  // ];
+  const hardcoded: Array<Student> = [
+    createData("Jennifer.Smith@mail.mcgill.ca", "Jennefer", "Smith", "2600000000", ["COMP202", "COMP206", "COMP330"]),
+    createData("Andrew.Linn@mail.mcgill.ca", "Andrew", "Linn", "2600000000", ["COMP202", "COMP206", "COMP330"]),
+    createData("Thomas.Key@mail.mcgill.ca", "Thomas", "Key", "2600000000", ["COMP202", "COMP206", "COMP330"]),
+    createData("Ruben.Thomas@mail.mcgill.ca", "Ruben", "Thomas", "2600000000", ["COMP202", "COMP206", "COMP330"]),
+    createData("Wendy.Allen@mail.mcgill.ca", "Wendy", "Allen", "2600000000", ["COMP202", "COMP206", "COMP330"]),
+    createData("Jared.Kim@mail.mcgill.ca", "Jared", "Kim", "2600000000", ["COMP202", "COMP206", "COMP330"]),
+  ];
 
   return (
     <div>
@@ -53,10 +52,12 @@ const ManageStudents = () => {
               <th className="column2">First name</th>
               <th className="column3">Last name</th>
               <th className="column4">Student ID</th>
+              <th className="column4">Courses</th>
             </tr>
           </thead>
           <tbody>
-            {students.map((row, i) => (
+            {/* Rows are mapped to a hardcoded Array<Student> above! */}
+            {hardcoded.map((row: Student, i) => (
               <StudentRow key={i} row={row} fetchStudentData={fetchStudentData} />
             ))}
           </tbody>
