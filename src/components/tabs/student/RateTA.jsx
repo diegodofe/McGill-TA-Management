@@ -1,6 +1,6 @@
 import React from "react";
 
-function StudentCourses() {
+function RateTA() {
   return (
     <div>
       <h2>COMP202</h2>
@@ -10,4 +10,4 @@ function StudentCourses() {
   );
 }
 
-export default StudentCourses;
+export default RateTA;
