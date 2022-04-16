@@ -58,7 +58,7 @@ function Register() {
         console.log(resJson)
 
         // set user state
-        setUser(newUser);
+        // setUser(newUser);
         navigate("/dashboard");
       }
       else {
