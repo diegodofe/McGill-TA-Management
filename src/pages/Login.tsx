@@ -14,48 +14,10 @@ const Login: React.FC = () => {
   const [error, setError] = useState("");
 
   // on submit pass email and password values entered by user
-  const submitHandler = async (e: { preventDefault: () => void; }) => {
+  const submitHandler = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
-    // if either email or password is empty show error message
-    if (!tempEmail || !tempPassword) {
-      // error when user does not enter username and/or password
-      console.error("Please provide your username and password.");
-      setError("Please provide your username and password.");
-      return;
-    }
-
-    try {
-      // Make login API call
-      const res = await fetch("https://winter2022-comp307-group8.cs.mcgill.ca/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: tempEmail,
-          password: tempPassword,
-        }),
-      });
-
-      // If login was successful, set user and redirect to home page
-      if (res.status === 200) {
-        const resJson = await res.json();
-
-        console.log(resJson);
-
-        // set user state
-        setUser(resJson);
-
-        navigate("/dashboard");
-        return;
-      } else {
-        // error unable to login, invalid username or password
-        setError("Invalid username or password.");
-      }
-    } catch (error) {
-      console.error(error);
-    }
+    navigate("/dashboard");
   };
 
   return (
@@ -89,6 +51,6 @@ const Login: React.FC = () => {
       </form>
     </div>
   );
-}
+};
 
 export default Login;
