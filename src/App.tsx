@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 
 import Login from "./pages/Login";
-import User from "./classes/User";
+import { User, emptyUser } from "./classes/User";
 import Register from "./pages/Register";
 
 interface UserProviderProps {
@@ -11,10 +11,10 @@ interface UserProviderProps {
   setUser: Function;
 }
 
-export const UserContext = React.createContext<UserProviderProps>({ user: new User({}), setUser: () => {} });
+export const UserContext = React.createContext<UserProviderProps>({ user: emptyUser, setUser: () => {} });
 
 const App = () => {
-  const [user, setUser] = React.useState<User>(new User({}));
+  const [user, setUser] = React.useState<User>(emptyUser);
 
   return (
     <UserContext.Provider value={{ user, setUser }}>

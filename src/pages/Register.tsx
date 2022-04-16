@@ -3,33 +3,71 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/images/mcgill_logo.jpg";
 import "../App.css";
 import { UserContext } from "../App";
-import User from "../classes/User";
+import { emptyUser } from "../classes/User";
 
 function Register() {
   // Load global state
-  const { setUser } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
 
   // All hooks
   const [tempEmail, setTempEmail] = useState<string>("");
   const [tempFirstName, setTempFirstName] = useState<string>("");
   const [tempLastName, setTempLastName] = useState<string>("");
   const [tempPassword, setTempPassword] = useState<string>("");
+  const [tempStudentID, setTempStudentID] = useState<string>("");
   const navigate = useNavigate();
   const [error, setError] = useState("");
 
-  function submitHandler(e: React.FormEvent<HTMLFormElement>): void {
+  const submitHandler = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
 
     /**
-     * @TODO send new user information to create user global state
+     * @TODO if valid, send new user information to server, and create user global state
      */
-    const temp: User = new User({});
-    temp.setEmail(tempEmail);
-    temp.setFirstName(tempFirstName);
-    temp.setLastName(tempLastName);
-    setUser(temp);
 
-    navigate("/dashboard");
+    try {
+      // Make register API call
+      const res = await fetch("https://winter2022-comp307-group8.cs.mcgill.ca/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: tempEmail,
+          password: tempPassword,
+          firstName: tempFirstName,
+          lastName: tempLastName,
+          studentID: tempStudentID,
+        }),
+      })
+
+      console.log(res)
+
+      // If register was successful, set user and redirect to home page
+      if (res.status === 200) {
+        const resJson = await res.json();
+
+        setUser({
+          ...user,
+          email: tempEmail,
+          firstName: tempFirstName,
+          lastName: tempLastName
+        });
+
+
+        console.log(resJson)
+
+        // set user state
+        // setUser(newUser);
+        navigate("/dashboard");
+      }
+      else {
+        alert("Error registering user");
+      }
+    } catch (e) {
+      console.error(e);
+      alert("Error registering user");
+    }
   }
 
   return (
@@ -48,6 +86,10 @@ function Register() {
 
           <div className="form-group">
             <input type="text" name="lastname" placeholder="lastname" id="lastname" onChange={(e) => setTempLastName(e.target.value)} />
+          </div>
+
+          <div className="form-group">
+            <input type="text" name="email" placeholder="student ID" id="student ID" onChange={(e) => setTempStudentID(e.target.value)} />
           </div>
 
           <div className="form-group">
