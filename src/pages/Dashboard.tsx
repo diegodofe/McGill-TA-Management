@@ -4,10 +4,10 @@ import { UserContext } from "../App";
 import RateTA from "../components/tabs/student/RateTA";
 import ManageStudents from "../components/tabs/sysop/ManageStudent";
 import ManageProfessors from "../components/tabs/sysop/ManageProfessors";
-import ManageCourses from "../components/tabs/sysop/ManageCourses";
 import { UserTypes } from "../enums/UserTypes";
 import logo from "../assets/images/mcgill_logo.jpg";
 import "../style/topbar.css";
+import ManageCourses from "../components/tabs/sysop/ManageCourses";
 
 export function Dashboard() {
   const tabsPerProfile = new Map<UserTypes, Array<string>>([
