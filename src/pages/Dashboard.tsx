@@ -3,6 +3,7 @@ import { Container, Nav, Navbar, NavDropdown, Tab, Tabs } from "react-bootstrap"
 import { UserContext } from "../App";
 import StudentCourses from "../components/tabs/student/StudentCourses";
 import ManageProfessors from "../components/tabs/sysop/ManageProfessors";
+import ManageStudents from "../components/tabs/sysop/ManageStudent";
 import Wishlist from "../components/tabs/ta/Wishlist";
 import { UserTypes } from "../enums/UserTypes";
 
@@ -20,7 +21,7 @@ export function Dashboard() {
   // Map to get list of JSX elements based on profile
   const tabsPerProfile = new Map<UserTypes, Array<JSX.Element>>([
     [UserTypes.Student, [<StudentCourses />, <Wishlist />]],
-    [UserTypes.Sysop, [<ManageProfessors />]],
+    [UserTypes.Sysop, [<ManageProfessors />, <ManageStudents />]],
   ]);
 
   // Set the default array of tabs relative to our default profile
