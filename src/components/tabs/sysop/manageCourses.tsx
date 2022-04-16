@@ -24,23 +24,6 @@ const ManageCourses = () => {
 
   return (
     <div>
-      {/* <table>
-                <thead>
-                    <tr>
-                        <th className="column2">Course Name</th>
-                        <th className="column3">Course Description</th>
-                        <th className="column5">Course Semester</th>
-                        <th className="column6">Course Year</th>
-                        <th className="column7">Course Instructor</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {courses.map((row, i) => (
-                        <CourseRow key={i} row={row} fetchCourseData={fetchCourseData} />
-                    ))}
-                </tbody>
-            </table> */}
-
       <div id="profTable">
         <table>
           <thead>
