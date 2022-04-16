@@ -13,7 +13,7 @@ const CourseRow = ({ row, fetchCourseData }) => {
       <td className="column3">{row.year}</td>
       <td className="column4">{row.courseName}</td>
       <td className="column4">profname</td>
-      <td className="column5">
+      <td className="column0">
         <button className="btn btn-secondary" onClick={handleDeleteCourse}>
           <RemoveIcon />
         </button>

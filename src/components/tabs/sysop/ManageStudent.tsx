@@ -72,7 +72,7 @@ const ManageStudents = () => {
                 <th className="column2">First name</th>
                 <th className="column3">Last name</th>
                 <th className="column4">Student ID</th>
-                <th className="column6"></th>
+                <th className="column0"></th>
               </tr>
             </thead>
             <tbody>
