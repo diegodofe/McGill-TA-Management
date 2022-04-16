@@ -1,13 +1,23 @@
 import React, { useContext, useState } from "react";
 import { Container, Nav, Navbar, NavDropdown, Tab, Tabs } from "react-bootstrap";
 import { UserContext } from "../App";
-import StudentCourses from "../components/tabs/student/StudentCourses";
+import RateTA from "../components/tabs/student/RateTA";
 import ManageProfessors from "../components/tabs/sysop/ManageProfessors";
 import ManageStudents from "../components/tabs/sysop/ManageStudent";
-import Wishlist from "../components/tabs/ta/Wishlist";
 import { UserTypes } from "../enums/UserTypes";
 
 export function Dashboard() {
+  const tabsPerProfile = new Map<UserTypes, Array<string>>([
+    [UserTypes.Student, ["Rate a TA"]],
+    [UserTypes.Sysop, ["Manage Professors", "Manage Students"]],
+  ]);
+
+  const tabNamesToJSX = new Map<string, JSX.Element>([
+    ["Rate a TA", <RateTA />],
+    ["Manage Professors", <ManageProfessors />],
+    ["Manage Students", <ManageStudents />],
+  ]);
+
   /**
    * Get list of user's profiles/types
    * @TODO Retrieve this information from the actual global user state
@@ -18,14 +28,8 @@ export function Dashboard() {
   // Set a default profile
   const [currentProfile, setCurrentProfile] = useState<UserTypes>(userProfiles[0]);
 
-  // Map to get list of JSX elements based on profile
-  const tabsPerProfile = new Map<UserTypes, Array<JSX.Element>>([
-    [UserTypes.Student, [<StudentCourses />, <Wishlist />]],
-    [UserTypes.Sysop, [<ManageProfessors />, <ManageStudents />]],
-  ]);
-
   // Set the default array of tabs relative to our default profile
-  const [currentTabs, setCurrentTabs] = useState<Array<JSX.Element>>(tabsPerProfile.get(currentProfile)!);
+  const [currentTabs, setCurrentTabs] = useState<Array<string>>(tabsPerProfile.get(currentProfile)!);
 
   // On nav bar selection, this function sets the new current profile and associated tabs.
   function handleNavClick(profile: UserTypes): void {
@@ -61,9 +65,9 @@ export function Dashboard() {
 
       <Container>
         <Tabs defaultActiveKey="0" transition={false} id="noanim-tab" className="mb-4">
-          {currentTabs.map((tab, i) => (
-            <Tab key={i} eventKey={`${i}`} title={`${currentProfile} tab ${i}`}>
-              {tab}
+          {currentTabs.map((currentTabName, i) => (
+            <Tab key={i} eventKey={i} title={currentTabName}>
+              {tabNamesToJSX.get(currentTabName)}
             </Tab>
           ))}
         </Tabs>
