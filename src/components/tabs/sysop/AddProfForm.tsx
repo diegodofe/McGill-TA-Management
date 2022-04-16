@@ -10,13 +10,30 @@ function AddProfForm() {
   const [tempFaculty, setTempFaculy] = useState<string>("Science");
   const [tempDep, setTempDep] = useState<string>("Computer Science");
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(tempEmail);
     console.log(tempFirstname);
     console.log(tempLastname);
     console.log(tempFaculty);
     console.log(tempDep);
+
+    // make api to create prof
+
+    // try {
+    //   const res = await fetch("https://winter2022-comp307-group8.cs.mcgill.ca/prof/add", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({
+    //       email: tempEmail,
+    //       faculty: tempFaculty,
+    //       department: tempDep,
+    //       firstName: tempFirstname,
+    //       lastName: tempLastname,
+    //     }),
+    //   ));
   }
 
   return (
