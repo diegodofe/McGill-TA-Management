@@ -1,7 +1,7 @@
 import React from "react";
 import RemoveIcon from "@material-ui/icons/Remove";
 
-const CourseRow = ({ row, fetchCourseData }) => {
+const CourseRow = ({ course, fetchCourseData }) => {
   const handleDeleteCourse = () => {
     console.log("Delete course");
   };
@@ -13,10 +13,10 @@ const CourseRow = ({ row, fetchCourseData }) => {
           <RemoveIcon />
         </button>
       </td>
-      <td className="column1">{row.courseCode + " " + row.courseNumber}</td>
-      <td className="column2">{row.term}</td>
-      <td className="column3">{row.year}</td>
-      <td className="column4">{row.courseName}</td>
+      <td className="column1">{course.courseCode + " " + course.courseNumber}</td>
+      <td className="column2">{course.term}</td>
+      <td className="column3">{course.year}</td>
+      <td className="column4">{course.courseName}</td>
       <td className="column4">profname</td>
     </tr>
   );

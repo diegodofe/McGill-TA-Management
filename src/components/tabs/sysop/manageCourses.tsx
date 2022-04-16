@@ -8,9 +8,7 @@ const ManageCourses = () => {
 
   const fetchCourseData = async () => {
     try {
-      const res = await fetch(
-        "https://winter2022-comp307-group8.cs.mcgill.ca/course/all"
-      );
+      const res = await fetch("https://winter2022-comp307-group8.cs.mcgill.ca/course/all");
       const data = await res.json();
       setCourses(data.courses);
     } catch (err) {
@@ -37,8 +35,8 @@ const ManageCourses = () => {
             </tr>
           </thead>
           <tbody>
-            {courses.map((row, i) => (
-              <CourseRow key={i} row={row} fetchCourseData={fetchCourseData} />
+            {courses.map((course, i) => (
+              <CourseRow key={i} course={course} fetchCourseData={fetchCourseData} />
             ))}
           </tbody>
         </table>
