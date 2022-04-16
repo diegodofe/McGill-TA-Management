@@ -1,0 +1,51 @@
+#profTable table td {
+  border: 1px solid #e9ecee;
+}
+#profTable th {
+  font-weight: normal;
+  border: 1px solid #e9ecee;
+}
+#profTable td {
+  font-weight: 200;
+  color: black;
+  border: 1px solid #e9ecee;
+}
+
+#profTable th:first-child {
+  border-left: none;
+}
+#profTable td:first-child {
+  border-left: none;
+}
+
+#profTable th:nth-child(2) {
+  border-left: none;
+}
+#profTable td:nth-child(2) {
+  border-left: none;
+}
+
+#profTable th:last-child {
+  border-right: none;
+}
+#profTable td:last-child {
+  border-right: none;
+}
+
+#profTable .column0 {
+  border: none;
+}
+
+th,
+td {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.btn.btn-secondary {
+  appearance: none;
+  background: none;
+  border: none;
+  outline: none;
+  color: red;
+}

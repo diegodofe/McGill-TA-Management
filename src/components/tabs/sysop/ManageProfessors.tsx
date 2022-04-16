@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Container } from "react-bootstrap";
 import AddProfForm from "./AddProfForm";
 import ProfRow from "./ProfRow";
+import "../../../style/userTable.css";
 
 interface Professor {
   email: string;
@@ -12,8 +13,13 @@ interface Professor {
 }
 
 const ManageProfessors = () => {
-
-  function createData(email: string, firstName: string, lastName: string, faculty: string, department: string): Professor {
+  function createData(
+    email: string,
+    firstName: string,
+    lastName: string,
+    faculty: string,
+    department: string
+  ): Professor {
     return { email, firstName, lastName, faculty, department };
   }
 
@@ -22,19 +28,20 @@ const ManageProfessors = () => {
   const fetchProfData = async () => {
     try {
       console.log("fetching prof data");
-      const res = await fetch("https://winter2022-comp307-group8.cs.mcgill.ca/prof/all");
+      const res = await fetch(
+        "https://winter2022-comp307-group8.cs.mcgill.ca/prof/all"
+      );
       const json = await res.json();
       setProfs(json.profs);
     } catch (err) {
       console.log(err);
     }
-  }
-
+  };
 
   useEffect(() => {
     // Load data
     fetchProfData();
-  }, [])
+  }, []);
 
   // const rows = [
   //   createData("Jennifer.Smith@mail.mcgill.ca", "Jennefer", "Smith", "Science", "Computer Science"),
@@ -47,7 +54,7 @@ const ManageProfessors = () => {
 
   return (
     <div>
-      <Container>
+      {/* <Container>
         <table>
           <thead>
             <tr>
@@ -64,8 +71,27 @@ const ManageProfessors = () => {
             ))}
           </tbody>
         </table>
-      </Container>
+      </Container> */}
 
+      <div id="profTable">
+        <table>
+          <thead>
+            <tr>
+              <th className="column0"></th>
+              <th className="column1">Email</th>
+              <th className="column2">First name</th>
+              <th className="column3">Last name</th>
+              <th className="column4">Faculty</th>
+              <th className="column5">Department</th>
+            </tr>
+          </thead>
+          <tbody>
+            {profs.map((row, i) => (
+              <ProfRow key={i} row={row} fetchProfData={fetchProfData} />
+            ))}
+          </tbody>
+        </table>
+      </div>
       <AddProfForm fetchProfData={fetchProfData} />
     </div>
   );
