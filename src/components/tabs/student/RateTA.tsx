@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { Container } from "react-bootstrap";
 import "../../../style/userTable.css";
 import CourseTable from "./CourseTable";
 
@@ -17,24 +18,6 @@ interface Course {
 }
 
 const RateTA = () => {
-  const [profs, setProfs] = React.useState([]);
-
-  const fetchProfData = async () => {
-    try {
-      console.log("fetching prof data");
-      const res = await fetch("https://winter2022-comp307-group8.cs.mcgill.ca/prof/all");
-      const json = await res.json();
-      setProfs(json.profs);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  useEffect(() => {
-    // Load data
-    fetchProfData();
-  }, []);
-
   function createTA(email: string, firstName: string, lastName: string, faculty: string, department: string): TA {
     return { email, firstName, lastName, faculty, department };
   }
@@ -55,10 +38,10 @@ const RateTA = () => {
     <div>
       {/**Set to hardcoded list of profs for testing purposes */}
       {usersEnrolledCourses.map((course, i) => (
-        <div className="course-section">
-          <h1>{course.name}</h1>
+        <Container className="mb-4">
+          <h2>{course.name}</h2>
           <CourseTable key={i} currentTAs={course.currentTAs} />
-        </div>
+        </Container>
       ))}
     </div>
   );

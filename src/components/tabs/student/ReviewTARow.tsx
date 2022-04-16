@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import OpenInFullIcon from "@mui/icons-material/OpenInFull";
 import { Modal } from "react-bootstrap";
 import "../../../style/userTable.css";
 
@@ -7,17 +8,12 @@ const ReviewTARow = ({ ta }) => {
 
   return (
     <tr className="body">
-      <td className="column0">...</td>
-      <td className="column1">{ta.email}</td>
-      <td className="column2">{ta.firstName}</td>
-      <td className="column3">{ta.lastName}</td>
-      <td className="column4">{ta.faculty}</td>
-      <td className="column5">{ta.department}</td>
-      <td className="column6">
-        {/**Create VIEW COURSES modal button */}
+      <td className="column1">✔️</td>
+      <td className="column2 course-button">
+        {/**Create VIEW REVIEW modal button */}
         <>
           <button className="courses" onClick={() => setShow(true)}>
-            View Courses
+            <OpenInFullIcon fontSize="small" /> View Review
           </button>
 
           <Modal show={show} onHide={() => setShow(false)} dialogClassName="modal-lg" aria-labelledby="example-custom-modal-styling-title">
@@ -25,11 +21,14 @@ const ReviewTARow = ({ ta }) => {
               <Modal.Title id="example-custom-modal-styling-title">{`Review ${ta.firstName} ${ta.lastName}`}</Modal.Title>
             </Modal.Header>
 
-            {/** Display each course name of this current prof */}
+            {/** Display user's review */}
             <Modal.Body></Modal.Body>
           </Modal>
         </>
       </td>
+      <td className="column3">{ta.email}</td>
+      <td className="column4">{ta.firstName}</td>
+      <td className="column5">{ta.lastName}</td>
     </tr>
   );
 };

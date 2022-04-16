@@ -9,13 +9,11 @@ const CourseTable = ({ currentTAs }) => {
         <table>
           <thead>
             <tr>
-              <th className="column0"></th>
-              <th className="column1">Email</th>
-              <th className="column2">First name</th>
-              <th className="column3">Last name</th>
-              <th className="column4">Faculty</th>
-              <th className="column5">Department</th>
-              <th className="column5">Courses</th>
+              <th className="column1">Status</th>
+              <th className="column2">Review</th>
+              <th className="column3">Email</th>
+              <th className="column4">First Name</th>
+              <th className="column5">Last Name</th>
             </tr>
           </thead>
           <tbody>
