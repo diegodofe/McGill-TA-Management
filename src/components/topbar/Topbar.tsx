@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
-import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { Container, Nav, Navbar, NavDropdown, Tab, Tabs } from "react-bootstrap";
 import { UserContext } from "../../App";
 import { UserTypes } from "../../enums/UserTypes";
 import ProfessorCourses from "../tabs/professor/ProfessorCourses";
 import StudentCourses from "../tabs/student/StudentCourses";
-import UserManagement from "../tabs/sysop/UserManagement";
+import ManageProfessors from "../tabs/sysop/ManageProfessors";
 import Wishlist from "../tabs/ta/Wishlist";
 
 export default function Navigation() {
@@ -15,16 +15,14 @@ export default function Navigation() {
 
   const tabsPerProfile = new Map<UserTypes, Array<JSX.Element>>([
     [UserTypes.Student, [<StudentCourses />, <Wishlist />]],
-    [UserTypes.Sysop, [<ProfessorCourses />]],
+    [UserTypes.Sysop, [<ManageProfessors />]],
   ]);
 
   const [currentTabs, setCurrentTabs] = useState<Array<JSX.Element>>(tabsPerProfile.get(currentProfile)!);
-  const [currentPage, setCurrentPage] = useState<JSX.Element>(currentTabs[0]);
 
   function handleNavClick(profile: UserTypes): void {
     setCurrentProfile(profile);
     setCurrentTabs(tabsPerProfile.get(profile)!);
-    setCurrentPage(tabsPerProfile.get(profile)![0]);
   }
 
   return (
@@ -53,24 +51,14 @@ export default function Navigation() {
       </Navbar>
 
       <Container>
-        <Nav variant="tabs" defaultActiveKey={0}>
-          {currentTabs?.map((tab, i) => (
-            <Nav.Item>
-              <Nav.Link
-                key={i}
-                eventKey={i}
-                onClick={() => {
-                  setCurrentPage(tab);
-                }}
-              >
-                {`${currentProfile} Tab ${i}`}
-              </Nav.Link>
-            </Nav.Item>
+        <Tabs defaultActiveKey="0" transition={false} id="noanim-tab" className="mb-4">
+          {currentTabs.map((tab, i) => (
+            <Tab key={i} eventKey={`${i}`} title={`${currentProfile} tab ${i}`}>
+              {tab}
+            </Tab>
           ))}
-        </Nav>
+        </Tabs>
       </Container>
-
-      <Container>{currentPage}</Container>
     </div>
   );
 }
