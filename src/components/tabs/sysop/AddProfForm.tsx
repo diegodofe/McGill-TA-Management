@@ -32,6 +32,7 @@ function AddProfForm({ fetchProfData }) {
           department: tempDep,
         }),
       });
+      setTempEmail("");
       if (res.status === 200) {
         console.log("success");
         const data = await res.json();
@@ -55,7 +56,7 @@ function AddProfForm({ fetchProfData }) {
         <Form onSubmit={handleSubmit}>
           <Row>
             <Col>
-              <Form.Control required placeholder="Email" onChange={(e) => setTempEmail(e.target.value)} />
+              <Form.Control required placeholder="Email" value={tempEmail} onChange={(e) => setTempEmail(e.target.value)} />
             </Col>
             {/* <Col>
               <Form.Control required placeholder="First name" onChange={(e) => setTempFirstname(e.target.value)} />

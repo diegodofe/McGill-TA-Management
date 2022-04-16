@@ -30,12 +30,12 @@ function AddStudentForm() {
             <Col>
               <Form.Control required placeholder="Email" onChange={(e) => setTempEmail(e.target.value)} />
             </Col>
-            <Col>
+            {/* <Col>
               <Form.Control required placeholder="First name" onChange={(e) => setTempFirstname(e.target.value)} />
             </Col>
             <Col>
               <Form.Control required placeholder="Last name" onChange={(e) => setTempLastname(e.target.value)} />
-            </Col>
+            </Col> */}
             <Col>
               <Form.Select required onChange={(e) => setTempFaculy(e.target.value)}>
                 <option>Select a Faculty...</option>
