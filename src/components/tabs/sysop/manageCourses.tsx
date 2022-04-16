@@ -45,12 +45,12 @@ const ManageCourses = () => {
         <table>
           <thead>
             <tr>
+              <th className="column0"></th>
               <th className="column2">Course Name</th>
               <th className="column3">Course Description</th>
               <th className="column5">Course Semester</th>
               <th className="column6">Course Year</th>
               <th className="column7">Course Instructor</th>
-              <th className="column0"></th>
             </tr>
           </thead>
           <tbody>

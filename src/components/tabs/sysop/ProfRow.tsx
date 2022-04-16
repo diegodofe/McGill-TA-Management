@@ -26,16 +26,16 @@ const ProfRow = ({ row, fetchProfData }) => {
 
   return (
     <tr className="body">
-      <td className="column1">{row.email}</td>
-      <td className="column2">{row.firstName}</td>
-      <td className="column3">{row.lastName}</td>
-      <td className="column4">{row.faculty}</td>
-      <td className="column5">{row.department}</td>
       <td className="column0">
         <button className="btn btn-secondary" onClick={handleDeleteProf}>
           <RemoveIcon />
         </button>
       </td>
+      <td className="column1">{row.email}</td>
+      <td className="column2">{row.firstName}</td>
+      <td className="column3">{row.lastName}</td>
+      <td className="column4">{row.faculty}</td>
+      <td className="column5">{row.department}</td>
     </tr>
   );
 };

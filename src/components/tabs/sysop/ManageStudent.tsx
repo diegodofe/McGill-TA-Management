@@ -68,11 +68,11 @@ const ManageStudents = () => {
           <table>
             <thead>
               <tr>
+                <th className="column0"></th>
                 <th className="column1">Email</th>
                 <th className="column2">First name</th>
                 <th className="column3">Last name</th>
                 <th className="column4">Student ID</th>
-                <th className="column0"></th>
               </tr>
             </thead>
             <tbody>
