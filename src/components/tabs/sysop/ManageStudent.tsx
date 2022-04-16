@@ -1,8 +1,8 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import AddProfForm from "./AddProfForm";
+import AddStudentForm from "./AddStudentForm";
 
-interface Professor {
+interface Student {
   email: string;
   firstName: string;
   lastName: string;
@@ -10,8 +10,8 @@ interface Professor {
   department: string;
 }
 
-const ManageProfessors = () => {
-  function createData(email: string, firstName: string, lastName: string, faculty: string, department: string): Professor {
+const ManageStudents = () => {
+  function createData(email: string, firstName: string, lastName: string, faculty: string, department: string): Student {
     return { email, firstName, lastName, faculty, department };
   }
 
@@ -51,9 +51,9 @@ const ManageProfessors = () => {
         </table>
       </Container>
 
-      <AddProfForm />
+      <AddStudentForm />
     </div>
   );
 };
 
-export default ManageProfessors;
+export default ManageStudents;
