@@ -1,3 +1,39 @@
-.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
-    border: 0;
-    }
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #6F7782 ;
+    background-color: #fff !important;
+    border: none !important;
+}
+
+.nav-tabs {
+    border: none !important
+}
+
+.nav-tabs .nav-link:hover{
+    border: none !important;
+    color:#E14561  !important;
+}
+
+.nav-tabs {
+    color:#6F7782  !important;
+    border: none !important;
+}
+
+.nav-item.show {
+    color:#6F7782  !important;
+    border: none !important;
+}
+
+.nav-link{
+    color:#6F7782  !important;
+    border: none !important;
+}
+
+.nav-tabs{
+    color:#6F7782  !important;
+    border: none !important;
+}
+
+.nav-link.active {
+    color:#E14561 !important;
+    border: none !important;
+}
