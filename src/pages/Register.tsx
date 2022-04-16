@@ -3,11 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/images/mcgill_logo.jpg";
 import "../App.css";
 import { UserContext } from "../App";
-import User from "../classes/User";
+import { emptyUser } from "../classes/User";
 
 function Register() {
   // Load global state
-  const { setUser } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
 
   // All hooks
   const [tempEmail, setTempEmail] = useState<string>("");
@@ -21,13 +21,9 @@ function Register() {
     e.preventDefault();
 
     /**
-     * @TODO send new user information to create user global state
+     * @TODO if valid, send new user information to server, and create user global state
      */
-    const temp: User = new User({});
-    temp.setEmail(tempEmail);
-    temp.setFirstName(tempFirstName);
-    temp.setLastName(tempLastName);
-    setUser(temp);
+    setUser({ ...user, email: tempEmail, firstName: tempFirstName, lastName: tempLastName });
 
     navigate("/dashboard");
   }
