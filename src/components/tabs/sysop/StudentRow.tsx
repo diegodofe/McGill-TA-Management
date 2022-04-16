@@ -14,7 +14,8 @@ const StudentRow = ({ row, fetchStudentData }) => {
             })
             setTimeout(() => {
                 fetchStudentData();
-            }, 250);
+                console.log("Deleted student");
+            }, 500);
         } catch (e) {
             console.error(e);
         }

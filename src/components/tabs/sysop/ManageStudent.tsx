@@ -20,6 +20,7 @@ const ManageStudents = () => {
       const res = await fetch("https://winter2022-comp307-group8.cs.mcgill.ca/getallstudents");
       const data = await res.json();
       setStudents(data.users);
+      console.log("Deleted student");
     } catch (err) {
       console.error(err);
     }
