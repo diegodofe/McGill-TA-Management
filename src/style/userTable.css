@@ -50,15 +50,20 @@ td {
   color: red;
 }
 
-.mb-4.mt-2{
+.mb-4.mt-2 {
   padding-left: 27px;
   color: green;
 }
 
 .courses {
-  font-weight: 200;
-  border: 1px solid #e9ecee;
+  color: #a5a4a1;
+  font-size: 13px;
+  font-weight: bold;
+  border: 1.5px solid #DFDFDF;
+  box-shadow: 0px 0px 2px 0px #DFDFDF;
+  border-radius: 5px;
 }
+
 
 /* padding for sysop add professor form */
 .modal-content .row {
@@ -69,3 +74,4 @@ td {
 .modal-body .form-group {
   padding: 10px;
 }
+

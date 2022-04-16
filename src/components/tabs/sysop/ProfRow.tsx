@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import RemoveIcon from "@material-ui/icons/Remove";
+import OpenInFullIcon from '@mui/icons-material/OpenInFull';
 import { Button, Modal } from "react-bootstrap";
 import { Course } from "./ManageProfessors";
 import AssignCourseForm from "./AssignCourseFrom";
@@ -41,7 +42,7 @@ const ProfRow = ({ row, fetchProfData }) => {
       <td className="column3">{row.lastName}</td>
       <td className="column4">{row.faculty}</td>
       <td className="column5">{row.department}</td>
-      <td className="column6">
+      <td className="column6 course-button">
       {/* <button
           className="courses"
           onClick={() => setShow(true)}
@@ -66,6 +67,7 @@ const ProfRow = ({ row, fetchProfData }) => {
           className="courses"
           onClick={() => setShow(true)}
         >
+          <OpenInFullIcon fontSize="small"/> {" "}
           View Courses
         </button>
 
