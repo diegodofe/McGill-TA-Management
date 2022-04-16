@@ -2,14 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import StudentRow from "./StudentRow";
 import "../../../style/userTable.css";
-
-export interface Student {
-  email: string;
-  firstName: string;
-  lastName: string;
-  studentID: string;
-  courses: Array<string>;
-}
+import { allStudents } from "../../../data/FakeData";
 
 const ManageStudents = () => {
   const [students, setStudents] = useState([]);
@@ -29,19 +22,6 @@ const ManageStudents = () => {
     fetchStudentData();
   }, []);
 
-  function createStudent(email: string, firstName: string, lastName: string, studentID: string, courses: Array<string>): Student {
-    return { email, firstName, lastName, studentID, courses };
-  }
-
-  const hardcoded: Array<Student> = [
-    createStudent("Jennifer.Smith@mail.mcgill.ca", "Jennefer", "Smith", "2600000000", ["COMP202", "COMP206", "COMP330"]),
-    createStudent("Andrew.Linn@mail.mcgill.ca", "Andrew", "Linn", "2600000000", ["COMP202", "COMP206", "COMP330"]),
-    createStudent("Thomas.Key@mail.mcgill.ca", "Thomas", "Key", "2600000000", ["COMP202", "COMP206", "COMP330"]),
-    createStudent("Ruben.Thomas@mail.mcgill.ca", "Ruben", "Thomas", "2600000000", ["COMP202", "COMP206", "COMP330"]),
-    createStudent("Wendy.Allen@mail.mcgill.ca", "Wendy", "Allen", "2600000000", ["COMP202", "COMP206", "COMP330"]),
-    createStudent("Jared.Kim@mail.mcgill.ca", "Jared", "Kim", "2600000000", ["COMP202", "COMP206", "COMP330"]),
-  ];
-
   return (
     <div>
       <Container>
@@ -57,8 +37,8 @@ const ManageStudents = () => {
               </tr>
             </thead>
             <tbody>
-              {hardcoded.map((row, i) => (
-                <StudentRow key={i} row={row} fetchStudentData={fetchStudentData} />
+              {allStudents.map((student, i) => (
+                <StudentRow key={i} student={student} fetchStudentData={fetchStudentData} />
               ))}
             </tbody>
           </table>

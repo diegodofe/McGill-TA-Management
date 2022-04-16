@@ -1,27 +1,16 @@
 import { useState } from "react";
 import { Button, Collapse, Form, Row, Col } from "react-bootstrap";
 import React from "react";
-import { Course } from "./ManageProfessors";
+import Course from "../../../classes/Course";
+import { allCoursesAtMcGill } from "../../../data/FakeData";
 
 /**
  * Hard coded list of courses at mcgill
  * @TODO Fetch real list of courses
  */
-const allCoursesAtMcGill: Array<Course> = [
-  { name: "COMP155", numStudents: 200 },
-  { name: "COMP202", numStudents: 200 },
-  { name: "COMP206", numStudents: 154 },
-  { name: "COMP330", numStudents: 95 },
-  { name: "COMP688", numStudents: 154 },
-  { name: "COMP689", numStudents: 95 },
-  { name: "COMP800", numStudents: 200 },
-  { name: "COMP801", numStudents: 154 },
-  { name: "COMP999", numStudents: 95 },
-];
-
 function AssignCourseForm() {
   const [open, setOpen] = useState(false);
-  const [tempCourse, setTempCourse] = useState<Course>({ name: "", numStudents: 50 });
+  const [tempCourse, setTempCourse] = useState<Course>({ name: "", numStudents: 0, currentTAs: [] });
 
   /**
    * @TODO Properly submit form to server
@@ -43,7 +32,7 @@ function AssignCourseForm() {
               {/** At the moment value prop from option can only pass in strings...
                * It would be nice if we could set value to an actual course object.
                */}
-              <Form.Select required onChange={(e) => setTempCourse({ name: `${e.target.value}`, numStudents: 50 })}>
+              <Form.Select required onChange={(e) => setTempCourse({ name: `${e.target.value}`, numStudents: 0, currentTAs: [] })}>
                 <option>Select a Course...</option>
                 {allCoursesAtMcGill.map((course: Course, i: number) => (
                   <option value={course.name}>{course.name}</option>

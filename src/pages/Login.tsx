@@ -14,7 +14,7 @@ const Login: React.FC = () => {
   const [error, setError] = useState("");
 
   // on submit pass email and password values entered by user
-  const submitHandler = async (e: { preventDefault: () => void; }) => {
+  const submitHandler = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
     // if either email or password is empty show error message
@@ -89,6 +89,6 @@ const Login: React.FC = () => {
       </form>
     </div>
   );
-}
+};
 
 export default Login;
