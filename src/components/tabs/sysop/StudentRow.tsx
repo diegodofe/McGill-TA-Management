@@ -33,7 +33,6 @@ const StudentRow = ({ row, fetchStudentData }) => {
       <td className="column6">
         <button className="btn btn-secondary" onClick={handleDeleteStudent}>
         <RemoveIcon />
-          Delete
         </button>
       </td>
     </tr>

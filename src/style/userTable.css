@@ -38,6 +38,10 @@ th, td {
   padding-left: 15px;
 }
 
-.btn {
-  background-color: black;
+.btn.btn-secondary {
+  appearance: none;
+  background: none;
+  border: none;
+  outline: none;
+  color: red;
 }

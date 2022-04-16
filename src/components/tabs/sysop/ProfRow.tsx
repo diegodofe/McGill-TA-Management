@@ -34,7 +34,6 @@ const ProfRow = ({ row, fetchProfData }) => {
       <td className="column6">
         <button className="btn btn-secondary" onClick={handleDeleteProf}>
           <RemoveIcon />
-          Delete
         </button>
       </td>
     </tr>
