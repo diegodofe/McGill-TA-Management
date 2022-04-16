@@ -1,7 +1,9 @@
-import React from "react";
-import { Dropdown, DropdownButton } from "react-bootstrap";
+import React, { useState } from "react";
+import { Button, Modal } from "react-bootstrap";
 
 const ProfRow = ({ row, fetchProfData }) => {
+  const [show, setShow] = useState(false);
+
   const handleDeleteProf = () => {
     console.log("Delete professor");
     try {
@@ -28,16 +30,21 @@ const ProfRow = ({ row, fetchProfData }) => {
       <td className="column4">{row.faculty}</td>
       <td className="column5">{row.department}</td>
       <td className="column6">
-        {
-          <DropdownButton variant="light" id="dropdown-basic-button" title="View Courses">
-            {row.courses.map((course: String, i: number) => (
-              <Dropdown.Item key={i}>{course}</Dropdown.Item>
-            ))}
-          </DropdownButton>
-        }
+        <>
+          <Button variant="primary" onClick={() => setShow(true)}>
+            View Courses
+          </Button>
+
+          <Modal show={show} onHide={() => setShow(false)} dialogClassName="modal-lg" aria-labelledby="example-custom-modal-styling-title">
+            <Modal.Header closeButton>
+              <Modal.Title id="example-custom-modal-styling-title">{`${row.firstName} ${row.lastName}'s Courses`}</Modal.Title>
+            </Modal.Header>
+            <Modal.Body></Modal.Body>
+          </Modal>
+        </>
       </td>
       <td className="column7">
-        <button className="btn btn-secondary" onClick={handleDeleteProf}>
+        <button className="btn btn-danger" onClick={handleDeleteProf}>
           Delete
         </button>
       </td>
