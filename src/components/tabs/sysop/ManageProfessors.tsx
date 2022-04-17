@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import AddProfForm from "./AddProfForm";
 import ProfRow from "./ProfRow";
 import "../../../style/userTable.css";
-import { allProfessors } from "../../../data/FakeData";
 
 const ManageProfessors = () => {
   const [profs, setProfs] = React.useState([]);
@@ -48,6 +47,7 @@ const ManageProfessors = () => {
                   <ProfRow key={i} professor={professor} fetchProfData={fetchProfData} />
                 )
               }
+              return null;
             }
             )}
           </tbody>

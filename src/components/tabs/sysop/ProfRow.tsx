@@ -4,6 +4,7 @@ import OpenInFullIcon from "@mui/icons-material/OpenInFull";
 import { Modal } from "react-bootstrap";
 import AssignCourseForm from "./AssignCourseFrom";
 import "../../../style/userTable.css";
+import ProfCourseRow from "./ProfCourseRow";
 
 const ProfRow = ({ professor, fetchProfData }) => {
   const [show, setShow] = useState(false);
@@ -31,7 +32,8 @@ const ProfRow = ({ professor, fetchProfData }) => {
     try {
       const res = await fetch("https://winter2022-comp307-group8.cs.mcgill.ca/prof/courses/" + professor.email);
       const data = await res.json();
-      console.log("courses loaded");
+      console.log("profs courses loaded");
+      console.log(data.users)
       setCourses(data.users);
     }
     catch (err) {
@@ -70,11 +72,16 @@ const ProfRow = ({ professor, fetchProfData }) => {
             {/** Display each course name of this current prof */}
             <Modal.Body>
               {courses.map((course: any, i: number) => (
-                <div key={i}>{course.courseCode + " " + course.courseNumber
-                  + " - " + course.term + " " + course.year}
-                </div>
+                <ProfCourseRow key={i}
+                  professor={professor}
+                  course={course}
+                  fetchProfsCourses={fetchProfsCourses}
+                />
               ))}
-              <AssignCourseForm professor={professor} />
+              <AssignCourseForm
+                professor={professor}
+                fetchProfsCourses={fetchProfsCourses}
+              />
             </Modal.Body>
           </Modal>
         </>

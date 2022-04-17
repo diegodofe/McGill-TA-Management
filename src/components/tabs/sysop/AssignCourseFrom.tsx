@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import { Button, Collapse, Form, Row, Col } from "react-bootstrap";
 import React from "react";
-import Course from "../../../classes/Course";
 // import { allCoursesAtMcGill } from "../../../data/FakeData";
 
 /**
  * Hard coded list of courses at mcgill
  * @TODO Fetch real list of courses
  */
-function AssignCourseForm({ professor }) {
+function AssignCourseForm({ professor, fetchProfsCourses }) {
   const [open, setOpen] = useState(false);
   const [courses, setCourses] = useState([]);
   const [selectedCourseID, setSelectedCourseID] = useState("");
@@ -46,11 +45,16 @@ function AssignCourseForm({ professor }) {
           courseID: selectedCourseID
         })
       });
-      const data = await res.json();
       if (res.status === 200) {
-        alert("Course assigned successfully");
+        // alert("Course assigned successfully");
+        setOpen(false);
+        setTimeout(() => {
+          fetchProfsCourses();
+
+        }, 500);
+
       } else {
-        alert("Error assigning course");
+        alert("Error assigning course, prof may already be assigned to this course");
       }
     } catch (err) {
       console.error(err);
