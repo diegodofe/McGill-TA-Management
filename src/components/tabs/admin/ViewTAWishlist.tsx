@@ -7,7 +7,7 @@ import { TA } from "../../../classes/TA";
 
 function ViewTAWishlist({ course }: { course: Course }) {
   return (
-    <div id="ta-wishlist-modal">
+    <div className="view-wishlist" id="ta-wishlist-modal">
       {/** Pop up window*/}
       <OverlayTrigger
         trigger="focus"
