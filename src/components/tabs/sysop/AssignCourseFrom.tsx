@@ -50,9 +50,7 @@ function AssignCourseForm({ professor, fetchProfsCourses }) {
         setOpen(false);
         setTimeout(() => {
           fetchProfsCourses();
-
         }, 500);
-
       } else {
         alert("Error assigning course, prof may already be assigned to this course");
       }

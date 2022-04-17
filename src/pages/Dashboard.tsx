@@ -12,13 +12,14 @@ import ManageCourses from "../components/tabs/sysop/ManageCourses";
 import TAAdministration from "../components/tabs/admin/TAAdministration";
 import ViewAllTAs from "../components/tabs/admin/ViewAllTAs";
 import ProfessorCourses from "../components/tabs/professor/ProfessorCourses";
+import ManageTAAdmins from "../components/tabs/sysop/ManageTAAdmins";
 
 export function Dashboard() {
   const tabsPerProfile = new Map<UserTypes, Array<string>>([
     [UserTypes.Student, ["Rate a TA"]],
     [UserTypes.Professor, ["Professor Courses"]],
     [UserTypes.Admin, ["TA Administration", "View All TAs"]],
-    [UserTypes.Sysop, ["Manage Professors", "Manage Students", "Manage Courses", "Add TAs"]],
+    [UserTypes.Sysop, ["Manage Professors", "Manage Students", "Manage Courses", "Add TAs", "Manage TA Admins"]],
   ]);
 
   const tabNamesToJSX = new Map<string, JSX.Element>([
@@ -30,6 +31,7 @@ export function Dashboard() {
     ["Manage Students", <ManageStudents />],
     ["Manage Courses", <ManageCourses />],
     ["Add TAs", <AddTAs />],
+    ["Manage TA Admins", <ManageTAAdmins />],
   ]);
 
   /**
