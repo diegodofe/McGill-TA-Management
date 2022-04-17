@@ -5,6 +5,7 @@ import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import Course from "../../../classes/Course";
 import { allCoursesAtMcGill } from "../../../data/FakeData";
 import "../../../style/userTable.css";
+import "../../../style/subTopbar.css";
 import RenderList from "./RenderList";
 import ViewTAWishlist from "./ViewTAWishlist";
 
@@ -41,9 +42,10 @@ const TAAdministration = () => {
             defaultActiveKey="0"
             transition={false}
             id="noanim-tab"
-            className="mb-4"
+            className="sub"
           >
             <Tab
+              className="sub"
               eventKey="0"
               title={
                 <React.Fragment>
@@ -59,6 +61,7 @@ const TAAdministration = () => {
             </Tab>
 
             <Tab
+              className="sub"
               eventKey="1"
               title={
                 <React.Fragment>

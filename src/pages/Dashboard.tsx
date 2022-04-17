@@ -77,7 +77,7 @@ export function Dashboard() {
       <Container>
         <Tabs defaultActiveKey="0" transition={false} id="noanim-tab" className="mb-4">
           {currentTabs.map((currentTabName, i) => (
-            <Tab key={i} eventKey={i} title={currentTabName}>
+            <Tab className="mb-4" key={i} eventKey={i} title={currentTabName}>
               {tabNamesToJSX.get(currentTabName)}
             </Tab>
           ))}
