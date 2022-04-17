@@ -92,6 +92,7 @@ td {
 /* view info button spacing */
 .view-info {
   padding-left: 15px;
+  float: right !important;
 }
 
 /* removes blue highlighting when clicking on dropdown */
