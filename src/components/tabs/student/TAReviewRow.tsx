@@ -13,7 +13,7 @@ const ReviewTARow = ({ ta }) => {
       {/**@TODO Make these some cooler icons */}
       <td className="column1">{isSubmitted ? "✔️" : "❌"}</td>
       <td className="column2 course-button">
-        {/** Review TA form, modal, and button*/}
+        {/** TA Review form, modal, and button*/}
         <ReviewTAForm ta={ta} status={isSubmitted} />
       </td>
       <td className="column3">{ta.email}</td>

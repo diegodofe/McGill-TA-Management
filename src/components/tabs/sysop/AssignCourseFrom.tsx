@@ -85,9 +85,9 @@ function AssignCourseForm({ professor }) {
           <Button className="mt-3" variant="light" type="submit">
             Add
           </Button>
-        </Form>
-      </Collapse>
-    </div>
+        </Form >
+      </Collapse >
+    </div >
   );
 }
 

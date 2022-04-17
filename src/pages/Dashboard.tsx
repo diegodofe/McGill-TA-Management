@@ -4,24 +4,29 @@ import { UserContext } from "../App";
 import RateTA from "../components/tabs/student/RateTA";
 import ManageProfessors from "../components/tabs/sysop/ManageProfessors";
 import ManageStudents from "../components/tabs/sysop/ManageStudent";
-import ManageTAs from "../components/tabs/sysop/ManageTAs";
+import AddTAs from "../components/tabs/sysop/AddTAs";
 import { UserTypes } from "../enums/UserTypes";
 import logo from "../assets/images/mcgill_logo.jpg";
 import "../style/topbar.css";
 import ManageCourses from "../components/tabs/sysop/ManageCourses";
+import TAAdministration from "../components/tabs/admin/TAAdministration";
+import ViewAllTAs from "../components/tabs/admin/ViewAllTAs";
 
 export function Dashboard() {
   const tabsPerProfile = new Map<UserTypes, Array<string>>([
     [UserTypes.Student, ["Rate a TA"]],
-    [UserTypes.Sysop, ["Manage Professors", "Manage Students", "Manage Courses", "Manage TAs"]],
+    [UserTypes.Admin, ["TA Administration", "View All TAs"]],
+    [UserTypes.Sysop, ["Manage Professors", "Manage Students", "Manage Courses", "Add TAs"]],
   ]);
 
   const tabNamesToJSX = new Map<string, JSX.Element>([
     ["Rate a TA", <RateTA />],
+    ["TA Administration", <TAAdministration />],
+    ["View All TAs", <ViewAllTAs />],
     ["Manage Professors", <ManageProfessors />],
     ["Manage Students", <ManageStudents />],
     ["Manage Courses", <ManageCourses />],
-    ["Manage TAs", <ManageTAs />],
+    ["Add TAs", <AddTAs />],
   ]);
 
   /**
@@ -29,7 +34,7 @@ export function Dashboard() {
    * @TODO Retrieve this information from the actual global user state
    */
   const { user, setUser } = useContext(UserContext);
-  const userProfiles: Array<UserTypes> = [UserTypes.Student, UserTypes.Sysop];
+  const userProfiles: Array<UserTypes> = [UserTypes.Student, UserTypes.Admin, UserTypes.Sysop];
 
   // Set a default profile
   const [currentProfile, setCurrentProfile] = useState<UserTypes>(userProfiles[0]);

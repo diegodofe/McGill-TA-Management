@@ -5,4 +5,6 @@ export default interface Course {
   numStudents: number;
   courseID: string;
   currentTAs: Array<TA>;
+  historicalTAs: Array<TA>;
+  wishlist: Array<TA>;
 }

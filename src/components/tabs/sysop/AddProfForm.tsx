@@ -24,22 +24,19 @@ function AddProfForm({ fetchProfData }) {
     // make api to create prof
 
     try {
-      const res = await fetch(
-        "https://winter2022-comp307-group8.cs.mcgill.ca/prof/add",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: tempEmail,
-            firstname: tempFirstname,
-            lastname: tempLastname,
-            faculty: tempFaculty,
-            department: tempDep,
-          }),
-        }
-      );
+      const res = await fetch("https://winter2022-comp307-group8.cs.mcgill.ca/prof/add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: tempEmail,
+          firstname: tempFirstname,
+          lastname: tempLastname,
+          faculty: tempFaculty,
+          department: tempDep,
+        }),
+      });
       setTempEmail("");
       if (res.status === 200) {
         console.log("success");
@@ -61,47 +58,29 @@ function AddProfForm({ fetchProfData }) {
         <AddIcon />
       </button>
 
-      <Modal
-        show={show}
-        onHide={() => setShow(false)}
-        dialogClassName="modal-lg"
-        aria-labelledby="example-custom-modal-styling-title"
-      >
+      <Modal show={show} onHide={() => setShow(false)} dialogClassName="modal-lg" aria-labelledby="example-custom-modal-styling-title">
         <Modal.Header closeButton>
-          <Modal.Title id="example-custom-modal-styling-title">
-            Add a Professor
-          </Modal.Title>
+          <Modal.Title id="example-custom-modal-styling-title">Add a Professor</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleSubmit}>
             <Row>
               <Col>
-                <Form.Control
-                  required
-                  placeholder="Email"
-                  value={tempEmail}
-                  onChange={(e) => setTempEmail(e.target.value)}
-                />
+                <Form.Control required type="email" placeholder="Email" value={tempEmail} onChange={(e) => setTempEmail(e.target.value)} />
               </Col>
             </Row>
             <Row>
               <Col>
-                <Form.Select
-                  required
-                  onChange={(e) => setTempFaculy(e.target.value)}
-                >
-                  <option>Select a Faculty...</option>
+                <Form.Select required onChange={(e) => setTempFaculy(e.target.value)}>
+                  <option value="">Select a Faculty...</option>
                   <option value="Science">Science</option>
                 </Form.Select>
               </Col>
             </Row>
             <Row>
               <Col>
-                <Form.Select
-                  required
-                  onChange={(e) => setTempDep(e.target.value)}
-                >
-                  <option>Select a Department...</option>
+                <Form.Select required onChange={(e) => setTempDep(e.target.value)}>
+                  <option value="">Select a Department...</option>
                   <option value="Computer Science">Computer Science</option>
                   <option value="Mathematics">Mathematics</option>
                   <option value="Physics">Physics</option>
