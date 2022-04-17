@@ -1,18 +1,19 @@
 import React, { useState } from "react";
 import { Container, Dropdown } from "react-bootstrap";
 import Course from "../../../classes/Course";
-import { allProfessors } from "../../../data/FakeData";
+import { allCoursesAtMcGill, allTAs } from "../../../data/FakeData";
 import "../../../style/userTable.css";
 import "../../../style/subTopbar.css";
-import ViewTAWishlist from "../admin/ViewTAWishlist";
-import ProfCourseTable from "./ProfCourseTable";
+import TACourseTable from "./TACourseTable";
+import { TA } from "../../../classes/TA";
 
-const ProfessorCourses = () => {
+const TACourses = () => {
   /**
-   * @TODO fetch prof user's courses from server
+   * @TODO fetch TA user's info and courses list from server
    */
-  const currentProfUser = allProfessors[0];
-  const [currentCourse, setCurrentCourse] = useState<Course>(currentProfUser.courses[0]);
+  const currentUserTA: TA = allTAs[4];
+  const usersCourses: Array<Course> = [allCoursesAtMcGill[3], allCoursesAtMcGill[4], allCoursesAtMcGill[5]];
+  const [currentCourse, setCurrentCourse] = useState<Course>(usersCourses[0]);
 
   return (
     <Container>
@@ -23,7 +24,7 @@ const ProfessorCourses = () => {
         </Dropdown.Toggle>
 
         <Dropdown.Menu className="courses">
-          {currentProfUser.courses.map((course: Course, i: number) => (
+          {usersCourses.map((course: Course, i: number) => (
             <Dropdown.Item key={i} onClick={() => setCurrentCourse(course)}>
               {course.courseID}
             </Dropdown.Item>
@@ -32,12 +33,11 @@ const ProfessorCourses = () => {
       </Dropdown>
 
       <h2 className="inline course-name">{`${currentCourse.courseID}: ${currentCourse.name}`}</h2>
-      <ViewTAWishlist course={currentCourse} />
       <div className="inline">
-        <ProfCourseTable listToRender={currentCourse.currentTAs} />
+        <TACourseTable ta={currentUserTA} />
       </div>
     </Container>
   );
 };
 
-export default ProfessorCourses;
+export default TACourses;

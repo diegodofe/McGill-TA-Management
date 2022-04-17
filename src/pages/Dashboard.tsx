@@ -13,11 +13,13 @@ import TAAdministration from "../components/tabs/admin/TAAdministration";
 import ViewAllTAs from "../components/tabs/admin/ViewAllTAs";
 import ProfessorCourses from "../components/tabs/professor/ProfessorCourses";
 import ManageTAAdmins from "../components/tabs/sysop/ManageTAAdmins";
+import TACourses from "../components/tabs/ta/TACourses";
 
 export function Dashboard() {
   const tabsPerProfile = new Map<UserTypes, Array<string>>([
     [UserTypes.Student, ["Rate a TA"]],
     [UserTypes.Professor, ["Professor Courses"]],
+    [UserTypes.TA, ["TA Courses"]],
     [UserTypes.Admin, ["TA Administration", "View All TAs"]],
     [UserTypes.Sysop, ["Manage Professors", "Manage Students", "Manage Courses", "Manage TAs", "Manage TA Admins"]],
   ]);
@@ -27,6 +29,7 @@ export function Dashboard() {
     ["TA Administration", <TAAdministration />],
     ["View All TAs", <ViewAllTAs />],
     ["Professor Courses", <ProfessorCourses />],
+    ["TA Courses", <TACourses />],
     ["Manage Professors", <ManageProfessors />],
     ["Manage Students", <ManageStudents />],
     ["Manage Courses", <ManageCourses />],
@@ -39,7 +42,7 @@ export function Dashboard() {
    * @TODO Retrieve this information from the actual global user state
    */
   const { user, setUser } = useContext(UserContext);
-  const userProfiles: Array<UserTypes> = [UserTypes.Student, UserTypes.Professor, UserTypes.Admin, UserTypes.Sysop];
+  const userProfiles: Array<UserTypes> = [UserTypes.Student, UserTypes.Professor, UserTypes.TA, UserTypes.Admin, UserTypes.Sysop];
 
   // Set a default profile
   const [currentProfile, setCurrentProfile] = useState<UserTypes>(userProfiles[0]);
@@ -59,20 +62,20 @@ export function Dashboard() {
       <Navbar expand="lg">
         <Container>
           <img className="logo" src={logo} alt="mcgill-logo" />
-            <Nav className="me-auto">
-              <NavDropdown title={currentProfile} id="basic-nav-dropdown">
-                {userProfiles.map((profile) => (
-                  <NavDropdown.Item
-                    key={profile.toString()}
-                    onClick={() => {
-                      handleNavClick(profile);
-                    }}
-                  >
-                    {profile}
-                  </NavDropdown.Item>
-                ))}
-              </NavDropdown>
-            </Nav>
+          <Nav className="me-auto">
+            <NavDropdown title={currentProfile} id="basic-nav-dropdown">
+              {userProfiles.map((profile) => (
+                <NavDropdown.Item
+                  key={profile.toString()}
+                  onClick={() => {
+                    handleNavClick(profile);
+                  }}
+                >
+                  {profile}
+                </NavDropdown.Item>
+              ))}
+            </NavDropdown>
+          </Nav>
         </Container>
       </Navbar>
 
