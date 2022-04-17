@@ -1,23 +1,65 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Collapse, Form, Row, Col } from "react-bootstrap";
 import React from "react";
-import Course from "../../../classes/Course";
-import { allCoursesAtMcGill } from "../../../data/FakeData";
+// import { allCoursesAtMcGill } from "../../../data/FakeData";
 
 /**
  * Hard coded list of courses at mcgill
  * @TODO Fetch real list of courses
  */
-function AssignCourseForm() {
+function AssignCourseForm({ professor, fetchProfsCourses }) {
   const [open, setOpen] = useState(false);
-  const [tempCourse, setTempCourse] = useState<Course>({ name: "", numStudents: 0, currentTAs: [], wishlist: [], historicalTAs: [] });
+  const [courses, setCourses] = useState([]);
+  const [selectedCourseID, setSelectedCourseID] = useState("");
 
-  /**
-   * @TODO Properly submit form to server
-   */
+  const handleFetchCourses = async () => {
+    try {
+      const res = await fetch("https://winter2022-comp307-group8.cs.mcgill.ca/course/all");
+      const data = await res.json();
+      console.log("courses loaded");
+      setCourses(data.courses);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  useEffect(() => {
+    console.log("AssignCourseForm useEffect");
+    handleFetchCourses();
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(tempCourse);
+    if (selectedCourseID === "") {
+      alert("Please select a course");
+      return;
+    }
+    try {
+      const res = await fetch("https://winter2022-comp307-group8.cs.mcgill.ca/prof/assignbyemail", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          email: professor.email,
+          courseID: selectedCourseID
+        })
+      });
+      if (res.status === 200) {
+        // alert("Course assigned successfully");
+        setOpen(false);
+        setTimeout(() => {
+          fetchProfsCourses();
+
+        }, 500);
+
+      } else {
+        alert("Error assigning course, prof may already be assigned to this course");
+      }
+    } catch (err) {
+      console.error(err);
+    }
+
   };
 
   return (
@@ -29,14 +71,16 @@ function AssignCourseForm() {
         <Form onSubmit={handleSubmit}>
           <Row>
             <Col>
-              {/** At the moment value prop from option can only pass in strings...
-               * It would be nice if we could set value to an actual course object.
-               */}
-              <Form.Select required onChange={(e) => setTempCourse({ name: `${e.target.value}`, numStudents: 0, currentTAs: [], wishlist: [], historicalTAs: [] })}>
-                <option value="">Select a Course...</option>
-                {allCoursesAtMcGill.map((course: Course, i: number) => (
-                  <option key={i} value={course.name}>
-                    {course.name}
+              <Form.Select required onChange={(e) => setSelectedCourseID(e.target.value)}>
+                <option>Select a Course...</option>
+                {courses.map((course: any, i: number) => (
+                  <option key={i} value={course.courseID}>
+                    <span className="text-muted">
+                      {course.courseCode + " " + course.courseNumber}
+                      <span color="grey">
+                        {" - " + course.term + " " + course.year}
+                      </span>
+                    </span>
                   </option>
                 ))}
               </Form.Select>
@@ -45,9 +89,9 @@ function AssignCourseForm() {
           <Button className="mt-3" variant="light" type="submit">
             Add
           </Button>
-        </Form>
-      </Collapse>
-    </div>
+        </Form >
+      </Collapse >
+    </div >
   );
 }
 

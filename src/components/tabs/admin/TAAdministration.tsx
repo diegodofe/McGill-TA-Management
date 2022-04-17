@@ -28,14 +28,14 @@ const TAAdministration = () => {
         <Dropdown.Menu>
           {allCoursesAtMcGill.map((course: Course, i: number) => (
             <Dropdown.Item key={i} onClick={() => setCurrentCourse(course)}>
-              {course.name}
+              {course.courseID}
             </Dropdown.Item>
           ))}
         </Dropdown.Menu>
       </Dropdown>
 
       <Container>
-        <h2 className="inline course-name">{currentCourse.name}</h2>
+        <h2 className="inline course-name">{`${currentCourse.courseID}: ${currentCourse.name}`}</h2>
         <ViewTAWishlist course={currentCourse} />
         <div className="inline">
           <Tabs
