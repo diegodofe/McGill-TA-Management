@@ -93,3 +93,9 @@ td {
 .view-info {
   padding-left: 15px;
 }
+
+/* removes blue highlighting when clicking on dropdown */
+.dropdown-item:active {
+  color: black !important;
+  background-color: #dee2e6 !important;
+}
