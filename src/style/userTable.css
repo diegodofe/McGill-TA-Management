@@ -100,6 +100,15 @@ td {
   background-color: #dee2e6 !important;
 }
 
+.dropdown-toggle.courses , .dropdown-menu.courses {
+  background-color: white !important;
+  color: #a5a4a1 !important;
+  font-size: 13px;
+  font-weight: bold;
+  border: 1.5px solid #dfdfdf;
+  box-shadow: 0px 0px 2px 0px #dfdfdf;
+  border-radius: 5px;
+}
 
 /* TA Admin. have beginning of table always line up with course name */
 @media (min-width: 1200px){

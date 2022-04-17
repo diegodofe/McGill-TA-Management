@@ -21,11 +21,11 @@ const TAAdministration = () => {
     <div>
       {/**Create Course Selection Button*/}
       <Dropdown>
-        <Dropdown.Toggle variant="light" id="dropdown-basic">
+        <Dropdown.Toggle variant="light" id="dropdown-basic" className="courses">
           Select Course
         </Dropdown.Toggle>
 
-        <Dropdown.Menu>
+        <Dropdown.Menu  className="courses">
           {allCoursesAtMcGill.map((course: Course, i: number) => (
             <Dropdown.Item key={i} onClick={() => setCurrentCourse(course)}>
               {course.courseID}
