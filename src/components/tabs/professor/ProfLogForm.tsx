@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Form, Modal, Collapse } from "react-bootstrap";
+import { Button, Form, Modal } from "react-bootstrap";
 import AddIcon from "@mui/icons-material/Add";
 import React from "react";
 import "../../../style/userTable.css";
@@ -26,12 +26,19 @@ function ProfLogForm() {
   return (
     <div id="ta-review-modal">
       {/** Open TA Log modal */}
-      <button className="mb-4 mt-2 prof-log-icon" onClick={() => setShow(!show)}>
+      <button className="mb-4 mt-2 prof-log-icon" onClick={() => setShow(true)}>
         <AddIcon />
       </button>
 
-      <Collapse in={show}>
-          <Form onSubmit={handleSubmit} className="add-log">
+      {/** Modal Pop up window*/}
+      <Modal show={show} onHide={() => setShow(false)} dialogClassName="modal-md" aria-labelledby="example-custom-modal-styling-title">
+        <Modal.Header closeButton>
+          <Modal.Title id="example-custom-modal-styling-title">{`Add Log`}</Modal.Title>
+        </Modal.Header>
+
+        {/** TA Log Form */}
+        <Modal.Body>
+          <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Course</Form.Label>
               <Form.Select required onChange={(e) => setSelectedCourse(e.target.value)}>
@@ -56,11 +63,12 @@ function ProfLogForm() {
               <Form.Label>Note</Form.Label>
               <Form.Control as="textarea" rows={2} required onChange={(e) => setComment(e.target.value)} />
             </Form.Group>
-            <Button className="mt-3" variant="light" type="submit">
+            <Button variant="outline-secondary" type="submit">
               Log
             </Button>
-            </Form >
-      </Collapse >
+          </Form>
+        </Modal.Body>
+      </Modal>
     </div>
   );
 }

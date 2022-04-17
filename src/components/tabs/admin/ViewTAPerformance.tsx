@@ -8,8 +8,21 @@ import Log from "../../../classes/Log";
 import ProfLogForm from "../professor/ProfLogForm";
 import Course from "../../../classes/Course";
 
-function ViewTAPerformance({ ta, isProfessor }: { ta: TA; isProfessor: boolean }) {
-  const ratingToStartMap: Array<string> = ["No Stars", "⭐", "⭐⭐", "⭐⭐⭐", "⭐⭐⭐⭐", "⭐⭐⭐⭐⭐"];
+function ViewTAPerformance({
+  ta,
+  isProfessor,
+}: {
+  ta: TA;
+  isProfessor: boolean;
+}) {
+  const ratingToStartMap: Array<string> = [
+    "No Stars",
+    "⭐",
+    "⭐⭐",
+    "⭐⭐⭐",
+    "⭐⭐⭐⭐",
+    "⭐⭐⭐⭐⭐",
+  ];
   const [show, setShow] = useState(false);
 
   return (
@@ -20,7 +33,13 @@ function ViewTAPerformance({ ta, isProfessor }: { ta: TA; isProfessor: boolean }
       </button>
 
       {/** Modal Pop up window*/}
-      <Modal centered show={show} onHide={() => setShow(false)} dialogClassName="modal-lg" aria-labelledby="example-custom-modal-styling-title">
+      <Modal
+        centered
+        show={show}
+        onHide={() => setShow(false)}
+        dialogClassName="modal-lg"
+        aria-labelledby="example-custom-modal-styling-title"
+      >
         <Container>
           <Modal.Header closeButton>
             <Modal.Title id="example-custom-modal-styling-title">{`${ta.firstName} ${ta.lastName}'s Report`}</Modal.Title>
@@ -29,8 +48,11 @@ function ViewTAPerformance({ ta, isProfessor }: { ta: TA; isProfessor: boolean }
           <Modal.Body>
             <h4>{`Average Rating: ${ta.averageRating}/5`}</h4>
             <br />
-            <h5>Professor Logs</h5>
 
+            <div className="prof-log-add">
+              <h5 className="prof-log-text">Professor Logs</h5>
+              <h5> {isProfessor && <ProfLogForm />}</h5>
+            </div>
             <Accordion flush>
               {ta.allLogs.map((log: Log, i: number) => (
                 <Accordion.Item key={i} eventKey={`${i}`}>
@@ -46,13 +68,14 @@ function ViewTAPerformance({ ta, isProfessor }: { ta: TA; isProfessor: boolean }
                 </Accordion.Item>
               ))}
             </Accordion>
-            {isProfessor && <ProfLogForm />}
             <br />
             <h5>Student Reviews</h5>
             <Accordion flush>
               {ta.allReviews.map((review: Review, i: number) => (
                 <Accordion.Item key={i} eventKey={`${i}`}>
-                  <Accordion.Header>{ratingToStartMap[review.rating]}</Accordion.Header>
+                  <Accordion.Header>
+                    {ratingToStartMap[review.rating]}
+                  </Accordion.Header>
                   <Accordion.Body>{review.comment}</Accordion.Body>
                 </Accordion.Item>
               ))}
