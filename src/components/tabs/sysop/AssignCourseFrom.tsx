@@ -35,7 +35,9 @@ function AssignCourseForm() {
               <Form.Select required onChange={(e) => setTempCourse({ name: `${e.target.value}`, numStudents: 0, currentTAs: [] })}>
                 <option>Select a Course...</option>
                 {allCoursesAtMcGill.map((course: Course, i: number) => (
-                  <option value={course.name}>{course.name}</option>
+                  <option key={i} value={course.name}>
+                    {course.name}
+                  </option>
                 ))}
               </Form.Select>
             </Col>

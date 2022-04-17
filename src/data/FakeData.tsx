@@ -1,5 +1,6 @@
 import Course from "../classes/Course";
 import Professor from "../classes/Professor";
+import Review from "../classes/Review";
 import Student from "../classes/Student";
 import { TA } from "../classes/TA";
 
@@ -11,14 +12,25 @@ function createStudent(email: string, firstName: string, lastName: string, stude
   return { email, firstName, lastName, studentID, courses };
 }
 
-function createTA(email: string, firstName: string, lastName: string, faculty: string, department: string): TA {
-  return { email, firstName, lastName, faculty, department };
+function createTA(email: string, firstName: string, lastName: string, faculty: string, department: string, averageRating: number, allReviews: Array<Review>): TA {
+  return { email, firstName, lastName, faculty, department, averageRating, allReviews };
 }
 
+function createReview(rating: number, comment: string): Review {
+  return { rating, comment };
+}
+
+const fakeReviews: Array<Review> = [
+  createReview(4, "Amazing person! Was super helpful, and the office ours were very accommodating."),
+  createReview(2, "Wasn't helpful and always showed up late for office hours."),
+  createReview(1, "Never once answered my emails, and was always rude when I asked questions during labs."),
+  createReview(5, "Hands down best TA out there. Couldn't recommend them more!"),
+];
+
 export const allTAs: Array<TA> = [
-  createTA("Jennifer.Smith@mail.mcgill.ca", "Jennefer", "Smith", "Science", "Computer Science"),
-  createTA("Andrew.Linn@mail.mcgill.ca", "Andrew", "Linn", "Science", "Computer Science"),
-  createTA("Thomas.Key@mail.mcgill.ca", "Thomas", "Key", "Science", "Computer Science"),
+  createTA("Jennifer.Smith@mail.mcgill.ca", "Jennefer", "Smith", "Science", "Computer Science", 4, [fakeReviews[0], fakeReviews[3]]),
+  createTA("Andrew.Linn@mail.mcgill.ca", "Andrew", "Linn", "Science", "Computer Science", 2, [fakeReviews[1], fakeReviews[2]]),
+  createTA("Thomas.Key@mail.mcgill.ca", "Thomas", "Key", "Science", "Computer Science", 3, [fakeReviews[0], fakeReviews[1]]),
 ];
 
 export const allCoursesAtMcGill: Array<Course> = [
