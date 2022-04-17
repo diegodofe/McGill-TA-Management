@@ -11,10 +11,12 @@ import "../style/topbar.css";
 import ManageCourses from "../components/tabs/sysop/ManageCourses";
 import TAAdministration from "../components/tabs/admin/TAAdministration";
 import ViewAllTAs from "../components/tabs/admin/ViewAllTAs";
+import ProfessorCourses from "../components/tabs/professor/ProfessorCourses";
 
 export function Dashboard() {
   const tabsPerProfile = new Map<UserTypes, Array<string>>([
     [UserTypes.Student, ["Rate a TA"]],
+    [UserTypes.Professor, ["Professor Courses"]],
     [UserTypes.Admin, ["TA Administration", "View All TAs"]],
     [UserTypes.Sysop, ["Manage Professors", "Manage Students", "Manage Courses", "Add TAs"]],
   ]);
@@ -23,6 +25,7 @@ export function Dashboard() {
     ["Rate a TA", <RateTA />],
     ["TA Administration", <TAAdministration />],
     ["View All TAs", <ViewAllTAs />],
+    ["Professor Courses", <ProfessorCourses />],
     ["Manage Professors", <ManageProfessors />],
     ["Manage Students", <ManageStudents />],
     ["Manage Courses", <ManageCourses />],
@@ -34,7 +37,7 @@ export function Dashboard() {
    * @TODO Retrieve this information from the actual global user state
    */
   const { user, setUser } = useContext(UserContext);
-  const userProfiles: Array<UserTypes> = [UserTypes.Student, UserTypes.Admin, UserTypes.Sysop];
+  const userProfiles: Array<UserTypes> = [UserTypes.Student, UserTypes.Professor, UserTypes.Admin, UserTypes.Sysop];
 
   // Set a default profile
   const [currentProfile, setCurrentProfile] = useState<UserTypes>(userProfiles[0]);
