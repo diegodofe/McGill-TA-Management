@@ -9,7 +9,7 @@ function ViewTAInfo({ ta }: { ta: TA }) {
   const [show, setShow] = useState(false);
 
   return (
-    <div className="inline view-info" id="ta-review-modal">
+    <div className="inline button-spacing" id="ta-review-modal">
       {/** Open TA info modal */}
       <button className="courses" onClick={() => setShow(true)}>
         <OpenInFullIcon fontSize="small" /> View Info
