@@ -54,8 +54,6 @@ export function Dashboard() {
       <Navbar expand="lg">
         <Container>
           <img className="logo" src={logo} alt="mcgill-logo" />
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <NavDropdown title={currentProfile} id="basic-nav-dropdown">
                 {userProfiles.map((profile) => (
@@ -70,7 +68,6 @@ export function Dashboard() {
                 ))}
               </NavDropdown>
             </Nav>
-          </Navbar.Collapse>
         </Container>
       </Navbar>
 
