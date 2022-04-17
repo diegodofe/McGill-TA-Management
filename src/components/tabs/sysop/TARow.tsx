@@ -5,8 +5,7 @@ const TARow = ({ ta, fetchTAData }) => {
   const handleDeleteTA = async () => {
     try {
       const deleteRes = await fetch(
-        "https://winter2022-comp307-group8.cs.mcgill.ca/ta/delete/" +
-          ta.email,
+        "https://winter2022-comp307-group8.cs.mcgill.ca/ta/delete/" + ta.email,
         {
           method: "DELETE",
           headers: {
@@ -16,7 +15,7 @@ const TARow = ({ ta, fetchTAData }) => {
       );
       if (deleteRes.status === 200) {
         setTimeout(() => {
-            fetchTAData();
+          fetchTAData();
         }, 500);
       } else {
         console.log("Error deleting TA");
@@ -35,9 +34,7 @@ const TARow = ({ ta, fetchTAData }) => {
         </button>
       </td>
       <td className="column1">{ta.email}</td>
-      <td className="column2">
-        {ta.firstName || ta.backupFirstName}
-      </td>
+      <td className="column2">{ta.firstName || ta.backupFirstName}</td>
       <td className="column3">{ta.lastName || ta.backupLastName}</td>
       <td className="column4">{ta.faculty}</td>
       <td className="column5">{ta.department}</td>

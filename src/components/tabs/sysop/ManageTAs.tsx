@@ -38,12 +38,8 @@ const ManageTAs = () => {
             </tr>
           </thead>
           <tbody>
-          {tas.map((ta, i) => (
-              <TARow
-                key={i}
-                ta={ta}
-                fetchTAData={fetchTAData}
-              />
+            {tas.map((ta, i) => (
+              <TARow key={i} ta={ta} fetchTAData={fetchTAData} />
             ))}
           </tbody>
         </table>
