@@ -8,7 +8,7 @@ import EditOHTime from "./EditOHTime";
 import EditOHLocation from "./EditOHLocation";
 import EditDuties from "./EditDuties";
 
-const ManageTARow = ({ ta }: { ta: TA }) => {
+const ProfRenderTARow = ({ ta }: { ta: TA }) => {
   /**
    * @TODO get wishlist status from server for current course
    */
@@ -54,4 +54,4 @@ const ManageTARow = ({ ta }: { ta: TA }) => {
   );
 };
 
-export default ManageTARow;
+export default ProfRenderTARow;
