@@ -26,7 +26,7 @@ function ProfLogForm() {
   return (
     <div id="ta-review-modal">
       {/** Open TA Log modal */}
-      <button className="mb-4 mt-2" onClick={() => setShow(true)}>
+      <button className="mb-4 mt-2 prof-log-icon" onClick={() => setShow(true)}>
         <AddIcon />
       </button>
 

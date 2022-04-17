@@ -54,7 +54,6 @@ td {
   padding-left: 27px;
   color: green;
 }
-
 .courses {
   color: #a5a4a1;
   font-size: 13px;
@@ -126,3 +125,15 @@ td {
     max-width: 1140px !important;
   }
 }
+
+/* prevent new line */
+.prof-log-add {
+  display: flex;
+}
+
+/* text styling to be inline with plus icon */
+.prof-log-text {
+  padding-top: 10px;
+  padding-bottom: 0px;
+}
+
