@@ -5,7 +5,7 @@ import React from "react";
 import { Modal } from "react-bootstrap";
 import "../../../style/userTable.css";
 
-function ReviewTAForm({ ta }) {
+function ReviewTAForm({ ta, status }) {
   const [show, setShow] = useState(false);
   const [tempRating, setTempRating] = useState<string>("0");
   const [tempComment, setTempComment] = useState<string>("");
@@ -25,8 +25,8 @@ function ReviewTAForm({ ta }) {
   return (
     <div id="ta-review-modal">
       {/** Open review modal */}
-      <button className="courses" onClick={() => setShow(true)}>
-        <OpenInFullIcon fontSize="small" /> View Review
+      <button disabled={status} className="courses" onClick={() => setShow(true)}>
+        <OpenInFullIcon fontSize="small" /> Submit Review
       </button>
 
       {/** Modal Pop up window*/}

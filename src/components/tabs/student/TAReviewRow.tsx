@@ -1,6 +1,6 @@
 import React from "react";
 import "../../../style/userTable.css";
-import ReviewTAForm from "./ReviewTAForm";
+import ReviewTAForm from "./TAReviewForm";
 
 const ReviewTARow = ({ ta }) => {
   /**
@@ -14,7 +14,7 @@ const ReviewTARow = ({ ta }) => {
       <td className="column1">{isSubmitted ? "✔️" : "❌"}</td>
       <td className="column2 course-button">
         {/** Review TA form, modal, and button*/}
-        <ReviewTAForm ta={ta} />
+        <ReviewTAForm ta={ta} status={isSubmitted} />
       </td>
       <td className="column3">{ta.email}</td>
       <td className="column4">{ta.firstName}</td>
