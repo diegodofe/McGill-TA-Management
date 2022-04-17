@@ -16,6 +16,8 @@ const ManageTARow = ({ ta }: { ta: TA }) => {
 
   const handleChangeWishlist = () => {
     console.log(`Add or Remove ${ta.firstName}?`);
+    setWishlistStatus(!wishlistStatus);
+    console.log(wishlistStatus);
 
     /**
      * @TODO send TA to be removed or added to wishlist for this course

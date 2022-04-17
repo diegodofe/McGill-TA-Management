@@ -7,7 +7,11 @@ import "../../../style/userTable.css";
 
 function EditOHTime({ ta }) {
   const [show, setShow] = useState(false);
-  const [officeHours, setOfficeHours] = useState<string>("");
+
+  /**
+   * @TODO fetch ta's current OH for this course
+   */
+  const [officeHours, setOfficeHours] = useState<string>("MON: 1-5pm");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -15,18 +19,15 @@ function EditOHTime({ ta }) {
     console.log(officeHours);
 
     /**
-     * @TODO on submit, send this OH times to the server
+     * @TODO on submit, send this OH time to the server
      */
   };
 
   return (
     <div id="ta-review-modal">
-      {/** Open review modal */}
+      {/** Open OH time modal */}
       <button className="courses" onClick={() => setShow(true)}>
-        {/**
-         * @TODO fetch ta's current OH for this course
-         */}
-        <Edit fontSize="small" /> {"MON: 1-5pm"}
+        <Edit fontSize="small" /> {officeHours}
       </button>
 
       {/** Modal Pop up window*/}

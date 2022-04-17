@@ -7,7 +7,11 @@ import { Edit } from "@mui/icons-material";
 
 function EditOHLocation({ ta }) {
   const [show, setShow] = useState(false);
-  const [OHLocation, setOHLocation] = useState<string>("");
+
+  /**
+   * @TODO fetch ta's current OH for this course
+   */
+  const [OHLocation, setOHLocation] = useState<string>("Trottier: 351");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -21,12 +25,9 @@ function EditOHLocation({ ta }) {
 
   return (
     <div id="ta-review-modal">
-      {/** Open review modal */}
+      {/** Open OH Location modal */}
       <button className="courses" onClick={() => setShow(true)}>
-        {/**
-         * @TODO fetch ta's current OH for this course
-         */}
-        <Edit fontSize="small" /> {"Trottier: 351"}
+        <Edit fontSize="small" /> {OHLocation}
       </button>
 
       {/** Modal Pop up window*/}
@@ -35,7 +36,7 @@ function EditOHLocation({ ta }) {
           <Modal.Title id="example-custom-modal-styling-title">{`Editing ${ta.firstName} ${ta.lastName}'s OH Location`}</Modal.Title>
         </Modal.Header>
 
-        {/** OH Time Form */}
+        {/** OH Location Form */}
         <Modal.Body>
           <Form onSubmit={handleSubmit}>
             <InputGroup className="mb-3">

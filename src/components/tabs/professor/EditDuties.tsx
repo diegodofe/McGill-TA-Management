@@ -5,19 +5,25 @@ import React from "react";
 import { Modal } from "react-bootstrap";
 import "../../../style/userTable.css";
 import { Edit } from "@mui/icons-material";
+import { TA } from "../../../classes/TA";
 
-function EditDuties({ ta }) {
+function EditDuties({ ta }: { ta: TA }) {
   const [show, setShow] = useState(false);
   const [open, setOpen] = useState(false);
-  const [dutyToAdd, setDutyToAdd] = useState<string>("");
+
+  /**
+   * @TODO fetch current responsibilities of current ta
+   */
+  const [responisbilities, setResponisbilities] = useState<string>(`${ta.firstName} has to be the absolute best TA this semester or else...
+  I am expecting zero late submissions of corrected assignments and to always cover my zoom classes when I am ill.`);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setShow(false);
-    console.log(dutyToAdd);
+    console.log(responisbilities);
 
     /**
-     * @TODO on submit, send this OH times to the server
+     * @TODO on submit, send this responsibilities  edit to the server
      */
   };
 
@@ -34,21 +40,19 @@ function EditDuties({ ta }) {
           <Modal.Title id="example-custom-modal-styling-title">{`${ta.firstName} ${ta.lastName}'s Duties`}</Modal.Title>
         </Modal.Header>
 
-        {/** OH Time Form */}
+        {/** Change responisbilities */}
         <Modal.Body>
           <h5>Current</h5>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo cumque excepturi soluta qui tempora deserunt autem optio ut praesentium, commodi iste nihil a similique earum officia voluptatibus natus tenetur odio.{" "}
-            <button className="courses" onClick={() => setOpen(!open)} aria-controls="example-collapse-text" aria-expanded={open}>
-              <Edit />
-            </button>
-          </p>
+          <p>{responisbilities}</p>
+          <button className="courses" onClick={() => setOpen(!open)} aria-controls="example-collapse-text" aria-expanded={open}>
+            <Edit />
+          </button>
 
           <Collapse in={open}>
-            <Form onSubmit={handleSubmit}>
-              <FormControl required as="textarea" rows={3} placeholder={`Please describe ${ta.firstName}'s responsibilities...`} aria-label="Text input with dropdown button" onChange={(e) => setDutyToAdd(e.target.value)} />
-              <Button className="mt-2" variant="outlined-secondary" type="submit">
-                Submit
+            <Form className="mt-2" onSubmit={handleSubmit}>
+              <FormControl required as="textarea" rows={3} placeholder={`Please describe ${ta.firstName}'s responsibilities...`} aria-label="Text input with dropdown button" onChange={(e) => setResponisbilities(e.target.value)} />
+              <Button className="mt-2" variant="light" type="submit">
+                Change
               </Button>
             </Form>
           </Collapse>
