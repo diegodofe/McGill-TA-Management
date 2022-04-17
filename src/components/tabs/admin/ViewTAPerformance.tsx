@@ -5,8 +5,10 @@ import "../../../style/userTable.css";
 import { TA } from "../../../classes/TA";
 import Review from "../../../classes/Review";
 import Log from "../../../classes/Log";
+import ProfLogForm from "../professor/ProfLogForm";
+import Course from "../../../classes/Course";
 
-function ViewTAPerformance({ ta }: { ta: TA }) {
+function ViewTAPerformance({ ta, isProfessor }: { ta: TA; isProfessor: boolean }) {
   const ratingToStartMap: Array<string> = ["No Stars", "⭐", "⭐⭐", "⭐⭐⭐", "⭐⭐⭐⭐", "⭐⭐⭐⭐⭐"];
   const [show, setShow] = useState(false);
 
@@ -27,11 +29,13 @@ function ViewTAPerformance({ ta }: { ta: TA }) {
           <Modal.Body>
             <h4>{`Average Rating: ${ta.averageRating}/5`}</h4>
             <br />
-            <h5>Professor Logs</h5>
+            <h5>Professor Logs {isProfessor && <ProfLogForm />}</h5>
+
             <Accordion flush>
               {ta.allLogs.map((log: Log, i: number) => (
                 <Accordion.Item key={i} eventKey={`${i}`}>
                   <Accordion.Header>{log.courseName}</Accordion.Header>
+
                   <Accordion.Body>
                     <ul>
                       {log.professorNotes.map((note: string, i: number) => (

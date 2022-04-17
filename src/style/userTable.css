@@ -92,6 +92,12 @@ td {
 /* button spacing used on multiple pages*/
 .button-spacing {
   padding-left: 15px;
+  float: right !important;
+}
+
+/* add TA button pages*/
+.add-ta-button {
+  padding-left: 15px;
 }
 
 /* removes blue highlighting when clicking on dropdown */

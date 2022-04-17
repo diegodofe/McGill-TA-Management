@@ -30,11 +30,11 @@ const ViewAllTAs = () => {
       <div className="inline">
         <ImportTACohort />
       </div>
-      <div className="inline button-spacing">
+      <div className="inline add-ta-button ">
         <ManualTAAdd fetchTAData={fetchTAData} />
       </div>
       <div className="inline">
-        <h2 className=" course-name">All Teaching Assistants</h2>
+        <h2 className="course-name">All Teaching Assistants</h2>
         <RenderList listToRender={allTAs} courseName={""} isHistorical={true} />
       </div>
     </Container>
