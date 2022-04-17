@@ -54,7 +54,6 @@ td {
   padding-left: 27px;
   color: green;
 }
-
 .courses {
   color: #a5a4a1;
   font-size: 13px;
@@ -125,4 +124,19 @@ td {
   .container-xl {
     max-width: 1140px !important;
   }
+}
+
+/* prevent new line */
+.prof-log-add {
+  display: flex;
+}
+
+/* styling for professor log modal back button */
+.log-back {
+padding-bottom: 15px;
+}
+
+/* styling for professor log modal add button */
+.log-add {
+  color: green;
 }

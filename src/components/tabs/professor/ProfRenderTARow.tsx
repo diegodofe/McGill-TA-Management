@@ -4,6 +4,9 @@ import { TA } from "../../../classes/TA";
 import ViewTAInfo from "../admin/ViewTAInfo";
 import ViewTAPerformance from "../admin/ViewTAPerformance";
 import { Form } from "react-bootstrap";
+import EditOHTime from "./EditOHTime";
+import EditOHLocation from "./EditOHLocation";
+import EditDuties from "./EditDuties";
 
 const ManageTARow = ({ ta }: { ta: TA }) => {
   /**
@@ -13,6 +16,8 @@ const ManageTARow = ({ ta }: { ta: TA }) => {
 
   const handleChangeWishlist = () => {
     console.log(`Add or Remove ${ta.firstName}?`);
+    setWishlistStatus(!wishlistStatus);
+    console.log(wishlistStatus);
 
     /**
      * @TODO send TA to be removed or added to wishlist for this course
@@ -31,13 +36,13 @@ const ManageTARow = ({ ta }: { ta: TA }) => {
         <ViewTAInfo ta={ta} />
       </td>
       <td className="column3">
-        <p></p>
+        <EditOHTime ta={ta} />
       </td>
       <td className="column4">
-        <p></p>
+        <EditOHLocation ta={ta} />
       </td>
       <td className="column5">
-        <p></p>
+        <EditDuties ta={ta} />
       </td>
       <td className="column6">
         <ViewTAPerformance ta={ta} isProfessor={true} />

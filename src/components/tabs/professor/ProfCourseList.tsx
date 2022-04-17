@@ -8,7 +8,6 @@ const RenderList = ({ listToRender }: { listToRender: Array<TA> }) => {
       <table style={{ marginTop: "10px" }}>
         <thead>
           <tr>
-            {/**Only render the nessary parts for appropriate tab */}
             <th className="column1">Term</th>
             <th className="column2">Teaching Assistant</th>
             <th className="column3">OH Time</th>
