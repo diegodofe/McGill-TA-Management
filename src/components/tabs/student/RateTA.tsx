@@ -13,7 +13,7 @@ const RateTA = () => {
        */}
       {usersEnrolledCourses.map((course, i) => (
         <Container key={i} className="mb-4">
-          <h2>{course.name}</h2>
+          <h2>{`${course.courseID}: ${course.name}`}</h2>
           <div id="profTable">
             <table>
               <thead>
