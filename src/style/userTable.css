@@ -89,8 +89,14 @@ td {
   padding: 24px 20px 20px 20px;
 }
 
-/* view info button spacing */
-.view-info {
+/* button spacing used on multiple pages*/
+.button-spacing {
+  padding-left: 15px;
+  float: right !important;
+}
+
+/* add TA button pages*/
+.add-ta-button {
   padding-left: 15px;
 }
 
