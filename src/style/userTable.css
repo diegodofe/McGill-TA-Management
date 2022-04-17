@@ -79,10 +79,17 @@ td {
   float: left !important;
 }
 
+/* TA Admin page title spacing */
 .course-name {
   padding: 20px 20px 20px 20px;
 }
 
+/* view wishlist button spacing */
 .view-wishlist {
   padding: 24px 20px 20px 20px;
+}
+
+/* view info button spacing */
+.view-info {
+  padding-left: 15px;
 }
