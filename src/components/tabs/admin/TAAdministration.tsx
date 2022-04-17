@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Container, Dropdown, Tab, Tabs } from "react-bootstrap";
+import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
+import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import Course from "../../../classes/Course";
 import { allCoursesAtMcGill } from "../../../data/FakeData";
 import "../../../style/userTable.css";
@@ -41,14 +43,29 @@ const TAAdministration = () => {
             id="noanim-tab"
             className="mb-4"
           >
-            <Tab eventKey="0" title="Current TAs">
+            <Tab
+              eventKey="0"
+              title={
+                <React.Fragment>
+                  Current TAs <LibraryBooksIcon />
+                </React.Fragment>
+              }
+            >
               <RenderList
                 listToRender={currentCourse.currentTAs}
                 courseName={currentCourse.name}
                 isHistorical={false}
               />
             </Tab>
-            <Tab eventKey="1" title="Historical TAs">
+
+            <Tab
+              eventKey="1"
+              title={
+                <React.Fragment>
+                  Historical TAs <PeopleAltIcon />
+                </React.Fragment>
+              }
+            >
               <RenderList
                 listToRender={currentCourse.historicalTAs}
                 courseName={currentCourse.name}
