@@ -10,7 +10,7 @@ import { allCoursesAtMcGill } from "../../../data/FakeData";
  */
 function AssignCourseForm() {
   const [open, setOpen] = useState(false);
-  const [tempCourse, setTempCourse] = useState<Course>({ name: "", numStudents: 0, currentTAs: [] });
+  const [tempCourse, setTempCourse] = useState<Course>({ name: "", numStudents: 0, currentTAs: [], wishlist: [], historicalTAs: [] });
 
   /**
    * @TODO Properly submit form to server
@@ -32,8 +32,8 @@ function AssignCourseForm() {
               {/** At the moment value prop from option can only pass in strings...
                * It would be nice if we could set value to an actual course object.
                */}
-              <Form.Select required onChange={(e) => setTempCourse({ name: `${e.target.value}`, numStudents: 0, currentTAs: [] })}>
-                <option>Select a Course...</option>
+              <Form.Select required onChange={(e) => setTempCourse({ name: `${e.target.value}`, numStudents: 0, currentTAs: [], wishlist: [], historicalTAs: [] })}>
+                <option value="">Select a Course...</option>
                 {allCoursesAtMcGill.map((course: Course, i: number) => (
                   <option key={i} value={course.name}>
                     {course.name}

@@ -1,4 +1,5 @@
 import Course from "../classes/Course";
+import Log from "../classes/Log";
 import Professor from "../classes/Professor";
 import Review from "../classes/Review";
 import Student from "../classes/Student";
@@ -12,8 +13,8 @@ function createStudent(email: string, firstName: string, lastName: string, stude
   return { email, firstName, lastName, studentID, courses };
 }
 
-function createTA(email: string, firstName: string, lastName: string, faculty: string, department: string, averageRating: number, allReviews: Array<Review>): TA {
-  return { email, firstName, lastName, faculty, department, averageRating, allReviews };
+function createTA(email: string, firstName: string, lastName: string, faculty: string, department: string, averageRating: number, allReviews: Array<Review>, allCourses: Array<string>, previousCourses: Array<string>, allLogs: Array<Log>): TA {
+  return { email, firstName, lastName, faculty, department, averageRating, allReviews, allCourses, previousCourses, allLogs };
 }
 
 function createReview(rating: number, comment: string): Review {
@@ -27,22 +28,39 @@ const fakeReviews: Array<Review> = [
   createReview(5, "Hands down best TA out there. Couldn't recommend them more!"),
 ];
 
+const fakeLogs: Array<Log> = [
+  { courseName: "COMP330", professorNotes: ["2022/04/17: Was very helpful conducting zoom class for me.", "2022/04/13: Didn't show up for meeting today."] },
+  { courseName: "COMP400", professorNotes: ["2022/04/11: Covered my office hours this week - thanks!", "2022/04/12: 2 Days past deadline to submit corrected assignments."] },
+];
+
 export const allTAs: Array<TA> = [
-  createTA("Jennifer.Smith@mail.mcgill.ca", "Jennefer", "Smith", "Science", "Computer Science", 4, [fakeReviews[0], fakeReviews[3]]),
-  createTA("Andrew.Linn@mail.mcgill.ca", "Andrew", "Linn", "Science", "Computer Science", 2, [fakeReviews[1], fakeReviews[2]]),
-  createTA("Thomas.Key@mail.mcgill.ca", "Thomas", "Key", "Science", "Computer Science", 3, [fakeReviews[0], fakeReviews[1]]),
+  createTA("Jennifer.Smith@mail.mcgill.ca", "Jennefer", "Smith", "Science", "Computer Science", 4, [fakeReviews[0], fakeReviews[3]], ["COMP202", "COMP202", "COMP688"], ["COMP202"], [...fakeLogs]),
+  createTA("Andrew.Linn@mail.mcgill.ca", "Andrew", "Linn", "Science", "Computer Science", 2, [fakeReviews[1], fakeReviews[2]], ["COMP202", "COMP688"], ["COMP202"], [...fakeLogs]),
+  createTA("Thomas.Key@mail.mcgill.ca", "Thomas", "Key", "Science", "Computer Science", 3, [fakeReviews[0], fakeReviews[1]], ["COMP689", "COMP801", "COMP999"], ["COMP202"], [...fakeLogs]),
+  createTA("Ruben.Thomas@mail.mcgill.ca", "Ruben", "Thomas", "Science", "Computer Science", 3, [fakeReviews[0], fakeReviews[1]], ["COMP202", "COMP202", "COMP688"], ["COMP202"], [...fakeLogs]),
+  createTA("Jared.Kim@mail.mcgill.ca", "Jared", "Kim", "Science", "Computer Science", 3, [fakeReviews[0], fakeReviews[1]], ["COMP202", "COMP688"], ["COMP202"], [...fakeLogs]),
+  createTA("Jennifer.Smith@mail.mcgill.ca", "Jennefer", "Smith", "Science", "Computer Science", 4, [fakeReviews[0], fakeReviews[3]], ["COMP202", "COMP202", "COMP688"], ["COMP202"], [...fakeLogs]),
+  createTA("Andrew.Linn@mail.mcgill.ca", "Andrew", "Linn", "Science", "Computer Science", 2, [fakeReviews[1], fakeReviews[2]], ["COMP202", "COMP688"], ["COMP202"], [...fakeLogs]),
+  createTA("Thomas.Key@mail.mcgill.ca", "Thomas", "Key", "Science", "Computer Science", 3, [fakeReviews[0], fakeReviews[1]], ["COMP689", "COMP801", "COMP999"], ["COMP202"], [...fakeLogs]),
+  createTA("Ruben.Thomas@mail.mcgill.ca", "Ruben", "Thomas", "Science", "Computer Science", 3, [fakeReviews[0], fakeReviews[1]], ["COMP202", "COMP202", "COMP688"], ["COMP202"], [...fakeLogs]),
+  createTA("Jared.Kim@mail.mcgill.ca", "Jared", "Kim", "Science", "Computer Science", 3, [fakeReviews[0], fakeReviews[1]], ["COMP202", "COMP688"], ["COMP202"], [...fakeLogs]),
+  createTA("Jennifer.Smith@mail.mcgill.ca", "Jennefer", "Smith", "Science", "Computer Science", 4, [fakeReviews[0], fakeReviews[3]], ["COMP202", "COMP202", "COMP688"], ["COMP202"], [...fakeLogs]),
+  createTA("Andrew.Linn@mail.mcgill.ca", "Andrew", "Linn", "Science", "Computer Science", 2, [fakeReviews[1], fakeReviews[2]], ["COMP202", "COMP688"], ["COMP202"], [...fakeLogs]),
+  createTA("Thomas.Key@mail.mcgill.ca", "Thomas", "Key", "Science", "Computer Science", 3, [fakeReviews[0], fakeReviews[1]], ["COMP689", "COMP801", "COMP999"], ["COMP202"], [...fakeLogs]),
+  createTA("Ruben.Thomas@mail.mcgill.ca", "Ruben", "Thomas", "Science", "Computer Science", 3, [fakeReviews[0], fakeReviews[1]], ["COMP202", "COMP202", "COMP688"], ["COMP202"], [...fakeLogs]),
+  createTA("Jared.Kim@mail.mcgill.ca", "Jared", "Kim", "Science", "Computer Science", 3, [fakeReviews[0], fakeReviews[1]], ["COMP202", "COMP688"], ["COMP202"], [...fakeLogs]),
 ];
 
 export const allCoursesAtMcGill: Array<Course> = [
-  { name: "COMP155", numStudents: 200, currentTAs: [...allTAs] },
-  { name: "COMP202", numStudents: 200, currentTAs: [...allTAs] },
-  { name: "COMP206", numStudents: 154, currentTAs: [allTAs[0], allTAs[1]] },
-  { name: "COMP330", numStudents: 95, currentTAs: [...allTAs] },
-  { name: "COMP688", numStudents: 154, currentTAs: [...allTAs] },
-  { name: "COMP689", numStudents: 95, currentTAs: [allTAs[0], allTAs[1]] },
-  { name: "COMP800", numStudents: 200, currentTAs: [...allTAs] },
-  { name: "COMP801", numStudents: 154, currentTAs: [...allTAs] },
-  { name: "COMP999", numStudents: 95, currentTAs: [allTAs[0], allTAs[1]] },
+  { name: "COMP155", numStudents: 200, currentTAs: [allTAs[0], allTAs[1]], wishlist: [allTAs[0], allTAs[2]], historicalTAs: [...allTAs] },
+  { name: "COMP202", numStudents: 200, currentTAs: [allTAs[0], allTAs[1], allTAs[2]], wishlist: [allTAs[0], allTAs[2]], historicalTAs: [...allTAs] },
+  { name: "COMP206", numStudents: 154, currentTAs: [allTAs[0], allTAs[1]], wishlist: [allTAs[0], allTAs[2]], historicalTAs: [...allTAs] },
+  { name: "COMP330", numStudents: 95, currentTAs: [allTAs[3]], wishlist: [allTAs[0], allTAs[2]], historicalTAs: [...allTAs] },
+  { name: "COMP688", numStudents: 154, currentTAs: [allTAs[0], allTAs[1], allTAs[3]], wishlist: [allTAs[0], allTAs[2]], historicalTAs: [...allTAs] },
+  { name: "COMP689", numStudents: 95, currentTAs: [allTAs[0], allTAs[1]], wishlist: [allTAs[0], allTAs[2]], historicalTAs: [...allTAs] },
+  { name: "COMP800", numStudents: 200, currentTAs: [allTAs[0], allTAs[1]], wishlist: [allTAs[0], allTAs[2]], historicalTAs: [...allTAs] },
+  { name: "COMP801", numStudents: 154, currentTAs: [allTAs[0], allTAs[1], allTAs[3]], wishlist: [allTAs[0], allTAs[2]], historicalTAs: [...allTAs] },
+  { name: "COMP999", numStudents: 95, currentTAs: [allTAs[0], allTAs[1]], wishlist: [allTAs[0], allTAs[2]], historicalTAs: [...allTAs] },
 ];
 
 export const allStudents: Array<Student> = [

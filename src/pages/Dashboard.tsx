@@ -2,27 +2,31 @@ import React, { useContext, useState } from "react";
 import { Container, Nav, Navbar, NavDropdown, Tab, Tabs } from "react-bootstrap";
 import { UserContext } from "../App";
 import RateTA from "../components/tabs/student/RateTA";
-import ManageStudents from "../components/tabs/sysop/ManageStudent";
 import ManageProfessors from "../components/tabs/sysop/ManageProfessors";
+import ManageStudents from "../components/tabs/sysop/ManageStudent";
+import AddTAs from "../components/tabs/sysop/AddTAs";
 import { UserTypes } from "../enums/UserTypes";
 import logo from "../assets/images/mcgill_logo.jpg";
 import "../style/topbar.css";
 import ManageCourses from "../components/tabs/sysop/ManageCourses";
-import ManageTAs from "../components/tabs/admin/ManageTAs";
+import TAAdministration from "../components/tabs/admin/TAAdministration";
+import ViewAllTAs from "../components/tabs/admin/ViewAllTAs";
 
 export function Dashboard() {
   const tabsPerProfile = new Map<UserTypes, Array<string>>([
     [UserTypes.Student, ["Rate a TA"]],
-    [UserTypes.Admin, ["Manage TAs"]],
-    [UserTypes.Sysop, ["Manage Professors", "Manage Students", "Manage Courses"]],
+    [UserTypes.Admin, ["TA Administration", "View All TAs"]],
+    [UserTypes.Sysop, ["Manage Professors", "Manage Students", "Manage Courses", "Add TAs"]],
   ]);
 
   const tabNamesToJSX = new Map<string, JSX.Element>([
     ["Rate a TA", <RateTA />],
-    ["Manage TAs", <ManageTAs />],
+    ["TA Administration", <TAAdministration />],
+    ["View All TAs", <ViewAllTAs />],
     ["Manage Professors", <ManageProfessors />],
     ["Manage Students", <ManageStudents />],
     ["Manage Courses", <ManageCourses />],
+    ["Add TAs", <AddTAs />],
   ]);
 
   /**
