@@ -10,19 +10,27 @@ import RenderList from "./RenderList";
 import ViewTAWishlist from "./ViewTAWishlist";
 
 const TAAdministration = () => {
-  /**
-   * @TODO fetch all courses at mcgill from server
-   */
-  const [currentCourse, setCurrentCourse] = useState(allCoursesAtMcGill[0]);
+  const emptyCourse = {
+    courseCode: "",
+    courseNumber: "",
+    year: "",
+    term: "",
+    courseName: "",
+  };
+
+  const [currentCourse, setCurrentCourse] = useState(emptyCourse);
 
   const [courses, setCourses] = useState<Course[]>(allCoursesAtMcGill);
 
-  const handleFetchCourses = async () => {
+  const handleFetchCourses = async (isInitial: boolean = false) => {
     try {
       const res = await fetch("https://winter2022-comp307-group8.cs.mcgill.ca/course/all");
       const data = await res.json();
       console.log("courses loaded");
       setCourses(data.courses);
+      if (data.courses.length > 0 && isInitial) {
+        setCurrentCourse(data.courses[0]);
+      }
     } catch (err) {
       console.error(err);
     }
@@ -30,7 +38,7 @@ const TAAdministration = () => {
 
   useEffect(() => {
     console.log("AssignCourseForm useEffect");
-    handleFetchCourses();
+    handleFetchCourses(true);
   }, []);
 
   return (
@@ -48,10 +56,9 @@ const TAAdministration = () => {
           ))}
         </Dropdown.Menu>
       </Dropdown>
-
-      <h2 className="inline course-name">{`${currentCourse.courseID}: ${currentCourse.name}`}</h2>
-      <ViewTAWishlist course={currentCourse} />
       <div className="inline">
+        <h2 className="inline course-name">{`${currentCourse.courseNumber}: ${currentCourse.courseName}`}</h2>
+        <ViewTAWishlist course={allCoursesAtMcGill[2]} />
         <Tabs defaultActiveKey="0" transition={false} id="noanim-tab" className="sub">
           <Tab
             className="sub"
@@ -62,7 +69,7 @@ const TAAdministration = () => {
               </React.Fragment>
             }
           >
-            <RenderList listToRender={currentCourse.currentTAs} courseName={currentCourse.name} isHistorical={false} />
+            {/* <RenderList listToRender={currentCourse} courseName={currentCourse.courseName} isHistorical={false} /> */}
           </Tab>
 
           <Tab
@@ -74,7 +81,7 @@ const TAAdministration = () => {
               </React.Fragment>
             }
           >
-            <RenderList listToRender={currentCourse.historicalTAs} courseName={currentCourse.name} isHistorical={true} />
+            {/* <RenderList listToRender={currentCourse} courseName={currentCourse.courseName} isHistorical={true} /> */}
           </Tab>
         </Tabs>
       </div>
@@ -83,3 +90,7 @@ const TAAdministration = () => {
 };
 
 export default TAAdministration;
+
+{
+  /* <ViewTAWishlist course={currentCourse} /> */
+}
