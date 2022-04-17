@@ -59,11 +59,10 @@ td {
   color: #a5a4a1;
   font-size: 13px;
   font-weight: bold;
-  border: 1.5px solid #DFDFDF;
-  box-shadow: 0px 0px 2px 0px #DFDFDF;
+  border: 1.5px solid #dfdfdf;
+  box-shadow: 0px 0px 2px 0px #dfdfdf;
   border-radius: 5px;
 }
-
 
 /* padding for sysop add professor form */
 .modal-content .row {
@@ -75,3 +74,15 @@ td {
   padding: 10px;
 }
 
+/* styling to place wishlist button inline with course name */
+.inline {
+  float: left !important;
+}
+
+.course-name {
+  padding: 20px 20px 20px 20px;
+}
+
+.view-wishlist {
+  padding: 24px 20px 20px 20px;
+}

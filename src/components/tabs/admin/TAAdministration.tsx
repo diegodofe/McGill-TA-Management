@@ -10,7 +10,9 @@ const TAAdministration = () => {
   /**
    * @TODO fetch all courses at mcgill from server
    */
-  const [currentCourse, setCurrentCourse] = useState<Course>(allCoursesAtMcGill[0]);
+  const [currentCourse, setCurrentCourse] = useState<Course>(
+    allCoursesAtMcGill[0]
+  );
 
   return (
     <div>
@@ -30,16 +32,31 @@ const TAAdministration = () => {
       </Dropdown>
 
       <Container>
-        <h2>{currentCourse.name}</h2>
+        <h2 className="inline course-name">{currentCourse.name}</h2>
         <ViewTAWishlist course={currentCourse} />
-        <Tabs defaultActiveKey="0" transition={false} id="noanim-tab" className="mb-4">
-          <Tab eventKey="0" title="Current TAs">
-            <RenderList listToRender={currentCourse.currentTAs} courseName={currentCourse.name} isHistorical={false} />
-          </Tab>
-          <Tab eventKey="1" title="Historical TAs">
-            <RenderList listToRender={currentCourse.historicalTAs} courseName={currentCourse.name} isHistorical={true} />
-          </Tab>
-        </Tabs>
+        <div className="inline">
+          <Tabs
+            defaultActiveKey="0"
+            transition={false}
+            id="noanim-tab"
+            className="mb-4"
+          >
+            <Tab eventKey="0" title="Current TAs">
+              <RenderList
+                listToRender={currentCourse.currentTAs}
+                courseName={currentCourse.name}
+                isHistorical={false}
+              />
+            </Tab>
+            <Tab eventKey="1" title="Historical TAs">
+              <RenderList
+                listToRender={currentCourse.historicalTAs}
+                courseName={currentCourse.name}
+                isHistorical={true}
+              />
+            </Tab>
+          </Tabs>
+        </div>
       </Container>
     </div>
   );
