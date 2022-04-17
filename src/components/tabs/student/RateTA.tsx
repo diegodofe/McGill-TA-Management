@@ -11,9 +11,9 @@ const RateTA = () => {
        * @TODO Retrieve this information from the actual global user state
        */}
       {usersEnrolledCourses.map((course, i) => (
-        <Container className="mb-4">
+        <Container key={i} className="mb-4">
           <h2>{course.name}</h2>
-          <CourseTable key={i} currentTAs={course.currentTAs} />
+          <CourseTable currentTAs={course.currentTAs} />
         </Container>
       ))}
     </div>

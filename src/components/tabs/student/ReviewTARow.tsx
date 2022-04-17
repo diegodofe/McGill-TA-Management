@@ -1,30 +1,20 @@
-import React, { useState } from "react";
-import OpenInFullIcon from "@mui/icons-material/OpenInFull";
-import { Modal } from "react-bootstrap";
+import React from "react";
 import "../../../style/userTable.css";
+import ReviewTAForm from "./ReviewTAForm";
 
 const ReviewTARow = ({ ta }) => {
-  const [show, setShow] = useState(false);
+  /**
+   * @TODO get submission status from server of user's review for this specific ta
+   */
+  let isSubmitted: boolean = false;
 
   return (
     <tr className="body">
-      <td className="column1">✔️</td>
+      {/**@TODO Make these some cooler icons */}
+      <td className="column1">{isSubmitted ? "✔️" : "❌"}</td>
       <td className="column2 course-button">
-        {/**Create VIEW REVIEW modal button */}
-        <>
-          <button className="courses" onClick={() => setShow(true)}>
-            <OpenInFullIcon fontSize="small" /> View Review
-          </button>
-
-          <Modal show={show} onHide={() => setShow(false)} dialogClassName="modal-lg" aria-labelledby="example-custom-modal-styling-title">
-            <Modal.Header closeButton>
-              <Modal.Title id="example-custom-modal-styling-title">{`Review ${ta.firstName} ${ta.lastName}`}</Modal.Title>
-            </Modal.Header>
-
-            {/** Display user's review */}
-            <Modal.Body></Modal.Body>
-          </Modal>
-        </>
+        {/** Review TA form, modal, and button*/}
+        <ReviewTAForm ta={ta} />
       </td>
       <td className="column3">{ta.email}</td>
       <td className="column4">{ta.firstName}</td>

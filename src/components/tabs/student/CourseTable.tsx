@@ -1,4 +1,5 @@
 import React from "react";
+import { TA } from "../../../classes/TA";
 import "../../../style/userTable.css";
 import ReviewTARow from "./ReviewTARow";
 
@@ -18,7 +19,7 @@ const CourseTable = ({ currentTAs }) => {
           </thead>
           <tbody>
             {/**Set to hardcoded list of profs for testing purposes */}
-            {currentTAs.map((ta, i) => (
+            {currentTAs.map((ta: TA, i: number) => (
               <ReviewTARow key={i} ta={ta} />
             ))}
           </tbody>

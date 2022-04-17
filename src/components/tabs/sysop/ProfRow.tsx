@@ -53,7 +53,7 @@ const ProfRow = ({ professor, fetchProfData }) => {
             {/** Display each course name of this current prof */}
             <Modal.Body>
               {professor.courses.map((course: Course, i: number) => (
-                <h2>{course.name}</h2>
+                <h2 key={i}>{course.name}</h2>
               ))}
 
               {/** Create form to assign another course */}
