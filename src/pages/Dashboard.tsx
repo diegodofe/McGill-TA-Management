@@ -2,8 +2,9 @@ import React, { useContext, useState } from "react";
 import { Container, Nav, Navbar, NavDropdown, Tab, Tabs } from "react-bootstrap";
 import { UserContext } from "../App";
 import RateTA from "../components/tabs/student/RateTA";
-import ManageStudents from "../components/tabs/sysop/ManageStudent";
 import ManageProfessors from "../components/tabs/sysop/ManageProfessors";
+import ManageStudents from "../components/tabs/sysop/ManageStudent";
+import ManageTAs from "../components/tabs/sysop/ManageTAs";
 import { UserTypes } from "../enums/UserTypes";
 import logo from "../assets/images/mcgill_logo.jpg";
 import "../style/topbar.css";
@@ -12,7 +13,7 @@ import ManageCourses from "../components/tabs/sysop/ManageCourses";
 export function Dashboard() {
   const tabsPerProfile = new Map<UserTypes, Array<string>>([
     [UserTypes.Student, ["Rate a TA"]],
-    [UserTypes.Sysop, ["Manage Professors", "Manage Students", "Manage Courses"]],
+    [UserTypes.Sysop, ["Manage Professors", "Manage Students", "Manage Courses", "Manage TAs"]],
   ]);
 
   const tabNamesToJSX = new Map<string, JSX.Element>([
@@ -20,6 +21,7 @@ export function Dashboard() {
     ["Manage Professors", <ManageProfessors />],
     ["Manage Students", <ManageStudents />],
     ["Manage Courses", <ManageCourses />],
+    ["Manage TAs", <ManageTAs />],
   ]);
 
   /**
