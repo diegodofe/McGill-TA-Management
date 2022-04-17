@@ -4,7 +4,7 @@ import { UserContext } from "../App";
 import RateTA from "../components/tabs/student/RateTA";
 import ManageProfessors from "../components/tabs/sysop/ManageProfessors";
 import ManageStudents from "../components/tabs/sysop/ManageStudent";
-import AddTAs from "../components/tabs/sysop/AddTAs";
+import ManageTAs from "../components/tabs/sysop/ManageTAs";
 import { UserTypes } from "../enums/UserTypes";
 import logo from "../assets/images/mcgill_logo.jpg";
 import "../style/topbar.css";
@@ -19,7 +19,7 @@ export function Dashboard() {
     [UserTypes.Student, ["Rate a TA"]],
     [UserTypes.Professor, ["Professor Courses"]],
     [UserTypes.Admin, ["TA Administration", "View All TAs"]],
-    [UserTypes.Sysop, ["Manage Professors", "Manage Students", "Manage Courses", "Add TAs", "Manage TA Admins"]],
+    [UserTypes.Sysop, ["Manage Professors", "Manage Students", "Manage Courses", "Manage TAs", "Manage TA Admins"]],
   ]);
 
   const tabNamesToJSX = new Map<string, JSX.Element>([
@@ -30,7 +30,7 @@ export function Dashboard() {
     ["Manage Professors", <ManageProfessors />],
     ["Manage Students", <ManageStudents />],
     ["Manage Courses", <ManageCourses />],
-    ["Add TAs", <AddTAs />],
+    ["Manage TAs", <ManageTAs />],
     ["Manage TA Admins", <ManageTAAdmins />],
   ]);
 

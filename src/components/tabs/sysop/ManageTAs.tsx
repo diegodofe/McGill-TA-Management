@@ -1,27 +1,25 @@
 import React, { useEffect, useState } from "react";
-import AddTaAdminForm from "./AddTaAdminForm";
-import TAAdminRow from "./TAAdminRow";
+import AddTAForm from "./AddTAForm";
+import TARow from "./TARow";
 import "../../../style/userTable.css";
 
-const ManageTAAdmins = () => {
-  const [taAdmins, setTAAdmins] = useState([]);
+const ManageTAs = () => {
+  const [tas, setTas] = useState([]);
 
-  const handleFetchTAAdmins = async () => {
+  const fetchTAData = async () => {
     try {
       const res = await fetch(
-        "https://winter2022-comp307-group8.cs.mcgill.ca/taAdmin/all"
+        "https://winter2022-comp307-group8.cs.mcgill.ca/ta/all"
       );
       const data = await res.json();
-      console.log("taAdmins loaded");
-      setTAAdmins(data.tas);
+      setTas(data.tas);
     } catch (err) {
       console.error(err);
     }
   };
 
   useEffect(() => {
-    console.log("ManageTAAdmins useEffect");
-    handleFetchTAAdmins();
+    fetchTAData();
   }, []);
 
   return (
@@ -40,19 +38,15 @@ const ManageTAAdmins = () => {
             </tr>
           </thead>
           <tbody>
-            {taAdmins.map((taAdmin, i) => (
-              <TAAdminRow
-                key={i}
-                taAdmin={taAdmin}
-                handleFetchTAAdmins={handleFetchTAAdmins}
-              />
+            {tas.map((ta, i) => (
+              <TARow key={i} ta={ta} fetchTAData={fetchTAData} />
             ))}
           </tbody>
         </table>
       </div>
-      <AddTaAdminForm handleFetchTAAdmins={handleFetchTAAdmins} />
+      <AddTAForm fetchTAData={fetchTAData} />
     </div>
   );
 };
 
-export default ManageTAAdmins;
+export default ManageTAs;
