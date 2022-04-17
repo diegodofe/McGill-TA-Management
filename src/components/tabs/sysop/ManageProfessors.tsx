@@ -2,20 +2,7 @@ import React, { useEffect } from "react";
 import AddProfForm from "./AddProfForm";
 import ProfRow from "./ProfRow";
 import "../../../style/userTable.css";
-
-export interface Professor {
-  email: string;
-  firstName: string;
-  lastName: string;
-  faculty: string;
-  department: string;
-  courses: Array<Course>;
-}
-
-export interface Course {
-  name: string;
-  numStudents: number;
-}
+import { allProfessors } from "../../../data/FakeData";
 
 const ManageProfessors = () => {
   const [profs, setProfs] = React.useState([]);
@@ -36,36 +23,6 @@ const ManageProfessors = () => {
     fetchProfData();
   }, []);
 
-  function createProfessor(email: string, firstName: string, lastName: string, faculty: string, department: string, courses: Array<Course>): Professor {
-    return { email, firstName, lastName, faculty, department, courses };
-  }
-
-  const hardcoded: Array<Professor> = [
-    createProfessor("Jennifer.Smith@mail.mcgill.ca", "Jennefer", "Smith", "Science", "Computer Science", [
-      { name: "COMP202", numStudents: 200 },
-      { name: "COMP206", numStudents: 154 },
-      { name: "COMP330", numStudents: 95 },
-    ]),
-    createProfessor("Andrew.Linn@mail.mcgill.ca", "Andrew", "Linn", "Science", "Computer Science", [
-      { name: "COMP206", numStudents: 154 },
-      { name: "COMP330", numStudents: 95 },
-    ]),
-    createProfessor("Thomas.Key@mail.mcgill.ca", "Thomas", "Key", "Science", "Computer Science", [
-      { name: "COMP202", numStudents: 200 },
-      { name: "COMP206", numStudents: 154 },
-    ]),
-    createProfessor("Ruben.Thomas@mail.mcgill.ca", "Ruben", "Thomas", "Science", "Computer Science", [
-      { name: "COMP202", numStudents: 200 },
-      { name: "COMP206", numStudents: 154 },
-      { name: "COMP330", numStudents: 95 },
-    ]),
-    createProfessor("Wendy.Allen@mail.mcgill.ca", "Wendy", "Allen", "Science", "Computer Science", [
-      { name: "COMP202", numStudents: 200 },
-      { name: "COMP330", numStudents: 95 },
-    ]),
-    createProfessor("Jared.Kim@mail.mcgill.ca", "Jared", "Kim", "Science", "Computer Science", [{ name: "COMP330", numStudents: 95 }]),
-  ];
-
   return (
     <div>
       <div id="profTable">
@@ -83,8 +40,8 @@ const ManageProfessors = () => {
           </thead>
           <tbody>
             {/**Set to hardcoded list of profs for testing purposes */}
-            {hardcoded.map((row, i) => (
-              <ProfRow key={i} row={row} fetchProfData={fetchProfData} />
+            {allProfessors.map((professor, i) => (
+              <ProfRow key={i} professor={professor} fetchProfData={fetchProfData} />
             ))}
           </tbody>
         </table>

@@ -1,12 +1,12 @@
 import React from "react";
 import RemoveIcon from "@material-ui/icons/Remove";
 
-const StudentRow = ({ row, fetchStudentData }) => {
+const StudentRow = ({ student, fetchStudentData }) => {
   const handleDeleteStudent = () => {
     console.log("Delete student");
     try {
       // make api call to delete student
-      fetch("https://winter2022-comp307-group8.cs.mcgill.ca/student/delete/" + row.uuid, {
+      fetch("https://winter2022-comp307-group8.cs.mcgill.ca/student/delete/" + student.uuid, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -27,10 +27,10 @@ const StudentRow = ({ row, fetchStudentData }) => {
           <RemoveIcon />
         </button>
       </td>
-      <td className="column1">{row.email}</td>
-      <td className="column2">{row.firstName}</td>
-      <td className="column3">{row.lastName}</td>
-      <td className="column3">{row.studentID}</td>
+      <td className="column1">{student.email}</td>
+      <td className="column2">{student.firstName}</td>
+      <td className="column3">{student.lastName}</td>
+      <td className="column3">{student.studentID}</td>
     </tr>
   );
 };

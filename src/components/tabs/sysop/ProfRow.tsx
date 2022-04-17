@@ -1,26 +1,23 @@
 import React, { useState } from "react";
 import RemoveIcon from "@material-ui/icons/Remove";
-import { Button, Modal } from "react-bootstrap";
-import { Course } from "./ManageProfessors";
+import OpenInFullIcon from "@mui/icons-material/OpenInFull";
+import { Modal } from "react-bootstrap";
 import AssignCourseForm from "./AssignCourseFrom";
 import "../../../style/userTable.css";
+import Course from "../../../classes/Course";
 
-const ProfRow = ({ row, fetchProfData }) => {
+const ProfRow = ({ professor, fetchProfData }) => {
   const [show, setShow] = useState(false);
   const handleDeleteProf = () => {
     console.log("Delete professor");
     try {
       // make api call to delete prof
-      fetch(
-        "https://winter2022-comp307-group8.cs.mcgill.ca/prof/delete/" +
-          row.email,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      fetch("https://winter2022-comp307-group8.cs.mcgill.ca/prof/delete/" + professor.email, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       setTimeout(() => {
         fetchProfData();
       }, 250);
@@ -36,48 +33,27 @@ const ProfRow = ({ row, fetchProfData }) => {
           <RemoveIcon />
         </button>
       </td>
-      <td className="column1">{row.email}</td>
-      <td className="column2">{row.firstName}</td>
-      <td className="column3">{row.lastName}</td>
-      <td className="column4">{row.faculty}</td>
-      <td className="column5">{row.department}</td>
-      <td className="column6">
-      {/* <button
-          className="courses"
-          onClick={() => setShow(true)}
-        >
-          View Courses
-        </button>
-
-        <Modal
-          show={show}
-          onHide={() => setShow(false)}
-          dialogClassName="modal-lg"
-          aria-labelledby="example-custom-modal-styling-title"
-        >
-          <Modal.Header closeButton>
-            <Modal.Title id="example-custom-modal-styling-title">{`${row.firstName} ${row.lastName}'s Courses`}</Modal.Title>
-          </Modal.Header>
-          <Modal.Body></Modal.Body>
-        </Modal> */}
+      <td className="column1">{professor.email}</td>
+      <td className="column2">{professor.firstName}</td>
+      <td className="column3">{professor.lastName}</td>
+      <td className="column4">{professor.faculty}</td>
+      <td className="column5">{professor.department}</td>
+      <td className="column6 course-button">
         {/**Create VIEW COURSES modal button */}
         <>
-        <button
-          className="courses"
-          onClick={() => setShow(true)}
-        >
-          View Courses
-        </button>
+          <button className="courses" onClick={() => setShow(true)}>
+            <OpenInFullIcon fontSize="small" /> View Courses
+          </button>
 
           <Modal show={show} onHide={() => setShow(false)} dialogClassName="modal-lg" aria-labelledby="example-custom-modal-styling-title">
             <Modal.Header closeButton>
-              <Modal.Title id="example-custom-modal-styling-title">{`${row.firstName} ${row.lastName}'s Courses`}</Modal.Title>
+              <Modal.Title id="example-custom-modal-styling-title">{`${professor.firstName} ${professor.lastName}'s Courses`}</Modal.Title>
             </Modal.Header>
 
             {/** Display each course name of this current prof */}
             <Modal.Body>
-              {row.courses.map((course: Course, i: number) => (
-                <h2>{course.name}</h2>
+              {professor.courses.map((course: Course, i: number) => (
+                <h2 key={i}>{course.name}</h2>
               ))}
 
               {/** Create form to assign another course */}

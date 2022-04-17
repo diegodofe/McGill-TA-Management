@@ -1,21 +1,13 @@
 import React, { useContext, useState } from "react";
-import {
-  Container,
-  Nav,
-  Navbar,
-  NavDropdown,
-  Tab,
-  Tabs,
-} from "react-bootstrap";
+import { Container, Nav, Navbar, NavDropdown, Tab, Tabs } from "react-bootstrap";
 import { UserContext } from "../App";
 import RateTA from "../components/tabs/student/RateTA";
-import ManageCourses from "../components/tabs/sysop/manageCourses";
-import ManageProfessors from "../components/tabs/sysop/ManageProfessors";
 import ManageStudents from "../components/tabs/sysop/ManageStudent";
 import ManageTAs from "../components/tabs/sysop/ManageTAs";
 import { UserTypes } from "../enums/UserTypes";
 import logo from "../assets/images/mcgill_logo.jpg";
 import "../style/topbar.css";
+import ManageCourses from "../components/tabs/sysop/ManageCourses";
 
 export function Dashboard() {
   const tabsPerProfile = new Map<UserTypes, Array<string>>([
@@ -39,14 +31,10 @@ export function Dashboard() {
   const userProfiles: Array<UserTypes> = [UserTypes.Student, UserTypes.Sysop];
 
   // Set a default profile
-  const [currentProfile, setCurrentProfile] = useState<UserTypes>(
-    userProfiles[0]
-  );
+  const [currentProfile, setCurrentProfile] = useState<UserTypes>(userProfiles[0]);
 
   // Set the default array of tabs relative to our default profile
-  const [currentTabs, setCurrentTabs] = useState<Array<string>>(
-    tabsPerProfile.get(currentProfile)!
-  );
+  const [currentTabs, setCurrentTabs] = useState<Array<string>>(tabsPerProfile.get(currentProfile)!);
 
   // On nav bar selection, this function sets the new current profile and associated tabs.
   function handleNavClick(profile: UserTypes): void {
@@ -81,12 +69,7 @@ export function Dashboard() {
       </Navbar>
 
       <Container>
-        <Tabs
-          defaultActiveKey="0"
-          transition={false}
-          id="noanim-tab"
-          className="mb-4"
-        >
+        <Tabs defaultActiveKey="0" transition={false} id="noanim-tab" className="mb-4">
           {currentTabs.map((currentTabName, i) => (
             <Tab key={i} eventKey={i} title={currentTabName}>
               {tabNamesToJSX.get(currentTabName)}
