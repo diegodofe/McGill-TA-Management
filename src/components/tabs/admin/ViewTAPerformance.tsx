@@ -160,7 +160,7 @@ function ViewTAPerformance({
                     onChange={(e) => setComment(e.target.value)}
                   />
                 </Form.Group>
-                <Button variant="outline-secondary" type="submit">
+                <Button className="mt-3" variant="light" type="submit">
                   Log
                 </Button>
               </Form>
