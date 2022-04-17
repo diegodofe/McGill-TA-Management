@@ -6,13 +6,7 @@ import { TA } from "../../../classes/TA";
 import ViewTAPerformance from "./ViewTAPerformance";
 import ViewTAInfo from "./ViewTAInfo";
 
-const ManageTARow = ({
-  ta,
-  isHistorical,
-}: {
-  ta: TA;
-  isHistorical: boolean;
-}) => {
+const ManageTARow = ({ ta, isHistorical }: { ta: TA; isHistorical: boolean }) => {
   /**
    * @TODO get wishlist status from server for current course
    */
@@ -49,7 +43,7 @@ const ManageTARow = ({
       </td>
       {/** TA Reviews*/}
       <td className="column3">
-        <ViewTAPerformance ta={ta} />
+        <ViewTAPerformance ta={ta} isProfessor={false} />
       </td>
       {/** TA Courses*/}
       <td className="column4">

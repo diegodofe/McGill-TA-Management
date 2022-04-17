@@ -13,19 +13,17 @@ const TAAdministration = () => {
   /**
    * @TODO fetch all courses at mcgill from server
    */
-  const [currentCourse, setCurrentCourse] = useState<Course>(
-    allCoursesAtMcGill[0]
-  );
+  const [currentCourse, setCurrentCourse] = useState<Course>(allCoursesAtMcGill[0]);
 
   return (
-    <div>
+    <Container>
       {/**Create Course Selection Button*/}
       <Dropdown>
         <Dropdown.Toggle variant="light" id="dropdown-basic" className="courses">
           Select Course
         </Dropdown.Toggle>
 
-        <Dropdown.Menu  className="courses">
+        <Dropdown.Menu className="courses">
           {allCoursesAtMcGill.map((course: Course, i: number) => (
             <Dropdown.Item key={i} onClick={() => setCurrentCourse(course)}>
               {course.courseID}
@@ -34,51 +32,36 @@ const TAAdministration = () => {
         </Dropdown.Menu>
       </Dropdown>
 
-      <Container>
-        <h2 className="inline course-name">{`${currentCourse.courseID}: ${currentCourse.name}`}</h2>
-        <ViewTAWishlist course={currentCourse} />
-        <div className="inline">
-          <Tabs
-            defaultActiveKey="0"
-            transition={false}
-            id="noanim-tab"
+      <h2 className="inline course-name">{`${currentCourse.courseID}: ${currentCourse.name}`}</h2>
+      <ViewTAWishlist course={currentCourse} />
+      <div className="inline">
+        <Tabs defaultActiveKey="0" transition={false} id="noanim-tab" className="sub">
+          <Tab
             className="sub"
+            eventKey="0"
+            title={
+              <React.Fragment>
+                Current TAs <PeopleAltIcon fontSize="small" />
+              </React.Fragment>
+            }
           >
-            <Tab
-              className="sub"
-              eventKey="0"
-              title={
-                <React.Fragment>
-                  Current TAs <LibraryBooksIcon fontSize="small" />
-                </React.Fragment>
-              }
-            >
-              <RenderList
-                listToRender={currentCourse.currentTAs}
-                courseName={currentCourse.name}
-                isHistorical={false}
-              />
-            </Tab>
+            <RenderList listToRender={currentCourse.currentTAs} courseName={currentCourse.name} isHistorical={false} />
+          </Tab>
 
-            <Tab
-              className="sub"
-              eventKey="1"
-              title={
-                <React.Fragment>
-                  Historical TAs <PeopleAltIcon fontSize="small" />
-                </React.Fragment>
-              }
-            >
-              <RenderList
-                listToRender={currentCourse.historicalTAs}
-                courseName={currentCourse.name}
-                isHistorical={true}
-              />
-            </Tab>
-          </Tabs>
-        </div>
-      </Container>
-    </div>
+          <Tab
+            className="sub"
+            eventKey="1"
+            title={
+              <React.Fragment>
+                Historical TAs <LibraryBooksIcon fontSize="small" />
+              </React.Fragment>
+            }
+          >
+            <RenderList listToRender={currentCourse.historicalTAs} courseName={currentCourse.name} isHistorical={true} />
+          </Tab>
+        </Tabs>
+      </div>
+    </Container>
   );
 };
 
