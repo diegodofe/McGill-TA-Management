@@ -27,7 +27,7 @@ export function Dashboard() {
     ["Manage Professors", <ManageProfessors />],
     ["Manage Students", <ManageStudents />],
     ["Manage Courses", <ManageCourses />],
-    ["Add TAs", <ManageTAs />],
+    ["Manage TAs", <ManageTAs />],
     ["Manage TA Admins", <ManageTAAdmins />],
 
   ]);
