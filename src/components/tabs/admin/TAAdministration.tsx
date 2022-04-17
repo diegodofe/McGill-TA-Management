@@ -1,16 +1,26 @@
 import React, { useState } from "react";
 import { Container, Dropdown, Tab, Tabs } from "react-bootstrap";
 import Course from "../../../classes/Course";
-import { allCoursesAtMcGill } from "../../../data/FakeData";
+// import { allCoursesAtMcGill } from "../../../data/FakeData";
 import "../../../style/userTable.css";
 import RenderList from "./RenderList";
 import ViewTAWishlist from "./ViewTAWishlist";
+
+// Create sample course
+const currentCourse: Course = {
+  name: "Software Engineering",
+  numStudents: 12,
+  courseID: "COMP307",
+  currentTAs: [],
+  historicalTAs: [],
+  wishlist: []
+}
 
 const TAAdministration = () => {
   /**
    * @TODO fetch all courses at mcgill from server
    */
-  const [currentCourse, setCurrentCourse] = useState<Course>(allCoursesAtMcGill[0]);
+  // const [currentCourse, setCurrentCourse] = useState<Course>()
 
   return (
     <div>
@@ -21,11 +31,11 @@ const TAAdministration = () => {
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
-          {allCoursesAtMcGill.map((course: Course, i: number) => (
+          {/* {allCoursesAtMcGill.map((course: Course, i: number) => (
             <Dropdown.Item key={i} onClick={() => setCurrentCourse(course)}>
               {course.name}
             </Dropdown.Item>
-          ))}
+          ))} */}
         </Dropdown.Menu>
       </Dropdown>
 
