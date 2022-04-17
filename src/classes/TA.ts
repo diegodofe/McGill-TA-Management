@@ -1,3 +1,4 @@
+import Log from "./Log";
 import Review from "./Review";
 
 export interface TA {
@@ -8,4 +9,7 @@ export interface TA {
   department: string;
   averageRating: number;
   allReviews: Array<Review>;
+  allCourses: Array<string>;
+  previousCourses: Array<string>;
+  allLogs: Array<Log>;
 }

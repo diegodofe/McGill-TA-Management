@@ -60,27 +60,27 @@ const AddCourseForm = ({ fetchCourseData }) => {
           <form onSubmit={handleAddCourse}>
             <div className="form-group">
               <label htmlFor="courseCode">Course Code</label>
-              <input type="text" className="form-control" id="courseCode" value={courseCode} onChange={(e) => setCourseCode(e.target.value)} />
+              <input required type="text" className="form-control" id="courseCode" value={courseCode} onChange={(e) => setCourseCode(e.target.value)} />
             </div>
             <div className="form-group">
               <label htmlFor="courseNumber">Course Number</label>
-              <input type="text" className="form-control" id="courseNumber" value={courseNumber} onChange={(e) => setCourseNumber(e.target.value)} />
+              <input required type="text" className="form-control" id="courseNumber" value={courseNumber} onChange={(e) => setCourseNumber(e.target.value)} />
             </div>
             <div className="form-group">
               <label htmlFor="courseName">Course Name</label>
-              <input type="text" className="form-control" id="courseName" value={courseName} onChange={(e) => setCourseName(e.target.value)} />
+              <input required type="text" className="form-control" id="courseName" value={courseName} onChange={(e) => setCourseName(e.target.value)} />
             </div>
             <div className="form-group">
               <label htmlFor="term">Term</label>
-              <input type="text" className="form-control" id="term" value={term} onChange={(e) => setTerm(e.target.value)} />
+              <input required type="text" className="form-control" id="term" value={term} onChange={(e) => setTerm(e.target.value)} />
             </div>
             <div className="form-group">
               <label htmlFor="year">Year</label>
-              <input type="text" className="form-control" id="year" value={year} onChange={(e) => setYear(e.target.value)} />
+              <input required type="text" className="form-control" id="year" value={year} onChange={(e) => setYear(e.target.value)} />
             </div>
             <div className="form-group">
               <label htmlFor="instructor">Instructor email: (optional)</label>
-              <input type="text" className="form-control" id="instructor" value={instructor} onChange={(e) => setInstructor(e.target.value)} />
+              <input required type="text" className="form-control" id="instructor" value={instructor} onChange={(e) => setInstructor(e.target.value)} />
             </div>
             <Button className="mt-3" variant="light" type="submit">
               Add
