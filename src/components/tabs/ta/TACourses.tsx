@@ -4,7 +4,7 @@ import Course from "../../../classes/Course";
 import { allCoursesAtMcGill, allTAs } from "../../../data/FakeData";
 import "../../../style/userTable.css";
 import "../../../style/subTopbar.css";
-import TACourseList from "./TACourseList";
+import TACourseTable from "./TACourseTable";
 import { TA } from "../../../classes/TA";
 
 const TACourses = () => {
@@ -34,7 +34,7 @@ const TACourses = () => {
 
       <h2 className="inline course-name">{`${currentCourse.courseID}: ${currentCourse.name}`}</h2>
       <div className="inline">
-        <TACourseList ta={currentUserTA} />
+        <TACourseTable ta={currentUserTA} />
       </div>
     </Container>
   );

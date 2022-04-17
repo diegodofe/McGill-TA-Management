@@ -8,7 +8,7 @@ import EditOHTime from "./EditOHTime";
 import EditOHLocation from "./EditOHLocation";
 import EditDuties from "./EditDuties";
 
-const ProfRenderTARow = ({ ta }: { ta: TA }) => {
+const ProfCourseRow = ({ ta }: { ta: TA }) => {
   /**
    * @TODO get wishlist status from server for current course
    */
@@ -54,4 +54,4 @@ const ProfRenderTARow = ({ ta }: { ta: TA }) => {
   );
 };
 
-export default ProfRenderTARow;
+export default ProfCourseRow;

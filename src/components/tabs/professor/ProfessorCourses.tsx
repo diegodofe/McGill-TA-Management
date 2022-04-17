@@ -5,7 +5,7 @@ import { allProfessors } from "../../../data/FakeData";
 import "../../../style/userTable.css";
 import "../../../style/subTopbar.css";
 import ViewTAWishlist from "../admin/ViewTAWishlist";
-import ProfCourseList from "./ProfCourseList";
+import ProfCourseTable from "./ProfCourseTable";
 
 const ProfessorCourses = () => {
   /**
@@ -34,7 +34,7 @@ const ProfessorCourses = () => {
       <h2 className="inline course-name">{`${currentCourse.courseID}: ${currentCourse.name}`}</h2>
       <ViewTAWishlist course={currentCourse} />
       <div className="inline">
-        <ProfCourseList listToRender={currentCourse.currentTAs} />
+        <ProfCourseTable listToRender={currentCourse.currentTAs} />
       </div>
     </Container>
   );

@@ -1,8 +1,8 @@
 import React from "react";
 import { TA } from "../../../classes/TA";
-import TARenderTARow from "./TARenderTARow";
+import ProfCourseRow from "./ProfCourseRow";
 
-const TACourseList = ({ ta }: { ta: TA }) => {
+const ProfCourseTable = ({ listToRender }: { listToRender: Array<TA> }) => {
   return (
     <div id="profTable">
       <table style={{ marginTop: "10px" }}>
@@ -13,14 +13,18 @@ const TACourseList = ({ ta }: { ta: TA }) => {
             <th className="column3">OH Time</th>
             <th className="column4">OH Location</th>
             <th className="column5">Duties</th>
+            <th className="column6">Performance</th>
+            <th className="column7">Add to Wishlist</th>
           </tr>
         </thead>
         <tbody>
-          <TARenderTARow ta={ta} />
+          {listToRender.map((ta: TA, i: number) => (
+            <ProfCourseRow key={i} ta={ta} />
+          ))}
         </tbody>
       </table>
     </div>
   );
 };
 
-export default TACourseList;
+export default ProfCourseTable;

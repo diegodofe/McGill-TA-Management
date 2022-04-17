@@ -6,14 +6,13 @@ import EditOHTime from "../professor/EditOHTime";
 import EditOHLocation from "../professor/EditOHLocation";
 import EditDuties from "../professor/EditDuties";
 
-const TARenderTARow = ({ ta }: { ta: TA }) => {
+const TACourseRow = ({ ta }: { ta: TA }) => {
   return (
     <tr className="body">
       {/**
-       * @TODO need to fetch the term that this TA was in this course
+       * @TODO need to fetch the current term
        */}
       <td className="column1">Fall 2022</td>
-      {/** TA Extra Info*/}
       <td className="column2">
         <div className="inline">{`${ta.firstName} ${ta.lastName}`}</div>
         <ViewTAInfo ta={ta} />
@@ -31,4 +30,4 @@ const TARenderTARow = ({ ta }: { ta: TA }) => {
   );
 };
 
-export default TARenderTARow;
+export default TACourseRow;
