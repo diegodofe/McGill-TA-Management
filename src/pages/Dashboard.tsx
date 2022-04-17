@@ -57,8 +57,6 @@ export function Dashboard() {
       <Navbar expand="lg">
         <Container>
           <img className="logo" src={logo} alt="mcgill-logo" />
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <NavDropdown title={currentProfile} id="basic-nav-dropdown">
                 {userProfiles.map((profile) => (
@@ -73,14 +71,13 @@ export function Dashboard() {
                 ))}
               </NavDropdown>
             </Nav>
-          </Navbar.Collapse>
         </Container>
       </Navbar>
 
       <Container>
         <Tabs defaultActiveKey="0" transition={false} id="noanim-tab" className="mb-4">
           {currentTabs.map((currentTabName, i) => (
-            <Tab key={i} eventKey={i} title={currentTabName}>
+            <Tab className="mb-4" key={i} eventKey={i} title={currentTabName}>
               {tabNamesToJSX.get(currentTabName)}
             </Tab>
           ))}

@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Container, Dropdown, Tab, Tabs } from "react-bootstrap";
+import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
+import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import Course from "../../../classes/Course";
 import { allCoursesAtMcGill } from "../../../data/FakeData";
 import "../../../style/userTable.css";
+import "../../../style/subTopbar.css";
 import RenderList from "./RenderList";
 import ViewTAWishlist from "./ViewTAWishlist";
 
@@ -35,7 +38,7 @@ const TAAdministration = () => {
     <div>
       {/**Create Course Selection Button*/}
       <Dropdown>
-        <Dropdown.Toggle variant="light" id="dropdown-basic">
+        <Dropdown.Toggle variant="light" id="dropdown-basic" className="courses">
           Select Course
         </Dropdown.Toggle>
         <Dropdown.Menu>

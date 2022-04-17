@@ -32,3 +32,8 @@
   color: #151b26 !important;
   font-weight: bold;
 }
+
+/* prevent dropdown from shifting up when menu open */
+.navbar-nav .dropdown-menu {
+  position: absolute !important;
+}
