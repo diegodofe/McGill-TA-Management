@@ -49,7 +49,7 @@ const TAAdministration = () => {
               eventKey="0"
               title={
                 <React.Fragment>
-                  Current TAs <LibraryBooksIcon />
+                  Current TAs <LibraryBooksIcon fontSize="small" />
                 </React.Fragment>
               }
             >
@@ -65,7 +65,7 @@ const TAAdministration = () => {
               eventKey="1"
               title={
                 <React.Fragment>
-                  Historical TAs <PeopleAltIcon />
+                  Historical TAs <PeopleAltIcon fontSize="small" />
                 </React.Fragment>
               }
             >
