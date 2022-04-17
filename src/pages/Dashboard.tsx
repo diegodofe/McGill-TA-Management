@@ -17,7 +17,7 @@ export function Dashboard() {
   const tabsPerProfile = new Map<UserTypes, Array<string>>([
     [UserTypes.Student, ["Rate a TA"]],
     [UserTypes.Admin, ["TA Administration", "View All TAs"]],
-    [UserTypes.Sysop, ["Manage Professors", "Manage Students", "Manage Courses", "Add TAs", "Manage TA Admins"]],
+    [UserTypes.Sysop, ["Manage Professors", "Manage Students", "Manage Courses", "Manage TAs", "Manage TA Admins"]],
   ]);
 
   const tabNamesToJSX = new Map<string, JSX.Element>([
