@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Form, Modal } from "react-bootstrap";
+import { Button, Form, Modal, Collapse } from "react-bootstrap";
 import AddIcon from "@mui/icons-material/Add";
 import React from "react";
 import "../../../style/userTable.css";
@@ -26,18 +26,18 @@ function ProfLogForm() {
   return (
     <div id="ta-review-modal">
       {/** Open TA Log modal */}
-      <button className="mb-4 mt-2 prof-log-icon" onClick={() => setShow(true)}>
+      <button className="mb-4 mt-2 prof-log-icon" onClick={() => setShow(!show)}>
         <AddIcon />
       </button>
 
-      {/** Modal Pop up window*/}
-      <Modal show={show} onHide={() => setShow(false)} dialogClassName="modal-md" aria-labelledby="example-custom-modal-styling-title">
+      {/* <Modal show={show} onHide={() => setShow(false)} dialogClassName="modal-md" aria-labelledby="example-custom-modal-styling-title">
         <Modal.Header closeButton>
           <Modal.Title id="example-custom-modal-styling-title">{`Add Log`}</Modal.Title>
         </Modal.Header>
 
-        {/** TA Log Form */}
         <Modal.Body>
+          <Form onSubmit={handleSubmit}> */}
+      <Collapse in={show}>
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Course</Form.Label>
@@ -66,9 +66,8 @@ function ProfLogForm() {
             <Button variant="outline-secondary" type="submit">
               Log
             </Button>
-          </Form>
-        </Modal.Body>
-      </Modal>
+            </Form >
+      </Collapse >
     </div>
   );
 }
