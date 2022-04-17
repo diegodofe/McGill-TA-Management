@@ -39,6 +39,7 @@ const AddCourseForm = ({ fetchCourseData }) => {
       if (res.status === 200) {
         setTimeout(() => {
           fetchCourseData();
+          setShow(false);
         }, 500);
       }
     } catch (e) {
@@ -80,7 +81,7 @@ const AddCourseForm = ({ fetchCourseData }) => {
             </div>
             <div className="form-group">
               <label htmlFor="instructor">Instructor email: (optional)</label>
-              <input required type="text" className="form-control" id="instructor" value={instructor} onChange={(e) => setInstructor(e.target.value)} />
+              <input type="text" className="form-control" id="instructor" value={instructor} onChange={(e) => setInstructor(e.target.value)} />
             </div>
             <Button className="mt-3" variant="light" type="submit">
               Add
