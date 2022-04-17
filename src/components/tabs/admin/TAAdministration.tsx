@@ -10,14 +10,13 @@ import RenderList from "./RenderList";
 import ViewTAWishlist from "./ViewTAWishlist";
 
 const TAAdministration = () => {
-
   const emptyCourse = {
     courseCode: "",
     courseNumber: "",
     year: "",
     term: "",
     courseName: "",
-  }
+  };
 
   const [currentCourse, setCurrentCourse] = useState(emptyCourse);
 
@@ -35,16 +34,15 @@ const TAAdministration = () => {
     } catch (err) {
       console.error(err);
     }
-  }
+  };
 
   useEffect(() => {
     console.log("AssignCourseForm useEffect");
     handleFetchCourses(true);
   }, []);
 
-
   return (
-    <div>
+    <Container>
       {/**Create Course Selection Button*/}
       <Dropdown>
         <Dropdown.Toggle variant="light" id="dropdown-basic" className="courses">
@@ -58,38 +56,41 @@ const TAAdministration = () => {
           ))}
         </Dropdown.Menu>
       </Dropdown>
+      <div className="inline">
+        <h2 className="inline course-name">{`${currentCourse.courseNumber}: ${currentCourse.courseName}`}</h2>
+        <ViewTAWishlist course={allCoursesAtMcGill[2]} />
+        <Tabs defaultActiveKey="0" transition={false} id="noanim-tab" className="sub">
+          <Tab
+            className="sub"
+            eventKey="0"
+            title={
+              <React.Fragment>
+                Current TAs <PeopleAltIcon fontSize="small" />
+              </React.Fragment>
+            }
+          >
+            {/* <RenderList listToRender={currentCourse} courseName={currentCourse.courseName} isHistorical={false} /> */}
+          </Tab>
 
-      <Container>
-        <div style={{ display: "flex", alignItems: "center", paddingTop: 10 }}>
-          <span style={{ fontSize: 20 }}>
-            {currentCourse.courseCode + " " + currentCourse.courseNumber}
-          </span>
-          <span style={{ fontSize: 15, color: 'grey', paddingLeft: 5 }}>
-            {" -   " + currentCourse.term + " " + currentCourse.year}
-          </span>
-        </div>
-        <div>
-          <h4>{currentCourse.courseName}</h4>
-        </div>
-        <div>
-          <Tabs defaultActiveKey="0" transition={false} id="noanim-tab" className="mb-4">
-            <Tab eventKey="0" title="Current TAs">
-              {/* <RenderList
-                listToRender={currentCourse.currentTAs}
-                courseName={currentCourse.name}
-                isHistorical={false} /> */}
-            </Tab>
-            <Tab eventKey="1" title="Historical TAs">
-              {/* <RenderList listToRender={currentCourse.historicalTAs} courseName={currentCourse.name} isHistorical={true} /> */}
-            </Tab>
-          </Tabs>
-        </div>
-      </Container>
-    </div>
+          <Tab
+            className="sub"
+            eventKey="1"
+            title={
+              <React.Fragment>
+                Historical TAs <LibraryBooksIcon fontSize="small" />
+              </React.Fragment>
+            }
+          >
+            {/* <RenderList listToRender={currentCourse} courseName={currentCourse.courseName} isHistorical={true} /> */}
+          </Tab>
+        </Tabs>
+      </div>
+    </Container>
   );
 };
 
 export default TAAdministration;
 
-{/* <ViewTAWishlist course={currentCourse} /> */ }
-
+{
+  /* <ViewTAWishlist course={currentCourse} /> */
+}
