@@ -126,14 +126,12 @@ td {
   }
 }
 
-/* prevent new line */
-.prof-log-add {
-  display: flex;
-}
-
-/* text styling to be inline with plus icon */
-.prof-log-text {
-  padding-top: 10px;
-  padding-bottom: 0px;
+/* styling for professor add log box */
+.add-log {
+  margin-left: 30px;
+  margin-bottom: 20px;
+  padding: 20px;
+  border:1px solid green;
+  border-radius: 10px;
 }
 

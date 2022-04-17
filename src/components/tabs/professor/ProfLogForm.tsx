@@ -30,15 +30,8 @@ function ProfLogForm() {
         <AddIcon />
       </button>
 
-      {/* <Modal show={show} onHide={() => setShow(false)} dialogClassName="modal-md" aria-labelledby="example-custom-modal-styling-title">
-        <Modal.Header closeButton>
-          <Modal.Title id="example-custom-modal-styling-title">{`Add Log`}</Modal.Title>
-        </Modal.Header>
-
-        <Modal.Body>
-          <Form onSubmit={handleSubmit}> */}
       <Collapse in={show}>
-          <Form onSubmit={handleSubmit}>
+          <Form onSubmit={handleSubmit} className="add-log">
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Course</Form.Label>
               <Form.Select required onChange={(e) => setSelectedCourse(e.target.value)}>
@@ -63,7 +56,7 @@ function ProfLogForm() {
               <Form.Label>Note</Form.Label>
               <Form.Control as="textarea" rows={2} required onChange={(e) => setComment(e.target.value)} />
             </Form.Group>
-            <Button variant="outline-secondary" type="submit">
+            <Button className="mt-3" variant="light" type="submit">
               Log
             </Button>
             </Form >
