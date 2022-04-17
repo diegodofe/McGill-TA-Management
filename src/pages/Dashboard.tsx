@@ -4,7 +4,7 @@ import { UserContext } from "../App";
 import RateTA from "../components/tabs/student/RateTA";
 import ManageProfessors from "../components/tabs/sysop/ManageProfessors";
 import ManageStudents from "../components/tabs/sysop/ManageStudent";
-import AddTAs from "../components/tabs/sysop/AddTAs";
+import ManageTAs from "../components/tabs/sysop/ManageTAs";
 import { UserTypes } from "../enums/UserTypes";
 import logo from "../assets/images/mcgill_logo.jpg";
 import "../style/topbar.css";
@@ -27,7 +27,7 @@ export function Dashboard() {
     ["Manage Professors", <ManageProfessors />],
     ["Manage Students", <ManageStudents />],
     ["Manage Courses", <ManageCourses />],
-    ["Add TAs", <AddTAs />],
+    ["Add TAs", <ManageTAs />],
     ["Manage TA Admins", <ManageTAAdmins />],
 
   ]);
