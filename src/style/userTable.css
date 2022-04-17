@@ -99,3 +99,15 @@ td {
   color: black !important;
   background-color: #dee2e6 !important;
 }
+
+
+/* TA Admin. have beginning of table always line up with course name */
+@media (min-width: 1200px){
+  .container,
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container-xl {
+    max-width: 1140px !important;
+  }
+}
