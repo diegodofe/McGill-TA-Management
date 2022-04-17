@@ -28,7 +28,13 @@ const AddTAForm = ({ fetchTAData }) => {
             });
             setTimeout(() => {
                 fetchTAData();
-            }, 250);
+                setEmail("");
+                setFaculty("");
+                setDepartment("");
+                setFirstName("");
+                setLastName("");
+
+            }, 500);
         }
         catch (e) {
             console.log(e);

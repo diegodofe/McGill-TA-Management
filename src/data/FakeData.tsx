@@ -33,17 +33,17 @@ export const allTAs: Array<TA> = [
   createTA("Thomas.Key@mail.mcgill.ca", "Thomas", "Key", "Science", "Computer Science", 3, [fakeReviews[0], fakeReviews[1]]),
 ];
 
-export const allCoursesAtMcGill: Array<Course> = [
-  { name: "COMP155", numStudents: 200, currentTAs: [...allTAs] },
-  { name: "COMP202", numStudents: 200, currentTAs: [...allTAs] },
-  { name: "COMP206", numStudents: 154, currentTAs: [allTAs[0], allTAs[1]] },
-  { name: "COMP330", numStudents: 95, currentTAs: [...allTAs] },
-  { name: "COMP688", numStudents: 154, currentTAs: [...allTAs] },
-  { name: "COMP689", numStudents: 95, currentTAs: [allTAs[0], allTAs[1]] },
-  { name: "COMP800", numStudents: 200, currentTAs: [...allTAs] },
-  { name: "COMP801", numStudents: 154, currentTAs: [...allTAs] },
-  { name: "COMP999", numStudents: 95, currentTAs: [allTAs[0], allTAs[1]] },
-];
+// export const allCoursesAtMcGill: Array<Course> = [
+//   { name: "COMP155", numStudents: 200, currentTAs: [...allTAs] },
+//   { name: "COMP202", numStudents: 200, currentTAs: [...allTAs] },
+//   { name: "COMP206", numStudents: 154, currentTAs: [allTAs[0], allTAs[1]] },
+//   { name: "COMP330", numStudents: 95, currentTAs: [...allTAs] },
+//   { name: "COMP688", numStudents: 154, currentTAs: [...allTAs] },
+//   { name: "COMP689", numStudents: 95, currentTAs: [allTAs[0], allTAs[1]] },
+//   { name: "COMP800", numStudents: 200, currentTAs: [...allTAs] },
+//   { name: "COMP801", numStudents: 154, currentTAs: [...allTAs] },
+//   { name: "COMP999", numStudents: 95, currentTAs: [allTAs[0], allTAs[1]] },
+// ];
 
 export const allStudents: Array<Student> = [
   createStudent("Jennifer.Smith@mail.mcgill.ca", "Jennefer", "Smith", "2600000000", ["COMP202", "COMP206", "COMP330"]),
@@ -55,12 +55,12 @@ export const allStudents: Array<Student> = [
 ];
 
 export const allProfessors: Array<Professor> = [
-  createProfessor("Jennifer.Smith@mail.mcgill.ca", "Jennefer", "Smith", "Science", "Computer Science", [allCoursesAtMcGill[0], allCoursesAtMcGill[4], allCoursesAtMcGill[5]]),
-  createProfessor("Andrew.Linn@mail.mcgill.ca", "Andrew", "Linn", "Science", "Computer Science", [allCoursesAtMcGill[4], allCoursesAtMcGill[8]]),
-  createProfessor("Thomas.Key@mail.mcgill.ca", "Thomas", "Key", "Science", "Computer Science", [allCoursesAtMcGill[2], allCoursesAtMcGill[4]]),
-  createProfessor("Ruben.Thomas@mail.mcgill.ca", "Ruben", "Thomas", "Science", "Computer Science", [allCoursesAtMcGill[2], allCoursesAtMcGill[1], allCoursesAtMcGill[3]]),
-  createProfessor("Wendy.Allen@mail.mcgill.ca", "Wendy", "Allen", "Science", "Computer Science", [allCoursesAtMcGill[2], allCoursesAtMcGill[1]]),
-  createProfessor("Jared.Kim@mail.mcgill.ca", "Jared", "Kim", "Science", "Computer Science", [allCoursesAtMcGill[2], allCoursesAtMcGill[1], allCoursesAtMcGill[3]]),
+  // createProfessor("Jennifer.Smith@mail.mcgill.ca", "Jennefer", "Smith", "Science", "Computer Science", [allCoursesAtMcGill[0], allCoursesAtMcGill[4], allCoursesAtMcGill[5]]),
+  // createProfessor("Andrew.Linn@mail.mcgill.ca", "Andrew", "Linn", "Science", "Computer Science", [allCoursesAtMcGill[4], allCoursesAtMcGill[8]]),
+  // createProfessor("Thomas.Key@mail.mcgill.ca", "Thomas", "Key", "Science", "Computer Science", [allCoursesAtMcGill[2], allCoursesAtMcGill[4]]),
+  // createProfessor("Ruben.Thomas@mail.mcgill.ca", "Ruben", "Thomas", "Science", "Computer Science", [allCoursesAtMcGill[2], allCoursesAtMcGill[1], allCoursesAtMcGill[3]]),
+  // createProfessor("Wendy.Allen@mail.mcgill.ca", "Wendy", "Allen", "Science", "Computer Science", [allCoursesAtMcGill[2], allCoursesAtMcGill[1]]),
+  // createProfessor("Jared.Kim@mail.mcgill.ca", "Jared", "Kim", "Science", "Computer Science", [allCoursesAtMcGill[2], allCoursesAtMcGill[1], allCoursesAtMcGill[3]]),
 ];
 
-export const usersEnrolledCourses: Array<Course> = [allCoursesAtMcGill[0], allCoursesAtMcGill[1], allCoursesAtMcGill[2], allCoursesAtMcGill[3]];
+export const usersEnrolledCourses: Array<Course> = [];
