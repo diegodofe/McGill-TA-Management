@@ -131,8 +131,12 @@ td {
   display: flex;
 }
 
-/* text styling to be inline with plus icon */
-.prof-log-text {
-  padding-top: 10px;
-  padding-bottom: 0px;
+/* styling for professor log modal back button */
+.log-back {
+padding-bottom: 15px;
+}
+
+/* styling for professor log modal add button */
+.log-add {
+  color: green;
 }
