@@ -8,6 +8,8 @@ import "../../../style/userTable.css";
 import "../../../style/subTopbar.css";
 import RenderList from "./RenderList";
 import ViewTAWishlist from "./ViewTAWishlist";
+import TAList from "./TAList";
+import TAsForCourse from './TAsForCourse';
 
 const TAAdministration = () => {
   const emptyCourse = {
@@ -56,28 +58,7 @@ const TAAdministration = () => {
           ))}
         </Dropdown.Menu>
       </Dropdown>
-      {/* <Container>
-        <h2 className="inline course-name">{`${currentCourse.courseID}: ${currentCourse.name}`}</h2>
-        <div className="inline">
-        <Tabs defaultActiveKey="0" transition={false} id="noanim-tab" className="sub">
-          <Tab className="sub" eventKey="0"  title={
-                <React.Fragment>
-                  Current TAs <LibraryBooksIcon fontSize="small" />
-                </React.Fragment>
-              }>
-            <RenderList listToRender={currentCourse.currentTAs} courseName={currentCourse.name} isHistorical={false} />
-          </Tab>
-          <Tab className="sub" eventKey="1"  title={
-                <React.Fragment>
-                  Historical TAs <PeopleAltIcon fontSize="small" />
-                </React.Fragment>
-              }>
-            <RenderList listToRender={currentCourse.historicalTAs} courseName={currentCourse.name} isHistorical={true} />
-          </Tab>
-        </Tabs>
-        </div>
-      </Container>
-    </div> */}
+
       <div className="inline">
         <h2 className="inline course-name">{`${currentCourse.courseNumber}: ${currentCourse.courseName}`}</h2>
         <ViewTAWishlist course={allCoursesAtMcGill[2]} />
@@ -91,9 +72,7 @@ const TAAdministration = () => {
               </React.Fragment>
             }
           >
-            {/* <RenderList listToRender={currentCourse} courseName={currentCourse.courseName} isHistorical={false} /> */}
           </Tab>
-
           <Tab
             className="sub"
             eventKey="1"
@@ -103,16 +82,41 @@ const TAAdministration = () => {
               </React.Fragment>
             }
           >
-            {/* <RenderList listToRender={currentCourse} courseName={currentCourse.courseName} isHistorical={true} /> */}
           </Tab>
         </Tabs>
+        <TAsForCourse course={currentCourse} />
       </div>
+
     </Container>
   );
 };
 
 export default TAAdministration;
 
-{
-  /* <ViewTAWishlist course={currentCourse} /> */
-}
+// {
+//   /* <ViewTAWishlist course={currentCourse} /> */
+// }
+
+
+// {/* <Container>
+//         <h2 className="inline course-name">{`${currentCourse.courseID}: ${currentCourse.name}`}</h2>
+//         <div className="inline">
+//         <Tabs defaultActiveKey="0" transition={false} id="noanim-tab" className="sub">
+//           <Tab className="sub" eventKey="0"  title={
+//                 <React.Fragment>
+//                   Current TAs <LibraryBooksIcon fontSize="small" />
+//                 </React.Fragment>
+//               }>
+//             <RenderList listToRender={currentCourse.currentTAs} courseName={currentCourse.name} isHistorical={false} />
+//           </Tab>
+//           <Tab className="sub" eventKey="1"  title={
+//                 <React.Fragment>
+//                   Historical TAs <PeopleAltIcon fontSize="small" />
+//                 </React.Fragment>
+//               }>
+//             <RenderList listToRender={currentCourse.historicalTAs} courseName={currentCourse.name} isHistorical={true} />
+//           </Tab>
+//         </Tabs>
+//         </div>
+//       </Container>
+//     </div> */}
