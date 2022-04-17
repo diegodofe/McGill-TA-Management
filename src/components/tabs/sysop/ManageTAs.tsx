@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import AddTAForm from './AddTAForm';
 const ManageTAs = () => {
 
     const [tas, setTas] = useState([]);
@@ -32,12 +33,19 @@ const ManageTAs = () => {
                 </thead>
                 <tbody>
                     {tas.map((ta, i) => (
-                        <div>
-                            {ta.email}
-                        </div>
+                        <tr key={i}>
+                            <td>{ta.email}</td>
+                            <td>{ta.firstName || ta.backupFirstName}</td>
+                            <td>{ta.lastName || ta.backupLastName}</td>
+                            <td>{ta.faculty}</td>
+                            <td>{ta.department}</td>
+                        </tr>
                     ))}
                 </tbody>
             </table>
+            {/* Div with height 20 */}
+            <div style={{ height: "20px" }}></div>
+            <AddTAForm fetchTAData={fetchTAData} />
         </div>
     )
 }
