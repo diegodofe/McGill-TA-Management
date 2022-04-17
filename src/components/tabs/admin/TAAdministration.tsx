@@ -10,32 +10,39 @@ import RenderList from "./RenderList";
 import ViewTAWishlist from "./ViewTAWishlist";
 
 const TAAdministration = () => {
-  /**
-   * @TODO fetch all courses at mcgill from server
-   */
-  const [currentCourse, setCurrentCourse] = useState(allCoursesAtMcGill[0]);
+  const emptyCourse = {
+    courseCode: "",
+    courseNumber: "",
+    year: "",
+    term: "",
+    courseName: "",
+  };
+
+  const [currentCourse, setCurrentCourse] = useState(emptyCourse);
 
   const [courses, setCourses] = useState<Course[]>(allCoursesAtMcGill);
 
-  const handleFetchCourses = async () => {
+  const handleFetchCourses = async (isInitial: boolean = false) => {
     try {
       const res = await fetch("https://winter2022-comp307-group8.cs.mcgill.ca/course/all");
       const data = await res.json();
       console.log("courses loaded");
       setCourses(data.courses);
+      if (data.courses.length > 0 && isInitial) {
+        setCurrentCourse(data.courses[0]);
+      }
     } catch (err) {
       console.error(err);
     }
-  }
+  };
 
   useEffect(() => {
     console.log("AssignCourseForm useEffect");
-    handleFetchCourses();
+    handleFetchCourses(true);
   }, []);
 
-
   return (
-    <div>
+    <Container>
       {/**Create Course Selection Button*/}
       <Dropdown>
         <Dropdown.Toggle variant="light" id="dropdown-basic" className="courses">
@@ -49,10 +56,8 @@ const TAAdministration = () => {
           ))}
         </Dropdown.Menu>
       </Dropdown>
-
-      <Container>
+      {/* <Container>
         <h2 className="inline course-name">{`${currentCourse.courseID}: ${currentCourse.name}`}</h2>
-        {/* <ViewTAWishlist course={currentCourse} /> */}
         <div className="inline">
         <Tabs defaultActiveKey="0" transition={false} id="noanim-tab" className="sub">
           <Tab className="sub" eventKey="0"  title={
@@ -72,8 +77,42 @@ const TAAdministration = () => {
         </Tabs>
         </div>
       </Container>
-    </div>
+    </div> */}
+      <div className="inline">
+        <h2 className="inline course-name">{`${currentCourse.courseNumber}: ${currentCourse.courseName}`}</h2>
+        <ViewTAWishlist course={allCoursesAtMcGill[2]} />
+        <Tabs defaultActiveKey="0" transition={false} id="noanim-tab" className="sub">
+          <Tab
+            className="sub"
+            eventKey="0"
+            title={
+              <React.Fragment>
+                Current TAs <PeopleAltIcon fontSize="small" />
+              </React.Fragment>
+            }
+          >
+            {/* <RenderList listToRender={currentCourse} courseName={currentCourse.courseName} isHistorical={false} /> */}
+          </Tab>
+
+          <Tab
+            className="sub"
+            eventKey="1"
+            title={
+              <React.Fragment>
+                Historical TAs <LibraryBooksIcon fontSize="small" />
+              </React.Fragment>
+            }
+          >
+            {/* <RenderList listToRender={currentCourse} courseName={currentCourse.courseName} isHistorical={true} /> */}
+          </Tab>
+        </Tabs>
+      </div>
+    </Container>
   );
 };
 
 export default TAAdministration;
+
+{
+  /* <ViewTAWishlist course={currentCourse} /> */
+}

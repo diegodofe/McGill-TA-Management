@@ -9,7 +9,7 @@ const ViewAllTAs = () => {
   return (
     <Container>
       <ImportTACohort />
-      <h2 className=" course-name">All Teaching Assistants</h2>
+      <h2 className="course-name">All Teaching Assistants</h2>
       <RenderList listToRender={allTAs} courseName={""} isHistorical={true} />
     </Container>
   );
