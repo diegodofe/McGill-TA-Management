@@ -10,19 +10,28 @@ import RenderList from "./RenderList";
 import ViewTAWishlist from "./ViewTAWishlist";
 
 const TAAdministration = () => {
-  /**
-   * @TODO fetch all courses at mcgill from server
-   */
-  const [currentCourse, setCurrentCourse] = useState(allCoursesAtMcGill[0]);
+
+  const emptyCourse = {
+    courseCode: "",
+    courseNumber: "",
+    year: "",
+    term: "",
+    courseName: "",
+  }
+
+  const [currentCourse, setCurrentCourse] = useState(emptyCourse);
 
   const [courses, setCourses] = useState<Course[]>(allCoursesAtMcGill);
 
-  const handleFetchCourses = async () => {
+  const handleFetchCourses = async (isInitial: boolean = false) => {
     try {
       const res = await fetch("https://winter2022-comp307-group8.cs.mcgill.ca/course/all");
       const data = await res.json();
       console.log("courses loaded");
       setCourses(data.courses);
+      if (data.courses.length > 0 && isInitial) {
+        setCurrentCourse(data.courses[0]);
+      }
     } catch (err) {
       console.error(err);
     }
@@ -30,7 +39,7 @@ const TAAdministration = () => {
 
   useEffect(() => {
     console.log("AssignCourseForm useEffect");
-    handleFetchCourses();
+    handleFetchCourses(true);
   }, []);
 
 
@@ -51,19 +60,36 @@ const TAAdministration = () => {
       </Dropdown>
 
       <Container>
-        <h2>{`${currentCourse.courseID}: ${currentCourse.name}`}</h2>
-        {/* <ViewTAWishlist course={currentCourse} /> */}
-        <Tabs defaultActiveKey="0" transition={false} id="noanim-tab" className="mb-4">
-          <Tab eventKey="0" title="Current TAs">
-            <RenderList listToRender={currentCourse.currentTAs} courseName={currentCourse.name} isHistorical={false} />
-          </Tab>
-          <Tab eventKey="1" title="Historical TAs">
-            <RenderList listToRender={currentCourse.historicalTAs} courseName={currentCourse.name} isHistorical={true} />
-          </Tab>
-        </Tabs>
+        <div style={{ display: "flex", alignItems: "center", paddingTop: 10 }}>
+          <span style={{ fontSize: 20 }}>
+            {currentCourse.courseCode + " " + currentCourse.courseNumber}
+          </span>
+          <span style={{ fontSize: 15, color: 'grey', paddingLeft: 5 }}>
+            {" -   " + currentCourse.term + " " + currentCourse.year}
+          </span>
+        </div>
+        <div>
+          <h4>{currentCourse.courseName}</h4>
+        </div>
+        <div>
+          <Tabs defaultActiveKey="0" transition={false} id="noanim-tab" className="mb-4">
+            <Tab eventKey="0" title="Current TAs">
+              {/* <RenderList
+                listToRender={currentCourse.currentTAs}
+                courseName={currentCourse.name}
+                isHistorical={false} /> */}
+            </Tab>
+            <Tab eventKey="1" title="Historical TAs">
+              {/* <RenderList listToRender={currentCourse.historicalTAs} courseName={currentCourse.name} isHistorical={true} /> */}
+            </Tab>
+          </Tabs>
+        </div>
       </Container>
     </div>
   );
 };
 
 export default TAAdministration;
+
+{/* <ViewTAWishlist course={currentCourse} /> */ }
+
