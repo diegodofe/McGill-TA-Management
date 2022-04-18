@@ -35,6 +35,7 @@
 .sub.nav-tabs{
     font-size: 13px;
     color:#6F7782  !important;
+    margin-bottom: 20px;
 }
 
 .sub.nav-tabs .nav-link.active {

@@ -59,6 +59,7 @@ const TAAdministration = () => {
       <div className="inline">
         <h2 className="inline course-name">{`${currentCourse.courseNumber}: ${currentCourse.courseName}`}</h2>
         <ViewTAWishlist course={allCoursesAtMcGill[2]} isProfessor={false} />
+        <br />
         <Tabs defaultActiveKey="0" transition={false} id="noanim-tab" className="sub">
           <Tab
             className="sub"
