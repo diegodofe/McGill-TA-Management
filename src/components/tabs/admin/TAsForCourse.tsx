@@ -72,7 +72,7 @@ const TAsForCourse = ({ course }) => {
     return (
         <div>
             <div>{course.courseName}</div>
-            <TAList tas={tas} fetchTAData={fetchTAData} kind={'current'} />
+            <TAList course={course} tas={tas} fetchTAData={fetchTAData} kind={'current'} />
             <div>
                 Assign TA to course
             </div>

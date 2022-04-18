@@ -16,9 +16,9 @@ function ViewTAWishlist({ course }: { course: Course }) {
           <Popover id={"wishlist-popover"}>
             <Popover.Header as="h3">{"Professor's Wishlist"}</Popover.Header>
             <Popover.Body>
-              {course.wishlist.map((ta: TA, i: number) => (
+              {/* {course.wishlist.map((ta: TA, i: number) => (
                 <h6 key={i}>{`${ta.firstName} ${ta.lastName}`}</h6>
-              ))}
+              ))} */}
             </Popover.Body>
           </Popover>
         }

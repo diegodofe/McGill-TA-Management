@@ -37,7 +37,7 @@ const ViewAllTAs = () => {
       </div>
       <div className="inline">
         <h2 className="course-name">All Teaching Assistants</h2>
-        <TAList kind={'all'} tas={tas} fetchTAData={fetchTAData} />
+        <TAList course={{ courseId: "" }} kind={'all'} tas={tas} fetchTAData={fetchTAData} />
         {/* <RenderList listToRender={tas} courseName={""} isHistorical={true} /> */}
       </div>
     </Container>

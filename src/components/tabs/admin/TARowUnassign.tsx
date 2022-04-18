@@ -1,21 +1,29 @@
 import React from 'react'
 
-const TARowUnassign = ({ ta, fetchTAData }) => {
+const TARowUnassign = ({ ta, fetchTAData, course }) => {
 
     const handleUnassignUser = async () => {
-        console.log(ta.email)
-        const res = await fetch(``, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                email: ta.email,
-                courseID: ta.courseID
+        try {
+            console.log(ta.email)
+            console.log(course.courseID)
+            const res = await fetch(`https://winter2022-comp307-group8.cs.mcgill.ca/ta/unassignFromCourse`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: ta.email,
+                    courseID: course.courseID
+                })
             })
-        })
-        const data = await res.json()
-        console.log(data)
+            const data = await res.json()
+            console.log(data)
+            setTimeout(() => {
+                fetchTAData();
+            }, 500);
+        } catch (e) {
+            console.error('Error:', e)
+        }
     }
 
     return (

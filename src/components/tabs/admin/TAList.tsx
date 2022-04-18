@@ -2,8 +2,7 @@ import React from 'react'
 import TARow from './TARow';
 import TARowUnassign from './TARowUnassign';
 
-
-const TAList = ({ tas, fetchTAData, kind }) => {
+const TAList = ({ tas, fetchTAData, kind, course }) => {
 
     return (
         <div id="profTable">
@@ -22,7 +21,7 @@ const TAList = ({ tas, fetchTAData, kind }) => {
                             return (<TARow key={i} ta={ta} fetchTAData={fetchTAData} />)
                         }
                         else {
-                            return (<TARowUnassign key={i} ta={ta} fetchTAData={fetchTAData} />)
+                            return (<TARowUnassign key={i} ta={ta} fetchTAData={fetchTAData} course={course} />)
                         }
                     })}
                 </tbody>

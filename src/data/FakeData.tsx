@@ -51,17 +51,17 @@ export const allTAs: Array<TA> = [
   createTA("Jared.Kim@mail.mcgill.ca", "Jared", "Kim", "Science", "Computer Science", 3, [fakeReviews[0], fakeReviews[1]], ["COMP202", "COMP688"], ["COMP202"], [...fakeLogs]),
 ];
 
-export const allCoursesAtMcGill: Array<Course> = [
-  { name: "Intro to Programming", courseID: "COMP155", numStudents: 200, currentTAs: [allTAs[0], allTAs[1]], wishlist: [allTAs[0], allTAs[2]], historicalTAs: [...allTAs] },
-  { name: "Intro to Computer Science", courseID: "COMP202", numStudents: 200, currentTAs: [allTAs[0], allTAs[1], allTAs[2]], wishlist: [allTAs[0], allTAs[2]], historicalTAs: [...allTAs] },
-  { name: "Software Engineering", courseID: "COMP206", numStudents: 154, currentTAs: [allTAs[0], allTAs[1]], wishlist: [allTAs[0], allTAs[2]], historicalTAs: [...allTAs] },
-  { name: "Intro to Programming", courseID: "COMP330", numStudents: 95, currentTAs: [allTAs[3]], wishlist: [allTAs[0], allTAs[2]], historicalTAs: [...allTAs] },
-  { name: "Software Engineering", courseID: "COMP688", numStudents: 154, currentTAs: [allTAs[0], allTAs[1], allTAs[3]], wishlist: [allTAs[0], allTAs[2]], historicalTAs: [...allTAs] },
-  { name: "Intro to Programming", courseID: "COMP689", numStudents: 95, currentTAs: [allTAs[0], allTAs[1]], wishlist: [allTAs[0], allTAs[2]], historicalTAs: [...allTAs] },
-  { name: "Intro to Computer Science", courseID: "COMP800", numStudents: 200, currentTAs: [allTAs[0], allTAs[1]], wishlist: [allTAs[0], allTAs[2]], historicalTAs: [...allTAs] },
-  { name: "Software Engineering", courseID: "COMP801", numStudents: 154, currentTAs: [allTAs[0], allTAs[1], allTAs[3]], wishlist: [allTAs[0], allTAs[2]], historicalTAs: [...allTAs] },
-  { name: "Intro to Programming", courseID: "COMP999", numStudents: 95, currentTAs: [allTAs[0], allTAs[1]], wishlist: [allTAs[0], allTAs[2]], historicalTAs: [...allTAs] },
-];
+export const allCoursesAtMcGill: Array<Course> = []
+//   { name: "Intro to Programming", courseID: "COMP155", numStudents: 200, currentTAs: [allTAs[0], allTAs[1]], wishlist: [allTAs[0], allTAs[2]], historicalTAs: [...allTAs] },
+//   { name: "Intro to Computer Science", courseID: "COMP202", numStudents: 200, currentTAs: [allTAs[0], allTAs[1], allTAs[2]], wishlist: [allTAs[0], allTAs[2]], historicalTAs: [...allTAs] },
+//   { name: "Software Engineering", courseID: "COMP206", numStudents: 154, currentTAs: [allTAs[0], allTAs[1]], wishlist: [allTAs[0], allTAs[2]], historicalTAs: [...allTAs] },
+//   { name: "Intro to Programming", courseID: "COMP330", numStudents: 95, currentTAs: [allTAs[3]], wishlist: [allTAs[0], allTAs[2]], historicalTAs: [...allTAs] },
+//   { name: "Software Engineering", courseID: "COMP688", numStudents: 154, currentTAs: [allTAs[0], allTAs[1], allTAs[3]], wishlist: [allTAs[0], allTAs[2]], historicalTAs: [...allTAs] },
+//   { name: "Intro to Programming", courseID: "COMP689", numStudents: 95, currentTAs: [allTAs[0], allTAs[1]], wishlist: [allTAs[0], allTAs[2]], historicalTAs: [...allTAs] },
+//   { name: "Intro to Computer Science", courseID: "COMP800", numStudents: 200, currentTAs: [allTAs[0], allTAs[1]], wishlist: [allTAs[0], allTAs[2]], historicalTAs: [...allTAs] },
+//   { name: "Software Engineering", courseID: "COMP801", numStudents: 154, currentTAs: [allTAs[0], allTAs[1], allTAs[3]], wishlist: [allTAs[0], allTAs[2]], historicalTAs: [...allTAs] },
+//   { name: "Intro to Programming", courseID: "COMP999", numStudents: 95, currentTAs: [allTAs[0], allTAs[1]], wishlist: [allTAs[0], allTAs[2]], historicalTAs: [...allTAs] },
+// ];
 
 export const allStudents: Array<Student> = [
   createStudent("Jennifer.Smith@mail.mcgill.ca", "Jennefer", "Smith", "2600000000", ["COMP202", "COMP206", "COMP330"]),
