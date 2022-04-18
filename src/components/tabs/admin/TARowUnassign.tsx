@@ -26,5 +26,22 @@ const TARowUnassign = ({ ta, fetchTAData, course }) => {
             console.error('Error:', e)
         }
     }
+    return (
+        <tr>
+            <td className="column0">
+                {/* Red button to call handleDeleteTA function with trash can icon */}
+                <button className="btn btn-secondary" onClick={handleUnassignUser}>
+                    <RemoveIcon />
+                </button>
+            </td>
+            <td className="column2">
+                {ta.email} {ta.lastName || ta.backupLastName}
+            </td>
+            <td className="column3">{ta.performance}</td>
+            <td className="column4">{ta.currentCourses}</td>
+            <td className="column5">{ta.previousCourses}</td>
+        </tr>
+    );
+}
 
-    export default TARowUnassign;
+export default TARowUnassign;
