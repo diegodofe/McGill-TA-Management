@@ -5,6 +5,7 @@ import "../../../style/userTable.css";
 import ImportTACohort from "./ImportTACohort";
 import ManualTAAdd from "./ManualTAAdd";
 import RenderList from "./RenderList";
+import TAList from './TAList';
 
 const ViewAllTAs = () => {
   const [tas, setTas] = React.useState([]);
@@ -16,6 +17,7 @@ const ViewAllTAs = () => {
       );
       const data = await res.json();
       setTas(data.tas);
+      console.log(data.tas)
     } catch (err) {
       console.error(err);
     }
@@ -35,7 +37,8 @@ const ViewAllTAs = () => {
       </div>
       <div className="inline">
         <h2 className="course-name">All Teaching Assistants</h2>
-        <RenderList listToRender={allTAs} courseName={""} isHistorical={true} />
+        <TAList kind={'all'} tas={tas} fetchTAData={fetchTAData} />
+        {/* <RenderList listToRender={tas} courseName={""} isHistorical={true} /> */}
       </div>
     </Container>
   );

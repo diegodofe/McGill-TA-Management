@@ -39,6 +39,7 @@ const ManualTAAdd = ({ fetchTAData }) => {
         setDepartment("");
         setFirstName("");
         setLastName("");
+        setShow(false);
       }, 500);
     } catch (e) {
       console.log(e);
@@ -48,8 +49,12 @@ const ManualTAAdd = ({ fetchTAData }) => {
 
   return (
     <div>
-      <button className="courses" onClick={() => setShow(true)}>
-        <AddIcon /> Add TA
+      <button className="courses" onClick={() => setShow(true)}
+        style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+        <AddIcon />
+        <span style={{ fontSize: 15 }}>
+          Add TA
+        </span>
       </button>
 
       <Modal
