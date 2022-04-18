@@ -5,9 +5,11 @@ import AddIcon from "@mui/icons-material/Add";
 import { allTAs } from "../../../data/FakeData";
 import { TA } from "../../../classes/TA";
 
-function ProfWishlistForm() {
+function ProfWishlistForm({ isProfessor }: { isProfessor: boolean }) {
   const [open, setOpen] = useState(false);
-  const [taToAdd, setTAtoAdd] = useState(`${allTAs[0].firstName} ${allTAs[0].lastName}`);
+  const [taToAdd, setTAtoAdd] = useState(
+    `${allTAs[0].firstName} ${allTAs[0].lastName}`
+  );
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -21,9 +23,17 @@ function ProfWishlistForm() {
   return (
     <Container>
       {/** Open add ta popup */}
-      <button className="wishlist-add" onClick={() => setOpen(!open)} aria-controls="example-collapse-text" aria-expanded={open}>
-        <AddIcon />
-      </button>
+      {/* can only add to wishlist if professor */}
+      {isProfessor && (
+        <button
+          className="wishlist-add"
+          onClick={() => setOpen(!open)}
+          aria-controls="example-collapse-text"
+          aria-expanded={open}
+        >
+          <AddIcon />
+        </button>
+      )}
       <Collapse in={open}>
         <Form onSubmit={handleSubmit}>
           <InputGroup className="mb-3">
@@ -31,7 +41,10 @@ function ProfWishlistForm() {
               {/** Display all the tas at mcgill */}
               <option value="">Select a TA</option>
               {allTAs.map((ta: TA, i: number) => (
-                <option key={i} value={`${ta.firstName} ${ta.lastName}`}>{`${ta.firstName} ${ta.lastName}`}</option>
+                <option
+                  key={i}
+                  value={`${ta.firstName} ${ta.lastName}`}
+                >{`${ta.firstName} ${ta.lastName}`}</option>
               ))}
             </Form.Select>
             <Button variant="outline-secondary" type="submit">
