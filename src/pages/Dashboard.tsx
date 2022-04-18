@@ -21,7 +21,7 @@ export function Dashboard() {
     [UserTypes.Professor, ["Professor Courses"]],
     [UserTypes.TA, ["TA Courses"]],
     [UserTypes.Admin, ["TA Administration", "View All TAs"]],
-    [UserTypes.Sysop, ["Manage Professors", "Manage Students", "Manage Courses", "Manage TAs", "Manage TA Admins"]],
+    [UserTypes.Sysop, ["Professors", "Students", "Courses", "TA Admins"]],
   ]);
 
   const tabNamesToJSX = new Map<string, JSX.Element>([
@@ -30,11 +30,11 @@ export function Dashboard() {
     ["View All TAs", <ViewAllTAs />],
     ["Professor Courses", <ProfessorCourses />],
     ["TA Courses", <TACourses />],
-    ["Manage Professors", <ManageProfessors />],
-    ["Manage Students", <ManageStudents />],
-    ["Manage Courses", <ManageCourses />],
+    ["Professors", <ManageProfessors />],
+    ["Students", <ManageStudents />],
+    ["Courses", <ManageCourses />],
     ["Manage TAs", <ManageTAs />],
-    ["Manage TA Admins", <ManageTAAdmins />],
+    ["TA Admins", <ManageTAAdmins />],
   ]);
 
   /**

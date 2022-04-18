@@ -1,12 +1,12 @@
 import OpenInFullIcon from "@mui/icons-material/OpenInFull";
 import React from "react";
-import { OverlayTrigger, Popover, Modal } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import "../../../style/userTable.css";
 import Course from "../../../classes/Course";
 import { TA } from "../../../classes/TA";
 import ProfWishlistForm from "../professor/ProfWishlistForm";
 
-function ViewTAWishlist({ course, isProfessor }: { course: Course,  isProfessor: boolean }) {
+function ViewTAWishlist({ course, isProfessor }: { course: Course; isProfessor: boolean }) {
   const [show, setShow] = React.useState(false);
   return (
     <div className="view-wishlist" id="ta-wishlist-modal">
@@ -14,12 +14,7 @@ function ViewTAWishlist({ course, isProfessor }: { course: Course,  isProfessor:
         <OpenInFullIcon fontSize="small" /> View Wishlist
       </button>
 
-      <Modal
-        show={show}
-        onHide={() => setShow(false)}
-        dialogClassName="modal-lg"
-        aria-labelledby="example-custom-modal-styling-title"
-      >
+      <Modal show={show} onHide={() => setShow(false)} dialogClassName="modal-lg" aria-labelledby="example-custom-modal-styling-title">
         <Modal.Header closeButton>
           <Modal.Title id="example-custom-modal-styling-title">
             <h2>{`${course.courseID} Wish List`}</h2>
@@ -35,7 +30,7 @@ function ViewTAWishlist({ course, isProfessor }: { course: Course,  isProfessor:
             </thead>
             <tbody>
               {course.wishlist.map((ta: TA, i: number) => (
-                <tr>
+                <tr key={i}>
                   <td className="column2">{ta.firstName}</td>
                   <td className="column3">{ta.lastName}</td>
                 </tr>
