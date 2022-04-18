@@ -54,6 +54,13 @@ td {
   padding-left: 27px;
   color: green;
 }
+
+.wishlist-add {
+  padding-top: 10px;
+  padding-left: 0px;
+  color: green;
+}
+
 .courses {
   color: #a5a4a1;
   font-size: 13px;

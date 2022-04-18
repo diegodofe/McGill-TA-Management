@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Collapse, Container, Form, InputGroup } from "react-bootstrap";
 import "../../../style/userTable.css";
-import { Add } from "@mui/icons-material";
+import AddIcon from "@mui/icons-material/Add";
 import { allTAs } from "../../../data/FakeData";
 import { TA } from "../../../classes/TA";
 
@@ -21,8 +21,8 @@ function ProfWishlistForm() {
   return (
     <Container>
       {/** Open add ta popup */}
-      <button className="courses" onClick={() => setOpen(!open)} aria-controls="example-collapse-text" aria-expanded={open}>
-        <Add />
+      <button className="wishlist-add" onClick={() => setOpen(!open)} aria-controls="example-collapse-text" aria-expanded={open}>
+        <AddIcon />
       </button>
       <Collapse in={open}>
         <Form onSubmit={handleSubmit}>
