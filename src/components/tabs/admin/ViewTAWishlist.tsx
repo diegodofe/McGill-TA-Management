@@ -10,27 +10,6 @@ function ViewTAWishlist({ course, isProfessor }: { course: Course,  isProfessor:
   const [show, setShow] = React.useState(false);
   return (
     <div className="view-wishlist" id="ta-wishlist-modal">
-      {/** Pop up window*/}
-      {/* <OverlayTrigger
-        trigger="click"
-        placement="top"
-        overlay={
-          <Popover id={"wishlist-popover"}>
-            <Popover.Header as="h3">{"Professor's Wishlist"}</Popover.Header>
-            <Popover.Body> */}
-      {/** Render all the TA names on this course list */}
-      {/* {course.wishlist.map((ta: TA, i: number) => (
-                <h6 key={i}>{`${ta.firstName} ${ta.lastName}`}</h6>
-              ))} */}
-
-      {/** Create the add TA to wishlist form */}
-      {/* <ProfWishlistForm />
-            </Popover.Body>
-          </Popover>
-        }
-      > */}
-      {/** Open wishlist popup */}
-
       <button disabled={show} className="courses" onClick={() => setShow(true)}>
         <OpenInFullIcon fontSize="small" /> View Wishlist
       </button>
@@ -66,8 +45,6 @@ function ViewTAWishlist({ course, isProfessor }: { course: Course,  isProfessor:
           <ProfWishlistForm isProfessor={isProfessor} />
         </Modal.Body>
       </Modal>
-
-      {/* </OverlayTrigger> */}
     </div>
   );
 }
