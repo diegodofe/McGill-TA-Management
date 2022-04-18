@@ -22,12 +22,12 @@ const RateTA = () => {
           </tr>
         </thead>
         <tbody>
-          {/**Set to hardcoded list of profs for testing purposes */}
-          {/* {course.currentTAs.map((ta: TA, i: number) => (
-            <TAReviewRow key={i} ta={ta} />
-          ))} */}
+          
         </tbody>
       </table >
+      <button>
+        Add class
+      </button>
     </div >
   </Container >)
 
