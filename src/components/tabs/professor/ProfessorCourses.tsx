@@ -32,7 +32,7 @@ const ProfessorCourses = () => {
       </Dropdown>
 
       <h2 className="inline course-name">{`${currentCourse.courseID}: ${currentCourse.name}`}</h2>
-      <ViewTAWishlist course={currentCourse} />
+      <ViewTAWishlist course={currentCourse} isProfessor={true} />
       <div className="inline">
         <ProfCourseTable listToRender={currentCourse.currentTAs} />
       </div>
