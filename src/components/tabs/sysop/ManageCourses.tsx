@@ -22,6 +22,7 @@ const ManageCourses = () => {
 
   return (
     <div>
+      <h2 style={{ marginBottom: "20px" }}>All Courses</h2>
       <div id="profTable">
         <table>
           <thead>

@@ -8,9 +8,7 @@ const ManageTAAdmins = () => {
 
   const handleFetchTAAdmins = async () => {
     try {
-      const res = await fetch(
-        "https://winter2022-comp307-group8.cs.mcgill.ca/taAdmin/all"
-      );
+      const res = await fetch("https://winter2022-comp307-group8.cs.mcgill.ca/taAdmin/all");
       const data = await res.json();
       console.log("taAdmins loaded");
       setTAAdmins(data.tas);
@@ -27,6 +25,7 @@ const ManageTAAdmins = () => {
   return (
     <div>
       {/* Table that lists all the TAAdmins */}
+      <h2 style={{ marginBottom: "20px" }}>All Admin</h2>
       <div id="profTable">
         <table>
           <thead>
@@ -41,11 +40,7 @@ const ManageTAAdmins = () => {
           </thead>
           <tbody>
             {taAdmins.map((taAdmin, i) => (
-              <TAAdminRow
-                key={i}
-                taAdmin={taAdmin}
-                handleFetchTAAdmins={handleFetchTAAdmins}
-              />
+              <TAAdminRow key={i} taAdmin={taAdmin} handleFetchTAAdmins={handleFetchTAAdmins} />
             ))}
           </tbody>
         </table>
