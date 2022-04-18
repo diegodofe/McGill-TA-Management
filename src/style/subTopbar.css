@@ -2,7 +2,6 @@
 
 .sub.nav-tabs .sub.nav-item.show .nav-link, .sub.nav-tabs .nav-link.active {
     color: #6F7782;
-    font-size: 13px;
     background-color: #fff !important;
     border-top: none !important;
     border-left: none !important;
@@ -10,14 +9,12 @@
 }
 
 .sub.nav-tabs .nav-link:hover{
-    font-size: 13px;
     border-top: none !important;
     border-left: none !important;
     border-right: none !important;
 }
 
 .sub.nav-item.show {
-    font-size: 13px;
     color:#6F7782  !important;
     border-top: none !important;
     border-left: none !important;
@@ -25,7 +22,6 @@
 }
 
 .sub.nav-tabs .nav-link{
-    font-size: 13px;
     color:#6F7782  !important;
     border-top: none !important;
     border-left: none !important;
@@ -33,14 +29,20 @@
 }
 
 .sub.nav-tabs{
-    font-size: 13px;
     color:#6F7782  !important;
+    margin-bottom: 20px;
 }
 
 .sub.nav-tabs .nav-link.active {
-    font-size: 13px;
     border-top: none !important;
     border-left: none !important;
     border-right: none !important;
     border-bottom: 2px solid #E14561;
 }
+
+
+/* prevent dropdown from shifting up when menu open */
+.navbar-nav .dropdown-menu {
+    position: absolute !important;
+  }
+  

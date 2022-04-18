@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Container } from "react-bootstrap";
 import StudentRow from "./StudentRow";
 import "../../../style/userTable.css";
 import { allStudents } from "../../../data/FakeData";
@@ -24,26 +23,25 @@ const ManageStudents = () => {
 
   return (
     <div>
-      <Container>
-        <div id="profTable">
-          <table>
-            <thead>
-              <tr>
-                <th className="column0"></th>
-                <th className="column1">Email</th>
-                <th className="column2">First name</th>
-                <th className="column3">Last name</th>
-                <th className="column4">Student ID</th>
-              </tr>
-            </thead>
-            <tbody>
-              {allStudents.map((student, i) => (
-                <StudentRow key={i} student={student} fetchStudentData={fetchStudentData} />
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </Container>
+      <h2 style={{ marginBottom: "20px" }}>All Students</h2>
+      <div id="profTable">
+        <table>
+          <thead>
+            <tr>
+              <th className="column0"></th>
+              <th className="column1">Email</th>
+              <th className="column2">First name</th>
+              <th className="column3">Last name</th>
+              <th className="column4">Student ID</th>
+            </tr>
+          </thead>
+          <tbody>
+            {allStudents.map((student, i) => (
+              <StudentRow key={i} student={student} fetchStudentData={fetchStudentData} />
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

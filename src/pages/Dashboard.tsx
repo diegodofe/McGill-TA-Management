@@ -7,7 +7,7 @@ import ManageStudents from "../components/tabs/sysop/ManageStudent";
 import ManageTAs from "../components/tabs/sysop/ManageTAs";
 import { UserTypes } from "../enums/UserTypes";
 import logo from "../assets/images/mcgill_logo.jpg";
-import "../style/topbar.css";
+import "../style/subTopbar.css";
 import ManageCourses from "../components/tabs/sysop/ManageCourses";
 import TAAdministration from "../components/tabs/admin/TAAdministration";
 import ViewAllTAs from "../components/tabs/admin/ViewAllTAs";
@@ -80,9 +80,9 @@ export function Dashboard() {
       </Navbar>
 
       <Container>
-        <Tabs defaultActiveKey="0" transition={false} id="noanim-tab" className="mb-4">
+        <Tabs defaultActiveKey="0" transition={false} id="noanim-tab" className="sub">
           {currentTabs.map((currentTabName, i) => (
-            <Tab className="mb-4" key={i} eventKey={i} title={currentTabName}>
+            <Tab className="sub" key={i} eventKey={i} title={currentTabName}>
               {tabNamesToJSX.get(currentTabName)}
             </Tab>
           ))}

@@ -10,26 +10,36 @@ function ViewTAWishlist({ course, isProfessor }: { course: Course; isProfessor: 
   const [show, setShow] = React.useState(false);
   return (
     <div className="view-wishlist" id="ta-wishlist-modal">
-      {/** Pop up window*/}
-      <OverlayTrigger
-        trigger="focus"
-        placement="top"
-        overlay={
-          <Popover id={"wishlist-popover"}>
-            <Popover.Header as="h3">{"Professor's Wishlist"}</Popover.Header>
-            <Popover.Body>
-              {/* {course.wishlist.map((ta: TA, i: number) => (
-                <h6 key={i}>{`${ta.firstName} ${ta.lastName}`}</h6>
-              ))} */}
-            </Popover.Body>
-          </Popover>
-        }
-      >
-        {/** Open wishlist popup */}
-        <button className="courses">
-          <OpenInFullIcon fontSize="small" /> View Wishlist
-        </button>
-      </OverlayTrigger>
+      <button disabled={show} className="courses" onClick={() => setShow(true)}>
+        <OpenInFullIcon fontSize="small" /> View Wishlist
+      </button>
+
+      <Modal show={show} onHide={() => setShow(false)} dialogClassName="modal-md" aria-labelledby="example-custom-modal-styling-title">
+        <Modal.Header closeButton>
+          <Modal.Title id="example-custom-modal-styling-title">
+            <h2>{`${course.courseID} Wish List`}</h2>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <table>
+            <thead>
+              <tr>
+                <th className="column2">First name</th>
+                <th className="column3">Last name</th>
+              </tr>
+            </thead>
+            <tbody>
+              {course.wishlist.map((ta: TA, i: number) => (
+                <tr key={i}>
+                  <td className="column2">{ta.firstName}</td>
+                  <td className="column3">{ta.lastName}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <ProfWishlistForm isProfessor={isProfessor} />
+        </Modal.Body>
+      </Modal>
     </div>
   );
 }
