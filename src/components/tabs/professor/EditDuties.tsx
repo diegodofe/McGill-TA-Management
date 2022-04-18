@@ -14,8 +14,7 @@ function EditDuties({ ta }: { ta: TA }) {
   /**
    * @TODO fetch current responsibilities of current ta
    */
-  const [responisbilities, setResponisbilities] = useState<string>(`${ta.firstName} has to be the absolute best TA this semester or else...
-  I am expecting zero late submissions of corrected assignments and to always cover my zoom classes when I am ill.`);
+  const [responisbilities, setResponisbilities] = useState<string>(`${ta.firstName} has to be the absolute best TA this semester or else...`);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
