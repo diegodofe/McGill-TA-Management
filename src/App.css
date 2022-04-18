@@ -15,6 +15,11 @@ body {
   height: 68px;
 }
 
+.logout {
+  height: 30px;
+}
+
+
 input,
 button {
   appearance: none;
