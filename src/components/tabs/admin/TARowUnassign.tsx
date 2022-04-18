@@ -4,11 +4,8 @@ const TARowUnassign = ({ ta, fetchTAData }) => {
 
     const handleUnassignUser = () => {
         console.log(ta.email)
+
     }
-
-    console.log('TA!!!:')
-    console.log(ta)
-
     return (
         <tr>
             <td className="column2">{ta.email} {ta.lastName || ta.backupLastName}</td>

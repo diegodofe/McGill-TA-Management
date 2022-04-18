@@ -18,7 +18,7 @@ const TAList = ({ tas, fetchTAData, kind }) => {
                 </thead>
                 <tbody>
                     {tas.map((ta, i) => {
-                        if (kind == 'all') {
+                        if (kind === 'all') {
                             return (<TARow key={i} ta={ta} fetchTAData={fetchTAData} />)
                         }
                         else {
