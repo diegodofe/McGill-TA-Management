@@ -1,11 +1,13 @@
 import OpenInFullIcon from "@mui/icons-material/OpenInFull";
 import React from "react";
-import { OverlayTrigger, Popover } from "react-bootstrap";
+import { Modal, OverlayTrigger, Popover } from "react-bootstrap";
 import "../../../style/userTable.css";
 import Course from "../../../classes/Course";
 import { TA } from "../../../classes/TA";
+import ProfWishlistForm from "../professor/ProfWishlistForm";
 
-function ViewTAWishlist({ course }: { course: Course }) {
+function ViewTAWishlist({ course, isProfessor }: { course: Course; isProfessor: boolean }) {
+  const [show, setShow] = React.useState(false);
   return (
     <div className="view-wishlist" id="ta-wishlist-modal">
       {/** Pop up window*/}

@@ -6,10 +6,8 @@ import Course from "../../../classes/Course";
 import { allCoursesAtMcGill } from "../../../data/FakeData";
 import "../../../style/userTable.css";
 import "../../../style/subTopbar.css";
-import RenderList from "./RenderList";
 import ViewTAWishlist from "./ViewTAWishlist";
-import TAList from "./TAList";
-import TAsForCourse from './TAsForCourse';
+import TAsForCourse from "./TAsForCourse";
 
 const TAAdministration = () => {
   const emptyCourse = {
@@ -58,10 +56,9 @@ const TAAdministration = () => {
           ))}
         </Dropdown.Menu>
       </Dropdown>
-
       <div className="inline">
         <h2 className="inline course-name">{`${currentCourse.courseNumber}: ${currentCourse.courseName}`}</h2>
-        <ViewTAWishlist course={allCoursesAtMcGill[2]} />
+        <ViewTAWishlist course={allCoursesAtMcGill[2]} isProfessor={false} />
         <Tabs defaultActiveKey="0" transition={false} id="noanim-tab" className="sub">
           <Tab
             className="sub"
@@ -71,8 +68,7 @@ const TAAdministration = () => {
                 Current TAs <PeopleAltIcon fontSize="small" />
               </React.Fragment>
             }
-          >
-          </Tab>
+          ></Tab>
           <Tab
             className="sub"
             eventKey="1"
@@ -81,12 +77,10 @@ const TAAdministration = () => {
                 Historical TAs <LibraryBooksIcon fontSize="small" />
               </React.Fragment>
             }
-          >
-          </Tab>
+          ></Tab>
         </Tabs>
         <TAsForCourse course={currentCourse} />
       </div>
-
     </Container>
   );
 };
@@ -96,7 +90,6 @@ export default TAAdministration;
 // {
 //   /* <ViewTAWishlist course={currentCourse} /> */
 // }
-
 
 // {/* <Container>
 //         <h2 className="inline course-name">{`${currentCourse.courseID}: ${currentCourse.name}`}</h2>
