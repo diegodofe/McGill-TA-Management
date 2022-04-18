@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/images/mcgill_logo.jpg";
 import "../App.css";
 import { UserContext } from "../App";
-import { emptyUser } from "../classes/User";
 
 function Register() {
   // Load global state
@@ -18,7 +17,7 @@ function Register() {
   const navigate = useNavigate();
   const [error, setError] = useState("");
 
-  const submitHandler = async (e: { preventDefault: () => void; }) => {
+  const submitHandler = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
     /**
@@ -39,9 +38,9 @@ function Register() {
           lastName: tempLastName,
           studentID: tempStudentID,
         }),
-      })
+      });
 
-      console.log(res)
+      console.log(res);
 
       // If register was successful, set user and redirect to home page
       if (res.status === 200) {
@@ -51,24 +50,22 @@ function Register() {
           ...user,
           email: tempEmail,
           firstName: tempFirstName,
-          lastName: tempLastName
+          lastName: tempLastName,
         });
 
-
-        console.log(resJson)
+        console.log(resJson);
 
         // set user state
         // setUser(newUser);
         navigate("/dashboard");
-      }
-      else {
+      } else {
         alert("Error registering user");
       }
     } catch (e) {
       console.error(e);
       alert("Error registering user");
     }
-  }
+  };
 
   return (
     <div className="welcome">

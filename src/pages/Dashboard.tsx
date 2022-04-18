@@ -14,6 +14,7 @@ import ViewAllTAs from "../components/tabs/admin/ViewAllTAs";
 import ProfessorCourses from "../components/tabs/professor/ProfessorCourses";
 import ManageTAAdmins from "../components/tabs/sysop/ManageTAAdmins";
 import TACourses from "../components/tabs/ta/TACourses";
+import { useNavigate } from "react-router-dom";
 
 export function Dashboard() {
   const tabsPerProfile = new Map<UserTypes, Array<string>>([
@@ -37,6 +38,7 @@ export function Dashboard() {
     ["TA Admins", <ManageTAAdmins />],
   ]);
 
+  const navigate = useNavigate();
   /**
    * Get list of user's profiles/types
    * @TODO Retrieve this information from the actual global user state
@@ -54,6 +56,11 @@ export function Dashboard() {
   function handleNavClick(profile: UserTypes): void {
     setCurrentProfile(profile);
     setCurrentTabs(tabsPerProfile.get(profile)!);
+  }
+
+  function handleLogout(): void {
+    console.log("Logging out!");
+    navigate("/logout");
   }
 
   // Render nav dropdown options and nav tabs based on state above
@@ -77,6 +84,7 @@ export function Dashboard() {
             </NavDropdown>
           </Nav>
         </Container>
+        <button onClick={() => handleLogout()}>Log Out</button>
       </Navbar>
 
       <Container>
