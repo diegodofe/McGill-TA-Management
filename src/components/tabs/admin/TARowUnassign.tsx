@@ -1,4 +1,5 @@
-import React from 'react'
+import React from "react";
+import RemoveIcon from "@material-ui/icons/Remove";
 
 const TARowUnassign = ({ ta, fetchTAData, course }) => {
 
@@ -26,17 +27,4 @@ const TARowUnassign = ({ ta, fetchTAData, course }) => {
         }
     }
 
-    return (
-        <tr>
-            <td className="column2">{ta.email} {ta.lastName || ta.backupLastName}</td>
-            <td className="column3">{ta.performance}</td>
-            <td className="column4">{ta.currentCourses}</td>
-            <td className="column5">{ta.previousCourses}</td>
-            <td className="column6">
-                <button className="btn btn-primary" onClick={handleUnassignUser}>Unassign</button>
-            </td>
-        </tr>
-    );
-}
-
-export default TARowUnassign;
+    export default TARowUnassign;
