@@ -14,7 +14,7 @@ function ViewTAWishlist({ course, isProfessor }: { course: Course; isProfessor: 
         <OpenInFullIcon fontSize="small" /> View Wishlist
       </button>
 
-      <Modal show={show} onHide={() => setShow(false)} dialogClassName="modal-lg" aria-labelledby="example-custom-modal-styling-title">
+      <Modal show={show} onHide={() => setShow(false)} dialogClassName="modal-md" aria-labelledby="example-custom-modal-styling-title">
         <Modal.Header closeButton>
           <Modal.Title id="example-custom-modal-styling-title">
             <h2>{`${course.courseID} Wish List`}</h2>
