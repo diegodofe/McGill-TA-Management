@@ -10,6 +10,7 @@ const TAList = ({ tas, fetchTAData, kind }) => {
             <table style={{ marginTop: "10px" }}>
                 <thead>
                     <tr>
+                        <th className="column0"></th>
                         <th className="column2">Teaching Assistant</th>
                         <th className="column3">Performance</th>
                         <th className="column4">Current Courses</th>
