@@ -26,6 +26,7 @@ const ManageProfessors = () => {
 
   return (
     <div>
+      <h2 style={{ marginBottom: "20px" }}>All Professors</h2>
       <div id="profTable">
         <table>
           <thead>
@@ -43,13 +44,10 @@ const ManageProfessors = () => {
             {/**Set to hardcoded list of profs for testing purposes */}
             {profs.map((professor, i) => {
               if (professor) {
-                return (
-                  <ProfRow key={i} professor={professor} fetchProfData={fetchProfData} />
-                )
+                return <ProfRow key={i} professor={professor} fetchProfData={fetchProfData} />;
               }
               return null;
-            }
-            )}
+            })}
           </tbody>
         </table>
       </div>
