@@ -1,4 +1,5 @@
 import React from "react";
+import { Container } from "react-bootstrap";
 import { enrolledCourses } from "../../../data/RealData";
 import "../../../style/userTable.css";
 import StudentCourse from "./StudentCourseTable";
@@ -8,12 +9,14 @@ const RateTA = () => {
   return (
     <div>
       <StudentRegisterCourse />
-      {/**
-       * @TODO Retrieve this information from the actual global user state
-       */}
-      {enrolledCourses.map((course, i) => (
-        <StudentCourse key={i} course={course} />
-      ))}
+      <Container className="mt-3">
+        {/**
+         * @TODO Retrieve this information from the actual global user state
+         */}
+        {enrolledCourses.map((course, i) => (
+          <StudentCourse key={i} course={course} />
+        ))}
+      </Container>
     </div>
   );
 };

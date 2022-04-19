@@ -11,7 +11,7 @@ const StudentCourse = ({ course }: { course: RealCourse }) => {
    * @TODO get list of TAs for course
    */
   return (
-    <Container className="mb-4">
+    <Container className="mb-5">
       <h2>{`${course.courseCode} ${course.courseNumber}: ${course.courseName}`}</h2>
       <div id="profTable">
         <table>
