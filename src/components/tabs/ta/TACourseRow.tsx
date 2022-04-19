@@ -1,12 +1,12 @@
 import React from "react";
 import "../../../style/userTable.css";
-import { TA } from "../../../classes/TA";
+import { RealTA } from "../../../classes/TA";
 import ViewTAInfo from "../admin/ViewTAInfo";
 import EditOHTime from "../professor/EditOHTime";
 import EditOHLocation from "../professor/EditOHLocation";
 import EditDuties from "../professor/EditDuties";
 
-const TACourseRow = ({ ta }: { ta: TA }) => {
+const TACourseRow = ({ ta }: { ta: RealTA }) => {
   return (
     <tr className="body">
       {/**

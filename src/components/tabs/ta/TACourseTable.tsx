@@ -1,8 +1,8 @@
 import React from "react";
-import { TA } from "../../../classes/TA";
+import { RealTA } from "../../../classes/TA";
 import TACourseRow from "./TACourseRow";
 
-const TACourseTable = ({ ta }: { ta: TA }) => {
+const TACourseTable = ({ ta }: { ta: RealTA }) => {
   return (
     <div id="profTable">
       <table style={{ marginTop: "10px" }}>

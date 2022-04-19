@@ -1,19 +1,19 @@
 import React, { useEffect } from "react";
-import { Button, Form, FormControl, InputGroup } from "react-bootstrap";
+import { Button, Form, InputGroup } from "react-bootstrap";
 import TAList from "./TAList";
 import "../../../style/admin.css";
+import { RealTA } from "../../../classes/TA";
+import { RealCourse } from "../../../classes/Course";
 
-const TAsForCourse = ({ course }) => {
-  const [tas, setTas] = React.useState([]);
-  const [allTas, setAllTas] = React.useState([]);
+const TAsForCourse = ({ course }: { course: RealCourse }) => {
+  const [tas, setTas] = React.useState<Array<RealTA>>([]);
+  const [allTas, setAllTas] = React.useState<Array<RealTA>>([]);
 
   const [email, setEmail] = React.useState("");
 
   const fetchTAData = async () => {
     try {
-      const res = await fetch(
-        `https://winter2022-comp307-group8.cs.mcgill.ca/course/tas/${course.courseID}`
-      );
+      const res = await fetch(`https://winter2022-comp307-group8.cs.mcgill.ca/course/tas/${course.courseID}`);
       const data = await res.json();
       console.log("TAs loaded for class:");
       console.log(data);
@@ -25,9 +25,7 @@ const TAsForCourse = ({ course }) => {
 
   const fetchAllTAData = async () => {
     try {
-      const res = await fetch(
-        "https://winter2022-comp307-group8.cs.mcgill.ca/ta/all"
-      );
+      const res = await fetch("https://winter2022-comp307-group8.cs.mcgill.ca/ta/all");
       const data = await res.json();
       setAllTas(data.tas);
       console.log(data.tas);
@@ -38,19 +36,16 @@ const TAsForCourse = ({ course }) => {
 
   const handleAssignToClass = async () => {
     try {
-      const assignRes = await fetch(
-        `https://winter2022-comp307-group8.cs.mcgill.ca/ta/assignToCourse`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: email,
-            courseID: course.courseID,
-          }),
-        }
-      );
+      const assignRes = await fetch(`https://winter2022-comp307-group8.cs.mcgill.ca/ta/assignToCourse`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          courseID: course.courseID,
+        }),
+      });
 
       const assignData = await assignRes.json();
       console.log(assignData);
@@ -79,10 +74,7 @@ const TAsForCourse = ({ course }) => {
 
       <Form>
         <InputGroup className="mb-3">
-          <Form.Select
-            required
-            onChange={(thing) => setEmail(thing.target.value)}
-          >
+          <Form.Select required onChange={(thing) => setEmail(thing.target.value)}>
             {allTas.map((ta, i) => {
               return (
                 <option key={i} value={ta.email}>
@@ -91,35 +83,11 @@ const TAsForCourse = ({ course }) => {
               );
             })}
           </Form.Select>
-          {/* <FormControl required placeholder="Comment" aria-label="Text input with dropdown button" onChange={(e) => setTempComment(e.target.value)} /> */}
           <Button variant="outline-secondary" onClick={handleAssignToClass}>
             Assign
           </Button>
         </InputGroup>
       </Form>
-
-      {/* select input, onChange print the ta.email */}
-      {/* <div>
-        <select
-          onChange={(thing) => {
-            setEmail(thing.target.value);
-          }}
-        >
-          {allTas.map((ta, i) => {
-            return (
-              <option key={i} value={ta.email}>
-                {ta.email}
-              </option>
-            );
-          })}
-        </select>
-        <button
-          style={{ backgroundColor: "#00bcd4", color: "white" }}
-          onClick={handleAssignToClass}
-        >
-          Assign To Class
-        </button>
-      </div> */}
     </div>
   );
 };

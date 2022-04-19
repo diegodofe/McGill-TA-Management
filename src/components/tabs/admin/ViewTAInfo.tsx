@@ -3,9 +3,9 @@ import OpenInFullIcon from "@mui/icons-material/OpenInFull";
 import React from "react";
 import { Modal } from "react-bootstrap";
 import "../../../style/userTable.css";
-import { TA } from "../../../classes/TA";
+import { RealTA } from "../../../classes/TA";
 
-function ViewTAInfo({ ta }: { ta: TA }) {
+function ViewTAInfo({ ta }: { ta: RealTA }) {
   const [show, setShow] = useState(false);
 
   return (

@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { Button, Form, FormControl, InputGroup } from "react-bootstrap";
+import { Button, Form, FormControl } from "react-bootstrap";
 import { Edit } from "@mui/icons-material";
 import React from "react";
 import { Modal } from "react-bootstrap";
 import "../../../style/userTable.css";
+import { RealTA } from "../../../classes/TA";
 
-function EditOHTime({ ta }) {
+function EditOHTime({ ta }: { ta: RealTA }) {
   const [show, setShow] = useState(false);
 
   /**
@@ -33,18 +34,16 @@ function EditOHTime({ ta }) {
       {/** Modal Pop up window*/}
       <Modal show={show} onHide={() => setShow(false)} dialogClassName="modal-md" aria-labelledby="example-custom-modal-styling-title">
         <Modal.Header closeButton>
-          <Modal.Title id="example-custom-modal-styling-title">{`Editing ${ta.firstName} ${ta.lastName}'s Office Hours`}</Modal.Title>
+          <Modal.Title id="example-custom-modal-styling-title">{`Editing ${ta.firstName}'s Office Hours`}</Modal.Title>
         </Modal.Header>
 
         {/** OH Time Form */}
         <Modal.Body>
           <Form onSubmit={handleSubmit}>
-            <InputGroup className="mb-3">
-              <FormControl required placeholder="Days, times, etc..." aria-label="Text input with dropdown button" onChange={(e) => setOfficeHours(e.target.value)} />
-              <Button variant="outline-secondary" type="submit">
-                Change
-              </Button>
-            </InputGroup>
+            <FormControl className="mb-3" required placeholder="Days, times, etc..." aria-label="Text input with dropdown button" onChange={(e) => setOfficeHours(e.target.value)} />
+            <Button variant="outline-secondary" type="submit">
+              Change
+            </Button>
           </Form>
         </Modal.Body>
       </Modal>

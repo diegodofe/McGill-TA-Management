@@ -11,27 +11,12 @@ import AddIcon from "@mui/icons-material/Add";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { allCoursesAtMcGill } from "../../../data/FakeData";
 
-function ViewTAPerformance({
-  ta,
-  isProfessor,
-}: {
-  ta: TA;
-  isProfessor: boolean;
-}) {
-  const ratingToStartMap: Array<string> = [
-    "No Stars",
-    "⭐",
-    "⭐⭐",
-    "⭐⭐⭐",
-    "⭐⭐⭐⭐",
-    "⭐⭐⭐⭐⭐",
-  ];
+function ViewTAPerformance({ ta, isProfessor }: { ta: TA; isProfessor: boolean }) {
+  const ratingToStartMap: Array<string> = ["No Stars", "⭐", "⭐⭐", "⭐⭐⭐", "⭐⭐⭐⭐", "⭐⭐⭐⭐⭐"];
   const [show, setShow] = useState(false);
 
   const [addLog, setAddLog] = useState(false);
-  const [selectedCourse, setSelectedCourse] = useState<string>(
-    allCoursesAtMcGill[0].courseID
-  );
+  const [selectedCourse, setSelectedCourse] = useState<string>(allCoursesAtMcGill[0].courseID);
   const [selectedTerm, setSelectedTerm] = useState<string>("September 2022");
   const [comment, setComment] = useState<string>("September 2022");
 
@@ -54,13 +39,7 @@ function ViewTAPerformance({
       </button>
 
       {/** Modal Pop up window*/}
-      <Modal
-        centered
-        show={show}
-        onHide={() => setShow(false)}
-        dialogClassName="modal-md"
-        aria-labelledby="example-custom-modal-styling-title"
-      >
+      <Modal centered show={show} onHide={() => setShow(false)} dialogClassName="modal-md" aria-labelledby="example-custom-modal-styling-title">
         <Container>
           {/** TA Performance Report Modal */}
           <Modal.Header closeButton>
@@ -100,9 +79,7 @@ function ViewTAPerformance({
               <Accordion flush>
                 {ta.allReviews.map((review: Review, i: number) => (
                   <Accordion.Item key={i} eventKey={`${i}`}>
-                    <Accordion.Header>
-                      {ratingToStartMap[review.rating]}
-                    </Accordion.Header>
+                    <Accordion.Header>{ratingToStartMap[review.rating]}</Accordion.Header>
                     <Accordion.Body>{review.comment}</Accordion.Body>
                   </Accordion.Item>
                 ))}
@@ -116,15 +93,9 @@ function ViewTAPerformance({
                 <ArrowBackIosIcon />
               </button>
               <Form onSubmit={handleSubmit}>
-                <Form.Group
-                  className="mb-3"
-                  controlId="exampleForm.ControlInput1"
-                >
+                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                   <Form.Label>Course</Form.Label>
-                  <Form.Select
-                    required
-                    onChange={(e) => setSelectedCourse(e.target.value)}
-                  >
+                  <Form.Select required onChange={(e) => setSelectedCourse(e.target.value)}>
                     <option value="">Select a Course</option>
                     {allCoursesAtMcGill.map((course: Course, i: number) => (
                       <option key={i} value={course.courseID}>
@@ -133,32 +104,18 @@ function ViewTAPerformance({
                     ))}
                   </Form.Select>
                 </Form.Group>
-                <Form.Group
-                  className="mb-3"
-                  controlId="exampleForm.ControlInput1"
-                >
+                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                   <Form.Label>Term</Form.Label>
-                  <Form.Select
-                    required
-                    onChange={(e) => setSelectedTerm(e.target.value)}
-                  >
+                  <Form.Select required onChange={(e) => setSelectedTerm(e.target.value)}>
                     <option value="">Select a Term</option>
                     <option value="January2022">January 2023</option>
                     <option value="September2022">September 2022</option>
                     <option value="January2022">January 2022</option>
                   </Form.Select>
                 </Form.Group>
-                <Form.Group
-                  className="mb-3"
-                  controlId="exampleForm.ControlTextarea1"
-                >
+                <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                   <Form.Label>Note</Form.Label>
-                  <Form.Control
-                    as="textarea"
-                    rows={2}
-                    required
-                    onChange={(e) => setComment(e.target.value)}
-                  />
+                  <Form.Control as="textarea" rows={2} required onChange={(e) => setComment(e.target.value)} />
                 </Form.Group>
                 <Button className="mt-3" variant="light" type="submit">
                   Log

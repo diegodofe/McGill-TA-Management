@@ -5,9 +5,9 @@ import React from "react";
 import { Modal } from "react-bootstrap";
 import "../../../style/userTable.css";
 import { Edit } from "@mui/icons-material";
-import { TA } from "../../../classes/TA";
+import { RealTA } from "../../../classes/TA";
 
-function EditDuties({ ta }: { ta: TA }) {
+function EditDuties({ ta }: { ta: RealTA }) {
   const [show, setShow] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -36,7 +36,7 @@ function EditDuties({ ta }: { ta: TA }) {
       {/** Modal Pop up window*/}
       <Modal show={show} onHide={() => setShow(false)} dialogClassName="modal-md" aria-labelledby="example-custom-modal-styling-title">
         <Modal.Header closeButton>
-          <Modal.Title id="example-custom-modal-styling-title">{`${ta.firstName} ${ta.lastName}'s Duties`}</Modal.Title>
+          <Modal.Title id="example-custom-modal-styling-title">{`${ta.firstName}'s Responsibilities`}</Modal.Title>
         </Modal.Header>
 
         {/** Change responisbilities */}
@@ -49,7 +49,7 @@ function EditDuties({ ta }: { ta: TA }) {
 
           <Collapse in={open}>
             <Form className="mt-2" onSubmit={handleSubmit}>
-              <FormControl required as="textarea" rows={3} placeholder={`Please describe ${ta.firstName}'s responsibilities...`} aria-label="Text input with dropdown button" onChange={(e) => setResponisbilities(e.target.value)} />
+              <FormControl required as="textarea" rows={3} placeholder={`Please describe ${ta.firstName}'s Responsibilities`} aria-label="Text input with dropdown button" onChange={(e) => setResponisbilities(e.target.value)} />
               <Button className="mt-2" variant="light" type="submit">
                 Change
               </Button>
