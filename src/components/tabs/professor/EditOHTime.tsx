@@ -5,8 +5,9 @@ import React from "react";
 import { Modal } from "react-bootstrap";
 import "../../../style/userTable.css";
 import { RealTA } from "../../../classes/TA";
+import { RealCourse } from "../../../classes/Course";
 
-function EditOHTime({ ta }: { ta: RealTA }) {
+function EditOHTime({ ta, course, loadTAsOfCourse }: { ta: RealTA, course: RealCourse, loadTAsOfCourse: () => Promise<void> }) {
   const [show, setShow] = useState(false);
 
   /**
@@ -19,10 +20,31 @@ function EditOHTime({ ta }: { ta: RealTA }) {
     e.preventDefault();
     setShow(false);
     console.log(officeHours);
+    try {
+      const res = await fetch("https://winter2022-comp307-group8.cs.mcgill.ca/prof/updateTADuties",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            email: ta.email,
+            courseID: course.courseID,
+            officeHoursTime: officeHours,
+            officeHoursLocation: ta.officeHoursLocation,
+            duties: ta.duties
+          })
+        });
+      const json = await res.json();
+      console.log(json);
 
-    /**
-     * @TODO on submit, send this OH time to the server
-     */
+      setTimeout(() => {
+        loadTAsOfCourse();
+      }, 500);
+
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -41,7 +63,10 @@ function EditOHTime({ ta }: { ta: RealTA }) {
         {/** OH Time Form */}
         <Modal.Body>
           <Form onSubmit={handleSubmit}>
-            <FormControl className="mb-3" required placeholder="Days, times, etc..." aria-label="Text input with dropdown button" onChange={(e) => setOfficeHours(e.target.value)} />
+            <FormControl className="mb-3" required placeholder="Days, times, etc..." aria-label="Text input with dropdown button"
+              onChange={(e) => setOfficeHours(e.target.value)}
+              value={officeHours}
+            />
             <Button variant="outline-secondary" type="submit">
               Change
             </Button>

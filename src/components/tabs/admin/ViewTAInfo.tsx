@@ -26,8 +26,25 @@ function ViewTAInfo({ ta }: { ta: RealTA }) {
          * @TODO need to fetch this information from the TA cohort from server
          */}
         <Modal.Body>
-          <p>term_month_year</p> <p>TA_name</p> <p>student_ID</p> <p>legal_name</p> <p>email</p> <p>grad_ugrad</p> <p>supervisor_name</p> <p>priority(yes/no)</p> <p>hours(90/180)</p> <p>date_applied</p> <p>location</p> <p>phone</p> <p>degree</p>{" "}
-          <p>courses_applied_for</p> <p>open_to_other_courses(yes/no)</p>
+          <div>
+            <span style={{ color: 'grey' }}>Faculty: </span>{ta.faculty}
+          </div>
+          <div>
+            <span style={{ color: 'grey' }}>Department: </span>{ta.department}
+          </div>
+          <div>
+            <span style={{ color: 'grey' }}>Email: </span>{ta.email}
+          </div>
+          <div>
+            <span style={{ color: 'grey' }}>Office Hours: </span>{ta.officeHoursTime}
+          </div>
+          <div>
+            <span style={{ color: 'grey' }}>Office Location: </span>{ta.officeHoursLocation}
+          </div>
+          <div>
+            <span style={{ color: 'grey' }}>Duties: </span>{ta.duties}
+          </div>
+
         </Modal.Body>
       </Modal>
     </div>
