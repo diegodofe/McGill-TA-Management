@@ -10,7 +10,6 @@ import StudentRegisterCourse from "./StudentRegisterCourse";
 const RateTA = () => {
 
   const [myCourses, setMyCourses] = React.useState(enrolledCourses);
-  const [allCourses, setAllCourses] = React.useState(enrolledCourses);
 
   const { user } = useContext(UserContext);
 
@@ -29,25 +28,15 @@ const RateTA = () => {
     }
   }
 
-  const loadAllCourses = async () => {
-    try {
-      const res = await fetch("https://winter2022-comp307-group8.cs.mcgill.ca/course/all");
-      const json = await res.json();
-      setAllCourses(json.courses as RealCourse[]);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   React.useEffect(() => {
     loadMyCourses();
-    loadAllCourses();
+    console.log("Loaded courses");
   }, []);
 
 
   return (
     <div>
-      <StudentRegisterCourse />
+      <StudentRegisterCourse loadMyCourses={loadMyCourses} />
       <Container className="mt-3">
         {/**
          * @TODO Retrieve this information from the actual global user state
