@@ -4,6 +4,7 @@ import { RealReview } from "../../../classes/Review";
 import { RealTA } from "../../../classes/TA";
 import "../../../style/userTable.css";
 import ReviewTAForm from "./TAReviewForm";
+import CheckCircleIcon from '@mui/icons-material/Check';
 
 const ReviewTARow = ({ ta, course, alreadyReviewdTAs, loadAlreadyReviewedTAs }: {
   ta: RealTA, course: RealCourse,
@@ -24,7 +25,9 @@ const ReviewTARow = ({ ta, course, alreadyReviewdTAs, loadAlreadyReviewedTAs }: 
   return (
     <tr className="body">
       {/**@TODO Make these some cooler icons */}
-      <td className="column1">{isSubmitted ? "✔️" : "❌"}</td>
+      <td className="column1" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', color: '#3BCE2E' }}>
+        {isSubmitted ? <CheckCircleIcon></CheckCircleIcon> : "❌"}
+      </td>
       <td className="column2 course-button">
         {/** TA Review form, modal, and button*/}
         {!isSubmitted && <ReviewTAForm loadAlreadyReviewedTAs={loadAlreadyReviewedTAs} course={course} ta={ta} status={isSubmitted} />}
