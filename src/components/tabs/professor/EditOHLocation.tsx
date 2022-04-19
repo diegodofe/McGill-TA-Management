@@ -12,7 +12,9 @@ function EditOHLocation({ ta }: { ta: RealTA }) {
   /**
    * @TODO fetch ta's current OH for this course
    */
-  const [OHLocation, setOHLocation] = useState<string>("Trottier: 351");
+
+  const currentLocation: string = ta.officeHoursLocation;
+  const [OHLocation, setOHLocation] = useState<string>("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -20,7 +22,7 @@ function EditOHLocation({ ta }: { ta: RealTA }) {
     console.log(OHLocation);
 
     /**
-     * @TODO on submit, send this OH times to the server
+     * @TODO on submit, send this OH location to the server
      */
   };
 
@@ -28,7 +30,7 @@ function EditOHLocation({ ta }: { ta: RealTA }) {
     <div id="ta-review-modal">
       {/** Open OH Location modal */}
       <button className="courses" onClick={() => setShow(true)}>
-        <Edit fontSize="small" /> {OHLocation}
+        <Edit fontSize="small" /> {currentLocation}
       </button>
 
       {/** Modal Pop up window*/}

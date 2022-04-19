@@ -8,6 +8,9 @@ export const allTAs: Array<RealTA> = [
   {
     email: "ddorantesferreira@gmail.com",
     courseID: "3977c4b1-51bb-4c80-a4c3-ad51db3ab76e",
+    officeHoursTime: "MONDAY 1-3",
+    officeHoursLocation: "Trottier",
+    duties: "Need to do all of my work for me.",
     createdAt: "2022-04-16 16:48:51.244 +00:00",
     updatedAt: "2022-04-16 16:48:51.244 +00:00",
     faculty: "Science",
@@ -20,6 +23,9 @@ export const allTAs: Array<RealTA> = [
   {
     email: "alex.ference@mail.mcgill.ca",
     courseID: "3977c4b1-51bb-4c80-a4c3-ad51db3ab76e",
+    officeHoursTime: "not assigned",
+    officeHoursLocation: "not assigned",
+    duties: "not assigned",
     createdAt: "2022-04-16 03:20:48.831 +00:00",
     updatedAt: "2022-04-16 03:20:48.831 +00:00",
     faculty: "Science",

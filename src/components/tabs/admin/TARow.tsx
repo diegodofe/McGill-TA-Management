@@ -1,6 +1,7 @@
 import React from "react";
 import RemoveIcon from "@material-ui/icons/Remove";
 import { RealTA } from "../../../classes/TA";
+import ViewTAPerformance from "./ViewTAPerformance";
 
 const TARow = ({ ta, fetchTAData }: { ta: RealTA; fetchTAData: Function }) => {
   const handleDeleteTA = async () => {
@@ -32,7 +33,9 @@ const TARow = ({ ta, fetchTAData }: { ta: RealTA; fetchTAData: Function }) => {
       <td className="column1" style={{ textTransform: "capitalize" }}>
         {ta.firstName + " " + ta.lastName}
       </td>
-      <td className="column2">INSERT PERFORMANCE</td>
+      <td className="column2">
+        <ViewTAPerformance ta={ta} isProfessor={false} />
+      </td>
       <td className="column3">INSERT CURRENT COURSES</td>
       <td className="column4">INSERT PREVIOUS COURSES</td>
     </tr>

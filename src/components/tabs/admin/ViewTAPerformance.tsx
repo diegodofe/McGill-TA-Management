@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import OpenInFullIcon from "@mui/icons-material/OpenInFull";
-import { Button, Form, Accordion, Container, Modal } from "react-bootstrap";
+import { Accordion, Container, Modal } from "react-bootstrap";
 import "../../../style/userTable.css";
 import Review, { RealReview } from "../../../classes/Review";
 import Log, { RealLog } from "../../../classes/Log";
-
-import AddIcon from "@mui/icons-material/Add";
-import { RealTA, TA } from "../../../classes/TA";
+import { RealTA } from "../../../classes/TA";
 import { allLogs, allReviews, allTAs } from "../../../data/RealData";
 
 function ViewTAPerformance({ ta, isProfessor }: { ta: RealTA; isProfessor: boolean }) {
@@ -37,29 +35,32 @@ function ViewTAPerformance({ ta, isProfessor }: { ta: RealTA; isProfessor: boole
           <Modal.Body>
             <h4>{`Average Rating: ${currentTAScore}/5`}</h4>
             <br />
-            <div className="prof-log-add">
-              <h5 className="prof-log-text">Professor Logs</h5>
+
+            {/* <div className="prof-log-add">
+                  <h5 className="prof-log-text">Professor Logs</h5>
               {isProfessor && (
                 <button className="log-add" onClick={() => setAddLog(true)}>
                   <AddIcon />
-                </button>
-              )}
-            </div>
+                  </button>
+                 )}
+                </div>
 
-            <Accordion flush>
-              {currentTAProfessorLogs.map((log: RealLog, i: number) => (
+                 <Accordion flush>
+                  {currentTAProfessorLogs.map((log: RealLog, i: number) => (
                 <Accordion.Item key={i} eventKey={`${i}`}>
                   <Accordion.Header>{log.courseID}</Accordion.Header>
                   <Accordion.Body>
                     <ul>
                       {log.comment.map((note: string, i: number) => (
-                        <li key={i}>{note}</li>
+                              <li key={i}>{note}</li>
                       ))}
                     </ul>
                   </Accordion.Body>
                 </Accordion.Item>
               ))}
-            </Accordion>
+                 </Accordion> 
+              */}
+
             <br />
             <h5>Student Reviews</h5>
             <Accordion flush>

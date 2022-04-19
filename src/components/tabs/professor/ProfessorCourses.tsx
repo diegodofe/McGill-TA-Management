@@ -5,8 +5,8 @@ import "../../../style/userTable.css";
 import "../../../style/subTopbar.css";
 import ViewTAWishlist from "../admin/ViewTAWishlist";
 import ProfCourseTable from "./ProfCourseTable";
-import { allCourseMcGill, allProfsMcGill, allTAs } from "../../../data/RealData";
 import { RealProfessor } from "../../../classes/Professor";
+import { allCourseMcGill, allProfsMcGill, allTAs } from "../../../data/RealData";
 
 const ProfessorCourses = () => {
   /**

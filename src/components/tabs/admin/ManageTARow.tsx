@@ -2,11 +2,11 @@ import React from "react";
 import "../../../style/userTable.css";
 import RemoveIcon from "@material-ui/icons/Remove";
 import ViewTACourses from "./ViewTACourses";
-import { TA } from "../../../classes/TA";
+import { RealTA } from "../../../classes/TA";
 import ViewTAPerformance from "./ViewTAPerformance";
 import ViewTAInfo from "./ViewTAInfo";
 
-const ManageTARow = ({ ta, isHistorical }: { ta: TA; isHistorical: boolean }) => {
+const ManageTARow = ({ ta, isHistorical }: { ta: RealTA; isHistorical: boolean }) => {
   /**
    * @TODO get wishlist status from server for current course
    */
@@ -46,13 +46,9 @@ const ManageTARow = ({ ta, isHistorical }: { ta: TA; isHistorical: boolean }) =>
         <ViewTAPerformance ta={ta} isProfessor={false} />
       </td>
       {/** TA Courses*/}
-      <td className="column4">
-        <ViewTACourses courseList={ta.allCourses} />
-      </td>
+      <td className="column4">{/* <ViewTACourses courseList={ta.allCourses} /> */}</td>
       {/** TA Courses*/}
-      <td className="column5">
-        <ViewTACourses courseList={ta.previousCourses} />
-      </td>
+      <td className="column5">{/* <ViewTACourses courseList={ta.previousCourses} /> */}</td>
       {/** Wishlist status*/}
       {!isHistorical && <td className="column6">{onWishlist ? "✔️" : "❌"}</td>}
     </tr>

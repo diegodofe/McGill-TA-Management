@@ -12,7 +12,8 @@ function EditOHTime({ ta }: { ta: RealTA }) {
   /**
    * @TODO fetch ta's current OH for this course
    */
-  const [officeHours, setOfficeHours] = useState<string>("MON: 1-5pm");
+  const currentHours: string = ta.officeHoursTime;
+  const [officeHours, setOfficeHours] = useState<string>(ta.officeHoursTime);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -28,7 +29,7 @@ function EditOHTime({ ta }: { ta: RealTA }) {
     <div id="ta-review-modal">
       {/** Open OH time modal */}
       <button className="courses" onClick={() => setShow(true)}>
-        <Edit fontSize="small" /> {officeHours}
+        <Edit fontSize="small" /> {currentHours}
       </button>
 
       {/** Modal Pop up window*/}

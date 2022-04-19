@@ -3,8 +3,8 @@ import { Button, Collapse, Container, Form, InputGroup } from "react-bootstrap";
 import "../../../style/userTable.css";
 import AddIcon from "@mui/icons-material/Add";
 import { RealTA } from "../../../classes/TA";
-import { allTAs } from "../../../data/RealData";
 import { RealCourse } from "../../../classes/Course";
+import { allTAs } from "../../../data/RealData";
 
 function ProfWishlistForm({ course, isProfessor }: { course: RealCourse; isProfessor: boolean }) {
   const [open, setOpen] = useState(false);

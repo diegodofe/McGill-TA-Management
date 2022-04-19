@@ -14,7 +14,6 @@ const ProfCourseTable = ({ listToRender }: { listToRender: Array<RealTA> }) => {
             <th className="column4">OH Location</th>
             <th className="column5">Duties</th>
             <th className="column6">Performance</th>
-            <th className="column7">Add to Wishlist</th>
           </tr>
         </thead>
         <tbody>

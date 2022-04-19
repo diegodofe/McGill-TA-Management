@@ -17,6 +17,9 @@ export interface TA {
 export interface RealTA {
   email: string;
   courseID: string;
+  officeHoursTime: string;
+  officeHoursLocation: string;
+  duties: string;
   createdAt: string;
   updatedAt: string;
   faculty: string;

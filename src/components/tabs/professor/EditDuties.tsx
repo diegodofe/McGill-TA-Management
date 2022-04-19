@@ -14,7 +14,9 @@ function EditDuties({ ta }: { ta: RealTA }) {
   /**
    * @TODO fetch current responsibilities of current ta
    */
-  const [responisbilities, setResponisbilities] = useState<string>(`${ta.firstName} has to be the absolute best TA this semester or else...`);
+
+  const currentDuties: string = ta.duties;
+  const [responisbilities, setResponisbilities] = useState<string>("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -42,7 +44,7 @@ function EditDuties({ ta }: { ta: RealTA }) {
         {/** Change responisbilities */}
         <Modal.Body>
           <h5>Current</h5>
-          <p>{responisbilities}</p>
+          <p>{currentDuties}</p>
           <button className="courses" onClick={() => setOpen(!open)} aria-controls="example-collapse-text" aria-expanded={open}>
             <Edit />
           </button>
