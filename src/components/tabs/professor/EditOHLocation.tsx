@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { Button, Form, FormControl, InputGroup } from "react-bootstrap";
+import { Button, Form, FormControl } from "react-bootstrap";
 import React from "react";
 import { Modal } from "react-bootstrap";
 import "../../../style/userTable.css";
 import { Edit } from "@mui/icons-material";
+import { RealTA } from "../../../classes/TA";
 
-function EditOHLocation({ ta }) {
+function EditOHLocation({ ta }: { ta: RealTA }) {
   const [show, setShow] = useState(false);
 
   /**
@@ -33,18 +34,16 @@ function EditOHLocation({ ta }) {
       {/** Modal Pop up window*/}
       <Modal show={show} onHide={() => setShow(false)} dialogClassName="modal-md" aria-labelledby="example-custom-modal-styling-title">
         <Modal.Header closeButton>
-          <Modal.Title id="example-custom-modal-styling-title">{`Editing ${ta.firstName} ${ta.lastName}'s OH Location`}</Modal.Title>
+          <Modal.Title id="example-custom-modal-styling-title">{`Editing ${ta.firstName}'s OH Location`}</Modal.Title>
         </Modal.Header>
 
         {/** OH Location Form */}
         <Modal.Body>
           <Form onSubmit={handleSubmit}>
-            <InputGroup className="mb-3">
-              <FormControl required placeholder="Location" aria-label="Text input with dropdown button" onChange={(e) => setOHLocation(e.target.value)} />
-              <Button variant="outline-secondary" type="submit">
-                Change
-              </Button>
-            </InputGroup>
+            <FormControl required className="mb-3" placeholder="Location" aria-label="Text input with dropdown button" onChange={(e) => setOHLocation(e.target.value)} />
+            <Button variant="outline-secondary" type="submit">
+              Change
+            </Button>
           </Form>
         </Modal.Body>
       </Modal>

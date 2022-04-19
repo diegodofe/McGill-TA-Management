@@ -15,7 +15,7 @@ const TACourseRow = ({ ta }: { ta: RealTA }) => {
       <td className="column1">Fall 2022</td>
       <td className="column2">
         <div className="inline">{`${ta.firstName} ${ta.lastName}`}</div>
-        {/* <ViewTAInfo ta={ta} /> */}
+        <ViewTAInfo ta={ta} />
       </td>
       <td className="column3">
         <EditOHTime ta={ta} />
@@ -23,7 +23,9 @@ const TACourseRow = ({ ta }: { ta: RealTA }) => {
       <td className="column4">
         <EditOHLocation ta={ta} />
       </td>
-      <td className="column5">{/* <EditDuties ta={ta} /> */}</td>
+      <td className="column5">
+        <EditDuties ta={ta} />
+      </td>
     </tr>
   );
 };

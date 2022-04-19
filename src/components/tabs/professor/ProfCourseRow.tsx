@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../../../style/userTable.css";
-import { TA } from "../../../classes/TA";
+import { RealTA } from "../../../classes/TA";
 import ViewTAInfo from "../admin/ViewTAInfo";
 import ViewTAPerformance from "../admin/ViewTAPerformance";
 import { Form } from "react-bootstrap";
@@ -8,7 +8,7 @@ import EditOHTime from "./EditOHTime";
 import EditOHLocation from "./EditOHLocation";
 import EditDuties from "./EditDuties";
 
-const ProfCourseRow = ({ ta }: { ta: TA }) => {
+const ProfCourseRow = ({ ta }: { ta: RealTA }) => {
   /**
    * @TODO get wishlist status from server for current course
    */
@@ -44,9 +44,7 @@ const ProfCourseRow = ({ ta }: { ta: TA }) => {
       <td className="column5">
         <EditDuties ta={ta} />
       </td>
-      <td className="column6">
-        <ViewTAPerformance ta={ta} isProfessor={true} />
-      </td>
+      <td className="column6">{/* <ViewTAPerformance ta={ta} isProfessor={true} /> */}</td>
       <td className="column7">
         <Form.Check onChange={() => handleChangeWishlist()} aria-label="setWishlistStatus" />
       </td>

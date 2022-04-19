@@ -26,7 +26,7 @@ const TACourses = () => {
         <Dropdown.Menu className="courses">
           {usersCourses.map((course: RealCourse, i: number) => (
             <Dropdown.Item key={i} onClick={() => setCurrentCourse(course)}>
-              {course.courseID}
+              {`${course.courseCode} ${course.courseNumber} - ${course.term} ${course.year}`}
             </Dropdown.Item>
           ))}
         </Dropdown.Menu>

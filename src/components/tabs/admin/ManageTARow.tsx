@@ -39,7 +39,7 @@ const ManageTARow = ({ ta, isHistorical }: { ta: TA; isHistorical: boolean }) =>
       {/** TA Extra Info*/}
       <td className="column2">
         <div className="inline">{`${ta.firstName} ${ta.lastName}`}</div>
-        <ViewTAInfo ta={ta} />
+        {/* <ViewTAInfo ta={ta} /> */}
       </td>
       {/** TA Reviews*/}
       <td className="column3">

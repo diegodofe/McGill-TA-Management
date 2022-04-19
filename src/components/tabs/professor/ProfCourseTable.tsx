@@ -1,8 +1,8 @@
 import React from "react";
-import { TA } from "../../../classes/TA";
+import { RealTA } from "../../../classes/TA";
 import ProfCourseRow from "./ProfCourseRow";
 
-const ProfCourseTable = ({ listToRender }: { listToRender: Array<TA> }) => {
+const ProfCourseTable = ({ listToRender }: { listToRender: Array<RealTA> }) => {
   return (
     <div id="profTable">
       <table style={{ marginTop: "10px" }}>
@@ -18,7 +18,7 @@ const ProfCourseTable = ({ listToRender }: { listToRender: Array<TA> }) => {
           </tr>
         </thead>
         <tbody>
-          {listToRender.map((ta: TA, i: number) => (
+          {listToRender.map((ta: RealTA, i: number) => (
             <ProfCourseRow key={i} ta={ta} />
           ))}
         </tbody>
