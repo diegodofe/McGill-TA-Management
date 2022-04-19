@@ -2,13 +2,14 @@ import React, { useContext, useEffect } from "react";
 import { Container } from "react-bootstrap";
 import { UserContext } from "../../../App";
 import { RealCourse } from "../../../classes/Course";
+import { RealReview } from "../../../classes/Review";
 import { RealTA } from "../../../classes/TA";
 import { allTAs } from "../../../data/RealData";
 import "../../../style/userTable.css";
 import TAReviewRow from "./TAReviewRow";
 
 const StudentCourse = ({ course }: { course: RealCourse }) => {
-  const [alreadyReviewdTAs, setAlreadyReviewdTAs] = React.useState([] as RealTA[]);
+  const [alreadyReviewdTAs, setAlreadyReviewdTAs] = React.useState([] as RealReview[]);
   const [tasForCourse, setTasForCourse] = React.useState([] as RealTA[]);
   const { user } = useContext(UserContext);
 
@@ -16,19 +17,26 @@ const StudentCourse = ({ course }: { course: RealCourse }) => {
     try {
       // get user getContext 
       if (user && user.uuid) {
-        // const uuid = user.uuid;
-        // const response = await fetch(`https://winter2022-comp307-group8.cs.mcgill.ca/course/tas/alreadyReviewedByUser`, {
-        //   method: "POST",
-        //   headers: {
-        //     "Content-Type": "application/json"
-        //   },
-        //   body: JSON.stringify({
-        //     uuid: uuid,
-        //     courseId: course.courseID
-        //   })
-        // });
-        // const json = await response.json();
-        // setAlreadyReviewdTAs(json.tas as RealTA[]);
+        const uuid = user.uuid;
+        const courseID = course.courseID;
+
+        console.log("Loading already reviewed TAs");
+        console.log(courseID);
+        console.log(uuid);
+
+        const aRes = await fetch(`https://winter2022-comp307-group8.cs.mcgill.ca/course/tas/alreadyreviewedbyuser`
+          , {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              uuid: uuid,
+              courseID: courseID
+            })
+          });
+        const aJson = await aRes.json();
+        setAlreadyReviewdTAs(aJson.tas as RealReview[]);
       }
     } catch (error) {
       console.log(error);
@@ -75,7 +83,7 @@ const StudentCourse = ({ course }: { course: RealCourse }) => {
              * @TODO Retrieve actual list of tas for this course
              */}
             {tasForCourse.map((ta: RealTA, i: number) => (
-              <TAReviewRow course={course} key={i} ta={ta} />
+              <TAReviewRow loadAlreadyReviewedTAs={loadAlreadyReviewedTAs} alreadyReviewdTAs={alreadyReviewdTAs} course={course} key={i} ta={ta} />
             ))}
           </tbody>
         </table>
