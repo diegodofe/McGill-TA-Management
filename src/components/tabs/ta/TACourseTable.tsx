@@ -1,8 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { RealCourse } from "../../../classes/Course";
 import { RealTA } from "../../../classes/TA";
 import TACourseRow from "./TACourseRow";
 
-const TACourseTable = ({ ta }: { ta: RealTA }) => {
+const TACourseTable = ({ ta, course }: { ta: RealTA, course: RealCourse }) => {
+
+  const [tasOfCourse, setTasOfCourse] = useState<Array<RealTA>>([]);
+
+  const loadTAsOfCourse = async () => {
+    try {
+      const res = await fetch("https://winter2022-comp307-group8.cs.mcgill.ca/course/tas/" + course.courseID);
+      const json = await res.json();
+      setTasOfCourse(json.tas as RealTA[]);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    console.log(course.courseName);
+    loadTAsOfCourse();
+  }, [course]);
+
   return (
     <div id="profTable">
       <table style={{ marginTop: "10px" }}>
@@ -16,7 +35,9 @@ const TACourseTable = ({ ta }: { ta: RealTA }) => {
           </tr>
         </thead>
         <tbody>
-          <TACourseRow ta={ta} />
+          {tasOfCourse.map((ta: RealTA) => (
+            <TACourseRow loadTAsOfCourse={loadTAsOfCourse} course={course} key={ta.email} ta={ta} />
+          ))}
         </tbody>
       </table>
     </div>

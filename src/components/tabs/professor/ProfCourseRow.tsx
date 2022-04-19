@@ -6,8 +6,10 @@ import ViewTAPerformance from "../admin/ViewTAPerformance";
 import EditOHTime from "./EditOHTime";
 import EditOHLocation from "./EditOHLocation";
 import EditDuties from "./EditDuties";
+import { RealCourse } from "../../../classes/Course";
 
-const ProfCourseRow = ({ ta }: { ta: RealTA }) => {
+const ProfCourseRow = ({ ta, course, loadTAsOfCourse }: { ta: RealTA, course: RealCourse, loadTAsOfCourse: () => Promise<void> }) => {
+
   return (
     <tr className="body">
       {/**
@@ -20,7 +22,7 @@ const ProfCourseRow = ({ ta }: { ta: RealTA }) => {
         <ViewTAInfo ta={ta} />
       </td>
       <td className="column3">
-        <EditOHTime ta={ta} />
+        <EditOHTime loadTAsOfCourse={loadTAsOfCourse} course={course} ta={ta} />
       </td>
       <td className="column4">
         <EditOHLocation ta={ta} />
