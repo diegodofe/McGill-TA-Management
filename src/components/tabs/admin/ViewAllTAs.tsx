@@ -28,10 +28,10 @@ const ViewAllTAs = () => {
       <div className="inline ">
         <ImportTACohort />
       </div>
-      <div className="inline add-ta-button ">
+      <div className="add-ta-button ">
         <ManualTAAdd fetchTAData={fetchTAData} />
       </div>
-      <h2>All TAs</h2>
+      <h2 className="course-name">All TAs</h2>
       <TAList kind={"all"} tas={tas} fetchTAData={fetchTAData} />
     </Container>
   );
