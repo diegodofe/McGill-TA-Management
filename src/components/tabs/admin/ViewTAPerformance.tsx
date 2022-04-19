@@ -2,15 +2,21 @@ import React, { useState } from "react";
 import OpenInFullIcon from "@mui/icons-material/OpenInFull";
 import { Button, Form, Accordion, Container, Modal } from "react-bootstrap";
 import "../../../style/userTable.css";
-import Review from "../../../classes/Review";
-import Log from "../../../classes/Log";
+import Review, { RealReview } from "../../../classes/Review";
+import Log, { RealLog } from "../../../classes/Log";
 
 import AddIcon from "@mui/icons-material/Add";
-import { TA } from "../../../classes/TA";
+import { RealTA, TA } from "../../../classes/TA";
+import { allLogs, allReviews, allTAs } from "../../../data/RealData";
 
-function ViewTAPerformance({ ta, isProfessor }: { ta: TA; isProfessor: boolean }) {
+function ViewTAPerformance({ ta, isProfessor }: { ta: RealTA; isProfessor: boolean }) {
   const [addLog, setAddLog] = useState(false);
   const ratingToStartMap: Array<string> = ["No Stars", "⭐", "⭐⭐", "⭐⭐⭐", "⭐⭐⭐⭐", "⭐⭐⭐⭐⭐"];
+
+  const currentTAScore: number = 4;
+  const currentTAStudentReviews: Array<RealReview> = [...allReviews]; // Need to fetch all reviews for this ta
+  const currentTAProfessorLogs: Array<RealLog> = [...allLogs]; // Need to fetch all logs for this ta
+
   const [show, setShow] = useState(false);
 
   return (
@@ -29,7 +35,7 @@ function ViewTAPerformance({ ta, isProfessor }: { ta: TA; isProfessor: boolean }
           </Modal.Header>
           {/** Modal body show if user not trying to add new log */}
           <Modal.Body>
-            <h4>{`Average Rating: ${ta.averageRating}/5`}</h4>
+            <h4>{`Average Rating: ${currentTAScore}/5`}</h4>
             <br />
             <div className="prof-log-add">
               <h5 className="prof-log-text">Professor Logs</h5>
@@ -41,13 +47,12 @@ function ViewTAPerformance({ ta, isProfessor }: { ta: TA; isProfessor: boolean }
             </div>
 
             <Accordion flush>
-              {ta.allLogs.map((log: Log, i: number) => (
+              {currentTAProfessorLogs.map((log: RealLog, i: number) => (
                 <Accordion.Item key={i} eventKey={`${i}`}>
-                  <Accordion.Header>{log.courseName}</Accordion.Header>
-
+                  <Accordion.Header>{log.courseID}</Accordion.Header>
                   <Accordion.Body>
                     <ul>
-                      {log.professorNotes.map((note: string, i: number) => (
+                      {log.comment.map((note: string, i: number) => (
                         <li key={i}>{note}</li>
                       ))}
                     </ul>
@@ -58,7 +63,7 @@ function ViewTAPerformance({ ta, isProfessor }: { ta: TA; isProfessor: boolean }
             <br />
             <h5>Student Reviews</h5>
             <Accordion flush>
-              {ta.allReviews.map((review: Review, i: number) => (
+              {currentTAStudentReviews.map((review: Review, i: number) => (
                 <Accordion.Item key={i} eventKey={`${i}`}>
                   <Accordion.Header>{ratingToStartMap[review.rating]}</Accordion.Header>
                   <Accordion.Body>{review.comment}</Accordion.Body>

@@ -44,7 +44,9 @@ const ProfCourseRow = ({ ta }: { ta: RealTA }) => {
       <td className="column5">
         <EditDuties ta={ta} />
       </td>
-      <td className="column6">{/* <ViewTAPerformance ta={ta} isProfessor={true} /> */}</td>
+      <td className="column6">
+        <ViewTAPerformance ta={ta} isProfessor={true} />
+      </td>
       <td className="column7">
         <Form.Check onChange={() => handleChangeWishlist()} aria-label="setWishlistStatus" />
       </td>

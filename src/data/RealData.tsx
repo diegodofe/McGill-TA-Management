@@ -1,4 +1,5 @@
 import { RealCourse } from "../classes/Course";
+import { RealLog } from "../classes/Log";
 import { RealProfessor } from "../classes/Professor";
 import { RealReview } from "../classes/Review";
 import { RealTA } from "../classes/TA";
@@ -139,6 +140,27 @@ export const allReviews: Array<RealReview> = [
     courseID: "1ec6382a-8998-499f-b325-df9ec109a9f5",
     rating: 3,
     comment: "Wasn't helpful and always showed up late for office hours.",
+    createdAt: "2022-04-19 17:47:08.716 +00:00",
+    updatedAt: "2022-04-19 17:47:08.716 +00:00",
+  },
+];
+
+export const allLogs: Array<RealLog> = [
+  {
+    ratedByUuid: "7b4dc1e7-a272-484d-b649-549a6cc601cc",
+    taRatedEmail: "alex.ference@mail.mcgill.ca",
+    courseID: "5f13eef5-b289-4a15-8e7d-b0dfd3715358",
+    rating: 4,
+    comment: "Was very helpful conducting zoom class for me.",
+    createdAt: "2022-04-19 16:02:04.547 +00:00",
+    updatedAt: "2022-04-19 16:02:04.547 +00:00",
+  },
+  {
+    ratedByUuid: "c7f17ddd-f14f-4707-9780-df74cfffce6f",
+    taRatedEmail: "ddorantesferreira@gmail.com",
+    courseID: "1ec6382a-8998-499f-b325-df9ec109a9f5",
+    rating: 3,
+    comment: "Covered my office hours this week - thanks!",
     createdAt: "2022-04-19 17:47:08.716 +00:00",
     updatedAt: "2022-04-19 17:47:08.716 +00:00",
   },
