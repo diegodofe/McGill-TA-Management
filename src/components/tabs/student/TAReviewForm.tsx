@@ -39,20 +39,19 @@ function ReviewTAForm({ ta, status }: { ta: RealTA; status: boolean }) {
         {/** TA Review Form */}
         <Modal.Body>
           <Form onSubmit={handleSubmit}>
-            <InputGroup className="mb-3">
-              <Form.Select required onChange={(e) => setTempRating(e.target.value)}>
-                <option value="">Rating</option>
-                <option value="5">⭐⭐⭐⭐⭐</option>
-                <option value="4">⭐⭐⭐⭐</option>
-                <option value="3">⭐⭐⭐</option>
-                <option value="2">⭐⭐</option>
-                <option value="1">⭐</option>
-              </Form.Select>
-              <FormControl required placeholder="Comment" aria-label="Text input with dropdown button" onChange={(e) => setTempComment(e.target.value)} />
-              <Button variant="outline-secondary" type="submit">
-                Submit
-              </Button>
-            </InputGroup>
+            <Form.Select required onChange={(e) => setTempRating(e.target.value)}>
+              <option value="">Rating</option>
+              <option value="5">⭐⭐⭐⭐⭐</option>
+              <option value="4">⭐⭐⭐⭐</option>
+              <option value="3">⭐⭐⭐</option>
+              <option value="2">⭐⭐</option>
+              <option value="1">⭐</option>
+            </Form.Select>
+            <FormControl className="mt-4 mb-4" required placeholder="Comment" aria-label="Text input with dropdown button" onChange={(e) => setTempComment(e.target.value)} />
+
+            <Button variant="outline-secondary" type="submit">
+              Submit
+            </Button>
           </Form>
         </Modal.Body>
       </Modal>
