@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Container } from "react-bootstrap";
+import { UserContext } from "../../../App";
 import { RealCourse } from "../../../classes/Course";
 import { RealTA } from "../../../classes/TA";
 import { allTAs } from "../../../data/RealData";
@@ -7,9 +8,54 @@ import "../../../style/userTable.css";
 import TAReviewRow from "./TAReviewRow";
 
 const StudentCourse = ({ course }: { course: RealCourse }) => {
-  /**
-   * @TODO get list of TAs for course
-   */
+  const [alreadyReviewdTAs, setAlreadyReviewdTAs] = React.useState([] as RealTA[]);
+  const [tasForCourse, setTasForCourse] = React.useState([] as RealTA[]);
+  const { user } = useContext(UserContext);
+
+  const loadAlreadyReviewedTAs = async () => {
+    try {
+      // get user getContext 
+      if (user && user.uuid) {
+        // const uuid = user.uuid;
+        // const response = await fetch(`https://winter2022-comp307-group8.cs.mcgill.ca/course/tas/alreadyReviewedByUser`, {
+        //   method: "POST",
+        //   headers: {
+        //     "Content-Type": "application/json"
+        //   },
+        //   body: JSON.stringify({
+        //     uuid: uuid,
+        //     courseId: course.courseID
+        //   })
+        // });
+        // const json = await response.json();
+        // setAlreadyReviewdTAs(json.tas as RealTA[]);
+      }
+    } catch (error) {
+      console.log(error);
+      console.error("Error loading reviewed TAs");
+    }
+  }
+
+  const loadTAsForCourse = async () => {
+    try {
+      // print courseID
+      console.log("course.courseID");
+      console.log(course.courseID)
+      const response = await fetch(`https://winter2022-comp307-group8.cs.mcgill.ca/course/tas/${course.courseID}`);
+      const json = await response.json();
+      setTasForCourse(json.tas as RealTA[]);
+    } catch (error) {
+      console.log(error);
+      console.error("Error loading TAs");
+    }
+  }
+
+  useEffect(() => {
+    console.log("Loaded course");
+    loadTAsForCourse();
+    loadAlreadyReviewedTAs();
+  }, []);
+
   return (
     <Container className="mb-5">
       <h2>{`${course.courseCode} ${course.courseNumber}: ${course.courseName}`}</h2>
@@ -28,8 +74,8 @@ const StudentCourse = ({ course }: { course: RealCourse }) => {
             {/**
              * @TODO Retrieve actual list of tas for this course
              */}
-            {allTAs.map((ta: RealTA, i: number) => (
-              <TAReviewRow key={i} ta={ta} />
+            {tasForCourse.map((ta: RealTA, i: number) => (
+              <TAReviewRow course={course} key={i} ta={ta} />
             ))}
           </tbody>
         </table>

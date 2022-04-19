@@ -1,9 +1,10 @@
 import React from "react";
+import { RealCourse } from "../../../classes/Course";
 import { RealTA } from "../../../classes/TA";
 import "../../../style/userTable.css";
 import ReviewTAForm from "./TAReviewForm";
 
-const ReviewTARow = ({ ta }: { ta: RealTA }) => {
+const ReviewTARow = ({ ta, course }: { ta: RealTA, course: RealCourse }) => {
   /**
    * @TODO get submission status from server of user's review for this specific ta
    */
@@ -15,7 +16,7 @@ const ReviewTARow = ({ ta }: { ta: RealTA }) => {
       <td className="column1">{isSubmitted ? "✔️" : "❌"}</td>
       <td className="column2 course-button">
         {/** TA Review form, modal, and button*/}
-        <ReviewTAForm ta={ta} status={isSubmitted} />
+        <ReviewTAForm course={course} ta={ta} status={isSubmitted} />
       </td>
       <td className="column3">{ta.email}</td>
       <td className="column4">{ta.firstName}</td>
