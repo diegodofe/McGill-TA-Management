@@ -1,12 +1,5 @@
 import React, { useContext, useState } from "react";
-import {
-  Container,
-  Nav,
-  Navbar,
-  NavDropdown,
-  Tab,
-  Tabs,
-} from "react-bootstrap";
+import { Container, Nav, Navbar, NavDropdown, Tab, Tabs } from "react-bootstrap";
 import { UserContext } from "../App";
 import RateTA from "../components/tabs/student/RateTA";
 import ManageProfessors from "../components/tabs/sysop/ManageProfessors";
@@ -52,23 +45,13 @@ export function Dashboard() {
    * @TODO Retrieve this information from the actual global user state
    */
   const { user, setUser } = useContext(UserContext);
-  const userProfiles: Array<UserTypes> = [
-    UserTypes.Student,
-    UserTypes.Professor,
-    UserTypes.TA,
-    UserTypes.Admin,
-    UserTypes.Sysop,
-  ];
+  const userProfiles: Array<UserTypes> = [UserTypes.Student, UserTypes.Professor, UserTypes.TA, UserTypes.Admin, UserTypes.Sysop];
 
   // Set a default profile
-  const [currentProfile, setCurrentProfile] = useState<UserTypes>(
-    userProfiles[0]
-  );
+  const [currentProfile, setCurrentProfile] = useState<UserTypes>(userProfiles[0]);
 
   // Set the default array of tabs relative to our default profile
-  const [currentTabs, setCurrentTabs] = useState<Array<string>>(
-    tabsPerProfile.get(currentProfile)!
-  );
+  const [currentTabs, setCurrentTabs] = useState<Array<string>>(tabsPerProfile.get(currentProfile)!);
 
   // On nav bar selection, this function sets the new current profile and associated tabs.
   function handleNavClick(profile: UserTypes): void {
@@ -102,19 +85,13 @@ export function Dashboard() {
             </NavDropdown>
           </Nav>
           <button onClick={() => handleLogout()}>
-          <img className="logout" src={logout} alt="logout" />
-        </button>
+            <img className="logout" src={logout} alt="logout" />
+          </button>
         </Container>
-        
       </Navbar>
 
       <Container>
-        <Tabs
-          defaultActiveKey="0"
-          transition={false}
-          id="noanim-tab"
-          className="sub"
-        >
+        <Tabs defaultActiveKey="0" transition={false} id="noanim-tab" className="sub">
           {currentTabs.map((currentTabName, i) => (
             <Tab className="sub" key={i} eventKey={i} title={currentTabName}>
               {tabNamesToJSX.get(currentTabName)}

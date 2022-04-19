@@ -2,8 +2,18 @@ import React from "react";
 import RemoveIcon from "@material-ui/icons/Remove";
 import { RealTA } from "../../../classes/TA";
 import ViewTAPerformance from "./ViewTAPerformance";
+import { allCourseMcGill } from "../../../data/RealData";
+import ViewTACourses from "./ViewTACourses";
+import { RealCourse } from "../../../classes/Course";
 
 const TARow = ({ ta, fetchTAData }: { ta: RealTA; fetchTAData: Function }) => {
+  /**
+   * @TODO fetch current list of assigned courses for this ta
+   */
+
+  const taCurrentAssigned: Array<RealCourse> = [allCourseMcGill[0], allCourseMcGill[1]];
+  const taPreviousAssigned: Array<RealCourse> = [...allCourseMcGill];
+
   const handleDeleteTA = async () => {
     try {
       console.log("deleting " + ta.email);
@@ -36,8 +46,12 @@ const TARow = ({ ta, fetchTAData }: { ta: RealTA; fetchTAData: Function }) => {
       <td className="column2">
         <ViewTAPerformance ta={ta} isProfessor={false} />
       </td>
-      <td className="column3">INSERT CURRENT COURSES</td>
-      <td className="column4">INSERT PREVIOUS COURSES</td>
+      <td className="column3">
+        <ViewTACourses courseList={taCurrentAssigned} />
+      </td>
+      <td className="column4">
+        <ViewTACourses courseList={taPreviousAssigned} />
+      </td>
     </tr>
   );
 };

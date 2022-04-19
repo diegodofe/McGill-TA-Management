@@ -36,7 +36,7 @@ const RateTA = () => {
     <div>
       <StudentRegisterCourse loadMyCourses={loadMyCourses} />
       <Container className="mt-3">
-        {myCourses.map((course, i) => (
+        {myCourses.map((course: RealCourse, i: number) => (
           <StudentCourse key={i} course={course} />
         ))}
       </Container>
