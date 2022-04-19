@@ -2,13 +2,14 @@ import React, { useContext, useEffect } from "react";
 import { Container } from "react-bootstrap";
 import { UserContext } from "../../../App";
 import { RealCourse } from "../../../classes/Course";
+import { RealReview } from "../../../classes/Review";
 import { RealTA } from "../../../classes/TA";
 import { allTAs } from "../../../data/RealData";
 import "../../../style/userTable.css";
 import TAReviewRow from "./TAReviewRow";
 
 const StudentCourse = ({ course }: { course: RealCourse }) => {
-  const [alreadyReviewdTAs, setAlreadyReviewdTAs] = React.useState([] as RealTA[]);
+  const [alreadyReviewdTAs, setAlreadyReviewdTAs] = React.useState([] as RealReview[]);
   const [tasForCourse, setTasForCourse] = React.useState([] as RealTA[]);
   const { user } = useContext(UserContext);
 
@@ -35,8 +36,7 @@ const StudentCourse = ({ course }: { course: RealCourse }) => {
             })
           });
         const aJson = await aRes.json();
-        console.log(aJson.tas);
-        setAlreadyReviewdTAs(aJson.tas as RealTA[]);
+        setAlreadyReviewdTAs(aJson.tas as RealReview[]);
       }
     } catch (error) {
       console.log(error);
@@ -61,7 +61,7 @@ const StudentCourse = ({ course }: { course: RealCourse }) => {
   useEffect(() => {
     console.log("Loaded course");
     loadTAsForCourse();
-    // loadAlreadyReviewedTAs();
+    loadAlreadyReviewedTAs();
   }, []);
 
   return (
@@ -83,13 +83,10 @@ const StudentCourse = ({ course }: { course: RealCourse }) => {
              * @TODO Retrieve actual list of tas for this course
              */}
             {tasForCourse.map((ta: RealTA, i: number) => (
-              <TAReviewRow course={course} key={i} ta={ta} />
+              <TAReviewRow loadAlreadyReviewedTAs={loadAlreadyReviewedTAs} alreadyReviewdTAs={alreadyReviewdTAs} course={course} key={i} ta={ta} />
             ))}
           </tbody>
         </table>
-        <button onClick={loadAlreadyReviewedTAs}>
-          Load Plz
-        </button>
       </div>
     </Container>
   );

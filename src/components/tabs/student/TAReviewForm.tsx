@@ -8,7 +8,7 @@ import { RealTA } from "../../../classes/TA";
 import { RealCourse } from "../../../classes/Course";
 import { UserContext } from "../../../App";
 
-function ReviewTAForm({ ta, status, course }: { ta: RealTA; status: boolean, course: RealCourse }) {
+function ReviewTAForm({ ta, status, course, loadAlreadyReviewedTAs }: { ta: RealTA; status: boolean, course: RealCourse, loadAlreadyReviewedTAs?: () => Promise<void> }) {
   const [show, setShow] = useState(false);
   const [tempRating, setTempRating] = useState<string>("0");
   const [tempComment, setTempComment] = useState<string>("");
@@ -36,6 +36,14 @@ function ReviewTAForm({ ta, status, course }: { ta: RealTA; status: boolean, cou
             comment: tempComment
           })
         });
+        if (addReviewRes.status === 200) {
+          console.log("Successfully added review");
+          if (loadAlreadyReviewedTAs) {
+            setTimeout(() => {
+              loadAlreadyReviewedTAs();
+            }, 500);
+          }
+        }
       }
     } catch (error) {
       console.log(error);
