@@ -16,9 +16,27 @@ const StudentCourse = ({ course }: { course: RealCourse }) => {
     try {
       // get user getContext 
       if (user && user.uuid) {
+        const uuid = user.uuid;
+        const courseID = course.courseID;
 
+        console.log("Loading already reviewed TAs");
+        console.log(courseID);
+        console.log(uuid);
 
-
+        const aRes = await fetch(`https://winter2022-comp307-group8.cs.mcgill.ca/course/tas/alreadyreviewedbyuser`
+          , {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              uuid: uuid,
+              courseID: courseID
+            })
+          });
+        const aJson = await aRes.json();
+        console.log(aJson.tas);
+        setAlreadyReviewdTAs(aJson.tas as RealTA[]);
       }
     } catch (error) {
       console.log(error);
@@ -43,7 +61,7 @@ const StudentCourse = ({ course }: { course: RealCourse }) => {
   useEffect(() => {
     console.log("Loaded course");
     loadTAsForCourse();
-    loadAlreadyReviewedTAs();
+    // loadAlreadyReviewedTAs();
   }, []);
 
   return (
@@ -69,6 +87,9 @@ const StudentCourse = ({ course }: { course: RealCourse }) => {
             ))}
           </tbody>
         </table>
+        <button onClick={loadAlreadyReviewedTAs}>
+          Load Plz
+        </button>
       </div>
     </Container>
   );
