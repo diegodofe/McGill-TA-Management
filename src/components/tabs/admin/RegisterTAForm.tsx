@@ -3,12 +3,16 @@ import { Button, Form, InputGroup, Modal } from "react-bootstrap";
 import AddIcon from "@mui/icons-material/Add";
 import React from "react";
 import "../../../style/userTable.css";
-import { allTAs } from "../../../data/FakeData";
-import { TA } from "../../../classes/TA";
+import { RealTA } from "../../../classes/TA";
+import { allTAs } from "../../../data/RealData";
 
 function RegisterTAForm({ courseName }: { courseName: string }) {
+  /**
+   * @TODO fetch list of all possible TA to add to this course
+   */
   const [show, setShow] = useState(false);
-  const [taToAdd, setTaToAdd] = useState<TA>();
+  const allPossibleTAs: Array<RealTA> = [...allTAs];
+  const [taToAdd, setTaToAdd] = useState<RealTA>(allPossibleTAs[0]); // set a default ta
 
   /**
    * @TODO send TA to server to be added to current course
@@ -38,7 +42,7 @@ function RegisterTAForm({ courseName }: { courseName: string }) {
             <InputGroup className="mb-3">
               <Form.Select required onChange={(e) => setTaToAdd(allTAs[e.target.value])}>
                 <option value="">Select a TA</option>
-                {allTAs.map((ta: TA, i: number) => (
+                {allPossibleTAs.map((ta: RealTA, i: number) => (
                   <option key={i} value={i}>{`${ta.firstName} ${ta.lastName}`}</option>
                 ))}
               </Form.Select>

@@ -1,7 +1,8 @@
 import React from "react";
 import RemoveIcon from "@material-ui/icons/Remove";
+import RealStudent from "../../../classes/Student";
 
-const StudentRow = ({ student, fetchStudentData }) => {
+const StudentRow = ({ student, fetchStudentData }: { student: RealStudent; fetchStudentData: Function }) => {
   const handleDeleteStudent = () => {
     console.log("Delete student");
     try {
@@ -30,7 +31,7 @@ const StudentRow = ({ student, fetchStudentData }) => {
       <td className="column1">{student.email}</td>
       <td className="column2">{student.firstName}</td>
       <td className="column3">{student.lastName}</td>
-      <td className="column3">{student.studentID}</td>
+      <td className="column4">{student.studentID}</td>
     </tr>
   );
 };

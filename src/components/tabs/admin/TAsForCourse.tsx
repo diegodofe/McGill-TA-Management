@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Button, Form, InputGroup } from "react-bootstrap";
+import { Button, Container, Form, InputGroup } from "react-bootstrap";
 import TAList from "./TAList";
 import "../../../style/admin.css";
 import { RealTA } from "../../../classes/TA";
@@ -36,7 +36,7 @@ const TAsForCourse = ({ course }: { course: RealCourse }) => {
 
   const handleAssignToClass = async () => {
     if (!email) {
-      return
+      return;
     }
 
     try {
@@ -71,16 +71,14 @@ const TAsForCourse = ({ course }: { course: RealCourse }) => {
   }, []);
 
   return (
-    <div>
+    <Container>
       <TAList tas={tas} fetchTAData={fetchTAData} kind={"current"} />
-
       <h6 className="sub-title">Assign TA to course</h6>
-
       <Form>
         <InputGroup className="mb-3">
           <Form.Select required onChange={(thing) => setEmail(thing.target.value)}>
             <option value="">Select TA</option>
-            {allTas.map((ta, i) => {
+            {allTas.map((ta: RealTA, i: number) => {
               return (
                 <option key={i} value={ta.email}>
                   {ta.email}
@@ -93,7 +91,7 @@ const TAsForCourse = ({ course }: { course: RealCourse }) => {
           </Button>
         </InputGroup>
       </Form>
-    </div>
+    </Container>
   );
 };
 export default TAsForCourse;

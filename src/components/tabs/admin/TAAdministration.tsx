@@ -11,7 +11,7 @@ const TAAdministration = () => {
   /**
    * Fetch
    */
-  const [allCourses, setAllCourse] = useState<Array<RealCourse>>(allCourseMcGill);
+  const [allCourses, setAllCourse] = useState<Array<RealCourse>>([...allCourseMcGill]);
   const [currentCourse, setCurrentCourse] = useState<RealCourse>(allCourses[0]); // Set to default course
 
   const handleFetchCourses = async (isInitial: boolean = false) => {
@@ -48,9 +48,10 @@ const TAAdministration = () => {
           ))}
         </Dropdown.Menu>
       </Dropdown>
+
+      <h2 className="inline course-name">{`${currentCourse.courseNumber}: ${currentCourse.courseName}`}</h2>
+      <ViewTAWishlist course={currentCourse} isProfessor={false} />
       <div className="inline">
-        <h2 className="inline course-name">{`${currentCourse.courseNumber}: ${currentCourse.courseName}`}</h2>
-        <ViewTAWishlist course={currentCourse} isProfessor={false} />
         <TAsForCourse course={currentCourse} />
       </div>
     </Container>

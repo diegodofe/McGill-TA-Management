@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import AddCourseForm from "./AddCourseForm";
 import CourseRow from "./CourseRow";
 import "../../../style/userTable.css";
+import { RealCourse } from "../../../classes/Course";
 
 const ManageCourses = () => {
-  const [courses, setCourses] = useState([]);
+  const [courses, setCourses] = useState<Array<RealCourse>>([]);
 
   const fetchCourseData = async () => {
     try {
@@ -36,7 +37,7 @@ const ManageCourses = () => {
             </tr>
           </thead>
           <tbody>
-            {courses.map((course, i) => (
+            {courses.map((course: RealCourse, i: number) => (
               <CourseRow key={i} course={course} fetchCourseData={fetchCourseData} />
             ))}
           </tbody>

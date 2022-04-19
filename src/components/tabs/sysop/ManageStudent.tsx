@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import StudentRow from "./StudentRow";
 import "../../../style/userTable.css";
-import { allStudents } from "../../../data/FakeData";
+import RealStudent from "../../../classes/Student";
 
 const ManageStudents = () => {
-  const [students, setStudents] = useState([]);
+  const [students, setStudents] = useState<Array<RealStudent>>([]);
 
   const fetchStudentData = async () => {
     try {
@@ -36,7 +36,7 @@ const ManageStudents = () => {
             </tr>
           </thead>
           <tbody>
-            {allStudents.map((student, i) => (
+            {students.map((student: RealStudent, i: number) => (
               <StudentRow key={i} student={student} fetchStudentData={fetchStudentData} />
             ))}
           </tbody>

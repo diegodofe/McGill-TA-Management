@@ -2,9 +2,10 @@ import React, { useEffect } from "react";
 import AddProfForm from "./AddProfForm";
 import ProfRow from "./ProfRow";
 import "../../../style/userTable.css";
+import { RealProfessor } from "../../../classes/Professor";
 
 const ManageProfessors = () => {
-  const [profs, setProfs] = React.useState([]);
+  const [profs, setProfs] = React.useState<Array<RealProfessor>>([]);
 
   const fetchProfData = async () => {
     try {
@@ -42,7 +43,7 @@ const ManageProfessors = () => {
           </thead>
           <tbody>
             {/**Set to hardcoded list of profs for testing purposes */}
-            {profs.map((professor, i) => {
+            {profs.map((professor: RealProfessor, i: number) => {
               if (professor) {
                 return <ProfRow key={i} professor={professor} fetchProfData={fetchProfData} />;
               }

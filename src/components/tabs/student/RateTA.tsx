@@ -8,14 +8,13 @@ import StudentCourse from "./StudentCourseTable";
 import StudentRegisterCourse from "./StudentRegisterCourse";
 
 const RateTA = () => {
-
   const [myCourses, setMyCourses] = React.useState(enrolledCourses);
 
   const { user } = useContext(UserContext);
 
   const loadMyCourses = async () => {
     try {
-      // get user getContext 
+      // get user getContext
       if (user && user.uuid) {
         const uuid = user.uuid;
         const response = await fetch(`https://winter2022-comp307-group8.cs.mcgill.ca/student/getallclasses/${uuid}/`);
@@ -26,13 +25,12 @@ const RateTA = () => {
       console.log(error);
       console.error("Error loading courses");
     }
-  }
+  };
 
   React.useEffect(() => {
     loadMyCourses();
     console.log("Loaded courses");
   }, []);
-
 
   return (
     <div>

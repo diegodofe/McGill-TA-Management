@@ -25,19 +25,14 @@ const ViewAllTAs = () => {
 
   return (
     <Container>
-      <div className="inline">
+      <div className="inline ">
         <ImportTACohort />
       </div>
       <div className="inline add-ta-button ">
         <ManualTAAdd fetchTAData={fetchTAData} />
       </div>
-      <div style={{ display: "block" }}>
-        <div className="inline">
-          <h2 className="course-name">All Teaching Assistants</h2>
-          <TAList kind={"all"} tas={tas} fetchTAData={fetchTAData} />
-          {/* <RenderList listToRender={tas} courseName={""} isHistorical={true} /> */}
-        </div>
-      </div>
+      <h2>All TAs</h2>
+      <TAList kind={"all"} tas={tas} fetchTAData={fetchTAData} />
     </Container>
   );
 };

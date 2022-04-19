@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import OpenInFullIcon from "@mui/icons-material/OpenInFull";
 import { Accordion, Container, Modal } from "react-bootstrap";
 import "../../../style/userTable.css";
-import Review, { RealReview } from "../../../classes/Review";
-import Log, { RealLog } from "../../../classes/Log";
+import { RealReview } from "../../../classes/Review";
+import { RealLog } from "../../../classes/Log";
 import { RealTA } from "../../../classes/TA";
 import { allLogs, allReviews, allTAs } from "../../../data/RealData";
 
@@ -64,7 +64,7 @@ function ViewTAPerformance({ ta, isProfessor }: { ta: RealTA; isProfessor: boole
             <br />
             <h5>Student Reviews</h5>
             <Accordion flush>
-              {currentTAStudentReviews.map((review: Review, i: number) => (
+              {currentTAStudentReviews.map((review: RealReview, i: number) => (
                 <Accordion.Item key={i} eventKey={`${i}`}>
                   <Accordion.Header>{ratingToStartMap[review.rating]}</Accordion.Header>
                   <Accordion.Body>{review.comment}</Accordion.Body>

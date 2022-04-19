@@ -4,22 +4,22 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import "../../../style/userTable.css";
 import AddIcon from "@mui/icons-material/Add";
 import { RealTA } from "../../../classes/TA";
-import { allTAs } from "../../../data/RealData";
-import Course, { RealCourse } from "../../../classes/Course";
-import { allCoursesAtMcGill } from "../../../data/FakeData";
+import { allCourseMcGill, allTAs } from "../../../data/RealData";
+import { RealCourse } from "../../../classes/Course";
 
 function ProfessorLogForm() {
-  const [addLog, setAddLog] = useState(false);
-  const [selectedCourse, setSelectedCourse] = useState<string>(allCoursesAtMcGill[0].courseID);
+  const allCourses: Array<RealCourse> = [...allCourseMcGill];
+  const [selectedCourseID, setSelectedCourseID] = useState<string>(allCourses[0].courseID);
   const [selectedTerm, setSelectedTerm] = useState<string>("September 2022");
   const [comment, setComment] = useState<string>("September 2022");
+  const [addLog, setAddLog] = useState(false);
 
   /**
    * @TODO send log to server to be added to current course
    */
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(selectedCourse);
+    console.log(selectedCourseID);
     console.log(selectedTerm);
     console.log(comment);
   };
@@ -32,9 +32,9 @@ function ProfessorLogForm() {
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Label>Course</Form.Label>
-          <Form.Select required onChange={(e) => setSelectedCourse(e.target.value)}>
+          <Form.Select required onChange={(e) => setSelectedCourseID(e.target.value)}>
             <option value="">Select a Course</option>
-            {allCoursesAtMcGill.map((course: Course, i: number) => (
+            {allCourses.map((course: RealCourse, i: number) => (
               <option key={i} value={course.courseID}>
                 {course.courseID}
               </option>

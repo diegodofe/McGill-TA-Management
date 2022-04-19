@@ -10,10 +10,10 @@ const TAList = ({ tas, fetchTAData, kind }: { tas: Array<RealTA>; fetchTAData: F
         <thead>
           <tr>
             <th className="column0"></th>
-            <th className="column2">Teaching Assistant</th>
-            <th className="column3">Performance</th>
-            <th className="column4">Current Courses</th>
-            <th className="column5">Previous Courses</th>
+            <th className="column1">Teaching Assistant</th>
+            <th className="column2">Performance</th>
+            <th className="column3">Current Courses</th>
+            <th className="column4">Previous Courses</th>
           </tr>
         </thead>
         <tbody>

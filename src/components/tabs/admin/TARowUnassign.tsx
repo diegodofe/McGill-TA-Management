@@ -31,7 +31,9 @@ const TARowUnassign = ({ ta, fetchTAData }: { ta: RealTA; fetchTAData: Function 
       <td className="column1">
         {ta.email} {ta.lastName}
       </td>
-      <td className="column2">INSERT CURRENT COURSES</td>
+      <td className="column2">
+        <ViewTAPerformance ta={ta} isProfessor={false} />
+      </td>
       <td className="column3">INSERT CURRENT COURSES</td>
       <td className="column4">INSERT PREVIOUS COURSES</td>
     </tr>

@@ -2,6 +2,7 @@ import { RealCourse } from "../classes/Course";
 import { RealLog } from "../classes/Log";
 import { RealProfessor } from "../classes/Professor";
 import { RealReview } from "../classes/Review";
+import RealStudent from "../classes/Student";
 import { RealTA } from "../classes/TA";
 
 export const allTAs: Array<RealTA> = [
@@ -169,5 +170,28 @@ export const allLogs: Array<RealLog> = [
     comment: "Covered my office hours this week - thanks!",
     createdAt: "2022-04-19 17:47:08.716 +00:00",
     updatedAt: "2022-04-19 17:47:08.716 +00:00",
+  },
+];
+
+export const allStudents: Array<RealStudent> = [
+  {
+    uuid: "c7f17ddd-f14f-4707-9780-df74cfffce6f",
+    firstName: "Alex",
+    lastName: "Ference",
+    email: "alex.ference@mail.mcgill.ca",
+    password: "$2b$08$hgf0Q7RdAHjjot8m7gsv4uJt6rcksP/ULop38gcj58.PZgAuu2F.O",
+    createdAt: "2022-04-16 03:20:48.833 +00:00",
+    updatedAt: "2022-04-16 03:20:48.833 +00:00",
+    studentID: "260824824",
+  },
+  {
+    uuid: "7b4dc1e7-a272-484d-b649-549a6cc601cc",
+    firstName: "Diego",
+    lastName: "Dorantes-Ferreira",
+    email: "ddorantesferreira@gmail.com",
+    password: "$2b$08$uDTKk73gT1zAODIskoZ.Weo1VbBCqDuE7it1wOkxyxC.C5JeyEj1W",
+    createdAt: "2022-04-16 16:48:51.251 +00:00",
+    updatedAt: "2022-04-16 16:48:51.251 +00:00",
+    studentID: "260000000",
   },
 ];
