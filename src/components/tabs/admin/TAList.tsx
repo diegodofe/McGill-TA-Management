@@ -1,9 +1,8 @@
 import React from "react";
 import { RealTA } from "../../../classes/TA";
-import TARow from "./TARow";
 import TARowUnassign from "./TARowUnassign";
 
-const TAList = ({ tas, fetchTAData, kind }: { tas: Array<RealTA>; fetchTAData: Function; kind: string }) => {
+const TAList = ({ tas, fetchTAData }: { tas: Array<RealTA>; fetchTAData: Function }) => {
   return (
     <div id="profTable">
       <table style={{ marginTop: "10px" }}>
@@ -17,13 +16,9 @@ const TAList = ({ tas, fetchTAData, kind }: { tas: Array<RealTA>; fetchTAData: F
           </tr>
         </thead>
         <tbody>
-          {tas.map((ta: RealTA, i: number) => {
-            if (kind === "all") {
-              return <TARow key={i} ta={ta} fetchTAData={fetchTAData} />;
-            } else {
-              return <TARowUnassign key={i} ta={ta} fetchTAData={fetchTAData} />;
-            }
-          })}
+          {tas.map((ta: RealTA, i: number) => (
+            <TARowUnassign key={i} ta={ta} fetchTAData={fetchTAData} />
+          ))}
         </tbody>
       </table>
     </div>

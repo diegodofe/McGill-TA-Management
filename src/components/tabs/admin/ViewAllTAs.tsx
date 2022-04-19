@@ -32,7 +32,7 @@ const ViewAllTAs = () => {
         <ManualTAAdd fetchTAData={fetchTAData} />
       </div>
       <h2 className="course-name">All TAs</h2>
-      <TAList kind={"all"} tas={tas} fetchTAData={fetchTAData} />
+      <TAList tas={tas} fetchTAData={fetchTAData} />
     </Container>
   );
 };

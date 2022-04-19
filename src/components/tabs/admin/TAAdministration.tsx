@@ -49,7 +49,7 @@ const TAAdministration = () => {
         </Dropdown.Menu>
       </Dropdown>
 
-      <h2 className="inline course-name">{`${currentCourse.courseNumber}: ${currentCourse.courseName}`}</h2>
+      <h2 className="inline course-name">{`${currentCourse.courseCode} ${currentCourse.courseNumber}: ${currentCourse.courseName}`}</h2>
       <ViewTAWishlist course={currentCourse} isProfessor={false} />
       <div className="inline">
         <TAsForCourse course={currentCourse} />

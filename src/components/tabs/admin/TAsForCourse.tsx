@@ -72,7 +72,7 @@ const TAsForCourse = ({ course }: { course: RealCourse }) => {
 
   return (
     <Container>
-      <TAList tas={tas} fetchTAData={fetchTAData} kind={"current"} />
+      <TAList tas={tas} fetchTAData={fetchTAData} />
       <h6 className="sub-title">Assign TA to course</h6>
       <Form>
         <InputGroup className="mb-3">
