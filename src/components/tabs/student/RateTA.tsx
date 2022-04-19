@@ -38,9 +38,6 @@ const RateTA = () => {
     <div>
       <StudentRegisterCourse loadMyCourses={loadMyCourses} />
       <Container className="mt-3">
-        {/**
-         * @TODO Retrieve this information from the actual global user state
-         */}
         {myCourses.map((course, i) => (
           <StudentCourse key={i} course={course} />
         ))}

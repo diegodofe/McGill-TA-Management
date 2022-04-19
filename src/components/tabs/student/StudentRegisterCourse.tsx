@@ -49,7 +49,7 @@ function StudentRegisterCourse({ loadMyCourses }) {
         });
         const json = await enrollRes.json();
         console.log(json);
-
+        console.log("enrolled");
         setTimeout(() => {
           loadMyCourses();
         }, 500);
