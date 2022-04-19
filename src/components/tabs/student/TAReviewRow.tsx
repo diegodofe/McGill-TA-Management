@@ -1,8 +1,9 @@
 import React from "react";
+import { RealTA } from "../../../classes/TA";
 import "../../../style/userTable.css";
 import ReviewTAForm from "./TAReviewForm";
 
-const ReviewTARow = ({ ta }) => {
+const ReviewTARow = ({ ta }: { ta: RealTA }) => {
   /**
    * @TODO get submission status from server of user's review for this specific ta
    */

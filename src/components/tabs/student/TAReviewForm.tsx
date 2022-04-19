@@ -4,8 +4,9 @@ import OpenInFullIcon from "@mui/icons-material/OpenInFull";
 import React from "react";
 import { Modal } from "react-bootstrap";
 import "../../../style/userTable.css";
+import { RealTA } from "../../../classes/TA";
 
-function ReviewTAForm({ ta, status }) {
+function ReviewTAForm({ ta, status }: { ta: RealTA; status: boolean }) {
   const [show, setShow] = useState(false);
   const [tempRating, setTempRating] = useState<string>("0");
   const [tempComment, setTempComment] = useState<string>("");

@@ -1,7 +1,7 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import { TA } from "../../../classes/TA";
-import { usersEnrolledCourses } from "../../../data/FakeData";
+import { RealTA } from "../../../classes/TA";
+import { allTAs, enrolledCourses } from "../../../data/RealData";
 import "../../../style/userTable.css";
 import TAReviewRow from "./TAReviewRow";
 
@@ -11,9 +11,9 @@ const RateTA = () => {
       {/**
        * @TODO Retrieve this information from the actual global user state
        */}
-      {usersEnrolledCourses.map((course, i) => (
+      {enrolledCourses.map((course, i) => (
         <Container key={i} className="mb-4">
-          <h2>{`${course.courseID}: ${course.name}`}</h2>
+          <h2>{`${course.courseCode} ${course.courseNumber}: ${course.courseName}`}</h2>
           <div id="profTable">
             <table>
               <thead>
@@ -26,8 +26,10 @@ const RateTA = () => {
                 </tr>
               </thead>
               <tbody>
-                {/**Set to hardcoded list of profs for testing purposes */}
-                {course.currentTAs.map((ta: TA, i: number) => (
+                {/**
+                 * @TODO Retrieve actual list of tas for this course
+                 */}
+                {allTAs.map((ta: RealTA, i: number) => (
                   <TAReviewRow key={i} ta={ta} />
                 ))}
               </tbody>

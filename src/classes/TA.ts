@@ -13,3 +13,16 @@ export interface TA {
   previousCourses: Array<string>;
   allLogs: Array<Log>;
 }
+
+export interface RealTA {
+  email: string;
+  courseID: string;
+  createdAt: string;
+  updatedAt: string;
+  faculty: string;
+  department: string;
+  firstName: string;
+  lastName: string;
+  uuid: string;
+  password: string;
+}
