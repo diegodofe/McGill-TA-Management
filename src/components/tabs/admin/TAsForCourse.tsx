@@ -35,6 +35,10 @@ const TAsForCourse = ({ course }: { course: RealCourse }) => {
   };
 
   const handleAssignToClass = async () => {
+    if (!email) {
+      return
+    }
+
     try {
       const assignRes = await fetch(`https://winter2022-comp307-group8.cs.mcgill.ca/ta/assignToCourse`, {
         method: "POST",
@@ -75,6 +79,7 @@ const TAsForCourse = ({ course }: { course: RealCourse }) => {
       <Form>
         <InputGroup className="mb-3">
           <Form.Select required onChange={(thing) => setEmail(thing.target.value)}>
+            <option value="">Select TA</option>
             {allTas.map((ta, i) => {
               return (
                 <option key={i} value={ta.email}>
