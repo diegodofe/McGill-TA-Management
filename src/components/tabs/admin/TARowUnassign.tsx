@@ -1,7 +1,9 @@
 import React from "react";
 import RemoveIcon from "@material-ui/icons/Remove";
+import { RealTA } from "../../../classes/TA";
+import ViewTAPerformance from "./ViewTAPerformance";
 
-const TARowUnassign = ({ ta, fetchTAData }) => {
+const TARowUnassign = ({ ta, fetchTAData }: { ta: RealTA; fetchTAData: Function }) => {
   const handleUnassignUser = async () => {
     console.log(ta.email);
     const res = await fetch(``, {
@@ -26,12 +28,12 @@ const TARowUnassign = ({ ta, fetchTAData }) => {
           <RemoveIcon />
         </button>
       </td>
-      <td className="column2">
-        {ta.email} {ta.lastName || ta.backupLastName}
+      <td className="column1">
+        {ta.email} {ta.lastName}
       </td>
-      <td className="column3">{ta.performance}</td>
-      <td className="column4">{ta.currentCourses}</td>
-      <td className="column5">{ta.previousCourses}</td>
+      <td className="column2">INSERT CURRENT COURSES</td>
+      <td className="column3">INSERT CURRENT COURSES</td>
+      <td className="column4">INSERT PREVIOUS COURSES</td>
     </tr>
   );
 };

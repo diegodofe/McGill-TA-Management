@@ -41,7 +41,7 @@ const TAAdministration = () => {
           Select Course
         </Dropdown.Toggle>
         <Dropdown.Menu className="courses">
-          {allCourses.map((course: any, i: number) => (
+          {allCourses.map((course: RealCourse, i: number) => (
             <Dropdown.Item key={i} onClick={() => setCurrentCourse(course)}>
               {course.courseCode + " " + course.courseNumber + " - " + course.term + " " + course.year}
             </Dropdown.Item>
