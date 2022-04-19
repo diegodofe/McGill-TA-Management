@@ -10,7 +10,7 @@ export default interface Course {
 }
 
 export interface RealCourse {
-  uuid: string;
+  uuid?: string;
   courseID: string;
   createdAt: string;
   updatedAt: string;
