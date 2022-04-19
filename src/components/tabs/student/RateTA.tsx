@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
+import { Container } from "react-bootstrap";
 import { UserContext } from "../../../App";
 import { RealCourse } from "../../../classes/Course";
 import { enrolledCourses } from "../../../data/RealData";
 import "../../../style/userTable.css";
 import StudentCourse from "./StudentCourseTable";
+import StudentRegisterCourse from "./StudentRegisterCourse";
 
 const RateTA = () => {
 
@@ -45,12 +47,15 @@ const RateTA = () => {
 
   return (
     <div>
-      {/**
-       * @TODO Retrieve this information from the actual global user state
-       */}
-      {myCourses.map((course, i) => (
-        <StudentCourse key={i} course={course} />
-      ))}
+      <StudentRegisterCourse />
+      <Container className="mt-3">
+        {/**
+         * @TODO Retrieve this information from the actual global user state
+         */}
+        {myCourses.map((course, i) => (
+          <StudentCourse key={i} course={course} />
+        ))}
+      </Container>
     </div>
   );
 };

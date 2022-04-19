@@ -52,3 +52,46 @@ export const enrolledCourses: Array<RealCourse> = [
     courseCode: "COMP",
   },
 ];
+
+export const allCourseMcGill: Array<RealCourse> = [
+  {
+    courseID: "1ec6382a-8998-499f-b325-df9ec109a9f5",
+    createdAt: "2022-04-17 17:52:33.989 +00:00",
+    updatedAt: "2022-04-17 17:52:33.989 +00:00",
+    term: "Winter",
+    year: "2022",
+    courseNumber: "323",
+    courseName: "Probability",
+    courseCode: "MATH",
+  },
+  {
+    courseID: "5f13eef5-b289-4a15-8e7d-b0dfd3715358",
+    createdAt: "2022-04-17 17:52:16.525 +00:00",
+    updatedAt: "2022-04-17 17:52:16.525 +00:00",
+    term: "Winter",
+    year: "2022",
+    courseNumber: "421",
+    courseName: "Databases",
+    courseCode: "COMP",
+  },
+  {
+    courseID: "1ec6382a-8998-499f-b325-df9ec109a9f5",
+    createdAt: "2022-04-17 17:52:33.989 +00:00",
+    updatedAt: "2022-04-17 17:52:33.989 +00:00",
+    term: "Winter",
+    year: "2022",
+    courseNumber: "323",
+    courseName: "Probability",
+    courseCode: "MATH",
+  },
+  {
+    courseID: "1ec6382a-8998-499f-b325-df9ec109a9f5",
+    createdAt: "2022-04-17 17:52:33.989 +00:00",
+    updatedAt: "2022-04-17 17:52:33.989 +00:00",
+    term: "Winter",
+    year: "2022",
+    courseNumber: "323",
+    courseName: "Probability",
+    courseCode: "MATH",
+  },
+];
