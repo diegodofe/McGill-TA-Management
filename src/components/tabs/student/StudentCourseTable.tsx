@@ -16,19 +16,9 @@ const StudentCourse = ({ course }: { course: RealCourse }) => {
     try {
       // get user getContext 
       if (user && user.uuid) {
-        // const uuid = user.uuid;
-        // const response = await fetch(`https://winter2022-comp307-group8.cs.mcgill.ca/course/tas/alreadyReviewedByUser`, {
-        //   method: "POST",
-        //   headers: {
-        //     "Content-Type": "application/json"
-        //   },
-        //   body: JSON.stringify({
-        //     uuid: uuid,
-        //     courseId: course.courseID
-        //   })
-        // });
-        // const json = await response.json();
-        // setAlreadyReviewdTAs(json.tas as RealTA[]);
+
+
+
       }
     } catch (error) {
       console.log(error);
