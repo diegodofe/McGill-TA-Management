@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/images/mcgill_logo.jpg";
+import "../style/login.css";
 
 const LoggedOut: React.FC = () => {
   return (
+    <div className="login">
     <div className="welcome">
       <form>
         <div className="form-inner">
@@ -17,6 +19,7 @@ const LoggedOut: React.FC = () => {
           </p>
         </div>
       </form>
+    </div>
     </div>
   );
 };
