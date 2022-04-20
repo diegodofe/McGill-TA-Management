@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Container } from "react-bootstrap";
 import { UserContext } from "../../../App";
-import { RealCourse } from "../../../classes/Course";
+import { Course } from "../../../classes/Course";
 import { enrolledCourses } from "../../../data/RealData";
 import "../../../style/userTable.css";
 import StudentCourse from "./StudentCourseTable";
@@ -19,7 +19,7 @@ const RateTA = () => {
         const uuid = user.uuid;
         const response = await fetch(`https://winter2022-comp307-group8.cs.mcgill.ca/student/getallclasses/${uuid}/`);
         const json = await response.json();
-        setMyCourses(json.enrolledCourses as RealCourse[]);
+        setMyCourses(json.enrolledCourses as Course[]);
       }
     } catch (error) {
       console.log(error);
@@ -36,7 +36,7 @@ const RateTA = () => {
     <div>
       <StudentRegisterCourse loadMyCourses={loadMyCourses} />
       <Container className="mt-3">
-        {myCourses.map((course: RealCourse, i: number) => (
+        {myCourses.map((course: Course, i: number) => (
           <StudentCourse key={i} course={course} />
         ))}
       </Container>

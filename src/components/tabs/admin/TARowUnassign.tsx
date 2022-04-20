@@ -1,18 +1,18 @@
 import React from "react";
 import RemoveIcon from "@material-ui/icons/Remove";
-import { RealTA } from "../../../classes/TA";
+import { TA } from "../../../classes/TA";
 import ViewTAPerformance from "./ViewTAPerformance";
 import { allCourseMcGill } from "../../../data/RealData";
-import { RealCourse } from "../../../classes/Course";
+import { Course } from "../../../classes/Course";
 import ViewTACourses from "./ViewTACourses";
 
-const TARowUnassign = ({ ta, fetchTAData }: { ta: RealTA; fetchTAData: Function }) => {
+const TARowUnassign = ({ ta, fetchTAData }: { ta: TA; fetchTAData: Function }) => {
   /**
    * @TODO fetch current list of assigned courses for this ta
    */
 
-  const taCurrentAssigned: Array<RealCourse> = [allCourseMcGill[0], allCourseMcGill[1]];
-  const taPreviousAssigned: Array<RealCourse> = [...allCourseMcGill];
+  const taCurrentAssigned: Array<Course> = [allCourseMcGill[0], allCourseMcGill[1]];
+  const taPreviousAssigned: Array<Course> = [...allCourseMcGill];
 
   const handleUnassignUser = async () => {
     console.log(ta.email);

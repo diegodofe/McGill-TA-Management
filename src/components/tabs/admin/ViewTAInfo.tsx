@@ -3,9 +3,9 @@ import OpenInFullIcon from "@mui/icons-material/OpenInFull";
 import React from "react";
 import { Modal } from "react-bootstrap";
 import "../../../style/userTable.css";
-import { RealTA } from "../../../classes/TA";
+import { TA } from "../../../classes/TA";
 
-function ViewTAInfo({ ta }: { ta: RealTA }) {
+function ViewTAInfo({ ta }: { ta: TA }) {
   const [show, setShow] = useState(false);
 
   return (
@@ -27,24 +27,29 @@ function ViewTAInfo({ ta }: { ta: RealTA }) {
          */}
         <Modal.Body>
           <div>
-            <span style={{ color: 'grey' }}>Faculty: </span>{ta.faculty}
+            <span style={{ color: "grey" }}>Faculty: </span>
+            {ta.faculty}
           </div>
           <div>
-            <span style={{ color: 'grey' }}>Department: </span>{ta.department}
+            <span style={{ color: "grey" }}>Department: </span>
+            {ta.department}
           </div>
           <div>
-            <span style={{ color: 'grey' }}>Email: </span>{ta.email}
+            <span style={{ color: "grey" }}>Email: </span>
+            {ta.email}
           </div>
           <div>
-            <span style={{ color: 'grey' }}>Office Hours: </span>{ta.officeHoursTime}
+            <span style={{ color: "grey" }}>Office Hours: </span>
+            {ta.officeHoursTime}
           </div>
           <div>
-            <span style={{ color: 'grey' }}>Office Location: </span>{ta.officeHoursLocation}
+            <span style={{ color: "grey" }}>Office Location: </span>
+            {ta.officeHoursLocation}
           </div>
           <div>
-            <span style={{ color: 'grey' }}>Duties: </span>{ta.duties}
+            <span style={{ color: "grey" }}>Duties: </span>
+            {ta.duties}
           </div>
-
         </Modal.Body>
       </Modal>
     </div>

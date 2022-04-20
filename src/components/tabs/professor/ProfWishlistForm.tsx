@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { Button, Collapse, Container, Form, InputGroup } from "react-bootstrap";
 import "../../../style/userTable.css";
 import AddIcon from "@mui/icons-material/Add";
-import { RealTA } from "../../../classes/TA";
-import { RealCourse } from "../../../classes/Course";
+import { TA } from "../../../classes/TA";
+import { Course } from "../../../classes/Course";
 import { allTAs } from "../../../data/RealData";
 
-function ProfWishlistForm({ course, isProfessor }: { course: RealCourse; isProfessor: boolean }) {
+function ProfWishlistForm({ course, isProfessor }: { course: Course; isProfessor: boolean }) {
   const [open, setOpen] = useState(false);
   const [taToAdd, setTAtoAdd] = useState(`${allTAs[0].firstName} ${allTAs[0].lastName}`); // Default TA to add
 
@@ -36,7 +36,7 @@ function ProfWishlistForm({ course, isProfessor }: { course: RealCourse; isProfe
             <Form.Select required onChange={(e) => setTAtoAdd(e.target.value)}>
               {/** Display all the tas at mcgill */}
               <option value="">Select a TA</option>
-              {allTAs.map((ta: RealTA, i: number) => (
+              {allTAs.map((ta: TA, i: number) => (
                 <option key={i} value={`${ta.firstName} ${ta.lastName}`}>{`${ta.firstName} ${ta.lastName}`}</option>
               ))}
             </Form.Select>

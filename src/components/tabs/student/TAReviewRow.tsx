@@ -1,22 +1,19 @@
 import React from "react";
-import { RealCourse } from "../../../classes/Course";
-import { RealReview } from "../../../classes/Review";
-import { RealTA } from "../../../classes/TA";
+import { Course } from "../../../classes/Course";
+import { Review } from "../../../classes/Review";
+import { TA } from "../../../classes/TA";
 import "../../../style/userTable.css";
 import ReviewTAForm from "./TAReviewForm";
-import CheckCircleIcon from '@mui/icons-material/Check';
+import CheckCircleIcon from "@mui/icons-material/Check";
 
-const ReviewTARow = ({ ta, course, alreadyReviewdTAs, loadAlreadyReviewedTAs }: {
-  ta: RealTA, course: RealCourse,
-  alreadyReviewdTAs?: RealReview[], loadAlreadyReviewedTAs?: () => Promise<void>
-}) => {
+const ReviewTARow = ({ ta, course, alreadyReviewdTAs, loadAlreadyReviewedTAs }: { ta: TA; course: Course; alreadyReviewdTAs?: Review[]; loadAlreadyReviewedTAs?: () => Promise<void> }) => {
   /**
    * @TODO get submission status from server of user's review for this specific ta
    */
   let isSubmitted: boolean = false;
 
   if (alreadyReviewdTAs) {
-    const alreadySubmitted = alreadyReviewdTAs.find(review => review.taRatedEmail === ta.email);
+    const alreadySubmitted = alreadyReviewdTAs.find((review) => review.taRatedEmail === ta.email);
     if (alreadySubmitted) {
       isSubmitted = true;
     }
@@ -25,7 +22,7 @@ const ReviewTARow = ({ ta, course, alreadyReviewdTAs, loadAlreadyReviewedTAs }: 
   return (
     <tr className="body">
       {/**@TODO Make these some cooler icons */}
-      <td className="column1" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', color: '#3BCE2E' }}>
+      <td className="column1" style={{ display: "flex", justifyContent: "center", alignItems: "center", color: "#3BCE2E" }}>
         {isSubmitted ? <CheckCircleIcon></CheckCircleIcon> : "❌"}
       </td>
       <td className="column2 course-button">

@@ -1,11 +1,11 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Container, Dropdown } from "react-bootstrap";
-import { RealCourse } from "../../../classes/Course";
+import { Course } from "../../../classes/Course";
 import "../../../style/userTable.css";
 import "../../../style/subTopbar.css";
 import ViewTAWishlist from "../admin/ViewTAWishlist";
 import ProfCourseTable from "./ProfCourseTable";
-import { RealProfessor } from "../../../classes/Professor";
+import { Professor } from "../../../classes/Professor";
 import { allCourseMcGill, allProfsMcGill, allTAs } from "../../../data/RealData";
 import { UserContext } from "../../../App";
 
@@ -13,13 +13,12 @@ const ProfessorCourses = () => {
   /**
    * @TODO fetch prof user's courses from server, and list of tas in that course
    */
-  const currentUserProf: RealProfessor = allProfsMcGill[0];
-  const profsCourses: Array<RealCourse> = [...allCourseMcGill]; // list of prof's courses
-  const [currentCourse, setCurrentCourse] = useState<RealCourse>(profsCourses[0]); // Default course to render
+  const currentUserProf: Professor = allProfsMcGill[0];
+  const profsCourses: Array<Course> = [...allCourseMcGill]; // list of prof's courses
+  const [currentCourse, setCurrentCourse] = useState<Course>(profsCourses[0]); // Default course to render
   const tasInCurrentCourse = [...allTAs]; // list of tas in the current selected course
 
-
-  const [allCourses, setAllCourses] = useState<Array<RealCourse>>([]);
+  const [allCourses, setAllCourses] = useState<Array<Course>>([]);
 
   const { user } = useContext(UserContext);
 
@@ -29,7 +28,7 @@ const ProfessorCourses = () => {
         const res = await fetch("https://winter2022-comp307-group8.cs.mcgill.ca/prof/courses/" + user.email);
         const json = await res.json();
         if (json && json.courses) {
-          setAllCourses(json.courses as RealCourse[]);
+          setAllCourses(json.courses as Course[]);
           if (json.courses && json.courses.length > 0) {
             setCurrentCourse(json.courses[0]);
           }
@@ -38,7 +37,7 @@ const ProfessorCourses = () => {
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   useEffect(() => {
     loadTAsCourses();
@@ -52,7 +51,7 @@ const ProfessorCourses = () => {
           Select Course
         </Dropdown.Toggle>
         <Dropdown.Menu className="courses">
-          {allCourses.map((course: RealCourse, i: number) => (
+          {allCourses.map((course: Course, i: number) => (
             <Dropdown.Item key={i} onClick={() => setCurrentCourse(course)}>
               {`${course.courseCode} ${course.courseNumber} - ${course.term} ${course.year}`}
             </Dropdown.Item>

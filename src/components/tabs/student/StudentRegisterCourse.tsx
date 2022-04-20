@@ -5,12 +5,12 @@ import { Modal } from "react-bootstrap";
 import "../../../style/userTable.css";
 import { Add } from "@mui/icons-material";
 // import { allCourseMcGill } from "../../../data/RealData";
-import { RealCourse } from "../../../classes/Course";
+import { Course } from "../../../classes/Course";
 import { UserContext } from "../../../App";
 
 function StudentRegisterCourse({ loadMyCourses }) {
   const [show, setShow] = useState(false);
-  const [allCourses, setAllCourses] = React.useState<RealCourse[]>([]);
+  const [allCourses, setAllCourses] = React.useState<Course[]>([]);
   const [desiredCourse, setDesiredCourse] = useState<string>("");
 
   const { user } = useContext(UserContext);
@@ -19,11 +19,11 @@ function StudentRegisterCourse({ loadMyCourses }) {
     try {
       const res = await fetch("https://winter2022-comp307-group8.cs.mcgill.ca/course/all");
       const json = await res.json();
-      setAllCourses(json.courses as RealCourse[]);
+      setAllCourses(json.courses as Course[]);
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   useEffect(() => {
     loadAllCourses();
@@ -40,12 +40,12 @@ function StudentRegisterCourse({ loadMyCourses }) {
         const enrollRes = await fetch(`https://winter2022-comp307-group8.cs.mcgill.ca/student/enrollinclass`, {
           method: "POST",
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({
             uuid: user.uuid,
-            courseID: desiredCourse
-          })
+            courseID: desiredCourse,
+          }),
         });
         const json = await enrollRes.json();
         console.log(json);
@@ -77,7 +77,7 @@ function StudentRegisterCourse({ loadMyCourses }) {
           <Form onSubmit={handleSubmit}>
             <Form.Select required onChange={(e) => setDesiredCourse(e.target.value)}>
               <option value="">Select a Course</option>
-              {allCourses.map((course: RealCourse, i: number) => (
+              {allCourses.map((course: Course, i: number) => (
                 <option key={i} value={course.courseID}>{`${course.courseCode} ${course.courseNumber} - 
                 ${course.year} ${course.term}`}</option>
               ))}

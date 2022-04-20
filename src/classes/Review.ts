@@ -1,4 +1,4 @@
-export interface RealReview {
+export interface Review {
   ratedByUuid: string;
   taRatedEmail: string;
   courseID: string;

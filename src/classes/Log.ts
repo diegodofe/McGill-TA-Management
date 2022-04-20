@@ -1,4 +1,4 @@
-export interface RealLog {
+export interface Log {
   ratedByUuid: string;
   taRatedEmail: string;
   courseID: string;

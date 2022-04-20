@@ -1,8 +1,8 @@
 import React from "react";
-import { RealTA } from "../../../classes/TA";
+import { TA } from "../../../classes/TA";
 import TARowUnassign from "./TARowUnassign";
 
-const TAList = ({ tas, fetchTAData }: { tas: Array<RealTA>; fetchTAData: Function }) => {
+const TAList = ({ tas, fetchTAData }: { tas: Array<TA>; fetchTAData: Function }) => {
   return (
     <div id="profTable">
       <table style={{ marginTop: "10px" }}>
@@ -16,7 +16,7 @@ const TAList = ({ tas, fetchTAData }: { tas: Array<RealTA>; fetchTAData: Functio
           </tr>
         </thead>
         <tbody>
-          {tas.map((ta: RealTA, i: number) => (
+          {tas.map((ta: TA, i: number) => (
             <TARowUnassign key={i} ta={ta} fetchTAData={fetchTAData} />
           ))}
         </tbody>

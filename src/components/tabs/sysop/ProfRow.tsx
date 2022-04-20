@@ -5,12 +5,12 @@ import { Modal } from "react-bootstrap";
 import AssignCourseForm from "./AssignCourseFrom";
 import "../../../style/userTable.css";
 import ProfCourseRow from "./ProfCourseRow";
-import { RealProfessor } from "../../../classes/Professor";
-import { RealCourse } from "../../../classes/Course";
+import { Professor } from "../../../classes/Professor";
+import { Course } from "../../../classes/Course";
 
-const ProfRow = ({ professor, fetchProfData }: { professor: RealProfessor; fetchProfData: Function }) => {
+const ProfRow = ({ professor, fetchProfData }: { professor: Professor; fetchProfData: Function }) => {
   const [show, setShow] = useState(false);
-  const [courses, setCourses] = useState<Array<RealCourse>>([]);
+  const [courses, setCourses] = useState<Array<Course>>([]);
 
   const handleDeleteProf = () => {
     console.log("Delete professor");
@@ -72,7 +72,7 @@ const ProfRow = ({ professor, fetchProfData }: { professor: RealProfessor; fetch
             </Modal.Header>
             {/** Display each course name of this current prof */}
             <Modal.Body>
-              {courses.map((course: RealCourse, i: number) => (
+              {courses.map((course: Course, i: number) => (
                 <ProfCourseRow key={i} professor={professor} course={course} fetchProfsCourses={fetchProfsCourses} />
               ))}
               <AssignCourseForm professor={professor} fetchProfsCourses={fetchProfsCourses} />

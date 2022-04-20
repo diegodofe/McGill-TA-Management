@@ -3,12 +3,12 @@ import { Button, Collapse, Container, Form, InputGroup } from "react-bootstrap";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import "../../../style/userTable.css";
 import AddIcon from "@mui/icons-material/Add";
-import { RealTA } from "../../../classes/TA";
+import { TA } from "../../../classes/TA";
 import { allCourseMcGill, allTAs } from "../../../data/RealData";
-import { RealCourse } from "../../../classes/Course";
+import { Course } from "../../../classes/Course";
 
 function ProfessorLogForm() {
-  const allCourses: Array<RealCourse> = [...allCourseMcGill];
+  const allCourses: Array<Course> = [...allCourseMcGill];
   const [selectedCourseID, setSelectedCourseID] = useState<string>(allCourses[0].courseID);
   const [selectedTerm, setSelectedTerm] = useState<string>("September 2022");
   const [comment, setComment] = useState<string>("September 2022");
@@ -34,7 +34,7 @@ function ProfessorLogForm() {
           <Form.Label>Course</Form.Label>
           <Form.Select required onChange={(e) => setSelectedCourseID(e.target.value)}>
             <option value="">Select a Course</option>
-            {allCourses.map((course: RealCourse, i: number) => (
+            {allCourses.map((course: Course, i: number) => (
               <option key={i} value={course.courseID}>
                 {course.courseID}
               </option>

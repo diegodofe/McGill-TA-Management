@@ -2,9 +2,9 @@ import React from "react";
 import OpenInFullIcon from "@mui/icons-material/OpenInFull";
 import { OverlayTrigger, Popover } from "react-bootstrap";
 import "../../../style/userTable.css";
-import { RealCourse } from "../../../classes/Course";
+import { Course } from "../../../classes/Course";
 
-function ViewTACourses({ courseList }: { courseList: Array<RealCourse> }) {
+function ViewTACourses({ courseList }: { courseList: Array<Course> }) {
   return (
     <div id="ta-courses-modal">
       {/** Pop up window*/}
@@ -13,7 +13,7 @@ function ViewTACourses({ courseList }: { courseList: Array<RealCourse> }) {
         placement="top"
         overlay={
           <Popover id={"wishlist-Popover"}>
-            {courseList.map((course: RealCourse, i: number) => (
+            {courseList.map((course: Course, i: number) => (
               <p style={{ margin: "2px 10px" }} key={i}>
                 {course.courseCode + " " + course.courseNumber}
               </p>

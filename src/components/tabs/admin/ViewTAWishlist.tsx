@@ -2,18 +2,18 @@ import OpenInFullIcon from "@mui/icons-material/OpenInFull";
 import React from "react";
 import { Modal } from "react-bootstrap";
 import "../../../style/userTable.css";
-import { RealCourse } from "../../../classes/Course";
+import { Course } from "../../../classes/Course";
 import ProfWishlistForm from "../professor/ProfWishlistForm";
-import { RealTA } from "../../../classes/TA";
+import { TA } from "../../../classes/TA";
 import { allTAs } from "../../../data/RealData";
 
-function ViewTAWishlist({ course, isProfessor }: { course: RealCourse; isProfessor: boolean }) {
+function ViewTAWishlist({ course, isProfessor }: { course: Course; isProfessor: boolean }) {
   const [show, setShow] = React.useState(false);
 
   /**
    * @TODO fetch wish list for this specific course
    */
-  const wishListForCourse: Array<RealTA> = [...allTAs];
+  const wishListForCourse: Array<TA> = [...allTAs];
 
   return (
     <div className="view-wishlist" id="ta-wishlist-modal">
@@ -36,7 +36,7 @@ function ViewTAWishlist({ course, isProfessor }: { course: RealCourse; isProfess
               </tr>
             </thead>
             <tbody>
-              {wishListForCourse.map((ta: RealTA, i: number) => (
+              {wishListForCourse.map((ta: TA, i: number) => (
                 <tr key={i}>
                   <td className="column2">{ta.firstName}</td>
                   <td className="column3">{ta.lastName}</td>

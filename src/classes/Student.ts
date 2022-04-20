@@ -1,4 +1,4 @@
-export default interface RealStudent {
+export default interface Student {
   uuid: string;
   firstName: string;
   lastName: string;

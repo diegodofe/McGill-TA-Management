@@ -1,4 +1,4 @@
-export interface RealTA {
+export interface TA {
   email: string;
   courseID: string;
   officeHoursTime: string;

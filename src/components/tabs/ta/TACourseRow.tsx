@@ -1,13 +1,13 @@
 import React from "react";
 import "../../../style/userTable.css";
-import { RealTA } from "../../../classes/TA";
+import { TA } from "../../../classes/TA";
 import ViewTAInfo from "../admin/ViewTAInfo";
 import EditOHTime from "../professor/EditOHTime";
 import EditOHLocation from "../professor/EditOHLocation";
 import EditDuties from "../professor/EditDuties";
-import { RealCourse } from "../../../classes/Course";
+import { Course } from "../../../classes/Course";
 
-const TACourseRow = ({ ta, course, loadTAsOfCourse }: { ta: RealTA, course: RealCourse, loadTAsOfCourse: () => Promise<void> }) => {
+const TACourseRow = ({ ta, course, loadTAsOfCourse }: { ta: TA; course: Course; loadTAsOfCourse: () => Promise<void> }) => {
   return (
     <tr className="body">
       {/**

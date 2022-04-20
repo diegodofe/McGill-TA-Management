@@ -2,11 +2,11 @@ import React from "react";
 import "../../../style/userTable.css";
 import RemoveIcon from "@material-ui/icons/Remove";
 import ViewTACourses from "./ViewTACourses";
-import { RealTA } from "../../../classes/TA";
+import { TA } from "../../../classes/TA";
 import ViewTAPerformance from "./ViewTAPerformance";
 import ViewTAInfo from "./ViewTAInfo";
 
-const ManageTARow = ({ ta, isHistorical }: { ta: RealTA; isHistorical: boolean }) => {
+const ManageTARow = ({ ta, isHistorical }: { ta: TA; isHistorical: boolean }) => {
   /**
    * @TODO get wishlist status from server for current course
    */

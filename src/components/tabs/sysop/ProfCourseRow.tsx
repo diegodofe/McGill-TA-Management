@@ -1,8 +1,8 @@
 import React from "react";
-import { RealCourse } from "../../../classes/Course";
-import { RealProfessor } from "../../../classes/Professor";
+import { Course } from "../../../classes/Course";
+import { Professor } from "../../../classes/Professor";
 
-const ProfCourseRow = ({ course, fetchProfsCourses, professor }: { course: RealCourse; fetchProfsCourses: Function; professor: RealProfessor }) => {
+const ProfCourseRow = ({ course, fetchProfsCourses, professor }: { course: Course; fetchProfsCourses: Function; professor: Professor }) => {
   const removeProfFromCourse = async () => {
     console.log("Remove professor from course");
     //

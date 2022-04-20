@@ -1,4 +1,4 @@
-export interface RealCourse {
+export interface Course {
   uuid?: string;
   courseID: string;
   createdAt: string;

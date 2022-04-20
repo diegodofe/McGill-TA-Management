@@ -4,9 +4,9 @@ import React from "react";
 import { Modal } from "react-bootstrap";
 import "../../../style/userTable.css";
 import { Edit } from "@mui/icons-material";
-import { RealTA } from "../../../classes/TA";
+import { TA } from "../../../classes/TA";
 
-function EditOHLocation({ ta }: { ta: RealTA }) {
+function EditOHLocation({ ta }: { ta: TA }) {
   const [show, setShow] = useState(false);
 
   /**

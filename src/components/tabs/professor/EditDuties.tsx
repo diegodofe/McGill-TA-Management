@@ -5,9 +5,9 @@ import React from "react";
 import { Modal } from "react-bootstrap";
 import "../../../style/userTable.css";
 import { Edit } from "@mui/icons-material";
-import { RealTA } from "../../../classes/TA";
+import { TA } from "../../../classes/TA";
 
-function EditDuties({ ta }: { ta: RealTA }) {
+function EditDuties({ ta }: { ta: TA }) {
   const [show, setShow] = useState(false);
   const [open, setOpen] = useState(false);
 

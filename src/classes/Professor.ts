@@ -1,4 +1,4 @@
-export interface RealProfessor {
+export interface Professor {
   uuid: string;
   firstName: string;
   lastName: string;

@@ -2,12 +2,12 @@ import React, { useEffect } from "react";
 import { Button, Container, Form, InputGroup } from "react-bootstrap";
 import TAList from "./TAList";
 import "../../../style/admin.css";
-import { RealTA } from "../../../classes/TA";
-import { RealCourse } from "../../../classes/Course";
+import { TA } from "../../../classes/TA";
+import { Course } from "../../../classes/Course";
 
-const TAsForCourse = ({ course }: { course: RealCourse }) => {
-  const [tas, setTas] = React.useState<Array<RealTA>>([]);
-  const [allTas, setAllTas] = React.useState<Array<RealTA>>([]);
+const TAsForCourse = ({ course }: { course: Course }) => {
+  const [tas, setTas] = React.useState<Array<TA>>([]);
+  const [allTas, setAllTas] = React.useState<Array<TA>>([]);
 
   const [email, setEmail] = React.useState("");
 
@@ -78,7 +78,7 @@ const TAsForCourse = ({ course }: { course: RealCourse }) => {
         <InputGroup className="mb-3">
           <Form.Select required onChange={(thing) => setEmail(thing.target.value)}>
             <option value="">Select TA</option>
-            {allTas.map((ta: RealTA, i: number) => {
+            {allTas.map((ta: TA, i: number) => {
               return (
                 <option key={i} value={ta.email}>
                   {ta.email}

@@ -1,8 +1,8 @@
 import React from "react";
 import RemoveIcon from "@material-ui/icons/Remove";
-import RealStudent from "../../../classes/Student";
+import Student from "../../../classes/Student";
 
-const StudentRow = ({ student, fetchStudentData }: { student: RealStudent; fetchStudentData: Function }) => {
+const StudentRow = ({ student, fetchStudentData }: { student: Student; fetchStudentData: Function }) => {
   const handleDeleteStudent = () => {
     console.log("Delete student");
     try {

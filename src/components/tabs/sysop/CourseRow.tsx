@@ -1,8 +1,8 @@
 import React from "react";
 import RemoveIcon from "@material-ui/icons/Remove";
-import { RealCourse } from "../../../classes/Course";
+import { Course } from "../../../classes/Course";
 
-const CourseRow = ({ course, fetchCourseData }: { course: RealCourse; fetchCourseData: Function }) => {
+const CourseRow = ({ course, fetchCourseData }: { course: Course; fetchCourseData: Function }) => {
   const handleDeleteCourse = () => {
     console.log("Delete course");
   };

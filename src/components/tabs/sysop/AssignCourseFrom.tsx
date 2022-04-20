@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { Button, Collapse, Form, Row, Col } from "react-bootstrap";
 import React from "react";
-import { RealProfessor } from "../../../classes/Professor";
-import { RealCourse } from "../../../classes/Course";
+import { Professor } from "../../../classes/Professor";
+import { Course } from "../../../classes/Course";
 
-function AssignCourseForm({ professor, fetchProfsCourses }: { professor: RealProfessor; fetchProfsCourses: Function }) {
+function AssignCourseForm({ professor, fetchProfsCourses }: { professor: Professor; fetchProfsCourses: Function }) {
   const [open, setOpen] = useState(false);
   const [courses, setCourses] = useState([]);
   const [selectedCourseID, setSelectedCourseID] = useState("");
@@ -67,7 +67,7 @@ function AssignCourseForm({ professor, fetchProfsCourses }: { professor: RealPro
             <Col>
               <Form.Select required onChange={(e) => setSelectedCourseID(e.target.value)}>
                 <option value="">Select a Course</option>
-                {courses.map((course: RealCourse, i: number) => (
+                {courses.map((course: Course, i: number) => (
                   <option key={i} value={course.courseID}>
                     <span className="text-muted">
                       {course.courseCode + " " + course.courseNumber}

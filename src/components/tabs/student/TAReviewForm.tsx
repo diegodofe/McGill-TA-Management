@@ -4,11 +4,11 @@ import OpenInFullIcon from "@mui/icons-material/OpenInFull";
 import React from "react";
 import { Modal } from "react-bootstrap";
 import "../../../style/userTable.css";
-import { RealTA } from "../../../classes/TA";
-import { RealCourse } from "../../../classes/Course";
+import { TA } from "../../../classes/TA";
+import { Course } from "../../../classes/Course";
 import { UserContext } from "../../../App";
 
-function ReviewTAForm({ ta, status, course, loadAlreadyReviewedTAs }: { ta: RealTA; status: boolean, course: RealCourse, loadAlreadyReviewedTAs?: () => Promise<void> }) {
+function ReviewTAForm({ ta, status, course, loadAlreadyReviewedTAs }: { ta: TA; status: boolean; course: Course; loadAlreadyReviewedTAs?: () => Promise<void> }) {
   const [show, setShow] = useState(false);
   const [tempRating, setTempRating] = useState<string>("0");
   const [tempComment, setTempComment] = useState<string>("");
@@ -26,15 +26,15 @@ function ReviewTAForm({ ta, status, course, loadAlreadyReviewedTAs }: { ta: Real
         const addReviewRes = await fetch(`https://winter2022-comp307-group8.cs.mcgill.ca/student/rateTA`, {
           method: "POST",
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({
             uuid: user.uuid,
             courseID: course.courseID,
             taRatedEmail: ta.email,
             rating: parseInt(tempRating),
-            comment: tempComment
-          })
+            comment: tempComment,
+          }),
         });
         if (addReviewRes.status === 200) {
           console.log("Successfully added review");

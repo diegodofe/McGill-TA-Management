@@ -2,18 +2,18 @@ import React, { useState } from "react";
 import OpenInFullIcon from "@mui/icons-material/OpenInFull";
 import { Accordion, Container, Modal } from "react-bootstrap";
 import "../../../style/userTable.css";
-import { RealReview } from "../../../classes/Review";
-import { RealLog } from "../../../classes/Log";
-import { RealTA } from "../../../classes/TA";
+import { Review } from "../../../classes/Review";
+import { Log } from "../../../classes/Log";
+import { TA } from "../../../classes/TA";
 import { allLogs, allReviews, allTAs } from "../../../data/RealData";
 
-function ViewTAPerformance({ ta, isProfessor }: { ta: RealTA; isProfessor: boolean }) {
+function ViewTAPerformance({ ta, isProfessor }: { ta: TA; isProfessor: boolean }) {
   const [addLog, setAddLog] = useState(false);
   const ratingToStartMap: Array<string> = ["No Stars", "⭐", "⭐⭐", "⭐⭐⭐", "⭐⭐⭐⭐", "⭐⭐⭐⭐⭐"];
 
   const currentTAScore: number = 4;
-  const currentTAStudentReviews: Array<RealReview> = [...allReviews]; // Need to fetch all reviews for this ta
-  const currentTAProfessorLogs: Array<RealLog> = [...allLogs]; // Need to fetch all logs for this ta
+  const currentTAStudentReviews: Array<Review> = [...allReviews]; // Need to fetch all reviews for this ta
+  const currentTAProfessorLogs: Array<Log> = [...allLogs]; // Need to fetch all logs for this ta
 
   const [show, setShow] = useState(false);
 
@@ -46,7 +46,7 @@ function ViewTAPerformance({ ta, isProfessor }: { ta: RealTA; isProfessor: boole
                 </div>
 
                  <Accordion flush>
-                  {currentTAProfessorLogs.map((log: RealLog, i: number) => (
+                  {currentTAProfessorLogs.map((log: Log, i: number) => (
                 <Accordion.Item key={i} eventKey={`${i}`}>
                   <Accordion.Header>{log.courseID}</Accordion.Header>
                   <Accordion.Body>
@@ -64,7 +64,7 @@ function ViewTAPerformance({ ta, isProfessor }: { ta: RealTA; isProfessor: boole
             <br />
             <h5>Student Reviews</h5>
             <Accordion flush>
-              {currentTAStudentReviews.map((review: RealReview, i: number) => (
+              {currentTAStudentReviews.map((review: Review, i: number) => (
                 <Accordion.Item key={i} eventKey={`${i}`}>
                   <Accordion.Header>{ratingToStartMap[review.rating]}</Accordion.Header>
                   <Accordion.Body>{review.comment}</Accordion.Body>

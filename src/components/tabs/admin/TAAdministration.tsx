@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Container, Dropdown } from "react-bootstrap";
-import { RealCourse } from "../../../classes/Course";
+import { Course } from "../../../classes/Course";
 import "../../../style/userTable.css";
 import "../../../style/subTopbar.css";
 import ViewTAWishlist from "./ViewTAWishlist";
@@ -11,8 +11,8 @@ const TAAdministration = () => {
   /**
    * Fetch
    */
-  const [allCourses, setAllCourse] = useState<Array<RealCourse>>([...allCourseMcGill]);
-  const [currentCourse, setCurrentCourse] = useState<RealCourse>(allCourses[0]); // Set to default course
+  const [allCourses, setAllCourse] = useState<Array<Course>>([...allCourseMcGill]);
+  const [currentCourse, setCurrentCourse] = useState<Course>(allCourses[0]); // Set to default course
 
   const handleFetchCourses = async (isInitial: boolean = false) => {
     try {
@@ -41,7 +41,7 @@ const TAAdministration = () => {
           Select Course
         </Dropdown.Toggle>
         <Dropdown.Menu className="courses">
-          {allCourses.map((course: RealCourse, i: number) => (
+          {allCourses.map((course: Course, i: number) => (
             <Dropdown.Item key={i} onClick={() => setCurrentCourse(course)}>
               {course.courseCode + " " + course.courseNumber + " - " + course.term + " " + course.year}
             </Dropdown.Item>

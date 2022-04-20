@@ -1,11 +1,11 @@
-import { RealCourse } from "../classes/Course";
-import { RealLog } from "../classes/Log";
-import { RealProfessor } from "../classes/Professor";
-import { RealReview } from "../classes/Review";
-import RealStudent from "../classes/Student";
-import { RealTA } from "../classes/TA";
+import { Course } from "../classes/Course";
+import { Log } from "../classes/Log";
+import { Professor } from "../classes/Professor";
+import { Review } from "../classes/Review";
+import Student from "../classes/Student";
+import { TA } from "../classes/TA";
 
-export const allTAs: Array<RealTA> = [
+export const allTAs: Array<TA> = [
   {
     email: "ddorantesferreira@gmail.com",
     courseID: "3977c4b1-51bb-4c80-a4c3-ad51db3ab76e",
@@ -38,7 +38,7 @@ export const allTAs: Array<RealTA> = [
   },
 ];
 
-export const enrolledCourses: Array<RealCourse> = [
+export const enrolledCourses: Array<Course> = [
   {
     uuid: "c7f17ddd-f14f-4707-9780-df74cfffce6f",
     courseID: "1ec6382a-8998-499f-b325-df9ec109a9f5",
@@ -63,7 +63,7 @@ export const enrolledCourses: Array<RealCourse> = [
   },
 ];
 
-export const allCourseMcGill: Array<RealCourse> = [
+export const allCourseMcGill: Array<Course> = [
   {
     courseID: "1ec6382a-8998-499f-b325-df9ec109a9f5",
     createdAt: "2022-04-17 17:52:33.989 +00:00",
@@ -106,7 +106,7 @@ export const allCourseMcGill: Array<RealCourse> = [
   },
 ];
 
-export const allProfsMcGill: Array<RealProfessor> = [
+export const allProfsMcGill: Array<Professor> = [
   {
     uuid: "c7f17ddd-f14f-4707-9780-df74cfffce6f",
     firstName: "Alex",
@@ -131,7 +131,7 @@ export const allProfsMcGill: Array<RealProfessor> = [
   },
 ];
 
-export const allReviews: Array<RealReview> = [
+export const allReviews: Array<Review> = [
   {
     ratedByUuid: "7b4dc1e7-a272-484d-b649-549a6cc601cc",
     taRatedEmail: "alex.ference@mail.mcgill.ca",
@@ -152,7 +152,7 @@ export const allReviews: Array<RealReview> = [
   },
 ];
 
-export const allLogs: Array<RealLog> = [
+export const allLogs: Array<Log> = [
   {
     ratedByUuid: "7b4dc1e7-a272-484d-b649-549a6cc601cc",
     taRatedEmail: "alex.ference@mail.mcgill.ca",
@@ -173,7 +173,7 @@ export const allLogs: Array<RealLog> = [
   },
 ];
 
-export const allStudents: Array<RealStudent> = [
+export const allStudents: Array<Student> = [
   {
     uuid: "c7f17ddd-f14f-4707-9780-df74cfffce6f",
     firstName: "Alex",
