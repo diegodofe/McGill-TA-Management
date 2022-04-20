@@ -25,7 +25,7 @@ const ManageCourses = () => {
 
   return (
     <div>
-      <ImportForm taskName="Import Courses" />
+      <ImportForm taskName="Courses" />
 
       <Container className="mt-3">
         <h2 style={{ marginBottom: "20px" }}>All Courses</h2>

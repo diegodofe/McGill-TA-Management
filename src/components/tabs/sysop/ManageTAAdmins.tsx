@@ -26,7 +26,7 @@ const ManageTAAdmins = () => {
 
   return (
     <div>
-      <ImportForm taskName="Professor Admins" />
+      <ImportForm taskName="Admins" />
       <Container className="mt-3">
         {/* Table that lists all the TAAdmins */}
         <h2 style={{ marginBottom: "20px" }}>All Admin</h2>

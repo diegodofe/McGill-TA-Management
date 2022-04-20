@@ -29,7 +29,7 @@ const ManageProfessors = () => {
 
   return (
     <div>
-      <ImportForm taskName="Professor Professors" />
+      <ImportForm taskName="Professors" />
       <Container className="mt-3">
         <h2 style={{ marginBottom: "20px" }}>All Professors</h2>
         <div id="profTable">
