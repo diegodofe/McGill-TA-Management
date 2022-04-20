@@ -1,7 +1,7 @@
 import React from "react";
 import { Container } from "react-bootstrap";
 import "../../../style/userTable.css";
-import ImportTACohort from "./ImportTACohort";
+import ImportForm from "./ImportForm";
 import ManualTAAdd from "./ManualTAAdd";
 import TAList from "./TAList";
 
@@ -26,7 +26,7 @@ const ViewAllTAs = () => {
   return (
     <Container>
       <div className="inline ">
-        <ImportTACohort />
+        <ImportForm taskName="TA Cohort" />
       </div>
       <div className="add-ta-button ">
         <ManualTAAdd fetchTAData={fetchTAData} />

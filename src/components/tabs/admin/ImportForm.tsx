@@ -5,7 +5,7 @@ import { Modal } from "react-bootstrap";
 import "../../../style/userTable.css";
 import { FileDownload } from "@mui/icons-material";
 
-function ImportTACohort() {
+function ImportForm({ taskName }: { taskName: string }) {
   const [show, setShow] = useState(false);
   const [tempFile, setTempFile] = useState<string>();
 
@@ -17,7 +17,7 @@ function ImportTACohort() {
 
   return (
     <div id="ta-review-modal">
-      {/** Open review modal */}
+      {/** Open import modal */}
       <button className="courses" onClick={() => setShow(true)}>
         <FileDownload /> Import
       </button>
@@ -25,10 +25,10 @@ function ImportTACohort() {
       {/** Modal Pop up window*/}
       <Modal show={show} onHide={() => setShow(false)} dialogClassName="modal-md" aria-labelledby="example-custom-modal-styling-title">
         <Modal.Header closeButton>
-          <Modal.Title id="example-custom-modal-styling-title">Import TA Cohort</Modal.Title>
+          <Modal.Title id="example-custom-modal-styling-title">{`Import ${taskName}`}</Modal.Title>
         </Modal.Header>
 
-        {/** TA Review Form */}
+        {/** Import Form */}
         <Modal.Body>
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="formFile" className="mb-3">
@@ -49,4 +49,4 @@ function ImportTACohort() {
   );
 }
 
-export default ImportTACohort;
+export default ImportForm;
