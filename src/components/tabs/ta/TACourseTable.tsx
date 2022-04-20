@@ -1,8 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Course } from "../../../classes/Course";
 import { TA } from "../../../classes/TA";
 import TACourseRow from "./TACourseRow";
 
-const TACourseTable = ({ ta }: { ta: TA }) => {
+const TACourseTable = ({ ta, course }: { ta: TA; course: Course }) => {
+  const [tasOfCourse, setTasOfCourse] = useState<Array<TA>>([]);
+
+  const loadTAsOfCourse = async () => {
+    try {
+      const res = await fetch("https://winter2022-comp307-group8.cs.mcgill.ca/course/tas/" + course.courseID);
+      const json = await res.json();
+      setTasOfCourse(json.tas as TA[]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    console.log(course.courseName);
+    loadTAsOfCourse();
+  }, [course]);
+
   return (
     <div id="profTable">
       <table style={{ marginTop: "10px" }}>
@@ -16,7 +34,9 @@ const TACourseTable = ({ ta }: { ta: TA }) => {
           </tr>
         </thead>
         <tbody>
-          <TACourseRow ta={ta} />
+          {tasOfCourse.map((ta: TA) => (
+            <TACourseRow loadTAsOfCourse={loadTAsOfCourse} course={course} key={ta.email} ta={ta} />
+          ))}
         </tbody>
       </table>
     </div>

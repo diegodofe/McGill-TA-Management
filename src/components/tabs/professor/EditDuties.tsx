@@ -6,24 +6,48 @@ import { Modal } from "react-bootstrap";
 import "../../../style/userTable.css";
 import { Edit } from "@mui/icons-material";
 import { TA } from "../../../classes/TA";
+import { Course } from "../../../classes/Course";
 
-function EditDuties({ ta }: { ta: TA }) {
+function EditDuties({ ta, course, loadTAsOfCourse }: { ta: TA, course: Course, loadTAsOfCourse: () => Promise<void> }) {
   const [show, setShow] = useState(false);
   const [open, setOpen] = useState(false);
 
   /**
    * @TODO fetch current responsibilities of current ta
    */
-  const [responisbilities, setResponisbilities] = useState<string>(`${ta.firstName} has to be the absolute best TA this semester or else...`);
+
+  const currentDuties: string = ta.duties;
+  const [responisbilities, setResponisbilities] = useState<string>("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setShow(false);
     console.log(responisbilities);
 
-    /**
-     * @TODO on submit, send this responsibilities  edit to the server
-     */
+    try {
+      const res = await fetch("https://winter2022-comp307-group8.cs.mcgill.ca/prof/updateTADuties", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: ta.email,
+          courseID: course.courseID,
+          officeHoursTime: ta.officeHoursTime,
+          officeHoursLocation: ta.officeHoursLocation,
+          duties: responisbilities,
+        }),
+      });
+      const json = await res.json();
+      console.log(json);
+
+      setTimeout(() => {
+        loadTAsOfCourse();
+      }, 500);
+    } catch (e) {
+      console.error(e);
+    }
+
   };
 
   return (
@@ -36,20 +60,20 @@ function EditDuties({ ta }: { ta: TA }) {
       {/** Modal Pop up window*/}
       <Modal show={show} onHide={() => setShow(false)} dialogClassName="modal-md" aria-labelledby="example-custom-modal-styling-title">
         <Modal.Header closeButton>
-          <Modal.Title id="example-custom-modal-styling-title">{`${ta.firstName} ${ta.lastName}'s Duties`}</Modal.Title>
+          <Modal.Title id="example-custom-modal-styling-title">{`${ta.firstName}'s Responsibilities`}</Modal.Title>
         </Modal.Header>
 
         {/** Change responisbilities */}
         <Modal.Body>
           <h5>Current</h5>
-          <p>{responisbilities}</p>
+          <p>{currentDuties}</p>
           <button className="courses" onClick={() => setOpen(!open)} aria-controls="example-collapse-text" aria-expanded={open}>
             <Edit />
           </button>
 
           <Collapse in={open}>
             <Form className="mt-2" onSubmit={handleSubmit}>
-              <FormControl required as="textarea" rows={3} placeholder={`Please describe ${ta.firstName}'s responsibilities...`} aria-label="Text input with dropdown button" onChange={(e) => setResponisbilities(e.target.value)} />
+              <FormControl required as="textarea" rows={3} placeholder={`Please describe ${ta.firstName}'s Responsibilities`} aria-label="Text input with dropdown button" onChange={(e) => setResponisbilities(e.target.value)} />
               <Button className="mt-2" variant="light" type="submit">
                 Change
               </Button>

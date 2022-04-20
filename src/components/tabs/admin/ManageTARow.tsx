@@ -39,20 +39,16 @@ const ManageTARow = ({ ta, isHistorical }: { ta: TA; isHistorical: boolean }) =>
       {/** TA Extra Info*/}
       <td className="column2">
         <div className="inline">{`${ta.firstName} ${ta.lastName}`}</div>
-        <ViewTAInfo ta={ta} />
+        {/* <ViewTAInfo ta={ta} /> */}
       </td>
       {/** TA Reviews*/}
       <td className="column3">
         <ViewTAPerformance ta={ta} isProfessor={false} />
       </td>
       {/** TA Courses*/}
-      <td className="column4">
-        <ViewTACourses courseList={ta.allCourses} />
-      </td>
+      <td className="column4">{/* <ViewTACourses courseList={ta.allCourses} /> */}</td>
       {/** TA Courses*/}
-      <td className="column5">
-        <ViewTACourses courseList={ta.previousCourses} />
-      </td>
+      <td className="column5">{/* <ViewTACourses courseList={ta.previousCourses} /> */}</td>
       {/** Wishlist status*/}
       {!isHistorical && <td className="column6">{onWishlist ? "✔️" : "❌"}</td>}
     </tr>

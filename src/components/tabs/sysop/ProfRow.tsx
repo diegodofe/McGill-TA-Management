@@ -5,10 +5,12 @@ import { Modal } from "react-bootstrap";
 import AssignCourseForm from "./AssignCourseFrom";
 import "../../../style/userTable.css";
 import ProfCourseRow from "./ProfCourseRow";
+import { Professor } from "../../../classes/Professor";
+import { Course } from "../../../classes/Course";
 
-const ProfRow = ({ professor, fetchProfData }) => {
+const ProfRow = ({ professor, fetchProfData }: { professor: Professor; fetchProfData: Function }) => {
   const [show, setShow] = useState(false);
-  const [courses, setCourses] = useState([]);
+  const [courses, setCourses] = useState<Array<Course>>([]);
 
   const handleDeleteProf = () => {
     console.log("Delete professor");
@@ -33,13 +35,14 @@ const ProfRow = ({ professor, fetchProfData }) => {
       const res = await fetch("https://winter2022-comp307-group8.cs.mcgill.ca/prof/courses/" + professor.email);
       const data = await res.json();
       console.log("profs courses loaded");
-      console.log(data.users)
-      setCourses(data.users);
-    }
-    catch (err) {
+      console.log(data.users);
+      if (data && data.users) {
+        setCourses(data.users);
+      }
+    } catch (err) {
       console.error(err);
     }
-  }
+  };
 
   useEffect(() => {
     console.log("ProfRow useEffect");
@@ -71,22 +74,15 @@ const ProfRow = ({ professor, fetchProfData }) => {
             </Modal.Header>
             {/** Display each course name of this current prof */}
             <Modal.Body>
-              {courses.map((course: any, i: number) => (
-                <ProfCourseRow key={i}
-                  professor={professor}
-                  course={course}
-                  fetchProfsCourses={fetchProfsCourses}
-                />
+              {courses.map((course: Course, i: number) => (
+                <ProfCourseRow key={i} professor={professor} course={course} fetchProfsCourses={fetchProfsCourses} />
               ))}
-              <AssignCourseForm
-                professor={professor}
-                fetchProfsCourses={fetchProfsCourses}
-              />
+              <AssignCourseForm professor={professor} fetchProfsCourses={fetchProfsCourses} />
             </Modal.Body>
           </Modal>
         </>
       </td>
-    </tr >
+    </tr>
   );
 };
 

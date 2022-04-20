@@ -1,33 +1,25 @@
 import React, { useState, useEffect } from "react";
-import { Container, Dropdown, Tab, Tabs } from "react-bootstrap";
-import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
-import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
-import Course from "../../../classes/Course";
-import { allCoursesAtMcGill } from "../../../data/FakeData";
+import { Container, Dropdown } from "react-bootstrap";
+import { Course } from "../../../classes/Course";
 import "../../../style/userTable.css";
 import "../../../style/subTopbar.css";
 import ViewTAWishlist from "./ViewTAWishlist";
 import TAsForCourse from "./TAsForCourse";
+import { allCourseMcGill } from "../../../data/RealData";
 
 const TAAdministration = () => {
-  const emptyCourse = {
-    courseCode: "",
-    courseNumber: "",
-    year: "",
-    term: "",
-    courseName: "",
-  };
-
-  const [currentCourse, setCurrentCourse] = useState(emptyCourse);
-
-  const [courses, setCourses] = useState<Course[]>(allCoursesAtMcGill);
+  /**
+   * Fetch
+   */
+  const [allCourses, setAllCourse] = useState<Array<Course>>([...allCourseMcGill]);
+  const [currentCourse, setCurrentCourse] = useState<Course>(allCourses[0]); // Set to default course
 
   const handleFetchCourses = async (isInitial: boolean = false) => {
     try {
       const res = await fetch("https://winter2022-comp307-group8.cs.mcgill.ca/course/all");
       const data = await res.json();
       console.log("courses loaded");
-      setCourses(data.courses);
+      setAllCourse(data.courses);
       if (data.courses.length > 0 && isInitial) {
         setCurrentCourse(data.courses[0]);
       }
@@ -49,16 +41,17 @@ const TAAdministration = () => {
           Select Course
         </Dropdown.Toggle>
         <Dropdown.Menu className="courses">
-          {courses.map((course: any, i: number) => (
+          {allCourses.map((course: Course, i: number) => (
             <Dropdown.Item key={i} onClick={() => setCurrentCourse(course)}>
               {course.courseCode + " " + course.courseNumber + " - " + course.term + " " + course.year}
             </Dropdown.Item>
           ))}
         </Dropdown.Menu>
       </Dropdown>
+
+      <h2 className="inline course-name">{`${currentCourse.courseCode} ${currentCourse.courseNumber}: ${currentCourse.courseName}`}</h2>
+      <ViewTAWishlist course={currentCourse} isProfessor={false} />
       <div className="inline">
-        <h2 className="inline course-name">{`${currentCourse.courseNumber}: ${currentCourse.courseName}`}</h2>
-        <ViewTAWishlist course={allCoursesAtMcGill[2]} isProfessor={false} />
         <TAsForCourse course={currentCourse} />
       </div>
     </Container>
@@ -66,30 +59,3 @@ const TAAdministration = () => {
 };
 
 export default TAAdministration;
-
-// {
-//   /* <ViewTAWishlist course={currentCourse} /> */
-// }
-
-// {/* <Container>
-//         <h2 className="inline course-name">{`${currentCourse.courseID}: ${currentCourse.name}`}</h2>
-//         <div className="inline">
-//         <Tabs defaultActiveKey="0" transition={false} id="noanim-tab" className="sub">
-//           <Tab className="sub" eventKey="0"  title={
-//                 <React.Fragment>
-//                   Current TAs <LibraryBooksIcon fontSize="small" />
-//                 </React.Fragment>
-//               }>
-//             <RenderList listToRender={currentCourse.currentTAs} courseName={currentCourse.name} isHistorical={false} />
-//           </Tab>
-//           <Tab className="sub" eventKey="1"  title={
-//                 <React.Fragment>
-//                   Historical TAs <PeopleAltIcon fontSize="small" />
-//                 </React.Fragment>
-//               }>
-//             <RenderList listToRender={currentCourse.historicalTAs} courseName={currentCourse.name} isHistorical={true} />
-//           </Tab>
-//         </Tabs>
-//         </div>
-//       </Container>
-//     </div> */}

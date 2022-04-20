@@ -2,12 +2,19 @@ import OpenInFullIcon from "@mui/icons-material/OpenInFull";
 import React from "react";
 import { Modal } from "react-bootstrap";
 import "../../../style/userTable.css";
-import Course from "../../../classes/Course";
-import { TA } from "../../../classes/TA";
+import { Course } from "../../../classes/Course";
 import ProfWishlistForm from "../professor/ProfWishlistForm";
+import { TA } from "../../../classes/TA";
+import { allTAs } from "../../../data/RealData";
 
 function ViewTAWishlist({ course, isProfessor }: { course: Course; isProfessor: boolean }) {
   const [show, setShow] = React.useState(false);
+
+  /**
+   * @TODO fetch wish list for this specific course
+   */
+  const wishListForCourse: Array<TA> = [...allTAs];
+
   return (
     <div className="view-wishlist" id="ta-wishlist-modal">
       <button disabled={show} className="courses" onClick={() => setShow(true)}>
@@ -17,7 +24,7 @@ function ViewTAWishlist({ course, isProfessor }: { course: Course; isProfessor: 
       <Modal show={show} onHide={() => setShow(false)} dialogClassName="modal-md" aria-labelledby="example-custom-modal-styling-title">
         <Modal.Header closeButton>
           <Modal.Title id="example-custom-modal-styling-title">
-            <h2>{`${course.courseID} Wish List`}</h2>
+            <h2>{`${course.courseCode} ${course.courseNumber} Wish List`}</h2>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -29,7 +36,7 @@ function ViewTAWishlist({ course, isProfessor }: { course: Course; isProfessor: 
               </tr>
             </thead>
             <tbody>
-              {course.wishlist.map((ta: TA, i: number) => (
+              {wishListForCourse.map((ta: TA, i: number) => (
                 <tr key={i}>
                   <td className="column2">{ta.firstName}</td>
                   <td className="column3">{ta.lastName}</td>
@@ -37,7 +44,7 @@ function ViewTAWishlist({ course, isProfessor }: { course: Course; isProfessor: 
               ))}
             </tbody>
           </table>
-          <ProfWishlistForm isProfessor={isProfessor} />
+          <ProfWishlistForm course={course} isProfessor={isProfessor} />
         </Modal.Body>
       </Modal>
     </div>

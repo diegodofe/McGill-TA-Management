@@ -1,4 +1,9 @@
-export default interface Log {
-  courseName: string;
-  professorNotes: Array<string>;
+export interface Log {
+  ratedByUuid: string;
+  taRatedEmail: string;
+  courseID: string;
+  rating: number;
+  comments: Array<string>;
+  createdAt: string;
+  updatedAt: string;
 }

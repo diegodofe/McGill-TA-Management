@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
 import { Button, Collapse, Form, Row, Col } from "react-bootstrap";
 import React from "react";
-// import { allCoursesAtMcGill } from "../../../data/FakeData";
+import { Professor } from "../../../classes/Professor";
+import { Course } from "../../../classes/Course";
 
-/**
- * Hard coded list of courses at mcgill
- * @TODO Fetch real list of courses
- */
-function AssignCourseForm({ professor, fetchProfsCourses }) {
+function AssignCourseForm({ professor, fetchProfsCourses }: { professor: Professor; fetchProfsCourses: Function }) {
   const [open, setOpen] = useState(false);
   const [courses, setCourses] = useState([]);
   const [selectedCourseID, setSelectedCourseID] = useState("");
@@ -21,7 +18,7 @@ function AssignCourseForm({ professor, fetchProfsCourses }) {
     } catch (err) {
       console.error(err);
     }
-  }
+  };
 
   useEffect(() => {
     console.log("AssignCourseForm useEffect");
@@ -38,12 +35,12 @@ function AssignCourseForm({ professor, fetchProfsCourses }) {
       const res = await fetch("https://winter2022-comp307-group8.cs.mcgill.ca/prof/assignbyemail", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           email: professor.email,
-          courseID: selectedCourseID
-        })
+          courseID: selectedCourseID,
+        }),
       });
       if (res.status === 200) {
         // alert("Course assigned successfully");
@@ -57,7 +54,6 @@ function AssignCourseForm({ professor, fetchProfsCourses }) {
     } catch (err) {
       console.error(err);
     }
-
   };
 
   return (
@@ -70,14 +66,12 @@ function AssignCourseForm({ professor, fetchProfsCourses }) {
           <Row>
             <Col>
               <Form.Select required onChange={(e) => setSelectedCourseID(e.target.value)}>
-                <option>Select a Course...</option>
-                {courses.map((course: any, i: number) => (
+                <option value="">Select a Course</option>
+                {courses.map((course: Course, i: number) => (
                   <option key={i} value={course.courseID}>
                     <span className="text-muted">
                       {course.courseCode + " " + course.courseNumber}
-                      <span color="grey">
-                        {" - " + course.term + " " + course.year}
-                      </span>
+                      <span color="grey">{" - " + course.term + " " + course.year}</span>
                     </span>
                   </option>
                 ))}
@@ -87,9 +81,9 @@ function AssignCourseForm({ professor, fetchProfsCourses }) {
           <Button className="mt-3" variant="light" type="submit">
             Add
           </Button>
-        </Form >
-      </Collapse >
-    </div >
+        </Form>
+      </Collapse>
+    </div>
   );
 }
 

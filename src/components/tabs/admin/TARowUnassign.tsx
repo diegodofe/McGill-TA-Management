@@ -1,11 +1,23 @@
 import React from "react";
 import RemoveIcon from "@material-ui/icons/Remove";
+import { TA } from "../../../classes/TA";
+import ViewTAPerformance from "./ViewTAPerformance";
+import { allCourseMcGill } from "../../../data/RealData";
+import { Course } from "../../../classes/Course";
+import ViewTACourses from "./ViewTACourses";
 
-const TARowUnassign = ({ ta, fetchTAData }) => {
+const TARowUnassign = ({ ta, fetchTAData }: { ta: TA; fetchTAData: Function }) => {
+  /**
+   * @TODO fetch current list of assigned courses for this ta
+   */
+
+  const taCurrentAssigned: Array<Course> = [allCourseMcGill[0], allCourseMcGill[1]];
+  const taPreviousAssigned: Array<Course> = [...allCourseMcGill];
+
   const handleUnassignUser = async () => {
     console.log(ta.email);
-    const res = await fetch(``, {
-      method: "DELETE",
+    const res = await fetch(`/ta/unassignFromCourse`, {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
@@ -26,12 +38,18 @@ const TARowUnassign = ({ ta, fetchTAData }) => {
           <RemoveIcon />
         </button>
       </td>
-      <td className="column2">
-        {ta.email} {ta.lastName || ta.backupLastName}
+      <td className="column1">
+        {(ta.firstName || ta.backupFirstName) + " " + (ta.lastName || ta.backupLastName)}
       </td>
-      <td className="column3">{ta.performance}</td>
-      <td className="column4">{ta.currentCourses}</td>
-      <td className="column5">{ta.previousCourses}</td>
+      <td className="column2">
+        <ViewTAPerformance ta={ta} isProfessor={false} />
+      </td>
+      <td className="column3">
+        <ViewTACourses courseList={taCurrentAssigned} />
+      </td>
+      <td className="column4">
+        <ViewTACourses courseList={taPreviousAssigned} />
+      </td>
     </tr>
   );
 };

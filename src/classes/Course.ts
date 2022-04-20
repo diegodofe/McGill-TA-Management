@@ -1,10 +1,11 @@
-import { TA } from "./TA";
-
-export default interface Course {
-  name: string;
-  numStudents: number;
+export interface Course {
+  uuid?: string;
   courseID: string;
-  currentTAs: Array<TA>;
-  historicalTAs: Array<TA>;
-  wishlist: Array<TA>;
+  createdAt: string;
+  updatedAt: string;
+  term: string;
+  year: string;
+  courseNumber: string;
+  courseName: string;
+  courseCode: string;
 }

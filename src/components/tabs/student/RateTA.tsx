@@ -1,40 +1,45 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Container } from "react-bootstrap";
-import { TA } from "../../../classes/TA";
-import { usersEnrolledCourses } from "../../../data/FakeData";
+import { UserContext } from "../../../App";
+import { Course } from "../../../classes/Course";
+import { enrolledCourses } from "../../../data/RealData";
 import "../../../style/userTable.css";
-import TAReviewRow from "./TAReviewRow";
+import StudentCourse from "./StudentCourseTable";
+import StudentRegisterCourse from "./StudentRegisterCourse";
 
 const RateTA = () => {
+  const [myCourses, setMyCourses] = React.useState(enrolledCourses);
+
+  const { user } = useContext(UserContext);
+
+  const loadMyCourses = async () => {
+    try {
+      // get user getContext
+      if (user && user.uuid) {
+        const uuid = user.uuid;
+        const response = await fetch(`https://winter2022-comp307-group8.cs.mcgill.ca/student/getallclasses/${uuid}/`);
+        const json = await response.json();
+        setMyCourses(json.enrolledCourses as Course[]);
+      }
+    } catch (error) {
+      console.log(error);
+      console.error("Error loading courses");
+    }
+  };
+
+  React.useEffect(() => {
+    loadMyCourses();
+    console.log("Loaded courses");
+  }, []);
+
   return (
     <div>
-      {/**
-       * @TODO Retrieve this information from the actual global user state
-       */}
-      {usersEnrolledCourses.map((course, i) => (
-        <Container key={i} className="mb-4">
-          <h2>{`${course.courseID}: ${course.name}`}</h2>
-          <div id="profTable">
-            <table>
-              <thead>
-                <tr>
-                  <th className="column1">Status</th>
-                  <th className="column2">Review</th>
-                  <th className="column3">Email</th>
-                  <th className="column4">First Name</th>
-                  <th className="column5">Last Name</th>
-                </tr>
-              </thead>
-              <tbody>
-                {/**Set to hardcoded list of profs for testing purposes */}
-                {course.currentTAs.map((ta: TA, i: number) => (
-                  <TAReviewRow key={i} ta={ta} />
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </Container>
-      ))}
+      <StudentRegisterCourse loadMyCourses={loadMyCourses} />
+      <Container className="mt-3">
+        {myCourses.map((course: Course, i: number) => (
+          <StudentCourse key={i} course={course} />
+        ))}
+      </Container>
     </div>
   );
 };

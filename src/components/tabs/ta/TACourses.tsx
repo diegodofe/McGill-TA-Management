@@ -1,19 +1,53 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Container, Dropdown } from "react-bootstrap";
-import Course from "../../../classes/Course";
-import { allCoursesAtMcGill, allTAs } from "../../../data/FakeData";
+import { Course } from "../../../classes/Course";
 import "../../../style/userTable.css";
 import "../../../style/subTopbar.css";
 import TACourseTable from "./TACourseTable";
 import { TA } from "../../../classes/TA";
+import { allTAs } from "../../../data/RealData";
+import { UserContext } from "../../../App";
+
+// create empty Course
+const emptyCourse: Course = {
+  courseID: "",
+  createdAt: "",
+  updatedAt: "",
+  term: "",
+  year: "",
+  courseNumber: "",
+  courseName: "",
+  courseCode: "",
+};
 
 const TACourses = () => {
-  /**
-   * @TODO fetch TA user's info and courses list from server
-   */
-  const currentUserTA: TA = allTAs[4];
-  const usersCourses: Array<Course> = [allCoursesAtMcGill[3], allCoursesAtMcGill[4], allCoursesAtMcGill[5]];
-  const [currentCourse, setCurrentCourse] = useState<Course>(usersCourses[0]);
+  const currentUserTA: TA = allTAs[1];
+  // const usersCourses: Array<Course> = [...allCourseMcGill];
+  const [currentCourse, setCurrentCourse] = useState<Course>(emptyCourse);
+  const [allCourses, setAllCourses] = useState<Array<Course>>([]);
+
+  const { user } = useContext(UserContext);
+
+  // Load all courses
+  const loadTAsCourses = async () => {
+    try {
+      if (user && user.email) {
+        const res = await fetch("https://winter2022-comp307-group8.cs.mcgill.ca/ta/courses/" + user.email);
+        const json = await res.json();
+
+        setAllCourses(json.courses as Course[]);
+        if (json.courses && json.courses.length > 0) {
+          setCurrentCourse(json.courses[0]);
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    loadTAsCourses();
+  }, []);
 
   return (
     <Container>
@@ -24,17 +58,17 @@ const TACourses = () => {
         </Dropdown.Toggle>
 
         <Dropdown.Menu className="courses">
-          {usersCourses.map((course: Course, i: number) => (
+          {allCourses.map((course: Course, i: number) => (
             <Dropdown.Item key={i} onClick={() => setCurrentCourse(course)}>
-              {course.courseID}
+              {`${course.courseCode} ${course.courseNumber} - ${course.term} ${course.year}`}
             </Dropdown.Item>
           ))}
         </Dropdown.Menu>
       </Dropdown>
 
-      <h2 className="inline course-name">{`${currentCourse.courseID}: ${currentCourse.name}`}</h2>
+      <h2 className="inline course-name">{`${currentCourse.courseCode} ${currentCourse.courseNumber}: ${currentCourse.courseName}`}</h2>
       <div className="inline">
-        <TACourseTable ta={currentUserTA} />
+        <TACourseTable course={currentCourse} ta={currentUserTA} />
       </div>
     </Container>
   );

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import {
   Container,
   Nav,
@@ -14,7 +14,6 @@ import ManageStudents from "../components/tabs/sysop/ManageStudent";
 import ManageTAs from "../components/tabs/sysop/ManageTAs";
 import { UserTypes } from "../enums/UserTypes";
 import logo from "../assets/images/mcgill_logo.jpg";
-import logout from "../assets/images/126467.png";
 import "../style/subTopbar.css";
 import ManageCourses from "../components/tabs/sysop/ManageCourses";
 import TAAdministration from "../components/tabs/admin/TAAdministration";
@@ -23,12 +22,13 @@ import ProfessorCourses from "../components/tabs/professor/ProfessorCourses";
 import ManageTAAdmins from "../components/tabs/sysop/ManageTAAdmins";
 import TACourses from "../components/tabs/ta/TACourses";
 import { useNavigate } from "react-router-dom";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 export function Dashboard() {
   const tabsPerProfile = new Map<UserTypes, Array<string>>([
     [UserTypes.Student, ["Rate a TA"]],
-    [UserTypes.Professor, ["Professor Courses"]],
     [UserTypes.TA, ["TA Courses"]],
+    [UserTypes.Professor, ["Professor Courses"]],
     [UserTypes.Admin, ["TA Administration", "View All TAs"]],
     [UserTypes.Sysop, ["Professors", "Students", "Courses", "TA Admins"]],
   ]);
@@ -81,6 +81,13 @@ export function Dashboard() {
     navigate("/logout");
   }
 
+  useEffect(() => {
+    // if no user redirect to login page
+    if (!user.email) {
+      navigate("/login");
+    }
+  }, [user, navigate]);
+
   // Render nav dropdown options and nav tabs based on state above
   return (
     <div>
@@ -101,13 +108,11 @@ export function Dashboard() {
               ))}
             </NavDropdown>
           </Nav>
-          <button onClick={() => handleLogout()}>
-          <img className="logout" src={logout} alt="logout" />
-        </button>
+          <button className="logout" onClick={() => handleLogout()}>
+            <LogoutIcon />
+          </button>
         </Container>
-        
       </Navbar>
-
       <Container>
         <Tabs
           defaultActiveKey="0"
