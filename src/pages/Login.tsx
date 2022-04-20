@@ -97,7 +97,6 @@ const Login: React.FC = () => {
             </div>
 
             <p className="bottom">
-              <span className="links">Forget password</span> or{" "}
               <Link className="links" to="/register">
                 Register
               </Link>
