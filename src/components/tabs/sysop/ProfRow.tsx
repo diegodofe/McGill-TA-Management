@@ -27,7 +27,7 @@ const ProfRow = ({ professor, fetchProfData }: { professor: Professor; fetchProf
       }, 250);
 
       console.log("Delete professor");
-    } catch (e) {}
+    } catch (e) { }
   };
 
   const fetchProfsCourses = async () => {
@@ -36,7 +36,9 @@ const ProfRow = ({ professor, fetchProfData }: { professor: Professor; fetchProf
       const data = await res.json();
       console.log("profs courses loaded");
       console.log(data.users);
-      setCourses(data.users);
+      if (data && data.users) {
+        setCourses(data.users);
+      }
     } catch (err) {
       console.error(err);
     }
