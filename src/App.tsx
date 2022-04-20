@@ -6,13 +6,14 @@ import Login from "./pages/Login";
 import { User, emptyUser } from "./classes/User";
 import Register from "./pages/Register";
 import LoggedOut from "./pages/LoggedOut";
+import NotFound from "./pages/NotFound";
 
 interface UserProviderProps {
   user: User;
   setUser: Function;
 }
 
-export const UserContext = React.createContext<UserProviderProps>({ user: emptyUser, setUser: () => { } });
+export const UserContext = React.createContext<UserProviderProps>({ user: emptyUser, setUser: () => {} });
 
 const App = () => {
   const [user, setUser] = React.useState<User>(emptyUser);
@@ -26,6 +27,7 @@ const App = () => {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/register" element={<Register />} />
           <Route path="/logout" element={<LoggedOut />} />
+          <Route path="/*" element={<NotFound />} />
         </Routes>
       </Router>
     </UserContext.Provider>
