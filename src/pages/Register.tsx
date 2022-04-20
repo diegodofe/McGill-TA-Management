@@ -75,7 +75,7 @@ function Register() {
     <div className="login">
       <div className="welcome">
         <form onSubmit={submitHandler}>
-          <div className="form-inner reg">
+          <div className="form-inner">
             <img className="logo" src={logo} alt="mcgill-logo" />
 
             <p className="top">Create your account</p>
