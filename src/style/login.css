@@ -1,0 +1,17 @@
+.login {
+  height: 100vh;
+  background-image: url("../assets/images/landingBackground.jpg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  /* width: 100%; */
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.form-inner {
+    height: 100vh;
+    background-color: white;
+}
