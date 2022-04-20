@@ -24,10 +24,10 @@ const ProfCourseRow = ({ ta, course, loadTAsOfCourse }: { ta: TA; course: Course
         <EditOHTime loadTAsOfCourse={loadTAsOfCourse} course={course} ta={ta} />
       </td>
       <td className="column4">
-        <EditOHLocation ta={ta} />
+        <EditOHLocation loadTAsOfCourse={loadTAsOfCourse} course={course} ta={ta} />
       </td>
       <td className="column5">
-        <EditDuties ta={ta} />
+        <EditDuties loadTAsOfCourse={loadTAsOfCourse} course={course} ta={ta} />
       </td>
       <td className="column6">
         <ViewTAPerformance ta={ta} isProfessor={true} />
