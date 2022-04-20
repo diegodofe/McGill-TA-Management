@@ -13,5 +13,20 @@
 
 .form-inner {
     height: 100vh;
+    width: 30%;
+    min-width: 400px;
     background-color: white;
-}
+    float: right;
+  }
+  
+
+.form-inner.log{
+    margin-top: -15px;
+    margin-right: -30px;
+  }
+
+.form-inner.reg{
+    margin-top: -78px;
+    margin-right: -30px;
+  }
+  

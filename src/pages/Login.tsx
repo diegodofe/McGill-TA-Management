@@ -66,7 +66,7 @@ const Login: React.FC = () => {
     <div className="login">
       <div className="welcome">
         <form onSubmit={submitHandler}>
-          <div className="form-inner">
+          <div className="form-inner log">
             <img className="logo" src={logo} alt="mcgill-logo" />
 
             <p className="top">Sign in with your email and password.</p>

@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/images/mcgill_logo.jpg";
 import "../App.css";
+import "../style/login.css";
 import { UserContext } from "../App";
 
 function Register() {
@@ -26,19 +27,22 @@ function Register() {
 
     try {
       // Make register API call
-      const res = await fetch("https://winter2022-comp307-group8.cs.mcgill.ca/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: tempEmail,
-          password: tempPassword,
-          firstName: tempFirstName,
-          lastName: tempLastName,
-          studentID: tempStudentID,
-        }),
-      });
+      const res = await fetch(
+        "https://winter2022-comp307-group8.cs.mcgill.ca/signup",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: tempEmail,
+            password: tempPassword,
+            firstName: tempFirstName,
+            lastName: tempLastName,
+            studentID: tempStudentID,
+          }),
+        }
+      );
 
       console.log(res);
 
@@ -68,46 +72,78 @@ function Register() {
   };
 
   return (
-    <div className="welcome">
-      <h2>Register</h2>
-      <form onSubmit={submitHandler}>
-        <div className="form-inner">
-          <img className="logo" src={logo} alt="mcgill-logo" />
+    <div className="login">
+      <div className="welcome">
+        <h2>Register</h2>
+        <form onSubmit={submitHandler}>
+          <div className="form-inner reg">
+            <img className="logo" src={logo} alt="mcgill-logo" />
 
-          <p className="top">Create your account</p>
-          {error !== "" ? <div className="error"> * {error} </div> : ""}
+            <p className="top">Create your account</p>
+            {error !== "" ? <div className="error"> * {error} </div> : ""}
 
-          <div className="form-group">
-            <input type="text" name="firstname" placeholder="firstname" id="firstname" onChange={(e) => setTempFirstName(e.target.value)} />
+            <div className="form-group">
+              <input
+                type="text"
+                name="firstname"
+                placeholder="firstname"
+                id="firstname"
+                onChange={(e) => setTempFirstName(e.target.value)}
+              />
+            </div>
+
+            <div className="form-group">
+              <input
+                type="text"
+                name="lastname"
+                placeholder="lastname"
+                id="lastname"
+                onChange={(e) => setTempLastName(e.target.value)}
+              />
+            </div>
+
+            <div className="form-group">
+              <input
+                type="text"
+                name="email"
+                placeholder="student ID"
+                id="student ID"
+                onChange={(e) => setTempStudentID(e.target.value)}
+              />
+            </div>
+
+            <div className="form-group">
+              <input
+                type="text"
+                name="email"
+                placeholder="email"
+                id="email"
+                onChange={(e) => setTempEmail(e.target.value)}
+              />
+            </div>
+
+            <div className="form-group">
+              <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                id="password"
+                onChange={(e) => setTempPassword(e.target.value)}
+              />
+            </div>
+
+            <div className="sign-in-button">
+              <input type="submit" value="Sign in" />
+            </div>
+
+            <p className="bottom">
+              <Link className="links" to="/login">
+                Login
+              </Link>
+            </p>
           </div>
-
-          <div className="form-group">
-            <input type="text" name="lastname" placeholder="lastname" id="lastname" onChange={(e) => setTempLastName(e.target.value)} />
-          </div>
-
-          <div className="form-group">
-            <input type="text" name="email" placeholder="student ID" id="student ID" onChange={(e) => setTempStudentID(e.target.value)} />
-          </div>
-
-          <div className="form-group">
-            <input type="text" name="email" placeholder="email" id="email" onChange={(e) => setTempEmail(e.target.value)} />
-          </div>
-
-          <div className="form-group">
-            <input type="password" name="password" placeholder="Password" id="password" onChange={(e) => setTempPassword(e.target.value)} />
-          </div>
-
-          <div className="sign-in-button">
-            <input type="submit" value="Sign in" />
-          </div>
-
-          <p className="bottom">
-            <Link className="links" to="/login">
-              Login
-            </Link>
-          </p>
-        </div>
-      </form>
+        </form>
+      </div>{" "}
     </div>
   );
 }
