@@ -3,7 +3,7 @@ export interface Log {
   taRatedEmail: string;
   courseID: string;
   rating: number;
-  comment: string;
+  comments: Array<string>;
   createdAt: string;
   updatedAt: string;
 }
