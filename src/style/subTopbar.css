@@ -1,48 +1,51 @@
 /* styling for nav bars in page content (not main nav bar) */
 
-.sub.nav-tabs .sub.nav-item.show .nav-link, .sub.nav-tabs .nav-link.active {
-    color: #6F7782;
-    background-color: #fff !important;
-    border-top: none !important;
-    border-left: none !important;
-    border-right: none !important;
+.sub.nav-tabs .sub.nav-item.show .nav-link,
+.sub.nav-tabs .nav-link.active {
+  color: #6f7782;
+  background-color: #fff !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
 }
 
-.sub.nav-tabs .nav-link:hover{
-    border-top: none !important;
-    border-left: none !important;
-    border-right: none !important;
+.sub.nav-tabs .nav-link:hover {
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
 }
 
 .sub.nav-item.show {
-    color:#6F7782  !important;
-    border-top: none !important;
-    border-left: none !important;
-    border-right: none !important;
+  color: #6f7782 !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
 }
 
-.sub.nav-tabs .nav-link{
-    color:#6F7782  !important;
-    border-top: none !important;
-    border-left: none !important;
-    border-right: none !important;
+.sub.nav-tabs .nav-link {
+  color: #6f7782 !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
 }
 
-.sub.nav-tabs{
-    color:#6F7782  !important;
-    margin-bottom: 20px;
+.sub.nav-tabs {
+  color: #6f7782 !important;
+  margin-bottom: 20px;
 }
 
 .sub.nav-tabs .nav-link.active {
-    border-top: none !important;
-    border-left: none !important;
-    border-right: none !important;
-    border-bottom: 2px solid #E14561;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-bottom: 2px solid #e14561;
 }
-
 
 /* prevent dropdown from shifting up when menu open */
 .navbar-nav .dropdown-menu {
-    position: absolute !important;
-  }
-  
+  position: absolute !important;
+}
+
+.logout {
+    color: #6F7782;
+}
