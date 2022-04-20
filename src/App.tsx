@@ -12,7 +12,7 @@ interface UserProviderProps {
   setUser: Function;
 }
 
-export const UserContext = React.createContext<UserProviderProps>({ user: emptyUser, setUser: () => {} });
+export const UserContext = React.createContext<UserProviderProps>({ user: emptyUser, setUser: () => { } });
 
 const App = () => {
   const [user, setUser] = React.useState<User>(emptyUser);

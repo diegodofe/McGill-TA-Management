@@ -12,4 +12,6 @@ export interface TA {
   lastName: string;
   uuid: string;
   password: string;
+  backupFirstName?: string;
+  backupLastName?: string;
 }

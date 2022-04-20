@@ -16,8 +16,8 @@ const TARowUnassign = ({ ta, fetchTAData }: { ta: TA; fetchTAData: Function }) =
 
   const handleUnassignUser = async () => {
     console.log(ta.email);
-    const res = await fetch(``, {
-      method: "DELETE",
+    const res = await fetch(`/ta/unassignFromCourse`, {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
@@ -39,7 +39,7 @@ const TARowUnassign = ({ ta, fetchTAData }: { ta: TA; fetchTAData: Function }) =
         </button>
       </td>
       <td className="column1">
-        {ta.firstName + " " + ta.lastName}
+        {(ta.firstName || ta.backupFirstName) + " " + (ta.lastName || ta.backupLastName)}
       </td>
       <td className="column2">
         <ViewTAPerformance ta={ta} isProfessor={false} />

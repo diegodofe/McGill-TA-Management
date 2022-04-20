@@ -13,6 +13,7 @@ const ViewAllTAs = () => {
       const res = await fetch("https://winter2022-comp307-group8.cs.mcgill.ca/ta/all");
       const data = await res.json();
       setTas(data.tas);
+      console.log("All TA's")
       console.log(data.tas);
     } catch (err) {
       console.error(err);
