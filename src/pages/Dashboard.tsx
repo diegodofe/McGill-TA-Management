@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Container, Nav, Navbar, NavDropdown, Tab, Tabs } from "react-bootstrap";
 import { UserContext } from "../App";
 import RateTA from "../components/tabs/student/RateTA";
@@ -20,8 +20,8 @@ import { useNavigate } from "react-router-dom";
 export function Dashboard() {
   const tabsPerProfile = new Map<UserTypes, Array<string>>([
     [UserTypes.Student, ["Rate a TA"]],
-    [UserTypes.Professor, ["Professor Courses"]],
     [UserTypes.TA, ["TA Courses"]],
+    [UserTypes.Professor, ["Professor Courses"]],
     [UserTypes.Admin, ["TA Administration", "View All TAs"]],
     [UserTypes.Sysop, ["Professors", "Students", "Courses", "TA Admins"]],
   ]);
@@ -63,6 +63,13 @@ export function Dashboard() {
     console.log("Logging out!");
     navigate("/logout");
   }
+
+  useEffect(() => {
+    // if no user redirect to login page
+    if (!user.email) {
+      navigate("/login");
+    }
+  }, [user, navigate]);
 
   // Render nav dropdown options and nav tabs based on state above
   return (

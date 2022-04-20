@@ -39,7 +39,7 @@ const TARowUnassign = ({ ta, fetchTAData }: { ta: TA; fetchTAData: Function }) =
         </button>
       </td>
       <td className="column1">
-        {ta.firstName} {ta.lastName}
+        {ta.firstName + " " + ta.lastName}
       </td>
       <td className="column2">
         <ViewTAPerformance ta={ta} isProfessor={false} />
