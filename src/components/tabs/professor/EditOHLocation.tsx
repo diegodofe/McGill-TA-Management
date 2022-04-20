@@ -5,8 +5,10 @@ import { Modal } from "react-bootstrap";
 import "../../../style/userTable.css";
 import { Edit } from "@mui/icons-material";
 import { TA } from "../../../classes/TA";
+import { Course } from "../../../classes/Course";
 
-function EditOHLocation({ ta }: { ta: TA }) {
+function EditOHLocation({ ta, course, loadTAsOfCourse }: { ta: TA, course: Course, loadTAsOfCourse: () => Promise<void> }) {
+
   const [show, setShow] = useState(false);
 
   /**
@@ -14,16 +16,39 @@ function EditOHLocation({ ta }: { ta: TA }) {
    */
 
   const currentLocation: string = ta.officeHoursLocation;
-  const [OHLocation, setOHLocation] = useState<string>("");
+  const [OHLocation, setOHLocation] = useState<string>(ta.officeHoursLocation);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setShow(false);
+
     console.log(OHLocation);
 
-    /**
-     * @TODO on submit, send this OH location to the server
-     */
+    try {
+      const res = await fetch("https://winter2022-comp307-group8.cs.mcgill.ca/prof/updateTADuties", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: ta.email,
+          courseID: course.courseID,
+          officeHoursTime: ta.officeHoursTime,
+          officeHoursLocation: OHLocation,
+          duties: ta.duties,
+        }),
+      });
+      const json = await res.json();
+      console.log(json);
+
+      setTimeout(() => {
+        loadTAsOfCourse();
+      }, 500);
+
+      setShow(false);
+    } catch (error) {
+      console.error(error);
+    }
+
   };
 
   return (

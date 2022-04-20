@@ -6,8 +6,9 @@ import { Modal } from "react-bootstrap";
 import "../../../style/userTable.css";
 import { Edit } from "@mui/icons-material";
 import { TA } from "../../../classes/TA";
+import { Course } from "../../../classes/Course";
 
-function EditDuties({ ta }: { ta: TA }) {
+function EditDuties({ ta, course, loadTAsOfCourse }: { ta: TA, course: Course, loadTAsOfCourse: () => Promise<void> }) {
   const [show, setShow] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -23,9 +24,30 @@ function EditDuties({ ta }: { ta: TA }) {
     setShow(false);
     console.log(responisbilities);
 
-    /**
-     * @TODO on submit, send this responsibilities  edit to the server
-     */
+    try {
+      const res = await fetch("https://winter2022-comp307-group8.cs.mcgill.ca/prof/updateTADuties", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: ta.email,
+          courseID: course.courseID,
+          officeHoursTime: ta.officeHoursTime,
+          officeHoursLocation: ta.officeHoursLocation,
+          duties: responisbilities,
+        }),
+      });
+      const json = await res.json();
+      console.log(json);
+
+      setTimeout(() => {
+        loadTAsOfCourse();
+      }, 500);
+    } catch (e) {
+      console.error(e);
+    }
+
   };
 
   return (

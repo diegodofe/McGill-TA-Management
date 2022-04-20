@@ -89,7 +89,6 @@ export function Dashboard() {
           </button>
         </Container>
       </Navbar>
-
       <Container>
         <Tabs defaultActiveKey="0" transition={false} id="noanim-tab" className="sub">
           {currentTabs.map((currentTabName, i) => (
