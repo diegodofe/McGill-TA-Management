@@ -10,7 +10,7 @@ Be sure to checkout our live website on the McGill SOCS mimi server: https://www
 
 Checkout our video demo below, where we show off all of the different types of profiles and pages a Student, Professor, Teaching Assistant, Admin, or Sysop might expect!
 
-[![myTAs-demo-video](https://user-images.githubusercontent.com/63019625/163755238-722b80f6-92fb-41a2-aabb-62c9565524bd.png)](https://www.youtube.com/watch?v=WDr4sWE_l8Q)
+[![myTAs-demo-video](https://user-images.githubusercontent.com/63019625/163755238-722b80f6-92fb-41a2-aabb-62c9565524bd.png)](https://youtu.be/-rUVPcHHdtk)
 
 ## To Run Locally
 
